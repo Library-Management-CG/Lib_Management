@@ -3,13 +3,30 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { AdminComponent } from './admin/admin.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UserComponent } from './user/user.component';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { UserRoutingModule } from './user/user-routing.module';
+import { MyBooksComponent } from './user/my-books/my-books.component';
+import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdminComponent,
+    DashboardComponent,
+    UserComponent,
+    MyBooksComponent,
+    ManageBooksComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    UserRoutingModule, AdminRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
