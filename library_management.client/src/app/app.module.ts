@@ -12,6 +12,7 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ManageBooksComponent } from './admin/manage-books/manage-books.componen
     DashboardComponent,
     UserComponent,
     MyBooksComponent,
-    ManageBooksComponent
+    ManageBooksComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

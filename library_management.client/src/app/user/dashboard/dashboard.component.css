@@ -1,0 +1,217 @@
+.dashboard {
+overflow: hidden !important;
+}
+
+.lib-user-books-container {
+    width: 1248px;
+
+  height: 300px;
+  margin-top: 16px;
+  margin-left: 8.5px;
+  padding: 16px;
+  border-radius: 26px;
+  background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
+
+}
+
+.books-text-container {
+    width: 686.4px;
+  
+  height: 175px;
+  margin-top: 29px;
+  margin-left: 65.92px;
+  gap: 32px;
+}
+
+/*.books-heading-text-container {
+  width: 678px;
+  height: 99px;
+  gap: 24px;
+}*/
+
+.books-laptop-heading {
+
+  display: block;
+  width: 678px;
+  height: 59px;
+  font-family: Lato;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 48px;
+  text-align: left;
+  color: #002C3F;
+  text-transform: uppercase;
+}
+
+.books-mobile-heading {
+  display: none;
+}
+
+.sub-heading {
+  width: 678px;
+  height: 66px;
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28.8px;
+  text-align: left;
+  color: #002C3F;
+}
+
+.explore-button {
+  width: 156px;
+  padding: 12px 20px 12px 20px;
+  gap: 8px;
+  border-radius: 30px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  background: var(--Primary-Blue, #28519E);
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.explore-button-text {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.6px;
+  text-align: left;
+  color: white;
+}
+
+.books-stack-container {
+  width: 308px;
+  height: 86px;
+  margin-left: 853.2px;
+  padding: 0px 0px 0.28px 0px;
+  margin-top: -12.9rem;
+}
+
+.all-lib-books {
+    
+/*  height: 403px;*/
+  width: 712px;
+/*  height: 100%;*/
+  background-color: lightblue;
+  margin-top: 20px;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 36px;
+  overflow-y: scroll;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+
+.recently-added {
+  color: var(--Primary-Grey, #343435);
+  font-family: Literata;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  height: 14px;
+  width: 712px;
+}
+
+.card {
+  width: 220px;
+  height: 340px;
+}
+
+
+
+@media only screen and (max-width: 668px) {
+  .lib-user-books-container {
+    width: 343px;
+    height: 300px;
+    margin-top: 16px;
+    margin-left: 16px;
+    padding: 16px;
+    border-radius: 16px;
+    background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
+    overflow-x: hidden;
+  }
+
+  .books-text-container {
+    width: 311px;
+    height: 145.91px;
+  }
+
+  .books-laptop-heading{
+      display: none;
+  }
+
+  .books-mobile-heading {
+    display: block;
+    width: 292.01px;
+    height: 61.57px;
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 48px;
+    text-align: left;
+    margin-left: -3rem;
+    color: #002C3F;
+    text-transform: uppercase;
+  }
+
+  .sub-heading {
+    width: 257.98px;
+    height: 66px;
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 490;
+    line-height: 28.8px;
+    text-align: left;
+    color: #002C3F;
+    margin-top: 40px;
+    margin-left: -3rem;
+  }
+
+  .books-stack-container {
+    width: 308px;
+   /* height: 285.72px;*/
+    margin-top:-11.1rem;
+    margin-left: 18px;
+    background: url("../../../assets/icons/Rectangle.svg");
+    opacity: 0.16;
+  }
+
+  .explore-button {
+    width: 156px;
+    padding: 12px 20px 12px 20px;
+    gap: 8px;
+    border-radius: 30px;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    background: var(--Primary-Blue, #28519E);
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+
+  .all-lib-books {
+    /*  
+  height: 403px*/
+    width: 300px;
+    height: 100%;
+    background-color: lightblue;
+    margin-top: 40px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
