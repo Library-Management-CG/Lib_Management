@@ -13,6 +13,7 @@ import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    UserRoutingModule, AdminRoutingModule
+    UserRoutingModule, AdminRoutingModule,
+  /*  AvatarModule*/
   ],
   providers: [],
   bootstrap: [AppComponent]

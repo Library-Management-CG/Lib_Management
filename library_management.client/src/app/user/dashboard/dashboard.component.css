@@ -1,5 +1,6 @@
 .dashboard {
 overflow: hidden !important;
+
 }
 
 .lib-user-books-container {
@@ -93,7 +94,7 @@ overflow: hidden !important;
 
 .all-lib-books {
     
-/*  height: 403px;*/
+  height: 403px;
   width: 712px;
 /*  height: 100%;*/
   background-color: lightblue;
@@ -123,9 +124,21 @@ overflow: hidden !important;
 .card {
   width: 220px;
   height: 340px;
+  margin-top: 6px;
+  position: relative;
 }
 
+.book-card {
+  width: 220px;
+  height: 270px;
+}
 
+.book-card-rectangle {
+  height: 190px;
+  position: absolute;
+  margin-top: 155px;
+  border:5px solid yellow;
+}
 
 @media only screen and (max-width: 668px) {
   .lib-user-books-container {
@@ -137,6 +150,10 @@ overflow: hidden !important;
     border-radius: 16px;
     background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
     overflow-x: hidden;
+  }
+  .dashboard {
+      position:relative;
+      top:3rem;
   }
 
   .books-text-container {
