@@ -2,41 +2,48 @@
 
 
   <div class="container-fluid">
-      <div class="lib-user-books-container col-12">
+    <div class="lib-user-books-container col-12">
 
-        <div class="books-text-container">
+      <div class="books-text-container">
 
-          <div class="books-laptop-heading">
-            Step Into the world of books!
-          </div>
-
-          <div class="books-mobile-heading">
-            The Ultimate Guide for Books
-          </div>
-
-          <div class="sub-heading">
-            Uncertain about your next read? Discover some genuine<br /> treasures nestled within our library.
-          </div>
-
-          <button type="button" class="explore-button">
-            <div class="explore-button-text">Explore Books</div>
-          </button>
-
+        <div class="books-laptop-heading">
+          Step Into the world of books!
         </div>
 
-
-        <div class="books-stack-container">
-          <img src="../../../assets/icons/Rectangle.svg" />
+        <div class="books-mobile-heading">
+          The Ultimate Guide for Books
         </div>
+
+        <div class="sub-heading">
+          Uncertain about your next read? Discover some genuine<br /> treasures nestled within our library.
+        </div>
+
+        <button type="button" class="explore-button">
+          <div class="explore-button-text">Explore Books</div>
+        </button>
 
       </div>
+
+
+      <div class="books-stack-container">
+        <img src="../../../assets/icons/Rectangle.svg" />
+      </div>
+
+    </div>
   </div>
 
   <div class="books-and-leaderboard col-12">
 
     <div class="row">
 
-      <app-book-cards></app-book-cards>
+      <div class="all-lib-books col-md-7">
+        <p class="recently-added">Recently Added</p>
+        <app-book-cards></app-book-cards>
+        <p class="recently-added">Most Popular</p>
+        <app-book-cards></app-book-cards>
+      </div>
+
+
 
       <div class="col-md-3">
         <div class="leaderboard">
@@ -103,6 +110,7 @@
   </div>
 
 </div>
+
 
 
 
