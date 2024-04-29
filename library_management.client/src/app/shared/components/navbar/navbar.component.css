@@ -191,6 +191,7 @@ input[type=search] {
     position: absolute;
     z-index: 3;
     width: 100vw;
+
   }
   /**/
   .navbar-collapse {
@@ -199,6 +200,7 @@ input[type=search] {
     height: 100%;
     overflow-x: hidden;
     background-color: #FFF;
+
   }
 
   .navbar-toggler {
@@ -221,6 +223,7 @@ input[type=search] {
     height: 100vh;
     margin-top: -2rem;
     position: relative;
+
   }
 
   .navbar-buttons {

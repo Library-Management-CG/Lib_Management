@@ -14,6 +14,9 @@ import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { AvatarModule } from 'ngx-avatar';
+import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
+
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { AvatarModule } from 'ngx-avatar';
     UserComponent,
     MyBooksComponent,
     ManageBooksComponent,
-    NavbarComponent
+    NavbarComponent,
+    BookCardsComponent
   ],
   imports: [
     BrowserModule,

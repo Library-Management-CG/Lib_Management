@@ -42,8 +42,13 @@
           <div class="login">
             <p class="name">JJ</p>
           </div>
-          <div class="chevron-down">
-            <img src="../../../../assets/icons/Chevron down.svg" />
+          <div class="chevron-down" [class.open]="isDropdownOpen">
+            <img src="../../../../assets/icons/Chevron down.svg" (click)="toggleDropdown()" />
+            <ul class="dropdown-menu" *ngIf="isDropdownOpen" aria-labelledby="dropdownMenu2">
+              <li><button class="dropdown-item" type="button">Action</button></li>
+              <li><button class="dropdown-item" type="button">Another action</button></li>
+              <li><button class="dropdown-item" type="button">Something else here</button></li>
+            </ul>
           </div>
         </div>
 

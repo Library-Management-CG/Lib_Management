@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class NavbarComponent {
   activeButton: string = 'readers-hub';
   isTogglerClicked: boolean = false;
+  isDropdownOpen: boolean = false;
   constructor(private router: Router) { }
 
   toggleActiveButton(button: string) {
@@ -24,6 +25,9 @@ export class NavbarComponent {
     this.isTogglerClicked = false;
   }
 
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 
   toggleCollapse() {
     this.isTogglerClicked = !this.isTogglerClicked;

@@ -92,14 +92,19 @@ overflow: hidden !important;
   margin-top: -12.9rem;
 }
 
+.books-and-leaderboard{
+   /* display: flex;*/
+   padding-right: 2rem !important;
+}
+
 .all-lib-books {
-    
   height: 403px;
-  width: 712px;
-/*  height: 100%;*/
-  background-color: lightblue;
+  width: 750px;
+  /*  height: 100%;*/
+/*  background-color: lightblue;*/
   margin-top: 20px;
   margin-left: 40px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -108,6 +113,10 @@ overflow: hidden !important;
   padding: 0px;
   overflow-x: hidden;
 }
+
+  .all-lib-books::-webkit-scrollbar {
+    display: none;
+  }
 
 
 .recently-added {
@@ -134,10 +143,222 @@ overflow: hidden !important;
 }
 
 .book-card-rectangle {
+  width: 220px;
   height: 190px;
   position: absolute;
-  margin-top: 155px;
-  border:5px solid yellow;
+  margin-top: 160px;
+/*  border: 5px solid yellow;*/
+  transform: scaleX(1.2);
+}
+
+.book-image {
+    margin-top: -18.75rem;
+    width: 210px;
+    margin-left: 5.79px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.book-details {
+  width: 196px;
+  height: 125px;
+  margin-top:220px;
+  margin-left: 12px;
+
+  position: absolute;
+  
+  
+}
+
+.tag {
+  width: 79px;
+  height: 28px;
+  padding: 7px 8px 7px 8px;
+  gap: 10px;
+  border-radius: 4px 0px 0px 0px;
+  background: #CEF0DC;
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  color: #0D542A;
+}
+
+.book-title {
+  width: 196px;
+  height: 38px;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  text-align: left;
+  margin-top :7px;
+}
+
+.author-name {
+  width: 163px;
+  height: 17px;
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: left;
+  color: #6D6D6D;
+}
+
+.leaderboard {
+  width: 464px;
+  height: 406px;
+  margin-top: 20px;
+/*  border: 2px solid black;*/
+}
+
+.leaderboard-stack{
+  width: 464px;
+  height: 368px;
+  padding: 0px 16px 0px 16px;
+  gap: 10px;
+  margin-top: 2rem;
+/*  border: 2px solid black;*/
+}
+
+.stack {
+  width: 432px;
+  height: 368px;
+/*  border: 2px solid blue;*/
+  position: relative;
+}
+
+.stack-1 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: linear-gradient(113.04deg, #F9DDA1 19.55%, #FEC62E 64.92%);
+  position: absolute;
+}
+
+.stack-position-name {
+  width: 368.72px;
+  height: 47.25px;
+  padding: 0px 0px 0px 8px;
+  display: flex;
+  gap: 24px;
+}
+
+.stack-position {
+  width: 27px;
+  height: 62px;
+  gap: 0px;
+  opacity: 0.42;
+}
+
+.stack-name {
+  width: 202px;
+  height: 16px;
+  gap: 16px;
+  font-family: Lato;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 46.4px;
+  text-align: left;
+}
+
+.trophy {
+  width: 31.28px;
+  height: 68px;
+  margin-left: 46px;
+  opacity: 0.73;
+  transform: rotate(-180 deg);
+}
+
+.top-7-readers {
+  font-family: Lato;
+  font-size: 48px;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 57.6px;
+  text-align: left;
+  color: #B2B2B3;
+}
+
+.stack-2 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: linear-gradient(113.04deg, #F2A068 19.55%, #E88A4C 64.92%);
+  position: absolute;
+  margin-top: 35.75px;
+}
+
+.stack-3 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: linear-gradient(113.04deg, #D4D4D6 19.55%, #B5BEBE 64.92%);
+  margin-top: 76.74px;
+  position: absolute;
+}
+
+.stack-4 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: #E3F3FC;
+  margin-top: 118.59px;
+  position: absolute;
+}
+
+.stack-5 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: #FFFFFF;
+  margin-top: 162.2px;
+  position: absolute;
+}
+
+.stack-6 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: #B8DDE1;
+  margin-top: 205.8px;
+  position: absolute;
+}
+
+.stack-7 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: #FFFFFF;
+  margin-top: 249.41px;
+  position: absolute;
+}
+
+.stack-8 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: #EAEEF6;
+  margin-top: 293.01px;
+  position: absolute;
 }
 
 @media only screen and (max-width: 668px) {
