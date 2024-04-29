@@ -2,7 +2,7 @@
   height: 403px;
   width: 750px;
   /*  height: 100%;*/
-  background-color: lightblue;
+  /*  background-color: lightblue;*/
   margin-top: 20px;
   margin-left: 40px;
   display: flex;
@@ -47,7 +47,7 @@
   height: 190px;
   position: absolute;
   margin-top: 160px;
-  border: 5px solid yellow;
+  /*  border: 5px solid yellow;*/
   transform: scaleX(1.2);
 }
 
@@ -102,20 +102,4 @@
   line-height: 16.8px;
   text-align: left;
   color: #6D6D6D;
-}
-
-@media only screen and (max-width: 668px) {
-  .all-lib-books {
-    /*  
-  height: 403px*/
-    width: 300px;
-    height: 100%;
-    background-color: lightblue;
-    margin-top: 40px;
-    margin-left: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-  }
 }

@@ -4,8 +4,6 @@ overflow: hidden !important;
 }
 
 .lib-user-books-container {
-    width: 1248px;
-
   height: 300px;
   margin-top: 16px;
 /*  margin-left: 8.5px;*/
@@ -16,8 +14,6 @@ overflow: hidden !important;
 }
 
 .books-text-container {
-    width: 686.4px;
-  
   height: 175px;
   margin-top: 29px;
   margin-left: 65.92px;
@@ -85,7 +81,6 @@ overflow: hidden !important;
 }
 
 .books-stack-container {
-  width: 308px;
   height: 86px;
   margin-left: 853.2px;
   padding: 0px 0px 0.28px 0px;
@@ -363,7 +358,6 @@ overflow: hidden !important;
 
 @media only screen and (max-width: 668px) {
   .lib-user-books-container {
-    width: 343px;
     height: 300px;
     margin-top: 16px;
     padding: 16px;
@@ -377,7 +371,6 @@ overflow: hidden !important;
   }
 
   .books-text-container {
-    width: 311px;
     height: 145.91px;
   }
 
@@ -413,7 +406,6 @@ overflow: hidden !important;
   }
 
   .books-stack-container {
-    width: 308px;
    /* height: 285.72px;*/
     margin-top:-11.1rem;
     margin-left: 18px;
@@ -443,7 +435,6 @@ overflow: hidden !important;
   height: 403px*/
     width: 300px;
     height: 100%;
-    background-color: lightblue;
     margin-top: 40px;
     margin-left: 40px;
     display: flex;
