@@ -8,7 +8,7 @@ overflow: hidden !important;
 
   height: 300px;
   margin-top: 16px;
-  margin-left: 8.5px;
+/*  margin-left: 8.5px;*/
   padding: 16px;
   border-radius: 26px;
   background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
@@ -366,7 +366,6 @@ overflow: hidden !important;
     width: 343px;
     height: 300px;
     margin-top: 16px;
-    margin-left: 16px;
     padding: 16px;
     border-radius: 16px;
     background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
