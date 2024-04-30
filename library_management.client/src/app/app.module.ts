@@ -15,6 +15,7 @@ import { ManageBooksComponent } from './admin/manage-books/manage-books.componen
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
 
 
 
@@ -28,7 +29,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     ManageBooksComponent,
     NavbarComponent,
     BookCardsComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    NavbarSharedComponent
   ],
   imports: [
     BrowserModule,
