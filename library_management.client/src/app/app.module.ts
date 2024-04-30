@@ -16,6 +16,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
+import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.component';
 
 
 
@@ -30,7 +31,8 @@ import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-
     NavbarComponent,
     BookCardsComponent,
     AdminDashboardComponent,
-    NavbarSharedComponent
+    NavbarSharedComponent,
+    AddBooksModalComponent
   ],
   imports: [
     BrowserModule,
