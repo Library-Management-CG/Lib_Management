@@ -1,0 +1,21 @@
+.manage-outer{
+    border: 1px solid black;
+    height: 39.5rem;
+    width: 75rem;
+    margin-top: 1.5rem;
+    /*margin-bottom: 7.25rem;*/
+}
+
+.manage-heading {
+  border: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+.manage-heading span {
+  color: var(--Primary-Grey, #343435);
+  font-family: Literata;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
