@@ -19,3 +19,92 @@
   font-weight: 700;
   line-height: normal;
 }
+
+.manage-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  margin-bottom: 1.5rem;
+  border: 1px solid black;
+}
+
+.search-bar {
+  display: flex;
+  width: 19.875rem;
+  height: 2.5rem;
+  padding: 0rem 1rem;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 2.75rem;
+  background: #F2F2F2;
+}
+
+.search-bar img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.search-bar input{
+  width: 100%;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.add-book-button {
+  display: flex;
+  height: 2.5rem;
+  padding: 0.75rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 1.875rem;
+  background: var(--Primary-Blue, #28519E);
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.add-book-button img, .issue-book-button img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.add-book-button span {
+  color: #FFF;
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.issue-book-button {
+  display: flex;
+  height: 2.5rem;
+  padding: 0.75rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 2.6875rem;
+  border: 1px solid #28519E;
+  outline: none;
+  cursor: pointer;
+}
+
+.issue-book-button span {
+  color: var(--Primary-Blue, #28519E);
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
