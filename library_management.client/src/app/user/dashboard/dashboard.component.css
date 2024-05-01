@@ -4,6 +4,8 @@ overflow: hidden !important;
 }
 
 .lib-user-books-container {
+  display: flex;
+  justify-content: space-between;
   height: 300px;
   margin-top: 16px;
   padding: 16px;
@@ -75,9 +77,8 @@ overflow: hidden !important;
 
 .books-stack-container {
     /*YAHA PE IMAGE KO CHANGE KARNa hai display end*/
-  margin-left: 853.2px; 
+  margin-right: 2rem;
   padding: 0px 0px 0.28px 0px;
-  margin-top: -12.9rem;
   width: 308px;
   height: 285.72px;
 }
