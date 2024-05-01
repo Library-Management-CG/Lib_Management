@@ -3,6 +3,8 @@
   height: 340px;
   margin-top: 6px;
   position: relative;
+  cursor: pointer;
+  border: none;
 }
 
 .book-card {

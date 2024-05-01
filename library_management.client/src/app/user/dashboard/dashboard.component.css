@@ -127,25 +127,23 @@ overflow: hidden !important;
 
 .leaderboard {
   width: 464px;
-  height: 406px;
+
   margin-top: 20px;
-/*  border: 2px solid black;*/
 }
 
 .leaderboard-stack{
   width: 464px;
-  height: 368px;
+
   padding: 0px 16px 0px 16px;
   gap: 10px;
   margin-top: 2rem;
-/*  border: 2px solid black;*/
 }
 
 .stack {
   width: 432px;
   height: 368px;
-/*  border: 2px solid blue;*/
-  position: relative;
+  display:flex;
+  flex-direction:column;
 }
 
 .stack-1 {
@@ -155,9 +153,17 @@ overflow: hidden !important;
   justify-content: space-between;
   border-radius: 8px;
   background: linear-gradient(113.04deg, #F9DDA1 19.55%, #FEC62E 64.92%);
-  position: absolute;
+  /* position: absolute;*/
 }
 
+/*.stack-4:hover {
+  cursor: pointer;
+  position: absolute;
+  top: -2rem;
+  
+  margin-bottom: -10rem;
+}
+*/
 .stack-position-name {
   width: 368.72px;
   height: 47.25px;
@@ -168,7 +174,7 @@ overflow: hidden !important;
 
 .stack-position {
   width: 27px;
-  height: 62px;
+  /*height: 62px;*/
   gap: 0px;
   opacity: 0.42;
 }
@@ -186,7 +192,7 @@ overflow: hidden !important;
 
 .trophy {
   width: 31.28px;
-  height: 68px;
+
   margin-left: 46px;
   opacity: 0.73;
   transform: rotate(-180 deg);
@@ -209,11 +215,12 @@ overflow: hidden !important;
   justify-content: space-between;
   border-radius: 8px;
   background: linear-gradient(113.04deg, #F2A068 19.55%, #E88A4C 64.92%);
-  position: absolute;
-  margin-top: 35.75px;
+/*  position: absolute;
+  margin-top: 35.75px;*/
+   margin-top: -29px;
 }
 
-.stack-3 {
+/*.stack-3 {
   width: 432px;
   height: 75px;
   padding: 0px 16px 0px 16px;
@@ -222,7 +229,19 @@ overflow: hidden !important;
   background: linear-gradient(113.04deg, #D4D4D6 19.55%, #B5BEBE 64.92%);
   margin-top: 76.74px;
   position: absolute;
+}*/
+.stack-3 {
+  width: 432px;
+  height: 75px;
+  padding: 0px 16px 0px 16px;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: linear-gradient(113.04deg, #D4D4D6 19.55%, #B5BEBE 64.92%);
+  /*margin-top: 76.74px;*/
+  /* position: absolute;*/
+  margin-top: -14px;
 }
+
 
 .stack-4 {
   width: 432px;
@@ -231,8 +250,9 @@ overflow: hidden !important;
   justify-content: space-between;
   border-radius: 8px;
   background: #E3F3FC;
-  margin-top: 118.59px;
-  position: absolute;
+  /*margin-top: 118.59px;*/
+  /* position: absolute;*/
+  margin-top: -14px;
 }
 
 .stack-5 {
@@ -242,8 +262,9 @@ overflow: hidden !important;
   justify-content: space-between;
   border-radius: 8px;
   background: #FFFFFF;
-  margin-top: 162.2px;
-  position: absolute;
+  /*margin-top: 162.2px;*/
+  /* position: absolute;*/
+  margin-top: -14px;
 }
 
 .stack-6 {
@@ -253,8 +274,9 @@ overflow: hidden !important;
   justify-content: space-between;
   border-radius: 8px;
   background: #B8DDE1;
-  margin-top: 205.8px;
-  position: absolute;
+  /*margin-top: 205.8px;*/
+  /* position: absolute;*/
+  margin-top: -14px;
 }
 
 .stack-7 {
@@ -264,8 +286,9 @@ overflow: hidden !important;
   justify-content: space-between;
   border-radius: 8px;
   background: #FFFFFF;
-  margin-top: 249.41px;
-  position: absolute;
+  /*margin-top: 249.41px;*/
+  /* position: absolute;*/
+  margin-top: -14px;
 }
 
 .stack-8 {
@@ -275,11 +298,46 @@ overflow: hidden !important;
   justify-content: space-between;
   border-radius: 8px;
   background: #EAEEF6;
-  margin-top: 293.01px;
-  position: absolute;
+  /*margin-top: 293.01px;*/
+  /* position: absolute;*/
 }
 
-@media only screen and (max-width: 668px) {
+.stack-1:hover {
+  cursor: pointer;
+  margin-bottom: 3.78rem;
+}
+
+.stack-2:hover {
+  cursor: pointer;
+  margin-bottom: 3.78rem;
+}
+
+.stack-3:hover {
+  cursor: pointer;
+  margin-bottom: 1.78rem;
+}
+
+.stack-4:hover {
+  cursor: pointer;
+  margin-bottom: 1.78rem;
+}
+
+.stack-5:hover {
+  cursor: pointer;
+  margin-bottom: 1.78rem;
+}
+
+.stack-6:hover {
+  cursor: pointer;
+  margin-bottom: 1.78rem;
+}
+
+.stack-7:hover {
+  cursor: pointer;
+  margin-bottom: 1.78rem;
+}
+
+@media only screen and (max-width: 700px) {
   .lib-user-books-container {
     height: 300px;
     margin-top: 16px;

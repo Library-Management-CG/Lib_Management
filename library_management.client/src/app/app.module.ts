@@ -15,6 +15,7 @@ import { ManageBooksComponent } from './admin/manage-books/manage-books.componen
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { AvatarModule } from 'ngx-avatar';
 import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
+import { BookDetailsModalComponent } from './shared/components/book-details-modal/book-details-modal.component';
 
 
 
@@ -27,7 +28,8 @@ import { BookCardsComponent } from './shared/components/book-cards/book-cards.co
     MyBooksComponent,
     ManageBooksComponent,
     NavbarComponent,
-    BookCardsComponent
+    BookCardsComponent,
+    BookDetailsModalComponent
   ],
   imports: [
     BrowserModule,
