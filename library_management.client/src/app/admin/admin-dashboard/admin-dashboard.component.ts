@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+declare var $: any;
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent {
-
+  ngOnInit(): void {
+    $(document).ready(function () {
+      $('#exampleModalCenter').modal('show');
+    });
+  }
 }

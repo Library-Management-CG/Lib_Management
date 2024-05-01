@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-books-modal.component.css']
 })
 export class AddBooksModalComponent {
+  stepperIndex: number = 1;
 
+  stepperIncrement() {
+    this.stepperIndex++;
+  }
+
+  stepperDecrement() {
+    this.stepperIndex--;
+  }
 }
