@@ -6,9 +6,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <!--user-->
         <li class="nav-item" *ngIf="role=='User'">
           <div class="switch navbar-buttons">
-            <input type="radio" class="switch-input" name="view" value="week" id="week"  [class.active]="activeButton === 'readers-hub'"
+            <input type="radio" class="switch-input" name="view" value="week" id="week" [class.active]="activeButton === 'readers-hub'"
                    (click)="toggleActiveButton('readers-hub')">
             <label for="week" class="switch-label switch-label-off readers-hub">
               <img src="../../../../assets/icons/ic_round-dashboard.svg" class="readers-hub-image" />
@@ -19,12 +20,13 @@
               <img src="../../../../assets/icons/nav book icon.svg" class="readers-hub-image" />
               <p>My Books</p>
             </label>
-            <span class="switch-selection"></span>
+            <span [ngClass]="{'switch-selection': isHighlighted}"></span>
           </div>
         </li>
+        <!--admin-->
         <li class="nav-item" *ngIf="role=='Admin'">
           <div class="switch navbar-buttons" [style.width.px]="267">
-            <input type="radio" class="switch-input" name="view" value="week" id="week" checked [class.active]="activeButton === 'Dashboard'"
+            <input type="radio" class="switch-input" name="view" value="week" id="week" [class.active]="activeButton === 'Dashboard'"
                    (click)="toggleActiveButton('Dashboard')">
             <label for="week" class="switch-label switch-label-off readers-hub" style="margin-right:0.3rem">
               <img src="../../../../assets/icons/ic_round-dashboard.svg" class="readers-hub-image" />
@@ -35,25 +37,78 @@
               <img src="../../../../assets/icons/nav book icon.svg" class="readers-hub-image" />
               <p>Manage Books</p>
             </label>
-            <span class="switch-selection" [style.width.px]="138"></span>
+            <span [ngClass]="{'switch-selection': isHighlighted}" [style.width.px]="138"></span>
           </div>
         </li>
 
       </ul>
-      <div class="form-inline">
+  <!--user-->
+      <div class="form-inline" *ngIf="role=='User'">
         <form>
-          <div class="search-box-container">
+          <div class="search-box-container" >
             <img src="../../../../assets/icons/searchIcon.svg" class="search-icon" />
-            <input class="form-control mr-sm-2 search-box" type="search" placeholder="Search library" aria-label="Search">
+            <input class="form-control mr-sm-2 search-box" type="search" placeholder="Search library" aria-label="Search" (focus)="open_search()">
           </div>
         </form>
         <div class="initials">
           <div class="login">
-            <p class="name">JJ</p>
+
+            <ngx-avatars name={{roleName}} [textSizeRatio]=2.7 bgColor="var(--Primary-Pure-White, #FFF)" fgColor="var(--Primary-Royal-Blue, #002C3F)" [round]="true" size="40" [style.fontWeight]="'600'"></ngx-avatars>
+
+
           </div>
           <div class="chevron-down" [class.open]="isDropdownOpen">
             <img src="../../../../assets/icons/Chevron down.svg" (click)="toggleDropdown()" />
 
+          </div>
+          <div class="dropdown_chevon" *ngIf="this.isDropdownOpen">
+            <div>
+              <img src="../../../../assets/icons/user.svg" class="user-icon" />
+              <span class="user-name"> {{roleName}}</span>
+            </div>
+            <div  *ngIf="role=='Admin'" class="user-name" (click)="toggleActiveButton('readers-hub')">
+              <img src="../../../../assets/icons/switchuser.svg" class="user-icon" />
+              <span>Switch to User Portal</span>
+            </div>
+            <div class="logout">
+              <img src="../../../../assets/icons/logout.svg" class="user-icon" />
+              <span> Logout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--admin-->
+      <div class="form-inline" *ngIf="role=='Admin'">
+        <div class="settings" (click)="open_settings()">
+          <img src="../../../../assets/icons/Settings.svg" />
+
+        </div>
+        <div class="initials">
+          <div class="login">
+
+            <ngx-avatars name={{roleName}} [textSizeRatio]=2.7 bgColor="var(--Primary-Pure-White, #FFF)" fgColor="var(--Primary-Royal-Blue, #002C3F)" [round]="true" size="40" [style.fontWeight]="'600'"></ngx-avatars>
+
+
+          </div>
+          <div class="chevron-down" [class.open]="isDropdownOpenadmin">
+            <img src="../../../../assets/icons/Chevron down.svg" (click)="admintoggleDropdown()"  />
+
+          </div>
+          <div class="dropdown_chevon" *ngIf="isDropdownOpenadmin">
+            <div>
+              <img src="../../../../assets/icons/user.svg" class="user-icon" />
+              <span class="user-name"> {{roleName}}</span>
+
+              <div class="admin-text">Admin</div>
+            </div>
+            <div class="user-name" (click)="toggleToUser('readers-hub')" >
+              <img src="../../../../assets/icons/switchuser.svg" class="user-icon" />
+              <span>Switch to User Portal</span>
+            </div>
+            <div class="logout">
+              <img src="../../../../assets/icons/logout.svg" class="user-icon" />
+              <span> Logout</span>
+            </div>
           </div>
         </div>
       </div>

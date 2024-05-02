@@ -4,29 +4,6 @@
   background: var(--Primary-Royal-Blue, #002C3F);
 
 }
-
-.navbar-buttons {
-  width: 256px;
-  height: 40px;
-  margin-left: 5rem;
-  border-radius: 72px;
-  background: var(--Primary-Pure-White, #FFF);
-  display: flex;
-  align-items: center;
-  padding-bottom: 2px;
-
-}
-
-
-
-
-
-
-
-
-
-
-
 .search-box-container {
   position: relative;
   padding-right: 20px;
@@ -144,9 +121,6 @@ input[type=search] {
 }
 
   .switch-input:checked + .switch-label {
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.65);
-    text-shadow: 0 1px rgba(255, 255, 255, 0.25);
     -webkit-transition: 0.25s ease-out;
     -moz-transition: 0.25s ease-out;
     -ms-transition: 0.25s ease-out;
@@ -224,4 +198,74 @@ input[type=search] {
   line-height: 19.2px;
   text-align: left;
   margin-top: 15px;
+}
+.dropdown_chevon {
+  position: absolute;
+  top: 3.28rem;
+  right:-1rem;
+  display: flex;
+  width: 15.0625rem;
+  padding: 1rem 0.9375rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  border-radius: 0.25rem;
+  background: var(--White, #FFF);
+  z-index:100;
+  /* Drop Shadow */
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.10);
+}
+.user-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right:0.5rem;
+}
+.user-name {
+  color: var(--Primary-Gray, #343435);
+ 
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.3125rem; /* 150% */
+}
+.logout {
+  color: var(--Red, #F82C44) !important;
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.settings{
+    position:absolute;
+    right:5rem;
+    height:1.5rem;
+    width:1.5rem;
+    
+}
+.admin-text {
+  color: var(--Adhoc-Text-Grey, #6D6D6D);
+  font-family: Lato;
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3125rem;
+  margin-left:1.5rem;
+  margin-top:-0.2rem;
+  margin-bottom:-0.5rem;
+  /* 175% */
+}
+
+@media only screen and (min-width: 865px) and (max-width: 1024px) {
+  .navbar-buttons {
+    width: 256px;
+    height: 40px;
+    margin-left: 1rem;
+    border-radius: 72px;
+    background: var(--Primary-Pure-White, #FFF);
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+  }
 }
