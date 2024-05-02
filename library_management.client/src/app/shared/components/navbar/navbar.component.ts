@@ -12,6 +12,7 @@ export class NavbarComponent {
   isDropdownOpen: boolean = false;
   constructor(private router: Router) { }
 
+
   toggleActiveButton(button: string) {
     this.activeButton = button;
 
@@ -19,7 +20,7 @@ export class NavbarComponent {
       this.router.navigate(['/my-books']);
     }
 
-    if (button === 'readers-hub' || button === 'Dashboard') {
+    if (button === 'readers-hub') {
       this.router.navigate(['/']);
     }
     this.isTogglerClicked = false;
