@@ -143,16 +143,10 @@ overflow: hidden !important;
 
 @media only screen and (max-width: 526px) {
   .lib-user-books-container {
-    margin-top: 25px;
     border-radius: 16px;
     background: linear-gradient(100.31deg, #DFEEF1 87.97%, #105465 162.07%);
     overflow-x: hidden;
     justify-content:center;
-  }
-
-  .dashboard {
-    position: relative;
-    top: 3rem;
   }
 
   .books-text-container {
@@ -175,6 +169,21 @@ overflow: hidden !important;
     
   }
 
+  .recently-added {
+    font-family: Lato;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .leaderboard-heading {
+    font-family: Lato;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 
   .sub-heading {
     width: 270px;
@@ -187,7 +196,6 @@ overflow: hidden !important;
     font-family: Lato;
     margin-top: 20px;
     color: #002C3F;
-
   }
 
   .books-stack-container {
@@ -249,7 +257,6 @@ overflow: hidden !important;
 
   @media only screen and (max-width: 330px) {
     .lib-user-books-container {
-      margin-top: 25px;
       border-radius: 16px;
       background: linear-gradient(100.31deg, #DFEEF1 87.97%, #105465 162.07%);
       overflow-x: hidden;

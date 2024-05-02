@@ -32,7 +32,7 @@ import { BookDetailsModalComponent } from './shared/components/book-details-moda
     NavbarComponent,
     BookCardsComponent,
     AdminDashboardComponent,
-    NavbarSharedComponent
+    NavbarSharedComponent,
     BookCardsComponent,
     BookDetailsModalComponent
   ],
