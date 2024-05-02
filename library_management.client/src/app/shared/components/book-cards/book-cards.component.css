@@ -1,0 +1,73 @@
+.card {
+  width: 220px;
+  height: 340px;
+  margin-top: 6px;
+  position: relative;
+}
+
+.book-card {
+  width: 220px;
+  height: 270px;
+}
+
+.book-card-rectangle {
+  width: 220px;
+  height: 190px;
+  position: absolute;
+  margin-top: 160px;
+  /*  border: 5px solid yellow;*/
+  transform: scaleX(1.2);
+}
+
+.book-image {
+  margin-top: -18.75rem;
+  width: 210px;
+  margin-left: 5.79px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.book-details {
+  width: 196px;
+  height: 125px;
+  margin-top: 220px;
+  margin-left: 12px;
+  position: absolute;
+}
+
+.tag {
+  width: 79px;
+  height: 28px;
+  padding: 7px 8px 7px 8px;
+  gap: 10px;
+  border-radius: 4px 0px 0px 0px;
+  background: #CEF0DC;
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  color: #0D542A;
+}
+
+.book-title {
+  width: 196px;
+  height: 38px;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  text-align: left;
+  margin-top: 7px;
+}
+
+.author-name {
+  width: 163px;
+  height: 17px;
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: left;
+  color: #6D6D6D;
+}

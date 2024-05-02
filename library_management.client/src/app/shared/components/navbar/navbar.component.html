@@ -1,0 +1,132 @@
+<nav class="navbar navbar-expand-lg">
+
+  <div class="navbar-brand"><img src="../../../../assets/icons/CG Logo.svg" /></div>
+
+  <button class="navbar-toggler" type="button" (click)="toggleCollapse()">
+    <span *ngIf="!isTogglerClicked" class="navbar-toggler-icon"></span>
+    <span *ngIf="isTogglerClicked" class="cross-icon"><img src="../../../../assets/icons/close.svg" /></span>
+  </button>
+
+  <div class="collapse navbar-collapse" [class.show]="isTogglerClicked">
+ 
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+          <a class="nav-link">
+            <div class="navbar-buttons">
+              <button type="button"
+                      class="readers-hub"
+                      [class.active]="activeButton === 'readers-hub'"
+                      (click)="toggleActiveButton('readers-hub')">
+                <img src="../../../../assets/icons/ic_round-dashboard.svg" class="readers-hub-image" />
+                <p>Reader's Hub</p>
+              </button>
+
+              <button type="button" class="readers-hub" [class.active]="activeButton === 'my-books'"
+                      (click)="toggleActiveButton('my-books')">
+                <img src="../../../../assets/icons/nav book icon.svg" class="readers-hub-image" />
+                <p>My Books</p>
+              </button>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <div class="search-box-container">
+          <img src="../../../../assets/icons/searchIcon.svg" class="search-icon" />
+          <input class="form-control mr-sm-2 search-box" type="search" placeholder="Search library" aria-label="Search">
+        </div>
+
+        <div class="initials">
+          <div class="login">
+            <p class="name">JJ</p>
+          </div>
+          <div class="chevron-down" [class.open]="isDropdownOpen">
+            <img src="../../../../assets/icons/Chevron down.svg" (click)="toggleDropdown()" />
+            <ul class="dropdown-menu" *ngIf="isDropdownOpen" aria-labelledby="dropdownMenu2">
+              <li><button class="dropdown-item" type="button">Action</button></li>
+              <li><button class="dropdown-item" type="button">Another action</button></li>
+              <li><button class="dropdown-item" type="button">Something else here</button></li>
+            </ul>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="mobile-container">
+
+        <div class="avatars">
+          <div class="user-icon">
+            <img src="../../../../assets/icons/Frame 28026.svg" />
+          </div>
+         
+          <div class="full-name-email">
+            <div class="full-name">
+              John Doe
+            </div>
+          </div>
+        </div>
+
+        <div class="menu">
+          <div class="dashboard-menu" [class.active]="activeButton === 'readers-hub'"
+            (click)="toggleActiveButton('readers-hub')" >
+            <div class="dashboard-container">
+              <img src="../../../../assets/icons/ic_round-dashboard.svg" class="round-dashboard" />
+              Reader's Hub
+            </div>
+           
+            <img src="../../../../assets/icons/Arrow.svg" class="arrow"/>
+          </div>
+
+          <div class="my-books" [class.active]="activeButton === 'my-books'"
+            (click)="toggleActiveButton('my-books')">
+            <div class="my-books-container">
+              <img src="../../../../assets/icons/nav book icon.svg" class="round-dashboard" />
+              My Books
+            </div>
+            <img src="../../../../assets/icons/Arrow.svg" class="arrow"/>
+          </div>
+        </div>
+
+        <div class="logout">
+          <img src="../../../../assets/icons/SignOut.svg" />
+          Logout
+        </div>
+      </div>
+    </div>
+</nav>
+
+
+<!--<nav class="navbar navbar-expand-lg navbar-component">
+  <div class="first-container">
+    <div class="cg-logo">
+
+    </div>
+
+    <div class="navbar-buttons">
+
+
+
+
+    </div>
+  </div>
+
+
+
+  <div class="second-container">
+    <div class="search-box-container">
+      <img src="../../../../assets/icons/searchIcon.svg" class="search-icon" />
+      <input type="text" class="search-box" placeholder="Search books" />
+    </div>
+
+
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+
+  </button>
+
+
+
+</nav>-->
