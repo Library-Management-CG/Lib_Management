@@ -7,9 +7,9 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <!--user-->
-        <li class="nav-item" *ngIf="role=='User'">
+        <li class="nav-item" *ngIf="isAdmin()==false">
           <div class="switch navbar-buttons">
-            <input type="radio" class="switch-input" name="view" value="week" id="week" [class.active]="activeButton === 'readers-hub'"
+            <input type="radio" class="switch-input" name="view" value="week" id="week" 
                    (click)="toggleActiveButton('readers-hub')">
             <label for="week" class="switch-label switch-label-off readers-hub">
               <img src="../../../../assets/icons/ic_round-dashboard.svg" class="readers-hub-image" />
@@ -24,15 +24,15 @@
           </div>
         </li>
         <!--admin-->
-        <li class="nav-item" *ngIf="role=='Admin'">
+        <li class="nav-item" *ngIf="isAdmin()==true">
           <div class="switch navbar-buttons" [style.width.px]="267">
-            <input type="radio" class="switch-input" name="view" value="week" id="week" [class.active]="activeButton === 'Dashboard'"
+            <input type="radio" class="switch-input" name="view" value="week" id="week" 
                    (click)="toggleActiveButton('Dashboard')">
             <label for="week" class="switch-label switch-label-off readers-hub" style="margin-right:0.3rem">
               <img src="../../../../assets/icons/ic_round-dashboard.svg" class="readers-hub-image" />
               <p>Dashboard</p>
             </label>
-            <input type="radio" class="switch-input" name="view" value="month" id="month" [class.active]="activeButton === 'manage-books'" (click)="toggleActiveButton('manage-books')">
+            <input type="radio" class="switch-input" name="view" value="month" id="month"  (click)="toggleActiveButton('manage-books')">
             <label for="month" class="switch-label switch-label-on readers-hub">
               <img src="../../../../assets/icons/nav book icon.svg" class="readers-hub-image" />
               <p>Manage Books</p>
@@ -43,7 +43,7 @@
 
       </ul>
   <!--user-->
-      <div class="form-inline" *ngIf="role=='User'">
+      <div class="form-inline" *ngIf="isAdmin()==false">
         <form>
           <div class="search-box-container" >
             <img src="../../../../assets/icons/searchIcon.svg" class="search-icon" />
@@ -66,9 +66,9 @@
               <img src="../../../../assets/icons/user.svg" class="user-icon" />
               <span class="user-name"> {{roleName}}</span>
             </div>
-            <div  *ngIf="role=='Admin'" class="user-name" (click)="toggleActiveButton('readers-hub')">
+            <div  *ngIf="isAdmin()==false && this.role=='Admin'" class="user-name" (click)="toggletoAdmin('Dashboard')">
               <img src="../../../../assets/icons/switchuser.svg" class="user-icon" />
-              <span>Switch to User Portal</span>
+              <span>Switch to Admin Portal</span>
             </div>
             <div class="logout">
               <img src="../../../../assets/icons/logout.svg" class="user-icon" />
@@ -78,7 +78,7 @@
         </div>
       </div>
       <!--admin-->
-      <div class="form-inline" *ngIf="role=='Admin'">
+      <div class="form-inline" *ngIf="isAdmin()==true">
         <div class="settings" (click)="open_settings()">
           <img src="../../../../assets/icons/Settings.svg" />
 

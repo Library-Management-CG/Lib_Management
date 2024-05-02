@@ -68,14 +68,11 @@ export class NavbarSharedComponent {
       this.router.navigate(['/']);
     }
 
-    this.getrole = localStorage.getItem('user');
-    const user = JSON.parse(this.getrole);
-    user.role = 'User';
-
-    // Update the user data in local storage
-    localStorage.setItem('user', JSON.stringify(user));
-    this.getRole();
-
+  }
+  toggletoAdmin(button: string) {
+    if (button === 'Dashboard') {
+      this.router.navigate(['/admin']);
+    }
   }
 
   toggleDropdown() {
@@ -109,5 +106,8 @@ export class NavbarSharedComponent {
   isAdmin() {
     return this.router.url.toLowerCase().includes('admin');
   }
- 
+  isadminmanage() {
+    return this.router.url.toLowerCase().includes('admin/manage-books');
+
+  }
 }
