@@ -17,6 +17,7 @@ import { BookCardsComponent } from './shared/components/book-cards/book-cards.co
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
 import { AvatarModule } from 'ngx-avatars';
+import { BookDetailsModalComponent } from './shared/components/book-details-modal/book-details-modal.component';
 
 
 
@@ -31,7 +32,9 @@ import { AvatarModule } from 'ngx-avatars';
     NavbarComponent,
     BookCardsComponent,
     AdminDashboardComponent,
-    NavbarSharedComponent
+    NavbarSharedComponent,
+    BookCardsComponent,
+    BookDetailsModalComponent
   ],
   imports: [
     BrowserModule,
