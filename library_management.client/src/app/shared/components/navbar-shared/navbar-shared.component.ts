@@ -16,6 +16,7 @@ export class NavbarSharedComponent {
   role: any;
   roleName: any;
   isHighlighted: boolean = true;
+  isTogglerClicked: boolean = false;
 
   constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef) {
 
@@ -44,7 +45,6 @@ export class NavbarSharedComponent {
   }
 
   toggleActiveButton(button: string) {
-    this.activeButton = button;
     this.isHighlighted = true;
     this.isDropdownOpen = false;
     this.isDropdownOpenadmin = false;
@@ -62,6 +62,7 @@ export class NavbarSharedComponent {
     else if (button === 'manage-books') {
       this.router.navigate(['admin/manage-books']);
     }
+
   }
   toggleToUser(button: string) {
     if (button === 'readers-hub') {
@@ -106,8 +107,18 @@ export class NavbarSharedComponent {
   isAdmin() {
     return this.router.url.toLowerCase().includes('admin');
   }
-  isadminmanage() {
-    return this.router.url.toLowerCase().includes('admin/manage-books');
 
+  toggleCollapse() {
+    this.isTogglerClicked = !this.isTogglerClicked;
+ 
+  }
+  closeMobileNavbar(): void {
+    // Check if the navbar is collapsed
+    const navbar = document.querySelector('.navbar-collapse');
+    if (navbar?.classList.contains('show')) {
+      // Close the navbar collapse
+      navbar.classList.remove('show');
+      this.isTogglerClicked = false;
+    }
   }
 }

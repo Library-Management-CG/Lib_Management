@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./manage-books.component.css']
 })
 export class ManageBooksComponent {
-
+  
 }

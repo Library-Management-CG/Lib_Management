@@ -1,21 +1,25 @@
 <nav class="navbar navbar-expand-lg ">
   <div class="container-fluid">
     <div class="navbar-brand"><img src="../../../../assets/icons/CG Logo.svg" /></div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <div *ngIf="isAdmin()==false" class="mobile_search_icon">
+      <img src="../../../../assets/icons/white_search_icon.svg"/>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"(click)="toggleCollapse()">
+      <span *ngIf="!isTogglerClicked" class="navbar-toggler-icon"> <img src="../../../../assets/icons/Menu.svg" /></span>
+      <span *ngIf="isTogglerClicked" class="cross-icon"><img src="../../../../assets/icons/close.svg" /></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <!--user-->
         <li class="nav-item" *ngIf="isAdmin()==false">
           <div class="switch navbar-buttons">
-            <input type="radio" class="switch-input" name="view" value="week" id="week" 
+            <input type="radio" class="switch-input" name="view" value="week" id="week"
                    (click)="toggleActiveButton('readers-hub')">
             <label for="week" class="switch-label switch-label-off readers-hub">
               <img src="../../../../assets/icons/ic_round-dashboard.svg" class="readers-hub-image" />
               <p>Reader's Hub</p>
             </label>
-            <input type="radio" class="switch-input" name="view" value="month" id="month" [class.active]="activeButton === 'my-books'" (click)="toggleActiveButton('my-books')">
+            <input type="radio" class="switch-input" name="view" value="month" id="month" (click)="toggleActiveButton('my-books')">
             <label for="month" class="switch-label switch-label-on readers-hub">
               <img src="../../../../assets/icons/nav book icon.svg" class="readers-hub-image" />
               <p>My Books</p>
@@ -26,13 +30,13 @@
         <!--admin-->
         <li class="nav-item" *ngIf="isAdmin()==true">
           <div class="switch navbar-buttons" [style.width.px]="267">
-            <input type="radio" class="switch-input" name="view" value="week" id="week" 
+            <input type="radio" class="switch-input" name="view" value="week" id="week"
                    (click)="toggleActiveButton('Dashboard')">
             <label for="week" class="switch-label switch-label-off readers-hub" style="margin-right:0.3rem">
               <img src="../../../../assets/icons/ic_round-dashboard.svg" class="readers-hub-image" />
               <p>Dashboard</p>
             </label>
-            <input type="radio" class="switch-input" name="view" value="month" id="month"  (click)="toggleActiveButton('manage-books')">
+            <input type="radio" class="switch-input" name="view" value="month" id="month" (click)="toggleActiveButton('manage-books')">
             <label for="month" class="switch-label switch-label-on readers-hub">
               <img src="../../../../assets/icons/nav book icon.svg" class="readers-hub-image" />
               <p>Manage Books</p>
@@ -42,10 +46,10 @@
         </li>
 
       </ul>
-  <!--user-->
+      <!--user-->
       <div class="form-inline" *ngIf="isAdmin()==false">
         <form>
-          <div class="search-box-container" >
+          <div class="search-box-container">
             <img src="../../../../assets/icons/searchIcon.svg" class="search-icon" />
             <input class="form-control mr-sm-2 search-box" type="search" placeholder="Search library" aria-label="Search" (focus)="open_search()">
           </div>
@@ -66,7 +70,7 @@
               <img src="../../../../assets/icons/user.svg" class="user-icon" />
               <span class="user-name"> {{roleName}}</span>
             </div>
-            <div  *ngIf="isAdmin()==false && this.role=='Admin'" class="user-name" (click)="toggletoAdmin('Dashboard')">
+            <div *ngIf="isAdmin()==false && this.role=='Admin'" class="user-name" (click)="toggletoAdmin('Dashboard')">
               <img src="../../../../assets/icons/switchuser.svg" class="user-icon" />
               <span>Switch to Admin Portal</span>
             </div>
@@ -91,7 +95,7 @@
 
           </div>
           <div class="chevron-down" [class.open]="isDropdownOpenadmin">
-            <img src="../../../../assets/icons/Chevron down.svg" (click)="admintoggleDropdown()"  />
+            <img src="../../../../assets/icons/Chevron down.svg" (click)="admintoggleDropdown()" />
 
           </div>
           <div class="dropdown_chevon" *ngIf="isDropdownOpenadmin">
@@ -101,7 +105,7 @@
 
               <div class="admin-text">Admin</div>
             </div>
-            <div class="user-name" (click)="toggleToUser('readers-hub')" >
+            <div class="user-name" (click)="toggleToUser('readers-hub')">
               <img src="../../../../assets/icons/switchuser.svg" class="user-icon" />
               <span>Switch to User Portal</span>
             </div>
@@ -111,6 +115,97 @@
             </div>
           </div>
         </div>
+      </div>
+      <!--User-mobile-view-->
+      <div class="mobile-container" *ngIf="isAdmin()==false">
+
+        <div class="avatars">
+          <div class="user-icon">
+            <img src="../../../../assets/icons/user_icon.svg" />
+          </div>
+
+          <div class="full-name-email">
+            <div class="full-name">
+              {{roleName}}
+            </div>
+          </div>
+        </div>
+
+        <div class="menu">
+          <div *ngIf="isAdmin()==false && this.role=='Admin'" class="my-books" [class.active]="activeButton === 'my-books'"
+               (click)="toggletoAdmin('Dashboard'); closeMobileNavbar()">
+            <div class="my-books-container">
+              <img src="../../../../assets/icons/switchuser.svg" class="round-dashboard" />
+              Switch to Admin Portal
+            </div>
+          </div>
+          <div class="dashboard-menu" [class.active]="activeButton === 'readers-hub'"
+               (click)="toggleActiveButton('readers-hub'); closeMobileNavbar()">
+            <div class="dashboard-container">
+              <img src="../../../../assets/icons/ic_round-dashboard.svg" class="round-dashboard" />
+              Reader's Hub
+            </div>
+
+            <img src="../../../../assets/icons/Arrow.svg" class="arrow" />
+          </div>
+
+          <div class="my-books" [class.active]="activeButton === 'my-books'"
+               (click)="toggleActiveButton('my-books'); closeMobileNavbar()">
+            <div class="my-books-container">
+              <img src="../../../../assets/icons/nav book icon.svg" class="round-dashboard" />
+              My Books
+            </div>
+            <img src="../../../../assets/icons/Arrow.svg" class="arrow" />
+          </div>
+
+          <div class="logout" (click)="closeMobileNavbar()">
+            <img src="../../../../assets/icons/SignOut.svg" />
+            Logout
+          </div>
+        </div>
+
+
+      </div>
+      <div class="mobile-container" *ngIf="isAdmin()==true">
+
+        <div class="avatars">
+          <div class="user-icon">
+            <img src="../../../../assets/icons/user_icon.svg" />
+          </div>
+
+          <div class="full-name-email">
+            <div class="full-name">
+              {{roleName}}
+              <p class="admin-text-mob">Admin</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu">
+          <div class="my-books" [class.active]="activeButton === 'my-books'"
+               (click)="toggleToUser('readers-hub'); closeMobileNavbar()">
+            <div class="my-books-container">
+              <img src="../../../../assets/icons/switchuser.svg" class="round-dashboard" />
+              Switch to User Portal
+            </div>
+          </div>
+
+          <div class="my-books" [class.active]="activeButton === 'my-books'"
+               (click)="open_settings();closeMobileNavbar()">
+            <div class="my-books-container">
+              <img src="../../../../assets/icons/Settingsblack.svg" class="round-dashboard" />
+              Access Control
+            </div>
+            <img src="../../../../assets/icons/Arrow.svg" class="arrow" />
+          </div>
+         
+          <div class="logout"  (click)="closeMobileNavbar()">
+            <img src="../../../../assets/icons/SignOut.svg" />
+            Logout
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
