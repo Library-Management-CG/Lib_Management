@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-add-books-modal',
@@ -7,13 +8,19 @@ import { Component, ViewChild } from '@angular/core';
 })
 export class AddBooksModalComponent {
   /*@ViewChild('exampleModalCenter') modal: any;*/
-  stepperIndex: number = 1;
+  stepperIndex: number = 0;
 
   //constructor(private modalService: NgbModal) { } // Inject NgbModal service if you're using NgbModal
 
   //dismissModal() {
   //  this.modalService.dismissAll(); // Close all modals
   //}
+
+  ngOnInit(): void {
+    $(document).ready(function () {
+      $('#success').modal('show');
+    });
+  }
 
   stepperIncrement() {
     this.stepperIndex++;

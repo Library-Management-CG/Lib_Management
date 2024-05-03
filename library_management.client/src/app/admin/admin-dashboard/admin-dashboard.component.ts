@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-declare var $: any;
+
 
 
 @Component({
@@ -8,9 +8,5 @@ declare var $: any;
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent {
-  ngOnInit(): void {
-    $(document).ready(function () {
-      $('#exampleModalCenter').modal('show');
-    });
-  }
+  
 }

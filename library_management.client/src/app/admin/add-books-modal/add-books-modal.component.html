@@ -1,6 +1,6 @@
 <app-success-modal></app-success-modal>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-dismiss="modal">
   <div class="modal-dialog modal-dialog-centered  outer-width" role="document">
     <div class="modal-content modal-height">
       <div class="modal-header header-padding">
@@ -12,18 +12,18 @@
             <h5 class="modal-title" id="exampleModalLongTitle">Add New Book</h5>
           </div>
         </div>
-        <!--<div class="close"  aria-label="Close"  >
-    <img src="../../../assets/icons/add-books-modal/X.svg" data-dismiss="modal" />
-  </div>-->
+        <div  >
+           <img src="../../../assets/icons/add-books-modal/X.svg" data-dismiss="modal" />
+        </div>
 
         <!--<div class="close" (click)="dismissModal()" aria-label="Close">
           <img src="../../../assets/icons/add-books-modal/X.svg" />
         </div>-->
 
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
-  </button>
+  </button>-->
       </div>
       <div class="modal-body ">
         <div class="content-box">
