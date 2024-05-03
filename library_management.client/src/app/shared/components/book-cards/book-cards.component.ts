@@ -10,7 +10,7 @@ export class BookCardsComponent {
   @Input() books: any[] = [];
 
   displayedBooks: any[] = [];
-  initialBooksToShow: number = 3; 
+  initialBooksToShow: number = 5; 
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
