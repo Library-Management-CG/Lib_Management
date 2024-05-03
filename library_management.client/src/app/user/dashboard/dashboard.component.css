@@ -7,7 +7,7 @@ overflow: hidden !important;
   display: flex;
   justify-content: space-between;
   height: 300px;
-  margin-top: 16px;
+ 
   padding: 16px;
   border-radius: 26px;
   background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
@@ -140,6 +140,31 @@ overflow: hidden !important;
   margin-top: 2rem;
 }
 
+.show-more {
+  width: 156px;
+  padding: 12px 20px 12px 20px;
+  gap: 8px;
+  border-radius: 30px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  background: var(--Primary-Blue, #28519E);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin-left: 16rem;
+}
+
+.show-more-text {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.6px;
+  text-align: left;
+  color: white;
+}
 
 @media only screen and (max-width: 526px) {
   .lib-user-books-container {
@@ -245,7 +270,10 @@ overflow: hidden !important;
   .leaderboard-heading {
     margin-left: 2rem;
   }
-   
+
+  .show-more {
+    margin-left: 6rem;
+  }
 }
 
 @media screen and (min-width: 1500px) {

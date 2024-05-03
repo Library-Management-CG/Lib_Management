@@ -36,10 +36,21 @@
       <div class="row">
 
         <div class="all-lib-books col-md-7">
+
           <p class="recently-added">Recently Added</p>
-          <app-book-cards></app-book-cards>
+          <app-book-cards [showMoreClicked]="showMoreClickedRecentlyAdded" [books]="recentlyAddedBooks"></app-book-cards>
+
+          <button type="button" class="show-more" (click)="onShowMoreClicked('recentlyAdded')">
+            <div class="show-more-text">{{ showMoreClickedRecentlyAdded ? 'Show Less' : 'Show More' }}</div>
+          </button>
+
           <p class="recently-added">Most Popular</p>
-          <app-book-cards></app-book-cards>
+          <app-book-cards [showMoreClicked]="showMoreClickedMostPopular" [books]="mostPopularBooks"></app-book-cards>
+
+          <button type="button" class="show-more" (click)="onShowMoreClicked('mostPopular')">
+            <div class="show-more-text">{{ showMoreClickedMostPopular ? 'Show Less' : 'Show More' }}</div>
+          </button>
+
         </div>
 
 
@@ -154,6 +165,7 @@
 
 
   </div>
+
 </div>
 
 
