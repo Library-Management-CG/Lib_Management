@@ -1,0 +1,95 @@
+.title-image {
+  display: flex;
+  width: 160px;
+  height: 24px;
+  gap: 5px;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.modal-header{
+    border: none;
+}
+
+.modal-title {
+  font-family: Literata;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 31.19px;
+  text-align: left;
+}
+
+
+.details {
+  width: 396px;
+  height: 180px;
+  gap: 20px;
+}
+
+#exampleModalLabel {
+  font-family: Literata;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 19.7px;
+  text-align: left;
+}
+
+.book {
+  width: 24px;
+  height: 24px;
+  padding: 2.45px 0px 2.98px 0px;
+}
+
+.title-and-author {
+  width: 321px;
+  height: 98px;
+}
+
+.name-of-author {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.8px;
+  text-align: left;
+  color:#6D6D6D;
+}
+
+.rating-book {
+  display: flex;
+  width: 30px;
+  height: 20px;
+  margin-top : 11px;
+  gap: 12px;
+}
+
+.tag {
+  width: 79px;
+  height: 20px;
+  padding: 8px;
+  border-radius: 4px 4px 4px 4px;
+  background: #CEF0DC;
+  font-family: Lato;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 6px;
+  text-align: left;
+  color: #0D542A;
+}
+
+.book-content {
+  width: 300px;
+  height: 162px;
+  font-family: Lato;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+}
+
+.image-content {
+  width: 141px;
+  height: 150px;
+  border-radius: 8px 0px 0px 0px;
+}
