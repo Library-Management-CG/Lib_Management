@@ -4,6 +4,7 @@
   position: relative;
   cursor: pointer;
   border: none;
+  margin-bottom: 1.5rem;
 }
 
 .book-card {
