@@ -1,3 +1,4 @@
+using LIBRARY_MANAGEMENT.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LIBRARY_MANAGEMENT.Server.Controllers
@@ -13,9 +14,11 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly LibraryManagementSystemContext _context;
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,LibraryManagementSystemContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -28,6 +31,12 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet("bunty")]
+        public IEnumerable<Book> GetBunty()
+        {
+            return _context.Books.ToList();
         }
     }
 }

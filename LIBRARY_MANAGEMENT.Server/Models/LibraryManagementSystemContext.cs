@@ -389,6 +389,47 @@ public partial class LibraryManagementSystemContext : DbContext
                 .HasForeignKey(d => d.UpdatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__user__updatedBy__4AB81AF0");
+
+
+            modelBuilder.Entity<Action>()
+            .ToTable("action", "library_book_issue");
+
+
+
+            modelBuilder.Entity<Author>()
+               .ToTable("author", "library_book");
+
+            modelBuilder.Entity<AuthorBook>()
+               .ToTable("authorBooks", "library_book");
+
+            modelBuilder.Entity<Book>()
+       .ToTable("book", "library_book");
+
+
+            modelBuilder.Entity<BookIssue>()
+       .ToTable("bookIssue", "library_book_issue");
+
+            modelBuilder.Entity<BookQrMapping>()
+       .ToTable("bookQrMapping", "library_book_issue");
+
+
+
+            modelBuilder.Entity<Comment>()
+       .ToTable("comment", "library_book_issue");
+
+            modelBuilder.Entity<Rating>()
+      .ToTable("rating", "library_book");
+
+
+            modelBuilder.Entity<Role>()
+      .ToTable("role", "library_user");
+
+            modelBuilder.Entity<Status>()
+    .ToTable("status", "library_book_issue");
+
+            modelBuilder.Entity<User>()
+    .ToTable("user", "library_user");
+
         });
 
         OnModelCreatingPartial(modelBuilder);

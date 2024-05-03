@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LIBRARY_MANAGEMENT.Server.Models;
 
+[Table("user", Schema = "library_user")]
 public partial class User
 {
     public Guid Id { get; set; }

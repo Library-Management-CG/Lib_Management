@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LIBRARY_MANAGEMENT.Server.Models;
 
+[Table("bookQrMapping", Schema = "library_book_issue")]
 public partial class BookQrMapping
 {
     public Guid Id { get; set; }
