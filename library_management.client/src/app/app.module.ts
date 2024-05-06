@@ -12,7 +12,6 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
@@ -30,7 +29,6 @@ import { BooksCardSharedComponent } from './shared/components/books-card-shared/
     UserComponent,
     MyBooksComponent,
     ManageBooksComponent,
-    NavbarComponent,
     BookCardsComponent,
     AdminDashboardComponent,
     NavbarSharedComponent,
