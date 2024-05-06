@@ -1,4 +1,4 @@
-import { Component,ElementRef, ViewChild } from '@angular/core';
+import { Component,ElementRef, HostListener, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,56 +10,55 @@ export class DashboardComponent {
   showMoreClickedRecentlyAdded: boolean = false;
   showMoreClickedMostPopular: boolean = false;
 
+  displayedRecentlyAddedBooks: any[] = [];
+  displayedMostPopularBooks: any[] = [];
+
+  initialBooksToShow: number = 3;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateDisplayedBooks();
+  }
+
+  ngOnInit() {
+    this.updateDisplayedBooks();
+  }
+
 
   recentlyAddedBooks = [
     {
-      title: 'The Invisible Cloud',
+      title: 'The jigyasa Cloud',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 3,
+      numberOfPeopleReviewed : 28
+    },
+
+    {
+      title: 'The Invi',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 4,
+      numberOfPeopleReviewed: 28
     },
 
     {
       title: 'The Invisible',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
-    },
-
-    {
-      title: 'The Invisible',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 3,
+      numberOfPeopleReviewed: 28
     },
 
     {
       title: 'The Cloud',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 2,
+      numberOfPeopleReviewed: 28
     },
 
-    {
-      title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
-    },
-
-    {
-      title: 'The my',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
-    },
-
-    {
-      title: 'The daryl',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
-    },
+   
   ];
 
   mostPopularBooks = [
@@ -68,52 +67,59 @@ export class DashboardComponent {
       title: 'The Invisible Cloud',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
-     },
-
-    {
-      title: 'The Invisible',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 4,
+      numberOfPeopleReviewed: 28
     },
 
     {
       title: 'The Invisible',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 3,
+      numberOfPeopleReviewed: 28
+    },
+
+    {
+      title: 'The Invisible',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 2,
+      numberOfPeopleReviewed: 28
     },
 
     {
       title: 'The Cloud',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 1,
+      numberOfPeopleReviewed: 28
     },
 
     {
       title: 'The ok',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 2,
+      numberOfPeopleReviewed: 28
     },
 
     {
-      title: 'The my',
+      title: 'my',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 3,
+      numberOfPeopleReviewed: 28
     },
 
     {
-      title: 'The daryl',
+      title: 'daryl',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: '../../../assets/icons/Rating.svg'
+      ratingUrl: 5,
+      numberOfPeopleReviewed: 28
     },
 
-    
+
   ];
 
 
@@ -124,4 +130,44 @@ export class DashboardComponent {
       this.showMoreClickedMostPopular = !this.showMoreClickedMostPopular;
     }
   }
+
+  updateDisplayedBooks() {
+    const screenWidth = window.innerWidth;
+    console.log(screenWidth);
+    if (screenWidth <= 768) {
+      this.initialBooksToShow = 2;
+    } else {
+      this.initialBooksToShow = 3;
+    }
+
+    this.displayedRecentlyAddedBooks = this.showMoreClickedRecentlyAdded ? this.recentlyAddedBooks : this.recentlyAddedBooks.slice(0, this.initialBooksToShow);
+    this.displayedMostPopularBooks = this.showMoreClickedMostPopular ? this.mostPopularBooks : this.mostPopularBooks.slice(0, this.initialBooksToShow);
+  }
+
+  get booksToRecentDisplay(): any[] {
+    const screenWidth = window.innerWidth;
+    console.log(screenWidth);
+    if (screenWidth <= 768) {
+      this.initialBooksToShow = 2;
+    } else {
+      this.initialBooksToShow = 3;
+    }
+
+    this.displayedRecentlyAddedBooks = this.showMoreClickedRecentlyAdded ? this.recentlyAddedBooks : this.recentlyAddedBooks.slice(0, this.initialBooksToShow);
+    return this.displayedRecentlyAddedBooks;
+  }
+
+  get booksToPopularDisplay(): any[] {
+    const screenWidth = window.innerWidth;
+    console.log(screenWidth);
+    if (screenWidth <= 768) {
+      this.initialBooksToShow = 2;
+    } else {
+      this.initialBooksToShow = 3;
+    }
+
+    this.displayedMostPopularBooks = this.showMoreClickedMostPopular ? this.mostPopularBooks : this.mostPopularBooks.slice(0, this.initialBooksToShow);
+    return this.displayedMostPopularBooks;
+  }
+
 }

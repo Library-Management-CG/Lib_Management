@@ -38,130 +38,150 @@
         <div class="all-lib-books col-md-7">
 
           <p class="recently-added">Recently Added</p>
-          <app-book-cards [showMoreClicked]="showMoreClickedRecentlyAdded" [books]="recentlyAddedBooks"></app-book-cards>
+          <div class="row">
+
+            <div class="col-md-4 col-6" *ngFor="let book of booksToRecentDisplay">
+              <app-book-cards [books]="book"></app-book-cards>
+            </div>
+
+          </div>
 
           <button type="button" class="show-more" (click)="onShowMoreClicked('recentlyAdded')">
-            <div class="show-more-text">{{ showMoreClickedRecentlyAdded ? 'Show Less' : 'Show More' }}</div>
+            <div class="show-more-text">
+              {{ showMoreClickedRecentlyAdded ? 'Show Less' : 'Show More' }}
+              <img *ngIf="!showMoreClickedRecentlyAdded" src="../../../assets/icons/expand_more.svg" />
+              <img *ngIf="showMoreClickedRecentlyAdded" src="../../../assets/icons/collapse.svg" />
+            </div>
           </button>
 
           <p class="recently-added">Most Popular</p>
-          <app-book-cards [showMoreClicked]="showMoreClickedMostPopular" [books]="mostPopularBooks"></app-book-cards>
-
-          <button type="button" class="show-more" (click)="onShowMoreClicked('mostPopular')">
-            <div class="show-more-text">{{ showMoreClickedMostPopular ? 'Show Less' : 'Show More' }}</div>
-          </button>
-
-        </div>
-
+          <div class="row">
+            <div class="col-md-4 col-6" *ngFor="let book of booksToPopularDisplay">
+              <app-book-cards [books]="book"></app-book-cards>
+            </div>
+            
+          </div>
 
 
-        <div class="col-md-3">
-          <div class="leaderboard">
-            <p class="leaderboard-heading">Leaderboard</p>
-            <div class="leaderboard-stack">
-              <div class="cards">
-                <div class="card card-1">
-                  <div class="card-content">
-                    <img src="../../../assets/icons/1.svg" />
-                    <div class="card-name">
-                      <span class="card-name-span">Cameron Williamson</span>
-                      <div class="card-book">
-                        <img src="../../../assets/icons/card-book.svg" />
-                        <span class="card-book-span">10 Books</span>
+            <button type="button" class="show-more" (click)="onShowMoreClicked('mostPopular')">
+              <div class="show-more-text">
+                {{ showMoreClickedMostPopular ? 'Show Less' : 'Show More' }}
+                <img *ngIf="!showMoreClickedMostPopular" src="../../../assets/icons/expand_more.svg" />
+                <img *ngIf="showMoreClickedMostPopular" src="../../../assets/icons/collapse.svg" />
+              </div>
+            </button>
+
+          </div>
+
+
+
+          <div class="col-md-3">
+            <div class="leaderboard">
+              <p class="leaderboard-heading">Leaderboard</p>
+              <div class="leaderboard-stack">
+                <div class="cards">
+                  <div class="card card-1">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/1.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
+                  </div>
+                  <div class="card card-2">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/2.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
+                  </div>
+                  <div class="card card-3">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/3.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
+                  </div>
+                  <div class="card card-4">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/4.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
-                </div>
-                <div class="card card-2">
-                  <div class="card-content">
-                    <img src="../../../assets/icons/2.svg" />
-                    <div class="card-name">
-                      <span class="card-name-span">Cameron Williamson</span>
-                      <div class="card-book">
-                        <img src="../../../assets/icons/card-book.svg" />
-                        <span class="card-book-span">10 Books</span>
+                  <div class="card card-5">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/5.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
-                </div>
-                <div class="card card-3">
-                  <div class="card-content">
-                    <img src="../../../assets/icons/3.svg" />
-                    <div class="card-name">
-                      <span class="card-name-span">Cameron Williamson</span>
-                      <div class="card-book">
-                        <img src="../../../assets/icons/card-book.svg" />
-                        <span class="card-book-span">10 Books</span>
+                  <div class="card card-6">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/6.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
-                </div>
-                <div class="card card-4">
-                  <div class="card-content">
-                    <img src="../../../assets/icons/4.svg" />
-                    <div class="card-name">
-                      <span class="card-name-span">Cameron Williamson</span>
-                      <div class="card-book">
-                        <img src="../../../assets/icons/card-book.svg" />
-                        <span class="card-book-span">10 Books</span>
+                  <div class="card card-7">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/7.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="card card-5">
-                  <div class="card-content">
-                    <img src="../../../assets/icons/5.svg" />
-                    <div class="card-name">
-                      <span class="card-name-span">Cameron Williamson</span>
-                      <div class="card-book">
-                        <img src="../../../assets/icons/card-book.svg" />
-                        <span class="card-book-span">10 Books</span>
+                  <div class="card card-8">
+                    <div class="card-content">
+                      <div class="card-name">
+                        <span class="last-card">Top 7 Readers</span>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card card-6">
-                  <div class="card-content">
-                    <img src="../../../assets/icons/6.svg" />
-                    <div class="card-name">
-                      <span class="card-name-span">Cameron Williamson</span>
-                      <div class="card-book">
-                        <img src="../../../assets/icons/card-book.svg" />
-                        <span class="card-book-span">10 Books</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card card-7">
-                  <div class="card-content">
-                    <img src="../../../assets/icons/7.svg" />
-                    <div class="card-name">
-                      <span class="card-name-span">Cameron Williamson</span>
-                      <div class="card-book">
-                        <img src="../../../assets/icons/card-book.svg" />
-                        <span class="card-book-span">10 Books</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card card-8">
-                  <div class="card-content">
-                    <div class="card-name">
-                      <span class="last-card">Top 7 Readers</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
 
-      </div>
-
-    </div>
+        </div>
 
 
   </div>

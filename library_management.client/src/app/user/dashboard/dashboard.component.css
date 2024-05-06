@@ -90,7 +90,6 @@ overflow: hidden !important;
 /*  background-color: lightblue;*/
   margin-top: 20px;
   margin-left: 40px;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -149,7 +148,7 @@ overflow: hidden !important;
   height: 40px;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: -2rem;
   background: var(--Primary-Blue, #28519E);
   border: none;
   cursor: pointer;
@@ -249,7 +248,7 @@ overflow: hidden !important;
   .all-lib-books {
     height: 100%;
     margin-top: 10px;
-    margin-left: 20.5px;
+    margin-left: 2.5px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -258,21 +257,32 @@ overflow: hidden !important;
     padding-left: 12px;
   }
 
-  .row {
-      margin-left: -35px;
-  }
-
   .leaderboard {
-   /* margin-left: -1rem;*/
    justify-content: center;
   }
 
-  .leaderboard-heading {
-    margin-left: 2rem;
-  }
+
 
   .show-more {
     margin-left: 6rem;
+    border-radius: 43px;
+    border: 1px solid var(--Primary-Blue, #28519E);
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+  }
+
+
+  .show-more-text {
+    color: var(--Primary-Blue, #28519E);
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 }
 
@@ -315,8 +325,6 @@ overflow: hidden !important;
     .books-text-container {
       height: 145.91px;
     }
-
-   
   }
 
 @media only screen and (max-width: 1026px) {
