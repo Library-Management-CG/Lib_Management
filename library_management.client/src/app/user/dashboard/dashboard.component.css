@@ -86,8 +86,6 @@ overflow: hidden !important;
 .all-lib-books {
   height: 403px;
   width: 750px;
-  /*  height: 100%;*/
-/*  background-color: lightblue;*/
   margin-top: 20px;
   margin-left: 40px;
   display: flex;
@@ -148,7 +146,7 @@ overflow: hidden !important;
   height: 40px;
   justify-content: center;
   align-items: center;
-  margin-top: -2rem;
+
   background: var(--Primary-Blue, #28519E);
   border: none;
   cursor: pointer;

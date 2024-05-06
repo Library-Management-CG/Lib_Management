@@ -41,7 +41,7 @@
           <div class="row">
 
             <div class="col-md-4 col-6" *ngFor="let book of booksToRecentDisplay">
-              <app-book-cards [books]="book"></app-book-cards>
+              <app-books-card-shared [books]="book"></app-books-card-shared>
             </div>
 
           </div>
@@ -57,7 +57,7 @@
           <p class="recently-added">Most Popular</p>
           <div class="row">
             <div class="col-md-4 col-6" *ngFor="let book of booksToPopularDisplay">
-              <app-book-cards [books]="book"></app-book-cards>
+              <app-books-card-shared [books]="book"></app-books-card-shared>
             </div>
             
           </div>
