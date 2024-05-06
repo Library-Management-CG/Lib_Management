@@ -2,9 +2,13 @@
   border: none;
 }
 
-.content{
-    margin-top:2.25rem;
-
+.content {
+  margin-top: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  align-self: stretch;
 }
 
 .animation {
@@ -86,4 +90,8 @@ row-2-outer {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 3rem;
+}
+
+.animation{
+
 }

@@ -18,8 +18,10 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
 import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.component';
 import { SuccessModalComponent } from './shared/components/success-modal/success-modal.component';
-
-
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,9 +43,16 @@ import { SuccessModalComponent } from './shared/components/success-modal/success
     HttpClientModule,
     AppRoutingModule,
     UserRoutingModule, AdminRoutingModule,
+    LottieModule.forRoot({ player: playerFactory }),
+    NgSelectModule,
+    FormsModule
   /*  AvatarModule*/
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function playerFactory() {
+  return player;
+}
