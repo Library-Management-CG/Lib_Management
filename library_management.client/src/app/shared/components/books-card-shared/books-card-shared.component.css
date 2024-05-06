@@ -124,18 +124,17 @@
 
 @media (max-width: 900px){
   .card {
-    width: 10.34375rem;
+    width: 10.34375rem ;
     height: 14.375rem;
-    position:absolute;
   }
+
 
 
   .book-card-rectangle {
     width: 10.375rem;
     height: 9.375rem;
-
     transform: scale(1.069,1.35) !important;
-    left:0.3rem !important;
+    left: 0.3rem !important;
   }
 
 
@@ -144,8 +143,7 @@
   .image-size {
     width: 6.83175rem;
     height: 10.59388rem !important;
-    transition: none;
-    bottom: 4.4rem;
+    bottom: 6.4rem;
   }
 
   
