@@ -37,9 +37,9 @@ import { FormsModule } from '@angular/forms';
     AdminDashboardComponent,
     NavbarSharedComponent,
     AddBooksModalComponent,
-    SuccessModalComponent
+    SuccessModalComponent,
     NavbarSharedComponent,
-    BookCardsComponent,
+   
     BookDetailsModalComponent,
     BooksCardSharedComponent
   ],
@@ -50,7 +50,7 @@ import { FormsModule } from '@angular/forms';
     UserRoutingModule, AdminRoutingModule,
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
-    FormsModule
+    FormsModule,
     AvatarModule
   /*  AvatarModule*/
   ],
