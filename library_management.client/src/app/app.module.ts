@@ -12,10 +12,12 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
+import { AvatarModule } from 'ngx-avatars';
+import { BookDetailsModalComponent } from './shared/components/book-details-modal/book-details-modal.component';
+import { BooksCardSharedComponent } from './shared/components/books-card-shared/books-card-shared.component';
 import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.component';
 import { SuccessModalComponent } from './shared/components/success-modal/success-modal.component';
 import { LottieModule } from 'ngx-lottie';
@@ -31,12 +33,15 @@ import { FormsModule } from '@angular/forms';
     UserComponent,
     MyBooksComponent,
     ManageBooksComponent,
-    NavbarComponent,
     BookCardsComponent,
     AdminDashboardComponent,
     NavbarSharedComponent,
     AddBooksModalComponent,
     SuccessModalComponent
+    NavbarSharedComponent,
+    BookCardsComponent,
+    BookDetailsModalComponent,
+    BooksCardSharedComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { FormsModule } from '@angular/forms';
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
     FormsModule
+    AvatarModule
   /*  AvatarModule*/
   ],
   providers: [],

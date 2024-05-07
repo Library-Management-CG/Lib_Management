@@ -1,0 +1,25 @@
+
+<div class="card">
+
+  <img src="../../../../assets/icons/Admin-dashboard/book-image.svg" class="image-size"/>
+
+  <img src="../../../../assets/icons/Admin-dashboard/top-choice-rectangle-card.svg" class="book-card-rectangle" />
+  <div class="book-details ml-0" [ngClass]="{'conditional-css': isAdmin() == false}">
+    <div *ngIf="isAdmin()==false" class="tag">AVALIABLE</div>
+    <div class="book-title ">
+      The Invisible Cloud The
+      Invisible Cloud
+    </div>
+    <div class="author-name">Daryl Bishop</div>
+    <div class="rating " >
+      <!--<img src="../../../../assets/icons/Admin-dashboard/Rating.svg" />-->
+      <ng-container *ngFor="let star of getStarsArray(3)">
+        <img src="../../../assets/icons/filled_star.svg" class="star-icon" />
+      </ng-container>
+      <ng-container *ngFor="let star of getEmptyStarsArray(3)">
+        <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
+      </ng-container>
+      <div class="rating-people-count ">(28)</div>
+    </div>
+  </div>
+</div>

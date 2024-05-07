@@ -1,114 +1,170 @@
-<div class="dashboard">
+<div class="outer-margin">
 
 
-  <div class="container-fluid">
-    <div class="lib-user-books-container col-12">
+  <div class="dashboard">
 
-      <div class="books-text-container">
 
-        <div class="books-laptop-heading">
-          Step Into the world of books!
+    <div class="container-fluid">
+      <div class="lib-user-books-container col-md-12">
+
+        <div class="books-text-container">
+
+          <div class="books-laptop-heading">
+            Step Into the world of books!
+          </div>
+
+          <div class="sub-heading">
+            Uncertain about your next read? Discover some genuine<br /> treasures nestled within our library.
+          </div>
+
+          <button type="button" class="explore-button">
+            <div class="explore-button-text">Explore Books</div>
+          </button>
+
         </div>
 
-        <div class="books-mobile-heading">
-          The Ultimate Guide for Books
+        <div class="image-container">
+          <img src="../../../assets/icons/Rectangle.svg" class="books-stack-container" />
         </div>
 
-        <div class="sub-heading">
-          Uncertain about your next read? Discover some genuine<br /> treasures nestled within our library.
-        </div>
-
-        <button type="button" class="explore-button">
-          <div class="explore-button-text">Explore Books</div>
-        </button>
-
-      </div>
-
-
-      <div class="books-stack-container">
-        <img src="../../../assets/icons/Rectangle.svg" />
       </div>
 
     </div>
-  </div>
 
-  <div class="books-and-leaderboard col-12">
+    <div class="books-and-leaderboard col-md-12">
 
-    <div class="row">
+      <div class="row">
 
-      <div class="all-lib-books col-md-7">
-        <p class="recently-added">Recently Added</p>
-        <app-book-cards></app-book-cards>
-        <p class="recently-added">Most Popular</p>
-        <app-book-cards></app-book-cards>
-      </div>
+        <div class="all-lib-books col-md-7">
+
+          <p class="recently-added">Recently Added</p>
+          <app-book-cards [showMoreClicked]="showMoreClickedRecentlyAdded" [books]="recentlyAddedBooks"></app-book-cards>
+
+          <button type="button" class="show-more" (click)="onShowMoreClicked('recentlyAdded')">
+            <div class="show-more-text">{{ showMoreClickedRecentlyAdded ? 'Show Less' : 'Show More' }}</div>
+          </button>
+
+          <p class="recently-added">Most Popular</p>
+          <app-book-cards [showMoreClicked]="showMoreClickedMostPopular" [books]="mostPopularBooks"></app-book-cards>
+
+          <button type="button" class="show-more" (click)="onShowMoreClicked('mostPopular')">
+            <div class="show-more-text">{{ showMoreClickedMostPopular ? 'Show Less' : 'Show More' }}</div>
+          </button>
+
+        </div>
 
 
 
-      <div class="col-md-3">
-        <div class="leaderboard">
-          <p class="recently-added">Leaderboard</p>
-          <div class="leaderboard-stack">
-            <div class="stack">
-              <div class="stack-1">
-                <div class="stack-position-name">
-                  <img class="stack-position" src="../../../assets/icons/1.svg" />
-                  <div class="stack-name">Cameron Williamson</div>
+        <div class="col-md-3">
+          <div class="leaderboard">
+            <p class="leaderboard-heading">Leaderboard</p>
+            <div class="leaderboard-stack">
+              <div class="cards">
+                <div class="card card-1">
+                  <div class="card-content">
+                    <img src="../../../assets/icons/1.svg" />
+                    <div class="card-name">
+                      <span class="card-name-span">Cameron Williamson</span>
+                      <div class="card-book">
+                        <img src="../../../assets/icons/card-book.svg" />
+                        <span class="card-book-span">10 Books</span>
+                      </div>
+                    </div>
+                  </div>
                   <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
                 </div>
-              </div>
-              <div class="stack-2">
-                <div class="stack-position-name">
-                  <img class="stack-position" src="../../../assets/icons/2.svg" />
-                  <div class="stack-name">Darlene Robertson</div>
-                  <img src="../../../assets/icons/trophy 2.svg" class="trophy" />
+                <div class="card card-2">
+                  <div class="card-content">
+                    <img src="../../../assets/icons/2.svg" />
+                    <div class="card-name">
+                      <span class="card-name-span">Cameron Williamson</span>
+                      <div class="card-book">
+                        <img src="../../../assets/icons/card-book.svg" />
+                        <span class="card-book-span">10 Books</span>
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
                 </div>
-              </div>
-              <div class="stack-3">
-                <div class="stack-position-name">
-                  <img class="stack-position" src="../../../assets/icons/3.svg" />
-                  <div class="stack-name">Savannah Nguyen</div>
-                  <img src="../../../assets/icons/trophy 2.svg" class="trophy" />
+                <div class="card card-3">
+                  <div class="card-content">
+                    <img src="../../../assets/icons/3.svg" />
+                    <div class="card-name">
+                      <span class="card-name-span">Cameron Williamson</span>
+                      <div class="card-book">
+                        <img src="../../../assets/icons/card-book.svg" />
+                        <span class="card-book-span">10 Books</span>
+                      </div>
+                    </div>
+                  </div>
+                  <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
                 </div>
-              </div>
-              <div class="stack-4">
-                <div class="stack-position-name">
-                  <img class="stack-position" src="../../../assets/icons/4.svg" />
-                  <div class="stack-name">Ralph Edwards</div>
+                <div class="card card-4">
+                  <div class="card-content">
+                    <img src="../../../assets/icons/4.svg" />
+                    <div class="card-name">
+                      <span class="card-name-span">Cameron Williamson</span>
+                      <div class="card-book">
+                        <img src="../../../assets/icons/card-book.svg" />
+                        <span class="card-book-span">10 Books</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="stack-5">
-                <div class="stack-position-name">
-                  <img class="stack-position" src="../../../assets/icons/5.svg" />
-                  <div class="stack-name">Ralph Edwards</div>
+                <div class="card card-5">
+                  <div class="card-content">
+                    <img src="../../../assets/icons/5.svg" />
+                    <div class="card-name">
+                      <span class="card-name-span">Cameron Williamson</span>
+                      <div class="card-book">
+                        <img src="../../../assets/icons/card-book.svg" />
+                        <span class="card-book-span">10 Books</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="stack-6">
-                <div class="stack-position-name">
-                  <img class="stack-position" src="../../../assets/icons/6.svg" />
-                  <div class="stack-name">Ralph Edwards</div>
+                <div class="card card-6">
+                  <div class="card-content">
+                    <img src="../../../assets/icons/6.svg" />
+                    <div class="card-name">
+                      <span class="card-name-span">Cameron Williamson</span>
+                      <div class="card-book">
+                        <img src="../../../assets/icons/card-book.svg" />
+                        <span class="card-book-span">10 Books</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="stack-7">
-                <div class="stack-position-name">
-                  <img class="stack-position" src="../../../assets/icons/7.svg" />
-                  <div class="stack-name">Ralph Edwards</div>
+                <div class="card card-7">
+                  <div class="card-content">
+                    <img src="../../../assets/icons/7.svg" />
+                    <div class="card-name">
+                      <span class="card-name-span">Cameron Williamson</span>
+                      <div class="card-book">
+                        <img src="../../../assets/icons/card-book.svg" />
+                        <span class="card-book-span">10 Books</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="stack-8">
-                <div class="top-7-readers">
-                  Top 7 Readers
+                <div class="card card-8">
+                  <div class="card-content">
+                    <div class="card-name">
+                      <span class="last-card">Top 7 Readers</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
 
     </div>
 
-  </div>
 
+  </div>
 </div>
 
 

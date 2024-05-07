@@ -1,0 +1,505 @@
+.outer-margin {
+  padding: 0rem 2.5rem !important;
+  margin-top: 1.5rem !important;
+  overflow-x: hidden !important;
+}
+
+
+.dashboard-heading {
+/*  padding-left: 1.5rem;
+*/  /*  margin-left: 2%;
+*/ /*margin-top:1.5rem !important;*/
+}
+
+.dashboard-text {
+  color: var(--Primary-Grey, #343435);
+  font-family: Literata;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.banner-image img {
+  width: 16.75rem;
+  height: 10.3125rem;
+}
+
+
+
+
+
+.padding-outer {
+  padding-right: 0.4rem !important;
+}
+
+.padding-outer-rightCard {
+  padding-left: 0.5rem !important;
+}
+
+
+.welcome-outer-div {
+  margin-top: 1.12rem;
+  /*    justify-content: center;
+*/
+  padding: 0rem !important;
+}
+
+.top-choice-div{
+    margin-top:1rem;
+}
+
+.top-choices {
+  color: var(--Primary-Grey, #343435);
+  font-family: Literata;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.welcome-div {
+  border-radius: 1rem;
+  background: var(--Adhoc-Grediant, linear-gradient(113deg, #F9DDA1 19.55%, #FEC62E 64.92%));
+  /* Shadow */
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  height: 16.125rem !important;
+  padding-right: 1.5rem;
+}
+
+.ellipse {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  position: relative;
+}
+
+.books {
+  position: absolute; /* Position the book icon absolutely within the ellipse */
+  margin-top:2.1rem;
+  margin-left:-2.8rem;
+  
+}
+
+.user {
+  position: absolute; /* Position the book icon absolutely within the ellipse */
+  margin-top: 1.8rem;
+  margin-left: -2.9rem;
+}
+
+.Total-books-text {
+  color: var(--Primary-Grey, #343435);
+  font-family: Lato;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+ 
+}
+
+.stack {
+  display: flex;
+  width: 10.9375rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-left:0.7rem;
+  margin-top:0.5rem;
+}
+
+.add-button {
+  border-radius: 1.875rem;
+  background: var(--Primary-Blue, #28519E);
+  display: flex;
+  height: 2.5rem;
+  padding: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+  margin-top: 1rem;
+  margin-left: 0.7rem;
+  width: 90%;
+}
+
+.issue-button {
+  border-radius: 1.875rem;
+  background: var(--Primary-Blue, #28519E);
+  display: flex;
+  height: 2.5rem;
+  padding: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+  margin-top: 1rem;
+  margin-left: 0.7rem;
+  width: 90%;
+}
+
+.add-button img, .issue-button img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.add-button span, .issue-button span {
+  color: #FFF;
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.total-number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.number {
+  color: var(--Primary-Grey, #343435);
+  font-family: Lato;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 3rem; /* 133.333% */
+}
+
+
+
+.total-books-outer {
+  border-radius: 1rem;
+  /* Shadow */
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  /*width: 20.4375rem !important;*/
+  height: 16rem;
+  background-image: url("../../../assets/icons/Admin-dashboard/background-card.svg");
+  background-size: 17rem; /* or contain, or specific dimensions */
+  background-position: center; /* or other positions */
+  background-repeat: no-repeat; /* or repeat-x, repeat-y, etc. */
+  /* Add any other styles you need */
+  width: 100%; /* or specific width */
+}
+
+
+.issue-books-outer {
+  border-radius: 1rem;
+  /* Shadow */
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  /*  width: 13.4375rem;
+*/ height: 16rem;
+  /*width:15rem;*/
+  /*margin-left: 1.5rem;*/
+  background-image: url("../../../assets/icons/Admin-dashboard/background-card.svg");
+  background-size: 17rem; /* or contain, or specific dimensions */
+  background-position: center; /* or other positions */
+  background-repeat: no-repeat; /* or repeat-x, repeat-y, etc. */
+  /* Add any other styles you need */
+  width: 100%; /* or specific width */
+}
+
+
+.welcome-text-outer {
+  gap: 0.528rem;
+  flex: 1 0 0;
+  padding-top:3.4rem;
+  padding-left:2rem;
+}
+
+.welcome-header {
+
+  color: var(--Primary-Royal-Blue, #002C3F);
+  font-family: Lato;
+  font-size: 2.625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-self: stretch;
+
+}
+
+
+
+
+
+.wave-image {
+  display: flex;
+  align-items: center;
+}
+
+.welcome-detail-text {
+  opacity: 0.8;
+  align-self: stretch;
+  color: var(--Primary-Grey, #343435);
+  font-family: Lato;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 1rem;
+}
+
+@media only screen and (max-width: 426px) {
+  .outer-margin {
+    margin-left:0rem !important;
+    margin-top:0rem !important;
+    padding:1.5rem !important;
+    
+  }
+
+
+  .dashboard-heading{
+    display:none;
+}
+  * {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .welcome-outer-div {
+    margin-top: 3rem;
+    overflow-y:hidden;
+  }
+
+  .welcome-div {
+    border-radius: 1rem;
+    background: #FFB81C;
+
+    box-shadow: none;
+    overflow-y: hidden;
+    padding:0rem;
+
+
+    
+  }
+
+  .welcome-text-outer {
+    padding-top: 0rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    transform: scale(0.85);
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+  }
+
+  .banner-image {
+    transform: scale(0.5);
+    margin-top:-1rem;
+  }
+  .welcome-header {
+    align-self: stretch;
+    color: var(--Primary-Royal-Blue, #002C3F);
+    font-family: Lato;
+    font-size: 2.3125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .wave-hand {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  /*.total-books-outer {
+    margin-top: 1rem !important;
+    border-radius: 1rem;
+    margin-left: 0rem;
+    height: 11.1875rem;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+    margin-right: 0rem !important;*/
+    /*background-image: url("../../../assets/icons/Admin-dashboard/background-Card-mobile.svg");*/
+    /*background-image: none;
+    background-size:cover;
+    background-image: url("../../../assets/icons/Admin-dashboard/background-Card-mobile.svg");
+  }*/
+
+  .total-books-outer {
+    margin-top: 1rem !important;
+    border-radius: 1rem;
+    margin-left: 0rem;
+    height: 11.1875rem;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+    margin-right: 0rem !important;
+    background-image: url("../../../assets/icons/Admin-dashboard/background-Card-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    background-size: 25rem 21rem;
+  }
+
+  .ellipse {
+    margin-top:5%;
+    margin-left:5%;
+    position: relative;
+  }
+
+  .books {
+    position: absolute; /* Position the book icon absolutely within the ellipse */
+    margin-top:9.8%;
+    margin-left:9.3%;
+  }
+
+  .user {
+    position: absolute; /* Position the book icon absolutely within the ellipse */
+    margin-top: 9.8%;
+    margin-left: 9.3%;
+  }
+
+
+
+  .issue-books-outer {
+    margin-top: 1rem !important;
+    border-radius: 1rem;
+    margin-left: 0rem;
+    height: 11.1875rem;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+    background-image: url("../../../assets/icons/Admin-dashboard/background-Card-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    background-size: 25rem 21rem;
+  }
+
+  .media-outer {
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+
+  .stack{
+      overflow-y:hidden;
+      margin-right:4%;
+      margin-top:5%;
+  }
+
+
+  .outer-total {
+    display: flex;
+    justify-content:space-between;
+    align-items: flex-start;
+  }
+
+  .outer-issue {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .stack {
+    display: flex;
+    align-items: flex-end;
+    justify-content:flex-end;
+  }
+
+  .add-button {
+    border-radius: 1.875rem;
+    background: var(--Primary-Blue, #28519E);
+    display: flex;
+    height: 2.75rem;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    margin-top:1rem;
+    width: 90%;
+
+
+  }
+
+  .issue-button {
+    border-radius: 1.875rem;
+    background: var(--Primary-Blue, #28519E);
+    display: flex;
+    height: 2.75rem;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    margin-top: 1rem;
+    width: 90%;
+  }
+
+  .button-outer{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+  }
+
+}
+
+
+
+@media screen and (min-width: 1500px) {
+  .outer-margin {
+    width: 75rem;
+    margin: auto;
+  }
+
+  .button-outer button{
+      width: 10rem
+  }
+}
+
+
+ 
+@media screen and (max-width:1024px) and (min-width:726px){
+  .banner-image {
+    transform: scale(0.8);
+    
+  }
+}
+
+@media screen and (min-width: 374px) and (max-width: 426px) {
+  .total-books-outer {
+    /*margin-top: 1rem !important;
+    border-radius: 1rem;
+    margin-left: 0rem;
+    height: 11.1875rem;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+    margin-right: 0rem !important;
+    background-image: url("../../../assets/icons/Admin-dashboard/background-Card-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;*/
+    background-size: 30rem 37rem;
+  }
+
+  .issue-books-outer {
+    /*margin-top: 1rem !important;
+    border-radius: 1rem;
+    margin-left: 0rem;
+    height: 11.1875rem;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+    background-image: url("../../../assets/icons/Admin-dashboard/background-Card-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;*/
+    background-size: 30rem 37rem;
+  }
+
+
+  .books {
+    position: absolute; /* Position the book icon absolutely within the ellipse */
+    margin-top:9%;
+    margin-left:8.3%;
+  }
+
+  .user {
+    position: absolute; /* Position the book icon absolutely within the ellipse */
+    margin-top: 8%;
+    margin-left: 7.8%;
+  }
+
+
+}
+
+
+
