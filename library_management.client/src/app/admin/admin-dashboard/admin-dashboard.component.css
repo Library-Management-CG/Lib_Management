@@ -226,12 +226,11 @@
   padding-left: 1rem;
 }
 
-@media only screen and (max-width: 426px) {
+@media only screen and (max-width: 500px) {
   .outer-margin {
-    margin-left:0rem !important;
-    margin-top:0rem !important;
-    padding:1.5rem !important;
-    
+    margin-left: 0rem !important;
+    margin-top: -5rem !important;
+    padding: 1.5rem !important;
   }
 
 
@@ -304,7 +303,6 @@
   .total-books-outer {
     margin-top: 1rem !important;
     border-radius: 1rem;
-    margin-left: 0rem;
     height: 11.1875rem;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
     margin-right: 0rem !important;
@@ -313,7 +311,7 @@
     background-size: cover;
     background-position: center;
     width: 100%;
-    background-size: 25rem 21rem;
+    background-size:110vw;
   }
 
   .ellipse {
@@ -347,8 +345,9 @@
     background-size: cover;
     background-position: center;
     width: 100%;
-    background-size: 25rem 21rem;
-  }
+    background-size: 110vw;
+}
+
 
   .media-outer {
     padding-right: 0rem !important;
