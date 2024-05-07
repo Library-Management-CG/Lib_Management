@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 
 @Component({
-  selector: 'app-book-details-modal',
-  templateUrl: './book-details-modal.component.html',
-  styleUrls: ['./book-details-modal.component.css']
+  selector: 'app-book-cards',
+  templateUrl: './book-cards.component.html',
+  styleUrls: ['./book-cards.component.css']
 })
-export class BookDetailsModalComponent {
+export class BookCardsComponent {
+
   @Input() books: any = {};
 
   getStarsArray(rating: number): boolean[] {

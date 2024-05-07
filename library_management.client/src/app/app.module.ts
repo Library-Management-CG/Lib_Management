@@ -12,7 +12,7 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
-import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
+
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
 import { AvatarModule } from 'ngx-avatars';
@@ -33,13 +33,13 @@ import { FormsModule } from '@angular/forms';
     UserComponent,
     MyBooksComponent,
     ManageBooksComponent,
-    BookCardsComponent,
+
     AdminDashboardComponent,
     NavbarSharedComponent,
     AddBooksModalComponent,
-    SuccessModalComponent
+    SuccessModalComponent,
     NavbarSharedComponent,
-    BookCardsComponent,
+   
     BookDetailsModalComponent,
     BooksCardSharedComponent
   ],
@@ -50,7 +50,7 @@ import { FormsModule } from '@angular/forms';
     UserRoutingModule, AdminRoutingModule,
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
-    FormsModule
+    FormsModule,
     AvatarModule
   /*  AvatarModule*/
   ],

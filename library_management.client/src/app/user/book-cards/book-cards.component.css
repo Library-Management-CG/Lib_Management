@@ -1,7 +1,7 @@
 .card {
   width: 220px;
   height: 340px;
-  position: relative;
+
   cursor: pointer;
   border: none;
   margin-bottom: 1.5rem;
@@ -19,6 +19,10 @@
   margin-top: 160px;
   /*  border: 5px solid yellow;*/
   transform: scaleX(1.2);
+}
+
+.star-icon {
+  margin-right: 2px;
 }
 
 .book-image {
@@ -72,6 +76,16 @@
   line-height: 16.8px;
   text-align: left;
   color: #6D6D6D;
+}
+
+.rating {
+  display: flex;
+  color: var(--Adhoc-Text-Grey, #6D6D6D);
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 @media only screen and (max-width: 626px) {

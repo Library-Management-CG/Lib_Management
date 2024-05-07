@@ -2,12 +2,15 @@
 overflow: hidden !important;
 
 }
+/*here change*/
+app-books-card-shared{
+    margin-left: 32rem;
+}
 
 .lib-user-books-container {
   display: flex;
   justify-content: space-between;
   height: 300px;
- 
   padding: 16px;
   border-radius: 26px;
   background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
@@ -85,12 +88,8 @@ overflow: hidden !important;
 
 .all-lib-books {
   height: 403px;
-  width: 750px;
-  /*  height: 100%;*/
-/*  background-color: lightblue;*/
   margin-top: 20px;
   margin-left: 40px;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -149,7 +148,7 @@ overflow: hidden !important;
   height: 40px;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+
   background: var(--Primary-Blue, #28519E);
   border: none;
   cursor: pointer;
@@ -166,8 +165,17 @@ overflow: hidden !important;
   color: white;
 }
 
+.white-chevron {
+  filter: brightness(0) invert(1);
+}
+
 @media only screen and (max-width: 526px) {
-  .lib-user-books-container {
+/*here change*/
+  app-books-card-shared {
+    margin-left: -42rem;
+  }
+
+    .lib-user-books-container {
     border-radius: 16px;
     background: linear-gradient(100.31deg, #DFEEF1 87.97%, #105465 162.07%);
     overflow-x: hidden;
@@ -249,7 +257,7 @@ overflow: hidden !important;
   .all-lib-books {
     height: 100%;
     margin-top: 10px;
-    margin-left: 20.5px;
+    margin-left: 2.5px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -258,21 +266,32 @@ overflow: hidden !important;
     padding-left: 12px;
   }
 
-  .row {
-      margin-left: -35px;
-  }
-
   .leaderboard {
-   /* margin-left: -1rem;*/
    justify-content: center;
   }
 
-  .leaderboard-heading {
-    margin-left: 2rem;
-  }
+
 
   .show-more {
     margin-left: 6rem;
+    border-radius: 43px;
+    border: 1px solid var(--Primary-Blue, #28519E);
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+  }
+
+
+  .show-more-text {
+    color: var(--Primary-Blue, #28519E);
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 }
 
@@ -316,7 +335,21 @@ overflow: hidden !important;
       height: 145.91px;
     }
 
-   
+    .show-more {
+      margin-left: 4.5rem;
+      border-radius: 43px;
+      border: 1px solid var(--Primary-Blue, #28519E);
+      display: flex;
+      padding: 8px 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+    }
+
+    .leaderboard-stack {
+      transform: scale(0.8);
+    }
   }
 
 @media only screen and (max-width: 1026px) {
@@ -340,6 +373,56 @@ overflow: hidden !important;
     margin-top: -1rem;
   }
 }
+
+
+@media only screen and (max-width: 768px) and (min-width: 673px){
+
+  app-books-card-shared {
+    margin-left: -22rem;
+  }
+
+
+    .books-laptop-heading {
+    font-size: 27px;
+  }
+
+  .sub-heading {
+    font-size: 19px;
+    font-weight: 500;
+  }
+
+  .books-stack-container {
+    margin-left: -21rem;
+    padding: 0px 0px 0.28px 0px;
+    width: 479px;
+    height: 333px;
+    transform: scale(0.7);
+  }
+
+  .leaderboard-stack {
+    margin-left: -6rem;
+    transform: scale(0.6);
+    margin-top: -3rem;
+  }
+
+  .all-lib-books {
+    height: 303px;
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+    overflow-y: scroll;
+    padding: 0px;
+    overflow-x: hidden;
+  }
+
+  .show-more {
+    margin-left: 9rem;
+  }
+}
+
 
   .st {
     border: 1px solid black;
