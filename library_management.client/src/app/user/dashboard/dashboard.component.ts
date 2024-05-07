@@ -50,15 +50,6 @@ export class DashboardComponent {
       numberOfPeopleReviewed: 28
     },
 
-    {
-      title: 'The Cloud',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 28
-    },
-
-   
   ];
 
   mostPopularBooks = [
@@ -79,13 +70,7 @@ export class DashboardComponent {
       numberOfPeopleReviewed: 28
     },
 
-    {
-      title: 'The Invisible',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 28
-    },
+   
 
     {
       title: 'The Cloud',
@@ -168,6 +153,18 @@ export class DashboardComponent {
 
     this.displayedMostPopularBooks = this.showMoreClickedMostPopular ? this.mostPopularBooks : this.mostPopularBooks.slice(0, this.initialBooksToShow);
     return this.displayedMostPopularBooks;
+  }
+
+  get showMoreButtonVisibleRecentlyAdded(): boolean {
+    const screenWidth = window.innerWidth;
+    const maxBooksToShow = screenWidth <= 768 ? 2 : 3;
+    return this.recentlyAddedBooks.length > maxBooksToShow;
+  }
+
+  get showMoreButtonVisibleMostPopular(): boolean {
+    const screenWidth = window.innerWidth;
+    const maxBooksToShow = screenWidth <= 768 ? 2 : 3;
+    return this.mostPopularBooks.length > maxBooksToShow;
   }
 
 }
