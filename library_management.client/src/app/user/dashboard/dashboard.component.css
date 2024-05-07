@@ -88,7 +88,6 @@ app-books-card-shared{
 
 .all-lib-books {
   height: 403px;
-  width: 750px;
   margin-top: 20px;
   margin-left: 40px;
   display: flex;
@@ -376,8 +375,14 @@ app-books-card-shared{
 }
 
 
-@media only screen and (max-width: 768px) and (min-width: 613px){
-  .books-laptop-heading {
+@media only screen and (max-width: 768px) and (min-width: 673px){
+
+  app-books-card-shared {
+    margin-left: -22rem;
+  }
+
+
+    .books-laptop-heading {
     font-size: 27px;
   }
 
@@ -401,10 +406,9 @@ app-books-card-shared{
   }
 
   .all-lib-books {
-    height: 403px;
-    width: 750px;
+    height: 303px;
     margin-top: 20px;
-    margin-left: 40px;
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -412,6 +416,10 @@ app-books-card-shared{
     overflow-y: scroll;
     padding: 0px;
     overflow-x: hidden;
+  }
+
+  .show-more {
+    margin-left: 9rem;
   }
 }
 
