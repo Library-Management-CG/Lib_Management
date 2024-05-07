@@ -4,6 +4,7 @@
   overflow-x: hidden !important;
 }
 
+
 .dashboard-heading {
 /*  padding-left: 1.5rem;
 */  /*  margin-left: 2%;
@@ -25,6 +26,9 @@
 }
 
 
+
+
+
 .padding-outer {
   padding-right: 0.4rem !important;
 }
@@ -41,6 +45,19 @@
   padding: 0rem !important;
 }
 
+.top-choice-div{
+    margin-top:1rem;
+}
+
+.top-choices {
+  color: var(--Primary-Grey, #343435);
+  font-family: Literata;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
 .welcome-div {
   border-radius: 1rem;
   background: var(--Adhoc-Grediant, linear-gradient(113deg, #F9DDA1 19.55%, #FEC62E 64.92%));
@@ -48,7 +65,6 @@
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
   height: 16.125rem !important;
   padding-right: 1.5rem;
-
 }
 
 .ellipse {
@@ -486,6 +502,3 @@
 
 
 
-  .st {
-    border: 1px solid black;
-  }
