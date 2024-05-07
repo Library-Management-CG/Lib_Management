@@ -18,8 +18,12 @@ import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-
 import { AvatarModule } from 'ngx-avatars';
 import { BookDetailsModalComponent } from './shared/components/book-details-modal/book-details-modal.component';
 import { BooksCardSharedComponent } from './shared/components/books-card-shared/books-card-shared.component';
-
-
+import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.component';
+import { SuccessModalComponent } from './shared/components/success-modal/success-modal.component';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,9 @@ import { BooksCardSharedComponent } from './shared/components/books-card-shared/
     BookCardsComponent,
     AdminDashboardComponent,
     NavbarSharedComponent,
+    AddBooksModalComponent,
+    SuccessModalComponent
+    NavbarSharedComponent,
     BookCardsComponent,
     BookDetailsModalComponent,
     BooksCardSharedComponent
@@ -41,6 +48,9 @@ import { BooksCardSharedComponent } from './shared/components/books-card-shared/
     HttpClientModule,
     AppRoutingModule,
     UserRoutingModule, AdminRoutingModule,
+    LottieModule.forRoot({ player: playerFactory }),
+    NgSelectModule,
+    FormsModule
     AvatarModule
   /*  AvatarModule*/
   ],
@@ -48,3 +58,7 @@ import { BooksCardSharedComponent } from './shared/components/books-card-shared/
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function playerFactory() {
+  return player;
+}
