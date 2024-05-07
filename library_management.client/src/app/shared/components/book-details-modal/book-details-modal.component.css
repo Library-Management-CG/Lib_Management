@@ -61,12 +61,29 @@
   width: 30px;
   height: 20px;
   margin-top : 11px;
-  gap: 12px;
+  gap: 2px;
+}
+
+.numberOfPeopleReviewed {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20.8px;
+  text-align: left;
+  width: 24px;
+  height: 17px;
+  color: #6D6D6D;
+  margin-left: 5px;
+}
+
+.line {
+  width: 22px;
+  border: 1px 0px 0px 0px;
+  margin-left: 6px;
 }
 
 .tag {
   width: 79px;
-  height: 20px;
   padding: 8px;
   border-radius: 4px 4px 4px 4px;
   background: #CEF0DC;
@@ -76,20 +93,24 @@
   line-height: 6px;
   text-align: left;
   color: #0D542A;
+  margin-left: 6px;
 }
 
 .book-content {
-  width: 300px;
-  height: 162px;
   font-family: Lato;
   font-size: 13px;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 20px;
   text-align: left;
 }
 
 .image-content {
   width: 141px;
-  height: 150px;
   border-radius: 8px 0px 0px 0px;
+}
+
+@media only screen and (max-width: 526px) {
+    .image-content{
+
+    }
 }

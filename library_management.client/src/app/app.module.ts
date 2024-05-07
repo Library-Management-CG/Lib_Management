@@ -12,14 +12,18 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
-import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
+
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
 import { AvatarModule } from 'ngx-avatars';
 import { BookDetailsModalComponent } from './shared/components/book-details-modal/book-details-modal.component';
 import { BooksCardSharedComponent } from './shared/components/books-card-shared/books-card-shared.component';
-
-
+import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.component';
+import { SuccessModalComponent } from './shared/components/success-modal/success-modal.component';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,10 +33,13 @@ import { BooksCardSharedComponent } from './shared/components/books-card-shared/
     UserComponent,
     MyBooksComponent,
     ManageBooksComponent,
-    BookCardsComponent,
+
     AdminDashboardComponent,
     NavbarSharedComponent,
-    BookCardsComponent,
+    AddBooksModalComponent,
+    SuccessModalComponent,
+    NavbarSharedComponent,
+   
     BookDetailsModalComponent,
     BooksCardSharedComponent
   ],
@@ -41,6 +48,9 @@ import { BooksCardSharedComponent } from './shared/components/books-card-shared/
     HttpClientModule,
     AppRoutingModule,
     UserRoutingModule, AdminRoutingModule,
+    LottieModule.forRoot({ player: playerFactory }),
+    NgSelectModule,
+    FormsModule,
     AvatarModule
   /*  AvatarModule*/
   ],
@@ -48,3 +58,7 @@ import { BooksCardSharedComponent } from './shared/components/books-card-shared/
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function playerFactory() {
+  return player;
+}
