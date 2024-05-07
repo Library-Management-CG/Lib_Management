@@ -2,12 +2,15 @@
 overflow: hidden !important;
 
 }
+/*here change*/
+app-books-card-shared{
+    margin-left: 32rem;
+}
 
 .lib-user-books-container {
   display: flex;
   justify-content: space-between;
   height: 300px;
- 
   padding: 16px;
   border-radius: 26px;
   background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
@@ -163,8 +166,17 @@ overflow: hidden !important;
   color: white;
 }
 
+.white-chevron {
+  filter: brightness(0) invert(1);
+}
+
 @media only screen and (max-width: 526px) {
-  .lib-user-books-container {
+/*here change*/
+  app-books-card-shared {
+    margin-left: -42rem;
+  }
+
+    .lib-user-books-container {
     border-radius: 16px;
     background: linear-gradient(100.31deg, #DFEEF1 87.97%, #105465 162.07%);
     overflow-x: hidden;
@@ -323,6 +335,22 @@ overflow: hidden !important;
     .books-text-container {
       height: 145.91px;
     }
+
+    .show-more {
+      margin-left: 4.5rem;
+      border-radius: 43px;
+      border: 1px solid var(--Primary-Blue, #28519E);
+      display: flex;
+      padding: 8px 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+    }
+
+    .leaderboard-stack {
+      transform: scale(0.8);
+    }
   }
 
 @media only screen and (max-width: 1026px) {
@@ -346,6 +374,9 @@ overflow: hidden !important;
     margin-top: -1rem;
   }
 }
+
+
+
 
   .st {
     border: 1px solid black;

@@ -7,6 +7,8 @@ import { Component,ElementRef, HostListener, ViewChild } from '@angular/core';
 })
 export class DashboardComponent {
 
+  isWebView: boolean = window.innerWidth > 758; // Assuming the cutoff for web view is 768 pixels
+
   showMoreClickedRecentlyAdded: boolean = false;
   showMoreClickedMostPopular: boolean = false;
 
@@ -18,6 +20,7 @@ export class DashboardComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.updateDisplayedBooks();
+    this.isWebView = window.innerWidth > 758;
   }
 
   ngOnInit() {
@@ -43,12 +46,13 @@ export class DashboardComponent {
     },
 
     {
-      title: 'The Invisible',
+      title: 'The ok',
       author: 'Daryl Bishop & Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
+      ratingUrl: 2,
       numberOfPeopleReviewed: 28
     },
+
 
   ];
 
@@ -119,7 +123,7 @@ export class DashboardComponent {
   updateDisplayedBooks() {
     const screenWidth = window.innerWidth;
     console.log(screenWidth);
-    if (screenWidth <= 768) {
+    if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
       this.initialBooksToShow = 3;
@@ -132,7 +136,7 @@ export class DashboardComponent {
   get booksToRecentDisplay(): any[] {
     const screenWidth = window.innerWidth;
     console.log(screenWidth);
-    if (screenWidth <= 768) {
+    if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
       this.initialBooksToShow = 3;
@@ -145,7 +149,7 @@ export class DashboardComponent {
   get booksToPopularDisplay(): any[] {
     const screenWidth = window.innerWidth;
     console.log(screenWidth);
-    if (screenWidth <= 768) {
+    if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
       this.initialBooksToShow = 3;
@@ -157,13 +161,13 @@ export class DashboardComponent {
 
   get showMoreButtonVisibleRecentlyAdded(): boolean {
     const screenWidth = window.innerWidth;
-    const maxBooksToShow = screenWidth <= 768 ? 2 : 3;
+    const maxBooksToShow = screenWidth <= 758 ? 2 : 3;
     return this.recentlyAddedBooks.length > maxBooksToShow;
   }
 
   get showMoreButtonVisibleMostPopular(): boolean {
     const screenWidth = window.innerWidth;
-    const maxBooksToShow = screenWidth <= 768 ? 2 : 3;
+    const maxBooksToShow = screenWidth <= 758 ? 2 : 3;
     return this.mostPopularBooks.length > maxBooksToShow;
   }
 

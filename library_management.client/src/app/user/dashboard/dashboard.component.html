@@ -49,8 +49,8 @@
           <button type="button" *ngIf="showMoreButtonVisibleRecentlyAdded" class="show-more" (click)="onShowMoreClicked('recentlyAdded')">
             <div class="show-more-text">
               {{ showMoreClickedRecentlyAdded ? 'Show Less' : 'Show More' }}
-              <img *ngIf="!showMoreClickedRecentlyAdded" src="../../../assets/icons/expand_more.svg" />
-              <img *ngIf="showMoreClickedRecentlyAdded" src="../../../assets/icons/collapse.svg" />
+              <img *ngIf="!showMoreClickedRecentlyAdded" src="../../../assets/icons/expand_more.svg" [class.white-chevron]="isWebView"/>
+              <img *ngIf="showMoreClickedRecentlyAdded" src="../../../assets/icons/collapse.svg" [class.white-chevron]="isWebView"/>
             </div>
           </button>
 
@@ -66,8 +66,8 @@
             <button type="button" *ngIf="showMoreButtonVisibleMostPopular" class="show-more" (click)="onShowMoreClicked('mostPopular')">
               <div class="show-more-text">
                 {{ showMoreClickedMostPopular ? 'Show Less' : 'Show More' }}
-                <img *ngIf="!showMoreClickedMostPopular" src="../../../assets/icons/expand_more.svg" />
-                <img *ngIf="showMoreClickedMostPopular" src="../../../assets/icons/collapse.svg" />
+                <img *ngIf="!showMoreClickedMostPopular" src="../../../assets/icons/expand_more.svg" [class.white-chevron]="isWebView"/>
+                <img *ngIf="showMoreClickedMostPopular" src="../../../assets/icons/collapse.svg" [class.white-chevron]="isWebView"/>
               </div>
             </button>
 
