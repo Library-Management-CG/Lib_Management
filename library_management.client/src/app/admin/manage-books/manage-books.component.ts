@@ -26,9 +26,6 @@ export class ManageBooksComponent {
   }
 
   openModal(): void {
-    // Assuming you're using Bootstrap modal
-    // You need to include Bootstrap JS in your project
-    // You can use jQuery to trigger the modal
     $('#exampleModal').modal('show');
   }
 
