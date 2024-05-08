@@ -26,7 +26,7 @@ export class ManageBooksComponent {
   }
 
   openModal(): void {
-    $('#exampleModal').modal('show');
+    $('#exampleModalIssue').modal('show');
   }
 
 }
