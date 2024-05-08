@@ -1,3 +1,27 @@
+<div class="container-fluid manage-outer">
+  <div class="row manage-heading">
+    <span>Manage Books</span>
+  </div>
+  <div class="row manage-actions">
+    <div class="search-bar">
+      <img src="../../../assets/icons/manage-books/search-icon.svg" />
+      <input type="text" placeholder="Search By Book Name" />
+    </div>
+    <div class="action-buttons">
+      <button class="add-book-button">
+        <img src="../../../assets/icons/manage-books/add-book.svg" />
+        <span>Add New Book</span>
+      </button>
+      <button class="issue-book-button">
+        <img src="../../../assets/icons/manage-books/issue-book.svg" />
+        <span>Issue Book</span>
+      </button>
+    </div>
+  </div>
+
+  <app-books-card-shared></app-books-card-shared>
+
+</div>
 <p>manage-books works!</p>
 <app-issue-book-modal ></app-issue-book-modal>
 <button type="button" class="btn btn-primary" (click)="handleButtonClick()">

@@ -1,0 +1,229 @@
+<app-success-modal (doneClicked)="onDoneClicked()"></app-success-modal>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-dismiss="modal">
+  <div class="modal-dialog modal-dialog-centered  outer-width" role="document">
+    <div class="modal-content modal-height">
+      <div class="modal-header header-padding">
+        <div class="add-book-header">
+          <div class="book-image">
+            <img src="../../../assets/icons/add-books-modal/Book 1.svg" />
+          </div>
+          <div>
+            <h5 class="modal-title" id="exampleModalLongTitle">Add New Book</h5>
+          </div>
+        </div>
+        <div  >
+           <img src="../../../assets/icons/add-books-modal/X.svg" data-dismiss="modal" />
+        </div>
+
+        <!--<div class="close" (click)="dismissModal()" aria-label="Close">
+          <img src="../../../assets/icons/add-books-modal/X.svg" />
+        </div>-->
+
+
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>-->
+      </div>
+      <div class="modal-body ">
+        <!--<form [formGroup]="bookForm">-->
+          <div class="content-box">
+            <div class="row stepper-header">
+              <div class="col-md-8 stepper-elements">
+
+                <img *ngIf="stepperIndex==0" src="../../../assets/icons/add-books-modal/Book-Blue.svg" />
+                <img *ngIf="stepperIndex==1" src="../../../assets/icons/add-books-modal/Add-Details_Green.svg" />
+                <img src="../../../assets/icons/add-books-modal/Vector-Grey.svg" />
+                <img *ngIf="stepperIndex==0" src="../../../assets/icons/add-books-modal/Scan-Book.svg" />
+                <img *ngIf="stepperIndex==1" src="../../../assets/icons/add-books-modal/ScanBook-Blue.svg" />
+              </div>
+            </div>
+            <div *ngIf="stepperIndex==0" class="content">
+              <div class="stack">
+                <div class="form-field">
+                  <div class="text-book-name">Book Name</div>
+                </div>
+                <div>
+                  <div class="input-group">
+                    <!--<input type="text" class="form-control search-input" (input)="getBooks($event)">-->
+                    <ng-select [(ngModel)]="selectedBook" class="form-control search-input ngselect" (search)="getBooks($event,'key')" (click)="testing($event)" (keydown.enter)="testing($event)">
+                      <!--<input type="text" class="form-control search-input" (input)="getBooks($event)">-->
+                      <ng-option *ngFor="let car of listOfBooks" [value]="car" class="dropdown" >
+                        <div class="single-drop">
+                          <div *ngIf="car && car.volumeInfo && car.volumeInfo.imageLinks && car.volumeInfo.imageLinks.smallThumbnail" class="single-img" >
+                            <img src="{{car.volumeInfo.imageLinks.smallThumbnail}}" width="36px" height="55.636px" />
+                          </div>
+                          <div class="text-outer">
+                            <div class="title">
+                              {{car.volumeInfo.title}}
+                            </div>
+                            <div class="author-inner">
+                              {{car.volumeInfo.authors}}
+                            </div>
+                          </div>
+                        </div>
+                      </ng-option>
+                    </ng-select>
+
+                    <div class="input-group-append">
+                      <img src="../../../assets/icons/add-books-modal/Mic.svg" alt="Icon 1" (click)="startListening()">
+                      <img src="../../../assets/icons/add-books-modal/Search.svg" alt="Icon 2">
+                    </div>
+                  </div>
+                  <div class="alert-box">
+                    <div class="alert-img">
+                      <img src="../../../assets/icons/add-books-modal/alert.svg" />
+                    </div>
+                    <div>
+                      <div class="alert-text">
+                        This book already exists in the inventory, you can simply add the new copies.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row author">
+                    <div class="col-md-7 author-section">
+                      <div class="text-book-name">Author</div>
+                      <div>
+                        <input type="text" class="form-control author-input" placeholder="Enter Author Name" [(ngModel)]="bookForm.value.authorName" disabled="disabled">
+                      </div>
+                      <div class="text-book-name author desc">Description</div>
+                      <div>
+                        <textarea type="textarea" class="form-control author-input-description" [(ngModel)]="bookForm.value.description" readonly></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-5 book-section">
+                      <div *ngIf="bookForm.value.img==''" class="dummy-book-outer">
+                        <div class="dummy-img">
+                          <img  src="../../../assets/icons/add-books-modal/Dummy-Image.svg" />
+                        </div>
+                        <div class="no-preview">
+                          No Preview
+                        </div>
+                      </div>
+                      <img class="dummy-book-outer" *ngIf="bookForm.value.img!=''" src="{{bookForm.value.img}}" />
+                      <div class="cap-button">
+                        <div>
+                          <img src="../../../assets/icons/add-books-modal/Camera alt.svg" />
+                        </div>
+                        <div class="cap-text">
+                          Capture Image
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div>
+
+
+                <div class="quantity-select">
+                  <label for="quantity">Quantity <span class="required">*</span></label>
+                  <div class="quantity-counter">
+                    <div class="reduce-button" (click)="decrement()"><img src="../../../assets/icons/add-books-modal/reduce-quantity.svg" /></div>
+                    <input type="number" class="counter-value" [value]="counterValue" [(ngModel)]="counterValue" (change)="changeQty()"/>
+                    <div class="add-button" (click)="increment()"><img src="../../../assets/icons/add-books-modal/add-quantity.svg" /></div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div *ngIf="stepperIndex==1" class="content-2">
+              <div class="scan">
+                
+                <div class="qr-card" *ngFor="let car of bookForm.value.qr">
+                  <div class="scan-qr">
+                    <div class="scan-qr-holder">
+                      <div class="img-1">
+                        <img src="../../../assets/icons/add-books-modal/Vector.svg" />
+                        <div class="img-2">
+                          <img src="../../../assets/icons/add-books-modal/Rectangle.svg" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="scan-text-outer">
+                      <div class="scan-book-text">
+                        Scan Book
+                      </div>
+                      <div class="scan-book-text-subheading">
+                        click here to scan
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="scan-qr-buttons">
+                    <div class="rescan">
+                      <div class="rescan-text">rescan</div>
+                    </div>
+
+                    <div class="delete" (click)="decrement()">
+                      <div class="delete-text">delete</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="line-break">
+
+                </div>
+              </div>
+              <div class="add-another-outer" (click)="increment()">
+                <div class="add-another-outer-img">
+                  <img src="../../../assets/icons/add-books-modal/Plus-Blue.svg" />
+                </div>
+                <div class="add-another-outer-text">
+                  Add Another copies
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--</form>-->
+      </div>
+      <div class="modal-footer">
+        <div class="right-button">
+          <div *ngIf="stepperIndex==0" class="cancel-btn" data-dismiss="modal" aria-label="Close">
+            <div class="cancel-text">
+              Cancel
+            </div>
+          </div>
+
+          <div *ngIf="stepperIndex==1" class="cancel-btn" (click)="stepperDecrement()" aria-label="Previous">
+            <div class="cancel-text">
+              Previous
+            </div>
+          </div>
+        </div>
+        <div class="right-button-left">
+          <div *ngIf="stepperIndex==1" class="cancel-btn" data-dismiss="modal" aria-label="Close">
+            <div class="cancel-text">
+              Cancel
+            </div>
+          </div>
+
+          <div *ngIf="stepperIndex==0" class="next-button" (click)="stepperIncrement()">
+            <div class="next-text">
+              Next
+            </div>
+          </div>
+          <div *ngIf="stepperIndex==1" class="next-button" data-dismiss="modal" data-toggle="modal" data-target="#success" >
+            <div class="next-text">
+              Add
+            </div>
+          </div>
+        </div>
+        <!--<button type="button" class="cancel-btn" data-dismiss="modal">Cancel</button>-->
+        <!--<button type="button" class="btn btn-primary">Next</button>-->
+
+
+      </div>
+    </div>
+  </div>
+</div>

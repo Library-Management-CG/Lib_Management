@@ -19,7 +19,17 @@ import { FormsModule } from '@angular/forms';
 import { IssueModalBodyComponent } from './admin/issue-modal-body/issue-modal-body.component';
 import { IssueMobileComponent } from './admin/issue-mobile/issue-mobile.component';
 
-
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
+import { AvatarModule } from 'ngx-avatars';
+import { BookDetailsModalComponent } from './shared/components/book-details-modal/book-details-modal.component';
+import { BooksCardSharedComponent } from './shared/components/books-card-shared/books-card-shared.component';
+import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.component';
+import { SuccessModalComponent } from './shared/components/success-modal/success-modal.component';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +39,15 @@ import { IssueMobileComponent } from './admin/issue-mobile/issue-mobile.componen
     UserComponent,
     MyBooksComponent,
     ManageBooksComponent,
+
+    AdminDashboardComponent,
+    NavbarSharedComponent,
+    AddBooksModalComponent,
+    SuccessModalComponent,
+    NavbarSharedComponent,
+   
+    BookDetailsModalComponent,
+    BooksCardSharedComponent,
     NavbarComponent,
     BookCardsComponent,
     IssueBookModalComponent,
@@ -41,12 +60,18 @@ import { IssueMobileComponent } from './admin/issue-mobile/issue-mobile.componen
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    UserRoutingModule,
-    AdminRoutingModule,
+    UserRoutingModule, AdminRoutingModule,
+    LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    AvatarModule
+  /*  AvatarModule*/
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function playerFactory() {
+  return player;
+}
