@@ -1,6 +1,6 @@
 <app-success-modal (doneClicked)="onDoneClicked()"></app-success-modal>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-dismiss="modal">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered  outer-width" role="document">
     <div class="modal-content modal-height">
       <div class="modal-header header-padding">
@@ -13,7 +13,7 @@
           </div>
         </div>
         <div>
-          <img src="../../../assets/icons/add-books-modal/X.svg" data-dismiss="modal" />
+          <img src="../../../assets/icons/add-books-modal/X.svg" data-bs-dismiss="modal" />
         </div>
 
         <!--<div class="close" (click)="dismissModal()" aria-label="Close">
@@ -36,17 +36,17 @@
               <img *ngIf="stepperIndex==1" src="../../../assets/icons/add-books-modal/ScanBook-Blue.svg" />
             </div>
           </div>
-          <div *ngIf="stepperIndex==0" class="content">
+          <!--<div *ngIf="stepperIndex==0" class="content">
             <div class="stack">
               <div class="form-field">
                 <div class="text-book-name">Book Name</div>
               </div>
               <div>
-                <div class="input-group">
+                <div class="input-group">-->
                   <!--<input type="text" class="form-control search-input" (input)="getBooks($event)">-->
-                  <ng-select [(ngModel)]="selectedBook" class="form-control search-input ngselect" (search)="getBooks($event,'key')" (click)="testing($event)" (keydown.enter)="testing($event)">
+                  <!--<ng-select [(ngModel)]="selectedBook" class="form-control search-input ngselect" (search)="getBooks($event,'key')" (click)="testing($event)" (keydown.enter)="testing($event)">-->
                     <!--<input type="text" class="form-control search-input" (input)="getBooks($event)">-->
-                    <ng-option *ngFor="let car of listOfBooks" [value]="car" class="dropdown">
+                    <!--<ng-option *ngFor="let car of listOfBooks" [value]="car" class="dropdown">
                       <div>
                         <div class="single-drop">
                           <div *ngIf="car && car.volumeInfo && car.volumeInfo.imageLinks && car.volumeInfo.imageLinks.smallThumbnail" class="single-img">
@@ -184,13 +184,14 @@
                 Add Another copies
               </div>
             </div>
-          </div>
+          </div>-->
+          <app-add-book-common [stepperIndex]="stepperIndex"></app-add-book-common>
         </div>
         <!--</form>-->
       </div>
       <div class="modal-footer">
         <div class="right-button">
-          <div *ngIf="stepperIndex==0" class="cancel-btn" data-dismiss="modal" aria-label="Close">
+          <div *ngIf="stepperIndex==0" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close">
             <div class="cancel-text">
               Cancel
             </div>
@@ -203,7 +204,7 @@
           </div>
         </div>
         <div class="right-button-left">
-          <div *ngIf="stepperIndex==1" class="cancel-btn" data-dismiss="modal" aria-label="Close">
+          <div *ngIf="stepperIndex==1" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close">
             <div class="cancel-text">
               Cancel
             </div>
@@ -214,7 +215,7 @@
               Next
             </div>
           </div>
-          <div *ngIf="stepperIndex==1" class="next-button" data-dismiss="modal" data-toggle="modal" data-target="#success">
+          <div *ngIf="stepperIndex==1" class="next-button" data-bs-dismiss="modal" data-toggle="modal" data-target="#success">
             <div class="next-text">
               Add
             </div>
@@ -249,9 +250,9 @@
 </div>-->
 
 
-<webcam [height]="500"
+<!--<webcam [height]="500"
         [width]="1000"
         [trigger]="triggerObservable"
         (imageCapture)="handleImage($event)"
         *ngIf="showWebcam"
-        [switchCamera]="nextWebcamObservable"></webcam>
+        [switchCamera]="nextWebcamObservable"></webcam>-->

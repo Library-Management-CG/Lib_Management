@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageBooksComponent } from './manage-books/manage-books.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AddBookMobileComponent } from './add-book-mobile/add-book-mobile.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
     path: 'admin/manage-books',
     component: ManageBooksComponent,
 
+  },
+  {
+    path: 'admin/add-book-mobile',
+    component: AddBookMobileComponent,
   }
 
 ]

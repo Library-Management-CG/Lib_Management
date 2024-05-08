@@ -1,20 +1,22 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 //declare var $: any;
 declare var
-  webkitSpeechRecognition:any
+  webkitSpeechRecognition: any
   ;
 
 @Component({
-  selector: 'app-add-books-modal',
-  templateUrl: './add-books-modal.component.html',
-  styleUrls: ['./add-books-modal.component.css']
+  selector: 'app-add-book-common',
+  templateUrl: './add-book-common.component.html',
+  styleUrls: ['./add-book-common.component.css']
 })
-export class AddBooksModalComponent {
+export class AddBookCommonComponent {
   /*@ViewChild('exampleModalCenter') modal: any;*/
-  stepperIndex: number = 0;
+  @Input() stepperIndex: number = 0;
+
+  //stepperIndex: number = 0;
   counterValue: number = 0;
   video: any;
   canvas: any;
@@ -37,7 +39,7 @@ export class AddBooksModalComponent {
       //location: [this.locationId]
       //CreatedBy: [this.loggedUser.id]
     });
-  } 
+  }
   //constructor(private modalService: NgbModal) { } // Inject NgbModal service if you're using NgbModal
 
   //dismissModal() {
@@ -123,7 +125,7 @@ export class AddBooksModalComponent {
     this.isCaptured = true;
   }
 
-  
+
   capture() {
     const context = this.canvas.getContext('2d');
     context.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
@@ -142,7 +144,7 @@ export class AddBooksModalComponent {
     this.capturedImage = undefined;
   }
 
-  
+
   reset() {
     this.stepperIndex = 0;
   }
@@ -218,17 +220,17 @@ export class AddBooksModalComponent {
     var api = "https://www.googleapis.com/books/v1/volumes?q=" + encodeURIComponent(bookName);
 
     //setTimeout(() => {
-      fetch(api)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          this.listOfBooks = data.items;
-          
-        })
-        .catch(error => {
-          console.error('Error fetching books:', error);
-        });
-   ///* }, 500);*/
+    fetch(api)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.listOfBooks = data.items;
+
+      })
+      .catch(error => {
+        console.error('Error fetching books:', error);
+      });
+    ///* }, 500);*/
 
   }
 
@@ -244,7 +246,7 @@ export class AddBooksModalComponent {
       vSearch.interimresults = false;
       vSearch.lang = 'en-US';
       vSearch.start();
-      vSearch.onresult = (e:any) => {
+      vSearch.onresult = (e: any) => {
         console.log(e);
         // voiceHandler.value = e?.results[0][0]?.transcript;
         this.results = e.results[0][0].transcript;
@@ -259,7 +261,7 @@ export class AddBooksModalComponent {
 
   getResult() {
     console.log(this.results);
-    this.getBooks(this.results,"mic")
+    this.getBooks(this.results, "mic")
   }
 
   testing(event: any) {
@@ -278,10 +280,10 @@ export class AddBooksModalComponent {
 
   changeQty() {
     console.log(this.counterValue);
-    
-   
+
+
     if (this.counterValue === this.bookForm.get('qty')?.value) {
-      return; 
+      return;
     } else if (this.counterValue > this.bookForm.get('qty')?.value) {
 
       const qrArray = this.bookForm.get('qr') as FormArray;

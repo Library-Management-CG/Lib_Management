@@ -1,0 +1,38 @@
+<div class="content-box">
+  <div class="row stepper-header">
+    <div class="add-book-title-mobile">
+      <div (click)="Back()">
+        <img src="../../../assets/icons/add-books-modal/ArrowRight.svg"/>
+      </div>
+      <div class="add-book-title-mobile-text">
+        Add New Book
+      </div>
+    </div>
+    <div class="col-md-8 stepper-elements">
+
+      <img *ngIf="stepperIndex==0" src="../../../assets/icons/add-books-modal/Book-Blue.svg" />
+      <img *ngIf="stepperIndex==1" src="../../../assets/icons/add-books-modal/Add-Details_Green.svg" />
+      <img src="../../../assets/icons/add-books-modal/Vector-Grey.svg" />
+      <img *ngIf="stepperIndex==0" src="../../../assets/icons/add-books-modal/Scan-Book.svg" />
+      <img *ngIf="stepperIndex==1" src="../../../assets/icons/add-books-modal/ScanBook-Blue.svg" />
+    </div>
+  </div>
+  <div class="common-component">
+    <app-add-book-common [stepperIndex]="stepperIndex"></app-add-book-common>
+  </div>
+  <div class="footer-mobile">
+    <div *ngIf="stepperIndex==0" class="next-button-mobile" (click)="Next()">
+      <div class="next-button-mobile-text">
+        Next
+      </div>
+    </div>
+    <div *ngIf="stepperIndex==1" class="save-set-button">
+      <div class="previous-button-mobile-text" (click)="Previous()">
+        Previous
+      </div>
+      <div class="add-button-mobile-text" (click)="Add()">
+        Add
+      </div>
+    </div>
+  </div>
+</div>

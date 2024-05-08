@@ -25,6 +25,8 @@ import player from 'lottie-web';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { WebcamModule } from 'ngx-webcam';
+import { AddBookMobileComponent } from './admin/add-book-mobile/add-book-mobile.component';
+import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { WebcamModule } from 'ngx-webcam';
     BookCardsComponent,
     BookDetailsModalComponent,
     BooksCardSharedComponent,
+    AddBookMobileComponent,
+    AddBookCommonComponent
   ],
   imports: [
     BrowserModule,
