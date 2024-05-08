@@ -366,3 +366,7 @@ overflow: hidden !important;
     gap: 24px;
   }
 }
+
+.card{
+    border:none;
+}

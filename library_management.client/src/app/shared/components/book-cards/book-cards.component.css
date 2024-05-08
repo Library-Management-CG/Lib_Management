@@ -3,6 +3,7 @@
   height: 340px;
   margin-top: 6px;
   position: relative;
+  border:none;
 }
 
 .book-card {
@@ -25,6 +26,8 @@
   margin-left: 5.79px;
   padding-left: 6px;
   padding-right: 6px;
+  border:none;
+  border:none;
 }
 
 .book-details {

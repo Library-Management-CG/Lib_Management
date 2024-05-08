@@ -1,0 +1,89 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header row">
+        <div class="d-flex top-heading col-10">
+            <img class="issue-icn" src="../../../assets/icons/User.svg" />
+            <p class="heading">Issue Book</p>
+          </div>
+        <div class="col-xs-2">
+          <img src="../../../assets/icons/X.svg" data-dismiss="modal" />
+        </div>
+      </div>
+      <!--<div class="modal-body">
+        <div class="row">
+          <div class="col-5">
+            <p class="body-text">The Design of Every Day Things</p>
+            <p class="body-subhead">Donald A. Norman</p>
+            <div class="image-container">
+              <img class="bookImage" src="../../../assets/images/image 19528.jpg" />
+              <img class="qrImage" src="../../../assets/images/image 19529.jpg" />
+            </div>
+          </div>
+          <div class="col-7">
+            <div class="form-component">
+              <form>
+                <div class="form-group user-search">
+                  <label for="user">User <span class="asteric">*</span></label>-->
+                  <!--<ng-select placeholder="Search User">
+    <div class="options-div">
+      <ng-option *ngFor="let value of users" [value]="value.id">
+
+        <div class="option">
+          <div class="name-id">
+            <span class="option-name">{{value.name}}</span>
+          </div>
+        </div>
+
+      </ng-option>-->
+                  <!--<ng-select [(ngModel)]="selectedUser" class="custom" placeholder="Select User">
+                    <ng-option *ngFor="let user of users" [value]="user.id">{{user.name}}</ng-option>
+                  </ng-select>
+
+                 
+                </div>
+                <div class="date-container-form">
+                  <div class="form-group">
+                    <label for="issueDate">Date of Issue <span class="asteric">*</span></label>
+                    <div class="custom-date-input">
+                      <input type="date" class="form-control" id="issueDateInput" #issueDateInput disabled [value]="issueDateInputValue">
+                      <img src="../../../assets/icons/issue-modal/calendar.svg" alt="Calendar Icon" class="calendar-icon" (click)="openDatePicker(issueDateInput)">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="returnDate">Date of Return <span class="asteric">*</span></label>
+                    <div class="custom-date-input">
+                      <input type="date" class="form-control" id="returnDateInput" #returnDateInput disabled [value]="returnDateInputValue" >
+                      <img src="../../../assets/icons/issue-modal/calendar.svg" alt="Calendar Icon" class="calendar-icon" (click)="openDatePicker(issueDateInput)">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-alert">
+                  <img src="../../../assets/icons/alert.svg" />
+                  <p class="alert-text">The returned window is 15 days</p>
+                </div>
+                <div class="form-group">
+                  <label for="comments">Comments <span class="asteric">*</span></label>
+                  <textarea class="form-control textarea" id="comments" rows="3" placeholder="Enter Comments"></textarea>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>-->
+    <app-issue-modal-body></app-issue-modal-body>
+      <div class="modal-footer">
+        <div class="row footer-buttons">
+          <div class="col-buttons">
+           <div class="cancel-btn">Cancel</div>
+          </div>
+          <div class="col-buttons">
+            <div class="save-btn">Issue</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
