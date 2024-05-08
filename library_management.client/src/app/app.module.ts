@@ -24,6 +24,7 @@ import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { WebcamModule } from 'ngx-webcam';
 
 @NgModule({
   declarations: [
@@ -37,11 +38,11 @@ import { FormsModule } from '@angular/forms';
     AdminDashboardComponent,
     NavbarSharedComponent,
     AddBooksModalComponent,
-    SuccessModalComponent
+    SuccessModalComponent,
     NavbarSharedComponent,
     BookCardsComponent,
     BookDetailsModalComponent,
-    BooksCardSharedComponent
+    BooksCardSharedComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,8 +51,9 @@ import { FormsModule } from '@angular/forms';
     UserRoutingModule, AdminRoutingModule,
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
-    FormsModule
-    AvatarModule
+    FormsModule,
+    AvatarModule,
+    WebcamModule
   /*  AvatarModule*/
   ],
   providers: [],

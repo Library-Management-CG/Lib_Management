@@ -7,9 +7,9 @@ declare var $: any;
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent {
-  ngOnInit(): void {
-    $(document).ready(function () {
-      $('#exampleModalCenter').modal('show');
-    });
-  }
+  //ngOnInit(): void {
+  //  $(document).ready(function () {
+  //    $('#exampleModalCenter').modal('show');
+  //  });
+  //}
 }
