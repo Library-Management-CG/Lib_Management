@@ -104,7 +104,7 @@ export class NavbarSharedComponent {
 
   routeBasedOnScreenSize() {
     if (this.isSettingsClicked) {
-      if (window.innerWidth <= 425) {
+      if (window.innerWidth <= 765) {
         this.router.navigate(['/admin/accesscontrolmobile']);
       } else {
         this.router.navigate(['/admin/accesscontrol']);
