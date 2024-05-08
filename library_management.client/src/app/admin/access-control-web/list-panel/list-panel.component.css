@@ -1,6 +1,5 @@
 .list-panel-container {
   display: flex;
-  width: 21.1875rem;
   height:42rem;
   padding: 1rem;
   flex-direction: column;
@@ -26,7 +25,6 @@
   align-self: stretch;
   border-radius: 0.25rem;
   border: 1px solid var(--Secondary-Gray, #B2B2B3);
-  background: #FFF;
 }
 
 .list-search-bar-input {
@@ -67,6 +65,20 @@
 }
 
 
+.st{
+    border: 1px solid black;
+    width:100%;
+}
+app-admin-name-card{
+    width:100%;
+}
+
 .spinner-loading {
   margin-left: 8.5rem;
 }
+/*@media screen and (min-width: 700px) and (max-width: 1000px) {
+  .list-panel-container {
+    width: 18.1875rem;
+
+  }*/
+

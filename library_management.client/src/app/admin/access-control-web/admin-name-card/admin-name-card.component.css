@@ -1,3 +1,4 @@
+@import url('admin-name-card.component.css');
 .user-list-container {
   display: flex;
   padding: 0.5rem 0.75rem;
@@ -7,9 +8,11 @@
   border-radius: 0.267rem;
   border: 1px solid var(--Secondary-Light-Gray, #E9ECEB);
   background: var(--Primary-White, #FFF);
-  width: 19.1875rem;
   height: 3.1875rem;
   cursor: pointer;
+  justify-content: space-between;
+
+
 }
 
 
@@ -148,3 +151,4 @@
 .st {
   border: 1px solid black;
 }
+
