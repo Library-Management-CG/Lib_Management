@@ -237,7 +237,7 @@ app-books-card-shared{
     opacity: 0.16;
     background-repeat: no-repeat;
     position: absolute;
-    left: 40px;
+    left: 49px;
     background: url("../../../assets/icons/Rectangle.svg");
     z-index: -2;
   }
@@ -359,7 +359,7 @@ app-books-card-shared{
   .books-stack-container {
     left: -5px;
     transform: scale(0.96);
-    margin-top: 6px;
+    margin-top: 3px;
   }
 }
 
@@ -368,12 +368,12 @@ app-books-card-shared{
   .books-stack-container {
     left: 22px;
     transform: scale(0.96);
-    margin-top: 6px;
+    margin-top: 3px;
   }
 }
 
 
-@media only screen and (max-width: 1026px) and (min-width: 769px){
+@media only screen and (max-width: 1026px) and (min-width: 768px){
   .books-stack-container {
     margin-left: -2rem;
     padding: 0px 0px 0.28px 0px;

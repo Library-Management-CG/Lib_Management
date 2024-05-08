@@ -7,7 +7,7 @@
   <img src="../../../../assets/icons/Admin-dashboard/top-choice-rectangle-card.svg" class="book-card-rectangle" />
   <div class="book-details ml-0" [ngClass]="{'conditional-css': isAdmin() == false}">
     <div *ngIf="isAdmin()==false" class="tag">AVALIABLE</div>
-    <div class="book-title ">
+    <div class="book-title">
       {{ books.title }}
     </div>
     <div class="author-name">{{ books.author }}</div>
