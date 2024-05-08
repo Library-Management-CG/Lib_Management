@@ -269,11 +269,11 @@ app-books-card-shared{
     padding-left: 12px;
   }
 
-  .leaderboard {
-    justify-content: center;
+  .leaderboard-stack {
+    height: 23.25rem;
+    margin-left: -1.7rem;
+    margin-top: -2rem;
   }
-
-
 
   .show-more {
     margin-left: 6rem;
@@ -331,22 +331,6 @@ app-books-card-shared{
       outline: none;
     }
 
-    .show-more {
-      margin-left: 5rem;
-      border-radius: 43px;
-      border: 1px solid var(--Primary-Blue, #28519E);
-      display: flex;
-      padding: 8px 16px;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      background-color: transparent;
-    }
-
-    .leaderboard-stack {
-      transform: scale(0.8);
-    }
-
     .all-lib-books {
     
       margin-left: 0.5px;
@@ -361,6 +345,27 @@ app-books-card-shared{
     transform: scale(0.96);
     margin-top: 3px;
   }
+
+  .leaderboard-stack {
+    transform: scale(0.8);
+    height: 23.25rem;
+    margin-left: -5.5rem;
+    margin-top: -2rem;
+  }
+
+
+  .show-more {
+    margin-left: 4.5rem;
+    border-radius: 43px;
+    border: 1px solid var(--Primary-Blue, #28519E);
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+  }
+
 }
 
 
@@ -369,6 +374,12 @@ app-books-card-shared{
     left: 22px;
     transform: scale(0.96);
     margin-top: 3px;
+  }
+
+  .leaderboard-stack {
+    height: 23.25rem;
+    margin-left: -3.5rem;
+    margin-top: -2rem;
   }
 }
 
