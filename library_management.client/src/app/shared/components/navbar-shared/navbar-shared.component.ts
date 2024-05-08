@@ -90,8 +90,19 @@ export class NavbarSharedComponent {
   open_settings() {
     this.isHighlighted = false;
     this.isDropdownOpenadmin = false;
+    
+      if(window.innerWidth <= 425) {
+      // Navigate to the desired page if screen size is mobile or less
+        this.router.navigate(['/admin/accesscontrolmobile']);
+    } else {
+      // Open the modal if screen size is larger than mobile
+        this.router.navigate(['/admin/accesscontrol']);
 
+    }
   }
+
+
+  
   admintoggleDropdown() {
     this.isDropdownOpenadmin = !this.isDropdownOpenadmin;
 
