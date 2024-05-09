@@ -36,6 +36,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         [HttpGet("bunty")]
         public IEnumerable<Book> GetBunty()
         {
+            _logger.LogError("heloooo gopal sir");
             return _context.Books.ToList();
         }
     }

@@ -14,7 +14,7 @@ public partial class LibraryManagementSystemContext : DbContext
         : base(options)
     {
     }
-
+    public virtual DbSet<Log> Logs { get; set; }
     public virtual DbSet<Action> Actions { get; set; }
 
     public virtual DbSet<Author> Authors { get; set; }
