@@ -87,18 +87,19 @@
 }*/
 
 .tag {
-  width: 79px;
-  height: 28px;
-  padding: 7px 8px 7px 8px;
-  gap: 10px;
-  border-radius: 4px 0px 0px 0px;
   background: #CEF0DC;
   font-family: Lato;
   font-size: 12px;
   font-weight: 600;
   line-height: 20px;
-  text-align: left;
+  border-radius: 0.25rem;
   color: #0D542A;
+  display: flex;
+  height: 1.75rem;
+  padding: 0.4375rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
 }
 
 .book-title {
@@ -111,6 +112,10 @@
   line-height: normal;
   height: 2.375rem;
   align-self: stretch;
+}
+
+.image-size:hover + .book-details .book-title {
+  color: var(--Primary-Blue, #28519E);
 }
 
 .author-name {
@@ -175,6 +180,13 @@
 
     font-size: 0.875rem;
    
+  }
+
+  .tag {
+    height: 1.3rem;
+    margin-top: 6px;
+    color: #0D542A;
+    font-size: 10px;
   }
 
 }
