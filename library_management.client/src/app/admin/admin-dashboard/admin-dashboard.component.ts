@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; // Import Router
 declare var $: any;
 
 @Component({
@@ -8,6 +9,7 @@ declare var $: any;
 })
 export class AdminDashboardComponent {
   counti: number[] = [];
+  constructor(private router: Router) { }
   ngOnInit(): void {
     //$(document).ready(function () {
     //  $('#exampleModalCenter').modal('show');
@@ -70,6 +72,19 @@ export class AdminDashboardComponent {
 
 
   ];
+
+  handleButtonClick(): void {
+    const isMobile = window.matchMedia('(max-width: 450px)').matches;
+    if (isMobile) {
+      this.router.navigate(['/admin/issue-mobile']); // Use the router to navigate
+    } else {
+      this.openModal();
+    }
+  }
+
+  openModal(): void {
+    $('#exampleModalIssue').modal('show');
+  }
 
  
 

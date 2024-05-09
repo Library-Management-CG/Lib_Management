@@ -1,4 +1,4 @@
-.heading {
+/*.heading {
   color: var(--Primary-Grey, #343435);
   leading-trim: both;
   text-edge: cap;
@@ -88,8 +88,8 @@
   font-size: 0.8125rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 1rem; /* 123.077% */
-}
+  line-height: 1rem;*/ /* 123.077% */
+/*}
 .form-alert {
   display: flex;
   padding: 0.5rem 0.75rem;
@@ -104,8 +104,8 @@
   font-size: 0.8125rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 1rem; /* 123.077% */
-  height:2rem;
+  line-height: 1rem;*/ /* 123.077% */
+  /*height:2rem;
 }
 .form-group label{
   color: var(--Primary-Grey, #343435);
@@ -157,11 +157,11 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}
+}*/
 /*.footer-buttons{
     gap:1rem;
 }*/
-.modal-footer {
+/*.modal-footer {
   border-top: 1px solid #ccc;
   margin:0rem 1.5rem 0rem 1.5rem;
 }
@@ -169,14 +169,14 @@
     height:140px;
 }
 .asteric {
-  color: var(--Adhoc-Red, #CC1A07);
+  color: var(--Adhoc-Red, #CC1A07);*/
   /* Heading/form 13 */
-  font-family: Lato;
+  /*font-family: Lato;
   font-size: 0.8125rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}
+}*/
 /* Adjust the position of the dropdown icon */
 /*select {
   -webkit-appearance: none;*/ /* Hide the default arrow in Safari and Chrome */
@@ -188,14 +188,14 @@
   /*padding-right: 30px;*/ /* Ensure space for the icon */
 /*}*/
 
-.form-control {
+/*.form-control {
   color: var(--Primary-Gray, #343435);
   font-family: Lato;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.5rem; /* 150% */
-}
+  line-height: 1.5rem;*/ /* 150% */
+/*}
 
 select option {
   background-color: #fff;
@@ -246,7 +246,7 @@ select option {
 
 .col-buttons {
   padding: 0rem 0rem 0rem 1rem;
-}
+}*/
 /*.ng-select {
   border-radius: var(--spacing-05, 0.25rem);
   border: 1px solid var(--Secondary-Light-Gray, #E9ECEB);
@@ -277,7 +277,7 @@ ng-select .custom {
 /* Shadow */
 /*box-shadow: 0px 4px 20px 0px rgba(40, 52, 73, 0.15);
 }*/
-::ng-deep .ng-select .ng-arrow-wrapper .ng-arrow {
+/*::ng-deep .ng-select .ng-arrow-wrapper .ng-arrow {
   border-color: none !important;
   border-style: none !important;
   border-width: 0 !important;
@@ -325,31 +325,31 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 .purchase-date-section img {
-  margin-left: 10px; /* Adjust the value to set the space between input and icon */
-  cursor: pointer;
+  margin-left: 10px;*/ /* Adjust the value to set the space between input and icon */
+  /*cursor: pointer;
   transform: translate(1250%,-220%);
-}
+}*/
 /* Hide the default calendar icon */
-input[type="date"]::-webkit-calendar-picker-indicator {
+/*input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
-}
+}*/
 
 /* Style the container to position the custom icon */
-.custom-date-input {
+/*.custom-date-input {
   position: relative;
   width:10.3125rem;
-}
+}*/
 
 /* Style the custom icon */
-.calendar-icon {
+/*.calendar-icon {
   position: absolute;
-  right: 10px; /* Adjust the position as needed */
-  top: 50%;
+  right: 10px;*/ /* Adjust the position as needed */
+  /*top: 50%;
   transform: translateY(-50%);
-  width: 0.8125rem; /* Adjust the size as needed */
-  height: 0.875rem; /* Adjust the size as needed */
-  cursor: pointer;
+  width: 0.8125rem;*/ /* Adjust the size as needed */
+  /*height: 0.875rem;*/ /* Adjust the size as needed */
+  /*cursor: pointer;
 }
 .col-7 {
     padding-right:0px !important;
-}
+}*/

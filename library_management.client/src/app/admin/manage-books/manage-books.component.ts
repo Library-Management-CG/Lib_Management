@@ -16,11 +16,10 @@ export class ManageBooksComponent {
   }
 
   handleButtonClick(): void {
-    if (window.innerWidth <= 425) {
-      // Navigate to the desired page if screen size is mobile or less
+    const isMobile = window.matchMedia('(max-width: 425px)').matches;
+    if (isMobile) {
       this.router.navigate(['/admin/issue-mobile']);
     } else {
-      // Open the modal if screen size is larger than mobile
       this.openModal();
     }
   }

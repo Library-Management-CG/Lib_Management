@@ -73,8 +73,11 @@
   flex-direction: column;
 }
 
-.qrImage {
+.qrImage-modal{
   width: 4rem;
+}
+.qrImage-page{
+    display:none;
 }
 
 .bookImage {
@@ -231,7 +234,6 @@ select option {
   align-self: stretch;
 }
 
-
 .option {
   display: flex;
   align-items: center;
@@ -270,7 +272,8 @@ select option {
 .col-buttons {
   padding: 0rem 0rem 0rem 1rem;
 }
-/*.ng-select {
+
+.user-search .ng-select {
   border-radius: var(--spacing-05, 0.25rem);
   border: 1px solid var(--Secondary-Light-Gray, #E9ECEB);
   background: #FFF;
@@ -280,15 +283,11 @@ select option {
   align-self: stretch;
 }
 
-.ng-select .ng-has-value .ng-placeholder {
-  display: none;
-}
-
 ::ng-deep .ng-select .ng-has-value .ng-placeholder {
   display: none;
 }
 
-ng-select .custom {
+.user-search ng-select .custom {
   display: flex;
   width: 21.625rem;
   padding: var(--spacing-2, 1rem);
@@ -296,17 +295,16 @@ ng-select .custom {
   align-items: flex-start;
   gap: var(--spacing-2, 1rem);
   border-radius: 0.5rem;
-  background: #FFF;*/
-/* Shadow */
-/*box-shadow: 0px 4px 20px 0px rgba(40, 52, 73, 0.15);
-}*/
-::ng-deep .ng-select .ng-arrow-wrapper .ng-arrow {
+  background: #FFF;
+  box-shadow: 0px 4px 20px 0px rgba(40, 52, 73, 0.15);
+}
+.ng-select .ng-arrow-wrapper .ng-arrow {
   border-color: none !important;
   border-style: none !important;
   border-width: 0 !important;
 }
 
-::ng-deep .ng-select .ng-arrow-wrapper {
+.ng-select .ng-arrow-wrapper {
   background-image: url('../../../assets/icons/issue-modal/expand-more.svg');
   background-repeat: no-repeat;
   margin-top: 2px;
@@ -379,9 +377,148 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .col-7 {
   padding-right: 0px !important;
 }
-@media screen and (max-width: 768px) {
+.issue-button-mobile {
+  display: none;
+ 
+}
+
+@media only screen and (max-width: 450px) {
+  .modal-body{
+      padding:1rem;
+  }
+  .body-text {
+    color: var(--Primary-Grey, #343435);
+    font-family: Literata;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 1rem;
+  }
+  .issue-button-mobile {
+    display: flex;
+    height: 2.75rem;
+    padding: 0.75rem 0.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1 0 0;
+    border-radius: 2rem;
+    background: var(--Primary-Blue, #28519E);
+    color: #FFF;
+    font-family: Lato;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .date-container-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .body-subhead {
+    margin-bottom: 0.5rem;
+    color: var(--Adhoc-Text-Grey, #6D6D6D);
+    font-family: Lato;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .col-md-7{
+      padding-right:0rem !important;
+  }
+
+  .custom-date-input{
+    width: 100%;
+  }
+
+  .issue-book-header {
+    display: flex;
+    padding-right: 0rem;
+  }
+
+  .qrImage-modal {
+      display:none;
+  }
+
+  .qrImage-page {
+    display: flex;
+    width: 5.12781rem;
+    height: 5.12781rem;
+  }
+  .bookImage {
+    height: 100%;
+    width: auto;
+    border-radius: 0.58475rem;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*@media screen and (max-width: 768px) {
   .modal-body {
     border: 1px solid blue;
+    position: absolute;
   }
 
   .heading-items {
@@ -389,6 +526,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
   }
 
+  .body-text {
+    color: var(--Primary-Grey, #343435);
+    font-family: Literata;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
   .page-heading {
     color: var(--Primary-Grey, #343435);
     leading-trim: both;
@@ -404,7 +549,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   p {
     margin-top: 12px;
   }
-
+  .col-7 {
+    padding-right: 0px !important;
+    position: relative;
+    top: 22rem;
+    right: 7rem;
+  }
+  .col-5{
+      position:relative;
+  }
+ .qrImage {
+    position: relative;
+    bottom: 13.5rem;
+  }
   .mobile-view-issue {
     border: 1px solid red;
   }
@@ -415,4 +572,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   .body-text {
   }
+  .bookImage {
+    position: absolute;
+    border:1px solid black;
+   
+  }
+ .date-container-form {
+  display:flex;
+  flex-direction:column;
+
+  }
 }
+*/
+
+/*.ng-select,
+.ng-select .ng-select-container,
+.ng-select.ng-select-single .ng-select-container {
+  width: 21.6rem !important;*/ /* Adjust the width as needed */
+  /*  border-top: 1px solid var(--secondary-Light-Grey, #E9ECEB);*/
+  /* border-bottom: 1px solid var(--secondary-Light-Grey, #E9ECEB);*/
+  /*margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  border-right: none;
+  outline: none;
+  box-shadow: none;
+}*/

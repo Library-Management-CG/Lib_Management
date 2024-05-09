@@ -1,14 +1,17 @@
 <div class="modal-body">
   <div class="row">
-    <div class="col-5">
-      <p class="body-text">The Design of Every Day Things</p>
-      <p class="body-subhead">Donald A. Norman</p>
+    <div class="col-md-5 issue-book-header">
+      <div class="header-text">
+        <p class="body-text">The Design of Every Day Things</p>
+        <p class="body-subhead">Donald A. Norman</p>
+        <img class="qrImage-page" src="../../../assets/images/image 19529.jpg" />
+      </div>
       <div class="image-container">
         <img class="bookImage" src="../../../assets/images/image 19528.jpg" />
-        <img class="qrImage" src="../../../assets/images/image 19529.jpg" />
+        <img class="qrImage-modal" src="../../../assets/images/image 19529.jpg" />
       </div>
     </div>
-    <div class="col-7">
+    <div class="col-md-7">
       <div class="form-component">
         <form>
           <div class="form-group user-search">
@@ -34,11 +37,11 @@
             <div class="form-group">
               <label for="issueDate">Date of Issue <span class="asteric">*</span></label>
               <div class="custom-date-input">
-                <input type="date" class="form-control" id="issueDateInput" #issueDateInput disabled [value]="issueDateInputValue">
+                <input type="date" class="form-control issue-input-tab" id="issueDateInput" #issueDateInput disabled [value]="issueDateInputValue">
                 <img src="../../../assets/icons/issue-modal/calendar.svg" alt="Calendar Icon" class="calendar-icon" (click)="openDatePicker(issueDateInput)">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group date-input">
               <label for="returnDate">Date of Return <span class="asteric">*</span></label>
               <div class="custom-date-input">
                 <input type="date" class="form-control" id="returnDateInput" #returnDateInput disabled [value]="returnDateInputValue">
@@ -56,6 +59,7 @@
           </div>
         </form>
       </div>
+      <div class="issue-button-mobile">Issue</div> 
     </div>
   </div>
 </div>
