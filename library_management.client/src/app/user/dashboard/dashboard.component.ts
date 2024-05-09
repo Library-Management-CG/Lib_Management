@@ -37,15 +37,15 @@ export class DashboardComponent {
   recentlyAddedBooks = [
     {
       title: 'The jigyasa Cloud',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'Daryl Bishop',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 3,
-      numberOfPeopleReviewed : 28
+      numberOfPeopleReviewed : 26
     },
 
     {
       title: 'The Invi',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'Nick Smith',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 4,
       numberOfPeopleReviewed: 28
@@ -53,10 +53,10 @@ export class DashboardComponent {
 
     {
       title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'Nick',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 2,
-      numberOfPeopleReviewed: 28
+      numberOfPeopleReviewed: 29
     },
 
   
@@ -67,15 +67,15 @@ export class DashboardComponent {
 
     {
       title: 'The Invisible Cloud',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'Bishop',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 4,
-      numberOfPeopleReviewed: 28
+      numberOfPeopleReviewed: 30
     },
 
     {
       title: 'The Invisible',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'Daryl',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 3,
       numberOfPeopleReviewed: 28
@@ -85,34 +85,43 @@ export class DashboardComponent {
 
     {
       title: 'The Cloud',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'John',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 1,
-      numberOfPeopleReviewed: 28
+      numberOfPeopleReviewed: 25
     },
 
     {
       title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'Sam',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 2,
-      numberOfPeopleReviewed: 28
+      numberOfPeopleReviewed: 26
     },
 
     {
       title: 'my',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'my my',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 3,
-      numberOfPeopleReviewed: 28
+      numberOfPeopleReviewed: 20
     },
 
     {
       title: 'daryl',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'Daryl',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 5,
-      numberOfPeopleReviewed: 28
+      numberOfPeopleReviewed: 15
+    },
+
+
+    {
+      title: 'The ok',
+      author: 'ok',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 2,
+      numberOfPeopleReviewed: 27
     },
 
 
@@ -127,19 +136,10 @@ export class DashboardComponent {
 
     {
       title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
+      author: 'NickBishop',
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 2,
-      numberOfPeopleReviewed: 28
-    },
-
-
-    {
-      title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 28
+      numberOfPeopleReviewed: 21
     },
 
 
