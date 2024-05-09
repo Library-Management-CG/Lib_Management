@@ -11,10 +11,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
+import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
+
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { BookCardsComponent } from './shared/components/book-cards/book-cards.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
+import { AvatarModule } from 'ngx-avatars';
+import { BookDetailsModalComponent } from './shared/components/book-details-modal/book-details-modal.component';
+import { BooksCardSharedComponent } from './shared/components/books-card-shared/books-card-shared.component';
+import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.component';
+import { SuccessModalComponent } from './shared/components/success-modal/success-modal.component';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import { AccessControlWebComponent } from './admin/access-control-web/access-control-web.component';
+import { AccessControlMobileComponent } from './admin/access-control-mobile/access-control-mobile.component';
+import { AssignPermissionModalComponent } from './admin/assign-permission-modal/assign-permission-modal.component';
+import { ListPanelComponent } from './admin/access-control-web/list-panel/list-panel.component';
+import { PermissionPanelComponent } from './admin/access-control-web/permission-panel/permission-panel.component';
+import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
@@ -47,9 +64,24 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     UserComponent,
     MyBooksComponent,
+    ManageBooksComponent,
+
     NavbarComponent,
     BookCardsComponent,
     AdminDashboardComponent,
+    NavbarSharedComponent,
+    AddBooksModalComponent,
+    SuccessModalComponent,
+    NavbarSharedComponent,
+   
+    BookDetailsModalComponent,
+    BooksCardSharedComponent,
+    AccessControlWebComponent,
+    AccessControlMobileComponent,
+    AssignPermissionModalComponent,
+    ListPanelComponent,
+    PermissionPanelComponent,
+    AdminNameCardComponent,
     NavbarSharedComponent,
     OuterTableComponent,
     ManageBooksComponent,
@@ -74,9 +106,18 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatButtonModule,
     FormsModule
+    UserRoutingModule, AdminRoutingModule,
+    LottieModule.forRoot({ player: playerFactory }),
+    NgSelectModule,
+    FormsModule,
+    AvatarModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function playerFactory() {
+  return player;
+}
