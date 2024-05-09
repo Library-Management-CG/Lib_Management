@@ -37,11 +37,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         [HttpGet("bunty")]
         public IEnumerable<Book> GetBunty()
         {
-            _logger.Log(
-    LogLevel.Error,                    // LogLevel
-    new EventId(123, "ErrorEvent"),    // EventId
-    "007",new Exception("This is an error"),(state, exception) => state?.ToString() ?? exception?.Message ?? "No message"  // Formatter
-);
+            _logger.Log(LogLevel.Error,new EventId(123, "ErrorEvent"),"007",new Exception("This is an error"),(state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
 
             //throw new Exception("hello");
             //_logger.LogWarning("Bhai aai warning");
