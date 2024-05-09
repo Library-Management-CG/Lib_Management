@@ -1,5 +1,6 @@
 using LIBRARY_MANAGEMENT.Server.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace LIBRARY_MANAGEMENT.Server.Controllers
 {
@@ -36,6 +37,15 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         [HttpGet("bunty")]
         public IEnumerable<Book> GetBunty()
         {
+            _logger.Log(
+    LogLevel.Error,                    // LogLevel
+    new EventId(123, "ErrorEvent"),    // EventId
+    "007",new Exception("This is an error"),(state, exception) => state?.ToString() ?? exception?.Message ?? "No message"  // Formatter
+);
+
+            //throw new Exception("hello");
+            //_logger.LogWarning("Bhai aai warning");
+            //_logger.LogTrace("Bhai aai warning");
             return _context.Books.ToList();
         }
     }
