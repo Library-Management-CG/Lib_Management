@@ -17,6 +17,7 @@ export class NavbarSharedComponent {
   roleName: any;
   isHighlighted: boolean = true;
   isTogglerClicked: boolean = false;
+   isSettingsClicked: boolean = false;
 
   constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef) {
 
@@ -49,6 +50,8 @@ export class NavbarSharedComponent {
     this.isDropdownOpen = false;
     this.isDropdownOpenadmin = false;
 
+    this.isSettingsClicked = false;
+
     if (button === 'my-books') {
       this.router.navigate(['/my-books']);
     }
@@ -65,12 +68,16 @@ export class NavbarSharedComponent {
 
   }
   toggleToUser(button: string) {
+    this.isSettingsClicked = false;
+
     if (button === 'readers-hub') {
       this.router.navigate(['/']);
     }
 
   }
   toggletoAdmin(button: string) {
+    this.isSettingsClicked = false;
+
     if (button === 'Dashboard') {
       this.router.navigate(['/admin']);
     }
@@ -90,8 +97,30 @@ export class NavbarSharedComponent {
   open_settings() {
     this.isHighlighted = false;
     this.isDropdownOpenadmin = false;
-
+    
+    this.isSettingsClicked = true; // Flag indicating that settings button is clicked
+    this.routeBasedOnScreenSize(); 
   }
+
+  routeBasedOnScreenSize() {
+    if (this.isSettingsClicked) {
+      if (window.innerWidth <= 425) {
+        this.router.navigate(['/admin/accesscontrolmobile']);
+      } else {
+        this.router.navigate(['/admin/accesscontrol']);
+      }
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    // Check responsiveness only after settings button is clicked
+    if (this.isSettingsClicked) {
+      this.routeBasedOnScreenSize();
+    }
+  }
+
+  
   admintoggleDropdown() {
     this.isDropdownOpenadmin = !this.isDropdownOpenadmin;
 
@@ -100,6 +129,7 @@ export class NavbarSharedComponent {
     this.isHighlighted = false;
     this.isDropdownOpen = false;
 
+    this.isSettingsClicked = false;
 
   }
 

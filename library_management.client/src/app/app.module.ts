@@ -24,6 +24,12 @@ import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { AccessControlWebComponent } from './admin/access-control-web/access-control-web.component';
+import { AccessControlMobileComponent } from './admin/access-control-mobile/access-control-mobile.component';
+import { AssignPermissionModalComponent } from './admin/assign-permission-modal/assign-permission-modal.component';
+import { ListPanelComponent } from './admin/access-control-web/list-panel/list-panel.component';
+import { PermissionPanelComponent } from './admin/access-control-web/permission-panel/permission-panel.component';
+import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,13 @@ import { FormsModule } from '@angular/forms';
     NavbarSharedComponent,
    
     BookDetailsModalComponent,
-    BooksCardSharedComponent
+    BooksCardSharedComponent,
+    AccessControlWebComponent,
+    AccessControlMobileComponent,
+    AssignPermissionModalComponent,
+    ListPanelComponent,
+    PermissionPanelComponent,
+    AdminNameCardComponent
   ],
   imports: [
     BrowserModule,
