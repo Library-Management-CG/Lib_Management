@@ -27,6 +27,12 @@ export class DashboardComponent {
     this.updateDisplayedBooks();
   }
 
+  selectedBook: any;
+
+  openModal(book: any) {
+    this.selectedBook = book;
+  }
+
 
   recentlyAddedBooks = [
     {
@@ -53,7 +59,7 @@ export class DashboardComponent {
       numberOfPeopleReviewed: 28
     },
 
-   
+  
 
   ];
 

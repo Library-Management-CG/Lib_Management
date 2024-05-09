@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,12 @@ import { Router } from '@angular/router';
 export class BooksCardSharedComponent {
 
   @Input() books: any = {};
+  @Output() openModalEvent = new EventEmitter<any>();
+
+  openModal(book: any) {
+    this.openModalEvent.emit(book);
+  }
+
   constructor(private router: Router) {
 
   }
