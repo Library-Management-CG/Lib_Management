@@ -110,6 +110,33 @@ export class DashboardComponent {
     },
 
 
+    {
+      title: 'The ok',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 2,
+      numberOfPeopleReviewed: 28
+    },
+
+
+    {
+      title: 'The ok',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 2,
+      numberOfPeopleReviewed: 28
+    },
+
+
+    {
+      title: 'The ok',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 2,
+      numberOfPeopleReviewed: 28
+    },
+
+
   ];
 
 
