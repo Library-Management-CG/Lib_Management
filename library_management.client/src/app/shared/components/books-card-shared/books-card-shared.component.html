@@ -1,0 +1,25 @@
+<app-book-details-modal [books]="books"></app-book-details-modal>
+
+<div class="card" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+  <img src="../../../../assets/icons/Admin-dashboard/book-image.svg" class="image-size"/>
+
+  <img src="../../../../assets/icons/Admin-dashboard/top-choice-rectangle-card.svg" class="book-card-rectangle" />
+  <div class="book-details ml-0" [ngClass]="{'conditional-css': isAdmin() == false}">
+    <div *ngIf="isAdmin()==false" class="tag">AVALIABLE</div>
+    <div class="book-title">
+      {{ books.title }}
+    </div>
+    <div class="author-name">{{ books.author }}</div>
+    <div class="rating " >
+      <!--<img src="../../../../assets/icons/Admin-dashboard/Rating.svg" />-->
+      <ng-container *ngFor="let star of getStarsArray(books.ratingUrl)">
+        <img src="../../../assets/icons/filled_star.svg" class="star-icon" />
+      </ng-container>
+      <ng-container *ngFor="let star of getEmptyStarsArray(books.ratingUrl)">
+        <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
+      </ng-container>
+      <div class="rating-people-count ">({{books.numberOfPeopleReviewed}})</div>
+    </div>
+  </div>
+</div>
