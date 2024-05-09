@@ -5,7 +5,7 @@
   <div class="row manage-actions">
     <div class="search-bar">
       <img src="../../../assets/icons/manage-books/search-icon.svg" />
-      <input type="text" placeholder="Search By Book Name" />
+      <input type="text" placeholder="Search By Book Name" (keyup)="applyNewFilter($event)"/>
     </div>
     <div class="action-buttons">
       <button class="add-book-button">
@@ -18,7 +18,5 @@
       </button>
     </div>
   </div>
-
-  <app-books-card-shared></app-books-card-shared>
-
+  <app-outer-table [filterValue]="filterValue"></app-outer-table>
 </div>
