@@ -1,0 +1,75 @@
+<app-revoke-book-modal></app-revoke-book-modal>
+<app-comments-modal></app-comments-modal>
+<app-archive-modal></app-archive-modal>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+  <!-- Position Column -->
+  <ng-container matColumnDef="empty">
+    <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+    <td mat-cell *matCellDef="let element">&nbsp;</td>
+  </ng-container>
+
+  <ng-container matColumnDef="qrNumber">
+    <th mat-header-cell *matHeaderCellDef> QR Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.qrNumber}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="issuedTo">
+    <th mat-header-cell *matHeaderCellDef> Issued To </th>
+    <td mat-cell *matCellDef="let element"> {{element.issuedTo}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="issueDate">
+    <th mat-header-cell *matHeaderCellDef> Date of Issue </th>
+    <td mat-cell *matCellDef="let element"> {{element.issueDate | date: 'MM-dd-yyyy'}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="returnDate">
+    <th mat-header-cell *matHeaderCellDef> Date of Return </th>
+    <td mat-cell *matCellDef="let element"> {{element.returnDate  | date: 'MM-dd-yyyy'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="comments">
+    <th mat-header-cell *matHeaderCellDef> Comments </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="comment-cell">
+        <button type="button" class="" data-toggle="modal" data-target="#commentsModal">
+          <img src="../../../../assets/icons/manage-books/comments-icon.svg" />
+        </button>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="action-cell">
+        <div class="revoke-icon">
+          <button type="button" class="" data-toggle="modal" data-target="#revokeBookModal">
+            <img src="../../../../assets/icons/manage-books/revoke-enabled.svg" />
+          </button>
+        </div>
+        <div class="archive-icon">
+          <button type="button" class="" data-toggle="modal" data-target="#archiveModal">
+            <img src="../../../../assets/icons/manage-books/archive.svg" />
+          </button>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
