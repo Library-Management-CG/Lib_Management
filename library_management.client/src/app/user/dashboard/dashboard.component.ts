@@ -53,9 +53,7 @@ export class DashboardComponent {
       numberOfPeopleReviewed: 28
     },
 
-    
-
- 
+   
 
   ];
 
