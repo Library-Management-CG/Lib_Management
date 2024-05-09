@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-details-modal',
@@ -7,6 +8,13 @@ import { Component, Input } from '@angular/core';
 })
 export class BookDetailsModalComponent {
   @Input() books: any = {};
+
+  constructor(private router: Router) {
+
+  }
+  isAdmin() {
+    return this.router.url.toLowerCase().includes('admin');
+  }
 
   getStarsArray(rating: number): boolean[] {
     const stars = [];

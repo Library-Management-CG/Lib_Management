@@ -26,8 +26,8 @@
                     <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
                   </ng-container>  <div class="numberOfPeopleReviewed"> ({{books?.numberOfPeopleReviewed}}) </div>
 
-                  <img src="../../../../assets/icons/Line 113.svg" class="line"/>
-                  <div class="tag">AVALIABLE</div>
+                  <img *ngIf="isAdmin()==false" src="../../../../assets/icons/Line 113.svg" class="line"/>
+                  <div *ngIf="isAdmin()==false" class="tag">AVALIABLE</div>
 
                 </div>
               </div>
@@ -39,7 +39,7 @@
               </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="book-modal-image col-md-2  col-12 order-md-last order-md-first">
               <img [src]="books?.imageUrl" class="image-content"/>
             </div>
           </div>

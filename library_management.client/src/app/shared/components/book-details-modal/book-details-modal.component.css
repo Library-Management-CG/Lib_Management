@@ -9,6 +9,15 @@
   cursor: pointer;
 }
 
+.modal {
+  border-radius: 1rem;
+}
+
+
+.modal-body{
+    margin-top: -1rem;
+}
+
 .modal-header{
     border: none;
 }
@@ -109,8 +118,31 @@
   border-radius: 8px 0px 0px 0px;
 }
 
-@media only screen and (max-width: 526px) {
-    .image-content{
+@media only screen and (max-width: 700px) {
+  .modal {
+    border-radius: 1.5rem 1.5rem 0rem 0rem;
+  }
 
-    }
+
+  .col-md-2 {
+    order: -1;
+  }
+
+  .book-modal-image {
+    display: flex;
+    justify-content:center;
+
+  }
+
+
+  .image-content {
+    width: 6.875rem;
+    height: 10.1875rem;
+    border-radius: 0.5rem;
+
+  }
+
+
+
+ 
 }
