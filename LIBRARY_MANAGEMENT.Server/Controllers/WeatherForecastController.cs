@@ -41,7 +41,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
 
             //throw new Exception("hello");
             //_logger.LogWarning("Bhai aai warning");
-            //_logger.LogTrace("Bhai aai warning");
+            _logger.LogTrace("warning");
             return _context.Books.ToList();
         }
     }
