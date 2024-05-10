@@ -12,14 +12,23 @@
       </div>
      
       <div class="modal-body">
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <div class="col-md-8">
               <div class="title-and-author">
-                <div class="modal-title">The Design of Every Day Things</div>
-                <div class="name-of-author">Donald A. Norman</div>
+                <div class="modal-title">{{ books.title }}</div>
+                <div class="name-of-author">{{ books.author }}</div>
                 <div class="rating-book">
-                  <img src="../../../../assets/icons/Rating.svg" /> | <div class="tag">AVALIABLE</div>
+                  <ng-container *ngFor="let star of getStarsArray(books.ratingUrl)">
+                    <img src="../../../assets/icons/filled_star.svg" class="star-icon" />
+                  </ng-container>
+                  <ng-container *ngFor="let star of getEmptyStarsArray(books.ratingUrl)">
+                    <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
+                  </ng-container>  <div class="numberOfPeopleReviewed"> ({{books.numberOfPeopleReviewed}}) </div>
+
+                  <img src="../../../../assets/icons/Line 113.svg" class="line"/>
+                  <div class="tag">AVALIABLE</div>
+
                 </div>
               </div>
               <div class="book-content">
@@ -31,7 +40,7 @@
             </div>
 
             <div class="col-md-2">
-              <img src="../../../../assets/icons/Image 1.svg " class="image-content"/>
+              <img [src]="books.imageUrl" class="image-content"/>
             </div>
           </div>
         </div>
