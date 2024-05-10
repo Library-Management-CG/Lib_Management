@@ -25,11 +25,77 @@ export class AdminDashboardComponent {
       this.openModal();
     }
   }
-
+  counti: number[] = [];
   openModal(): void {
     // Assuming you're using Bootstrap modal
     // You need to include Bootstrap JS in your project
     // You can use jQuery to trigger the modal
     $('#exampleModalCenter').modal('show');
   }
+
+  ngOnInit(): void {
+    //$(document).ready(function () {
+    //  $('#exampleModalCenter').modal('show');
+    //});
+      for (let i = 1; i <= 10; i++) {
+          this.counti.push(i);
+      }
+  }
+  mostPopularBooks = [
+
+    {
+      title: 'The Invisible Cloud',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 4,
+      numberOfPeopleReviewed: 28
+    },
+
+    {
+      title: 'The Invisible',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 3,
+      numberOfPeopleReviewed: 28
+    },
+
+
+
+    {
+      title: 'The Cloud',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 1,
+      numberOfPeopleReviewed: 28
+    },
+
+    {
+      title: 'The ok',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 2,
+      numberOfPeopleReviewed: 28
+    },
+
+    {
+      title: 'my',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 3,
+      numberOfPeopleReviewed: 28
+    },
+
+    {
+      title: 'daryl',
+      author: 'Daryl Bishop & Nick Smith',
+      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
+      ratingUrl: 5,
+      numberOfPeopleReviewed: 28
+    },
+
+
+  ];
+
+ 
+
 }
