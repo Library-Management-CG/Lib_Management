@@ -1,3 +1,4 @@
+
 .title-image {
   display: flex;
   width: 160px;
@@ -120,7 +121,18 @@
 
 @media only screen and (max-width: 700px) {
   .modal {
-    border-radius: 1.5rem 1.5rem 0rem 0rem;
+    border-radius: 1rem;
+    animation: bottomSlide 0.3s ease-out;
+  }
+
+  @keyframes bottomSlide {
+    from {
+      transform: translateY(100%);
+    }
+
+    to {
+      transform: translateY(0%);
+    }
   }
 
 
