@@ -1,0 +1,51 @@
+table {
+  width: 100%;
+  box-shadow: none;
+}
+
+.comment-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFF;
+}
+
+.action-cell {
+  display: flex;
+  width: 6.25rem;
+  height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FFF;
+}
+
+.revoke-icon img {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.archive-icon img {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.mat-mdc-header-row {
+  background: #F2F2F2 !important;
+  height: 2.25rem !important;
+  color: var(--Primary-Gray, #343435);
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+button{
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
