@@ -24,7 +24,6 @@ const routes: Routes = [
   {
     path: 'admin/add-book-mobile',
     component: AddBookMobileComponent,
-  }
   },
   { path: 'admin/accesscontrol', component: AccessControlWebComponent },
   { path: 'admin/accesscontrolmobile', component: AccessControlMobileComponent },

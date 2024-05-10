@@ -81,7 +81,7 @@ import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.
     InnerTableComponent,
     CommentsModalComponent,
     ArchiveModalComponent,
-    RevokeBookModalComponent
+    RevokeBookModalComponent,
     BooksCardSharedComponent,
     AddBookMobileComponent,
     AddBookCommonComponent
