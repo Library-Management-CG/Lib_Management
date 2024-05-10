@@ -248,6 +248,7 @@ export class AddBookCommonComponent {
       vSearch.start();
       vSearch.onresult = (e: any) => {
         console.log(e);
+        this.selectedBook = e;
         // voiceHandler.value = e?.results[0][0]?.transcript;
         this.results = e.results[0][0].transcript;
         this.getResult();
@@ -257,6 +258,7 @@ export class AddBookCommonComponent {
     } else {
       alert('Your browser does not support voice recognition!');
     }
+    
   }
 
   getResult() {

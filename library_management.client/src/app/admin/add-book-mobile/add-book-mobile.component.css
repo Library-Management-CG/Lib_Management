@@ -41,7 +41,7 @@
 
 .stepper-elements{
     display:flex;
-    justify-content:space-between;
+    justify-content:space-evenly;
     /*margin-left:-1rem;*/
 }
 

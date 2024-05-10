@@ -563,31 +563,36 @@ textarea {
   border-bottom: 1px solid var(--secondary-Light-Grey, #E9ECEB);
   border-right: none;
   outline: none;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 
   ::ng-deep .ng-select .ng-select-container, ::ng-deep .ng-select.ng-select-single .ng-select-container:focus {
-    background-color: transparent;
-    border: 0px;
-    box-shadow: none;
+    /*background-color: transparent;*/
+    /*border: 0px;*/
+    box-shadow: none !important;
     outline: none;
+    border-top: 1px solid var(--secondary-Light-Grey, #E9ECEB) !important;
+    border-bottom: 1px solid var(--secondary-Light-Grey, #E9ECEB) !important;
   }
 
   ::ng-deep .ng-select .ng-select-container, ::ng-deep .ng-select.ng-select-single .ng-select-container:hover {
-    background-color: transparent;
-    border: 0px;
+    /*background-color: transparent;*/
+    /*border: 0px;*/
     box-shadow: none;
     outline: none !important;
-    border: none;
+    /*border: none !important;*/
+    border-top: 1px solid var(--secondary-Light-Grey, #E9ECEB) !important;
+    border-bottom: 1px solid var(--secondary-Light-Grey, #E9ECEB) !important;
   }
 
 ::ng-deep .ng-select .ng-select-container, ::ng-deep .ng-select.ng-select-single {
   background-color: transparent;
-  border: 0px;
+  /*border: 0px;*/
   box-shadow: none;
   outline: none !important;
-  border-color: transparent;
+  /*border-color: transparent;*/
+
 }
 
 
@@ -690,24 +695,29 @@ textarea {
 }
 
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 767px) {
   .author {
     flex-direction: column-reverse !important;
   }
+
   .line-break {
     width: 21.7rem;
   }
 
-  .qr-card{
-      box-shadow:none;
+  .qr-card {
+    box-shadow: none;
   }
 
-  .book-section{
-      display:flex;
-      flex-direction:row;
-      justify-content:space-between;
-      margin-bottom:1.25rem;
-      height: 11rem;
+  .stepper-elements{
+      justify-content: space-evenly;
+  }
+
+  .book-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 1.25rem;
+    height: 11rem;
   }
 
   .dummy-book-outer {
@@ -717,13 +727,16 @@ textarea {
     width: 8.24875rem;
     height: 12.5rem;
   }
-  .alert-box{
-      margin-bottom:1.25rem;
+
+  .alert-box {
+    margin-bottom: 1.25rem;
   }
+
   .dummy-img {
     padding-top: 4.3rem;
     padding-left: 3.5rem;
   }
+
   .no-preview {
     padding-left: 1.9rem;
   }
@@ -731,6 +744,7 @@ textarea {
   ::ng-deep .ng-select .ng-select-container, ::ng-deep .ng-select.ng-select-single .ng-select-container {
     width: 21rem !important;
   }
+
   ::ng-deep .ng-select .ng-dropdown-panel {
     width: 25rem !important;
   }

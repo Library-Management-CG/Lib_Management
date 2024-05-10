@@ -17,7 +17,7 @@ export class AdminDashboardComponent {
   constructor(private router: Router) { }
 
   handleButtonClick() {
-    if (window.innerWidth <= 425) {
+    if (window.innerWidth <= 767) {
       // Navigate to the desired page if screen size is mobile or less
       this.router.navigate(['/admin/add-book-mobile']);
     } else {
