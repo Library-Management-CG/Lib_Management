@@ -1,92 +1,8 @@
 #main {
-  margin: 50px 0;
-}
-
-#main #faq .card {
-  margin-bottom: 30px;
-  border: 0;
-  border-radius: 0.5rem;
-background: var(--Primary-White, #FFF);
-position:relative;
-
-box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
-}
-
-  #main #faq .card .card-header {
-    -webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
-    box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
-    border-radius: 2px;
-    padding: 0;
-  }
-
-  #main #faq .card .card-header .btn-header-link {
-    color: #fff;
-    display: flex;
-    text-align:center;
-    align-items:center;
-    text-align: left;
-    background: white;
-    color: #222;
-    padding: 0.5rem 0.75rem;
-    height:3rem;
-    
-  }
-/*
-  #main #faq .card .card-header .btn-header-link:after {
-    content: '';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    float: right;
-  }
-
-  #main #faq .card .card-header .btn-header-link.collapsed {
-    background: white;
-    color: black;
-  }
-
-  #main #faq .card .card-header .btn-header-link.collapsed:after {
-    content: '';
-  }
-*/
-#main #faq .card .collapsing {
-  background: white;
-  line-height: 30px;
-}
-
-#main #faq .card .collapse {
-  border: 0;
-}
-
-#main #faq .card .collapse.show {
-  background: white;
-  line-height: 30px;
-  color: black;
+  margin: 5px 0;
 }
 
 
-.card-header{
-    border-bottom:none;
-}
-
-
-/*#main #faq .card .card-header .btn-header-link {
-  color: #fff;
-  display: block;
-  text-align: left;
-  background: white;
-  color: #222;
-  padding: 20px;
-  outline: none;*/ /* Remove outline */
-/*}*/
-
-  #main #faq .card .card-header .btn-header-link:focus {
-    box-shadow: none; /* Remove focus box-shadow */
-  }
-
-.card-header div{
-  display: flex !important;
-  
-}
 .permissions-panel-container {
   display: flex;
   padding: 1rem;
@@ -401,13 +317,13 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin-top:-0.7rem;
 }
 
 
 .heading-text {
   color: var(--Primary-Grey, #343435);
-  leading-trim: both;
-  text-edge: cap;
+ 
   font-family: Literata;
   font-size: 1.125rem;
   font-style: normal;
@@ -416,7 +332,8 @@ input:checked + .slider:before {
 }
 
 .Access-control-heading{
-    margin-bottom:1.5rem;
+    margin-bottom:1rem;
+ 
 }
 .accordion{
     height:75vh;
