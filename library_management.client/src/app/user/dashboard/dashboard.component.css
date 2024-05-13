@@ -243,12 +243,12 @@ app-books-card-shared{
   }
 
   .explore-button {
-    width: 304px;
-    height: 42px;
+    width: 293px;
+    height: 38px;
     padding: 12px 20px 12px 20px;
     gap: 8px;
     border-radius: 30px;
-    margin-top: 37px;
+    margin-top: 39px;
     background: var(--Primary-Blue, #28519E);
     border: none;
     cursor: pointer;
@@ -305,7 +305,7 @@ app-books-card-shared{
   }
 }
 
-  @media only screen and (max-width: 380px) {
+  @media only screen and (max-width: 390px) {
     .lib-user-books-container {
       border-radius: 16px;
       background: linear-gradient(100.31deg, #DFEEF1 87.97%, #105465 162.07%);
@@ -319,12 +319,12 @@ app-books-card-shared{
 
 
     .explore-button {
-      width: 271px;
-      height: 42px;
+      width: 270px;
+      height: 36px;
       padding: 12px 20px 12px 20px;
       gap: 8px;
       border-radius: 30px;
-      margin-top: 39px;
+      margin-top: 41px;
       background: var(--Primary-Blue, #28519E);
       border: none;
       cursor: pointer;
