@@ -1,5 +1,6 @@
 using LIBRARY_MANAGEMENT.Server.Log;
 using LIBRARY_MANAGEMENT.Server.Models;
+using LIBRARY_MANAGEMENT.Server.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<LibraryManagementSystemContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IUserService,UserService>();
 
 builder.Logging.AddDbLogger(options =>
 {

@@ -1,4 +1,5 @@
 ﻿using LIBRARY_MANAGEMENT.Server.Models;
+using LIBRARY_MANAGEMENT.Server.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +9,19 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly LibraryManagementSystemContext _context;
+        private readonly IUserService _userService;
 
-        public UserController(LibraryManagementSystemContext context)
+        public UserController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
+        }
+
+        [HttpPost("top")]
+        public IActionResult GetTopBookReaders()
+        {
+            var topUsers =  _userService.GetTopBookReaders();
+            return Ok(topUsers);
         }
     }
 }
+
