@@ -8,26 +8,26 @@
           <img src="../../../../assets/icons/Book 1.svg" class="book" />
           <h5 id="exampleModalLabel">Book Details</h5>
         </div>
-        <img src="../../../../assets/icons/Close (1).svg" class="close" data-bs-dismiss="modal" />
+        <img src="../../../../assets/icons/Close (1).svg" class="close" data-bs-dismiss="modal"/>
       </div>
      
-      <div class="modal-body">
+      <div class="modal-body" *ngIf = "books">
         <div class="container">
           <div class="row">
             <div class="col-md-8">
               <div class="title-and-author">
-                <div class="modal-title">{{ books.title }}</div>
-                <div class="name-of-author">{{ books.author }}</div>
+                <div class="modal-title">{{ books?.title }}</div>
+                <div class="name-of-author">{{ books?.author }}</div>
                 <div class="rating-book">
                   <ng-container *ngFor="let star of getStarsArray(books.ratingUrl)">
                     <img src="../../../assets/icons/filled_star.svg" class="star-icon" />
                   </ng-container>
                   <ng-container *ngFor="let star of getEmptyStarsArray(books.ratingUrl)">
                     <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
-                  </ng-container>  <div class="numberOfPeopleReviewed"> ({{books.numberOfPeopleReviewed}}) </div>
+                  </ng-container>  <div class="numberOfPeopleReviewed"> ({{books?.numberOfPeopleReviewed}}) </div>
 
-                  <img src="../../../../assets/icons/Line 113.svg" class="line"/>
-                  <div class="tag">AVALIABLE</div>
+                  <img *ngIf="isAdmin()==false" src="../../../../assets/icons/Line 113.svg" class="line"/>
+                  <div *ngIf="isAdmin()==false" class="tag">AVALIABLE</div>
 
                 </div>
               </div>
@@ -39,8 +39,8 @@
               </div>
             </div>
 
-            <div class="col-md-2">
-              <img [src]="books.imageUrl" class="image-content"/>
+            <div class="book-modal-image col-md-2  col-12 order-md-last order-md-first">
+              <img [src]="books?.imageUrl" class="image-content"/>
             </div>
           </div>
         </div>

@@ -40,8 +40,9 @@
           <p class="recently-added">Recently Added</p>
           <div class="row">
 
-            <div class="col-md-4 col-6" *ngFor="let book of booksToRecentDisplay">
-              <app-books-card-shared [books]="book"></app-books-card-shared>
+            <div class="col-md-4 col-6"  *ngFor="let book of booksToRecentDisplay">
+              <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+              <app-books-card-shared  [books]="book" (openModalEvent)="openModal(book)"></app-books-card-shared>
             </div>
 
           </div>
@@ -57,7 +58,8 @@
           <p class="recently-added">Most Popular</p>
           <div class="row">
             <div class="col-md-4 col-6" *ngFor="let book of booksToPopularDisplay">
-              <app-books-card-shared [books]="book"></app-books-card-shared>
+              <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+              <app-books-card-shared [books]="book" (openModalEvent)="openModal(book)"></app-books-card-shared>
             </div>
             
           </div>
