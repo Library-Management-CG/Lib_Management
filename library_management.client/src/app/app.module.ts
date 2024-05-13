@@ -44,6 +44,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { CommentsModalComponent } from './admin/manage-books/inner-table/comments-modal/comments-modal.component';
 import { ArchiveModalComponent } from './admin/manage-books/inner-table/archive-modal/archive-modal.component';
 import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
+import { MobileAccordianComponent } from './admin/access-control-mobile/mobile-accordian/mobile-accordian.component';
 
 
 
@@ -78,7 +79,8 @@ import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revok
     InnerTableComponent,
     CommentsModalComponent,
     ArchiveModalComponent,
-    RevokeBookModalComponent
+    RevokeBookModalComponent,
+    MobileAccordianComponent
   ],
   imports: [
     BrowserModule,
