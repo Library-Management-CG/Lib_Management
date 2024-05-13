@@ -7,11 +7,72 @@
   <div class="subhead">
     <div class="explore-books-heading col-8">Explore Books</div>
     <div class="check-box-component col-2">
-      <label class="custom-checkbox">
-        <input type="checkbox" id="checkboxId">
-        <img src="../../../assets/icons/explore-books/Checkbox component.svg">
+      <label class="check-box-component" for="flexCheckDefault" (click)="toggleCheckbox()">
+        <img *ngIf="isChecked == false" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+        <img *ngIf="isChecked == true" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
       </label>
       <div class="check-box-text">Available Books</div>
     </div>
+    <!--<div class="select-rating">
+      <select class="custom-dropdown" [(ngModel)]="selectedRating">
+        <option value="all" class="all-star">Select All</option>
+        <option value="1"><img src="../../../assets/icons/explore-books/Star (2).svg" /></option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4"></option>
+        <option value="5"></option>
+      </select>
+
+    </div>-->
+
+    <div class="newasset-dropdown col-2">
+      <div class="dropdown-button">
+        <span class="rating-txt">Select Rating</span>
+        <img src="../../../assets/icons/explore-books/Frame.svg" class="frame"/>
+      </div>
+      <div class="content ">
+        <label>
+          <input type="checkbox" [(ngModel)]="c" [value]="1" name="rating" class="hide" (change)="handleCheckboxChange()" />
+          <img *ngIf="c" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
+          <img *ngIf="!c" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+          <span class="option-txt">Select All</span>
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="c1" [value]="1" name="rating" class="hide" (change)="handleCheckboxChange()" />
+          <img *ngIf="c1" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
+          <img *ngIf="!c1" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+          <img class="star-img" src="../../../assets/icons/explore-books/Star (2).svg" />
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="c2" [value]="1" name="rating" class="hide" (change)="handleCheckboxChange()" />
+          <img *ngIf="c2" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
+          <img *ngIf="!c2" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+          <img class="star-img" src="../../../assets/icons/explore-books/Star (3).svg" />
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="c3" [value]="1" name="rating" class="hide" (change)="handleCheckboxChange()" />
+          <img *ngIf="c3" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
+          <img *ngIf="!c3" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+          <img class="star-img" src="../../../assets/icons/explore-books/Star (4).svg" />
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="c4" [value]="1" name="rating" class="hide" (change)="handleCheckboxChange()" />
+          <img *ngIf="c4" src="../../../assets/icons/explore-books/checkbox-checked.svg">
+          <img *ngIf="!c4" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+          <img class="star-img" src="../../../assets/icons/explore-books/Star (5).svg" />
+        </label>
+      </div>
+
+
+
+    </div>
+    
   </div>
+  <div class="book-cards-view">
+    <app-books-card-shared></app-books-card-shared>
+    <app-books-card-shared></app-books-card-shared>
+    <app-books-card-shared></app-books-card-shared>
+    <app-books-card-shared></app-books-card-shared>
+    <app-books-card-shared></app-books-card-shared>
+   </div>
 </div>
