@@ -54,8 +54,8 @@ public partial class LibraryManagementSystemContext : DbContext
                 .HasColumnName("Id")
                 .HasColumnType("uniqueidentifier");
 
-            entity.Property(e => e.Values)
-                .HasColumnName("Values")
+            entity.Property(e => e.Val)
+                .HasColumnName("Val")
                 .HasColumnType("nvarchar(MAX)")
                 .IsRequired();
 
@@ -271,6 +271,7 @@ public partial class LibraryManagementSystemContext : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.ActionId).HasColumnName("actionId");
             entity.Property(e => e.BookQrMappingid).HasColumnName("bookQrMappingid");
+            entity.Property(e => e.bookIssueId).HasColumnName("bookIssueId");
             entity.Property(e => e.CreatedAtUtc)
                 .HasColumnType("datetime")
                 .HasColumnName("createdAtUTC");
@@ -290,6 +291,11 @@ public partial class LibraryManagementSystemContext : DbContext
                 .HasForeignKey(d => d.BookQrMappingid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__comment__bookQrM__59FA5E80");
+
+            entity.HasOne(d => d.bookIssue).WithMany(p => p.Comments)
+                .HasForeignKey(d => d.bookIssueId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__comment__bookIss__5812160E");
 
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.CommentCreatedByNavigations)
                 .HasForeignKey(d => d.CreatedBy)

@@ -1,5 +1,6 @@
 using LIBRARY_MANAGEMENT.Server.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.SharePoint.Client;
 using System;
 
 namespace LIBRARY_MANAGEMENT.Server.Controllers
@@ -37,11 +38,38 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         [HttpGet("bunty")]
         public IEnumerable<Book> GetBunty()
         {
-            _logger.Log(LogLevel.Error,new EventId(123, "ErrorEvent"),"007",new Exception("This is an error"),(state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+            //var fileName = @"C:\Test.jpg";
+            //using (ClientContext context = new ClientContext("http://sp/"))
+            //{
+            //    try
+            //    {
+            //        using (var fs = new FileStream(fileName, FileMode.Open))
+            //        {
+            //            var fi = new FileInfo(fileName);
+            //            var list = context.Web.Lists.GetByTitle("Documents");
+            //            context.Load(list.RootFolder);
+            //            context.ExecuteQuery();
+            //            var fileUrl = String.Format("{0}/{1}", list.RootFolder.ServerRelativeUrl, fi.Name);
+
+            //            // Reset the file stream position to ensure it starts from the beginning
+            //            fs.Position = 0;
+
+            //            // Save the file to SharePoint
+            //            Microsoft.SharePoint.Client.File.SaveBinary(context, fileUrl, fs, true);
+            //        }
+            //        Console.WriteLine("File uploaded successfully.");
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine("Error uploading file: " + ex.Message);
+            //    }
+            //}
+
+             _logger.Log(LogLevel.Error,new EventId(123, "ErrorEvent"),"007",new Exception("This is an error"),(state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
 
             //throw new Exception("hello");
             //_logger.LogWarning("Bhai aai warning");
-            _logger.LogTrace("warning");
+            // _logger.LogTrace("warning");
             return _context.Books.ToList();
         }
     }

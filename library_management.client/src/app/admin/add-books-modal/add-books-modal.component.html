@@ -1,6 +1,6 @@
 <app-success-modal (doneClicked)="onDoneClicked()"></app-success-modal>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered  outer-width" role="document">
     <div class="modal-content modal-height">
       <div class="modal-header header-padding">
@@ -43,10 +43,10 @@
               </div>
               <div>
                 <div class="input-group">-->
-                  <!--<input type="text" class="form-control search-input" (input)="getBooks($event)">-->
-                  <!--<ng-select [(ngModel)]="selectedBook" class="form-control search-input ngselect" (search)="getBooks($event,'key')" (click)="testing($event)" (keydown.enter)="testing($event)">-->
-                    <!--<input type="text" class="form-control search-input" (input)="getBooks($event)">-->
-                    <!--<ng-option *ngFor="let car of listOfBooks" [value]="car" class="dropdown">
+          <!--<input type="text" class="form-control search-input" (input)="getBooks($event)">-->
+          <!--<ng-select [(ngModel)]="selectedBook" class="form-control search-input ngselect" (search)="getBooks($event,'key')" (click)="testing($event)" (keydown.enter)="testing($event)">-->
+          <!--<input type="text" class="form-control search-input" (input)="getBooks($event)">-->
+          <!--<ng-option *ngFor="let car of listOfBooks" [value]="car" class="dropdown">
                       <div>
                         <div class="single-drop">
                           <div *ngIf="car && car.volumeInfo && car.volumeInfo.imageLinks && car.volumeInfo.imageLinks.smallThumbnail" class="single-img">
@@ -248,11 +248,3 @@
   <img [src]="capturedImage" alt="Captured Image">
   <button (click)="clear()">Clear</button>
 </div>-->
-
-
-<!--<webcam [height]="500"
-        [width]="1000"
-        [trigger]="triggerObservable"
-        (imageCapture)="handleImage($event)"
-        *ngIf="showWebcam"
-        [switchCamera]="nextWebcamObservable"></webcam>-->

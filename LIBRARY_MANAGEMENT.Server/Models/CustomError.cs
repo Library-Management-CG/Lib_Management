@@ -8,7 +8,7 @@ namespace LIBRARY_MANAGEMENT.Server.Models;
 public partial class CustomError
 {
     public Guid Id { get; set; }
-    public string Values { get; set; }
+    public string Val { get; set; }
     public DateTime Created { get; set; }
 
 }
