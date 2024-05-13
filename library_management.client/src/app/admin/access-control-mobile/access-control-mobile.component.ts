@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-access-control-mobile',
@@ -6,7 +7,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./access-control-mobile.component.css']
 })
 export class AccessControlMobileComponent {
+  constructor(private router: Router) {
 
+  }
   showBody = false;
   counti: any[] = [];
   toggle() {
@@ -16,6 +19,10 @@ export class AccessControlMobileComponent {
     for (var i = 0; i < 5; i++) {
       this.counti[i] = i; 
     }
+  }
+  openModal() {
+    this.router.navigate(['admin/assignPermission']);
+
   }
  
 }

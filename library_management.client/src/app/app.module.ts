@@ -45,6 +45,7 @@ import { CommentsModalComponent } from './admin/manage-books/inner-table/comment
 import { ArchiveModalComponent } from './admin/manage-books/inner-table/archive-modal/archive-modal.component';
 import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
 import { MobileAccordianComponent } from './admin/access-control-mobile/mobile-accordian/mobile-accordian.component';
+import { AssignPermissionSubPartComponent } from './admin/assign-permission-modal/assign-permission-sub-part/assign-permission-sub-part.component';
 
 
 
@@ -80,7 +81,8 @@ import { MobileAccordianComponent } from './admin/access-control-mobile/mobile-a
     CommentsModalComponent,
     ArchiveModalComponent,
     RevokeBookModalComponent,
-    MobileAccordianComponent
+    MobileAccordianComponent,
+    AssignPermissionSubPartComponent
   ],
   imports: [
     BrowserModule,
