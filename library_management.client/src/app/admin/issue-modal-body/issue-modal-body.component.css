@@ -597,3 +597,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none;
   box-shadow: none;
 }*/
+.modal.fade .modal-dialog {
+  transform: translate3d(0, 10vh, 0);
+  transition: transform 1s ease-out;
+}
+
+.modal.in .modal-dialog {
+  transform: translate3d(0, -50vh, 0);
+  transition: transform 0.5s ease-out;
+}

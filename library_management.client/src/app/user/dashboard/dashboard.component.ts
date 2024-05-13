@@ -1,4 +1,5 @@
 import { Component,ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,7 @@ export class DashboardComponent {
   displayedMostPopularBooks: any[] = [];
 
   initialBooksToShow: number = 3;
-
+  constructor(private router: Router) { }
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.updateDisplayedBooks();
@@ -172,4 +173,7 @@ export class DashboardComponent {
     return this.mostPopularBooks.length > maxBooksToShow;
   }
 
+  exploreBooks() {
+    this.router.navigate(['explore-books']);
+  }
 }

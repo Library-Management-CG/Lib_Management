@@ -25,6 +25,7 @@ import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.
 import { SuccessModalComponent } from './shared/components/success-modal/success-modal.component';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+import { ExploreBooksComponent } from './user/explore-books/explore-books.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import player from 'lottie-web';
     SearchBoxComponent,
     IssueModalBodyComponent,
     IssueMobileComponent,
+    ExploreBooksComponent,
     //  FormsModule
   ],
   imports: [
@@ -56,8 +58,9 @@ import player from 'lottie-web';
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
     FormsModule,
-    AvatarModule
-  /*  AvatarModule*/
+    AvatarModule,
+    /*  AvatarModule*/
+
   ],
   providers: [],
   bootstrap: [AppComponent]

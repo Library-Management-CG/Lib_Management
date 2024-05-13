@@ -83,6 +83,7 @@ export class AdminDashboardComponent {
   }
 
   openModal(): void {
+
     $('#exampleModalIssue').modal('show');
   }
 
