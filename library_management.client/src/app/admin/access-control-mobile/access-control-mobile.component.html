@@ -1,3 +1,4 @@
+
 <div id="main">
 
   <div class="container-fluid">
@@ -13,12 +14,14 @@
 
   </div>
   <div class="access-footer-button">
-    <button class="footer-button">
+    <app-assign-permission-modal></app-assign-permission-modal>
+
+    <button class="footer-button" (click)="openModal()">
       <img src="../../../assets/icons/Access-control-web/Assign recieved.svg" />
       <span>Assign Permission</span>
     </button>
   </div>
 </div>
- 
+
 
 

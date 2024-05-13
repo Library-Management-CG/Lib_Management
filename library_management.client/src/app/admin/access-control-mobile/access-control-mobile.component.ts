@@ -20,6 +20,10 @@ export class AccessControlMobileComponent {
       this.counti[i] = i; 
     }
   }
+  openModal() {
+    this.router.navigate(['admin/assignPermission']);
+
+  }
 
   routeTODasboard() {
     this.router.navigate(['/admin']);
