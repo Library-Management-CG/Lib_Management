@@ -1,15 +1,10 @@
 .outer-margin {
   padding: 0rem 2.5rem !important;
   margin-top: 1.5rem !important;
-  overflow-x: hidden !important;
 }
 
 
-.dashboard-heading {
-/*  padding-left: 1.5rem;
-*/  /*  margin-left: 2%;
-*/ /*margin-top:1.5rem !important;*/
-}
+
 .gapp{
   width: fit-content !important;
   gap:2px;
