@@ -129,10 +129,10 @@ namespace LIBRARY_MANAGEMENT.Server.Log
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = string.Format("INSERT INTO {0} ([Id],[Values], [Created]) VALUES (@Id,@Values, @Created)", _dbLoggerProvider.Options.LogTable);
+                    command.CommandText = string.Format("INSERT INTO {0} ([Id],[Val], [Created]) VALUES (@Id,@Val, @Created)", _dbLoggerProvider.Options.LogTable);
 
                     command.Parameters.Add(new SqlParameter("@Id", Guid.NewGuid()));
-                    command.Parameters.Add(new SqlParameter("@Values", JsonConvert.SerializeObject(values, new JsonSerializerSettings
+                    command.Parameters.Add(new SqlParameter("@Val", JsonConvert.SerializeObject(values, new JsonSerializerSettings
                     {
                         NullValueHandling = NullValueHandling.Ignore,
                         DefaultValueHandling = DefaultValueHandling.Ignore,

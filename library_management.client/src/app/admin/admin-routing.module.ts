@@ -6,6 +6,7 @@ import { ManageBooksComponent } from './manage-books/manage-books.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AccessControlWebComponent } from './access-control-web/access-control-web.component';
 import { AccessControlMobileComponent } from './access-control-mobile/access-control-mobile.component';
+import { AddBookMobileComponent } from './add-book-mobile/add-book-mobile.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
     path: 'admin/manage-books',
     component: ManageBooksComponent,
 
+  },
+  {
+    path: 'admin/add-book-mobile',
+    component: AddBookMobileComponent,
   },
   { path: 'admin/accesscontrol', component: AccessControlWebComponent },
   { path: 'admin/accesscontrolmobile', component: AccessControlMobileComponent },

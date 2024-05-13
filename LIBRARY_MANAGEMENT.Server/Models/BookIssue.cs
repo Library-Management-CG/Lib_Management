@@ -27,6 +27,8 @@ public partial class BookIssue
 
     public DateTime? ReceiveDate { get; set; }
 
+    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
     public virtual User CreatedByNavigation { get; set; } = null!;
 
     public virtual User IssueToNavigation { get; set; } = null!;
