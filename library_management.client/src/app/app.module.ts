@@ -48,6 +48,8 @@ import { MobileAccordianComponent } from './admin/access-control-mobile/mobile-a
 import { AssignPermissionSubPartComponent } from './admin/assign-permission-modal/assign-permission-sub-part/assign-permission-sub-part.component';
 import { TimeRemainingModalComponent } from './user/time-remaining-modal/time-remaining-modal.component';
 import { RatingModalComponent } from './user/rating-modal/rating-modal.component';
+import { MyBooksMobileComponent } from './user/my-books-mobile/my-books-mobile.component';
+import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mobile/my-books-card-mobile.component';
 
 
 
@@ -86,7 +88,9 @@ import { RatingModalComponent } from './user/rating-modal/rating-modal.component
     MobileAccordianComponent,
     AssignPermissionSubPartComponent,
     TimeRemainingModalComponent,
-    RatingModalComponent
+    RatingModalComponent,
+    MyBooksMobileComponent,
+    MyBooksCardMobileComponent
   ],
   imports: [
     BrowserModule,
