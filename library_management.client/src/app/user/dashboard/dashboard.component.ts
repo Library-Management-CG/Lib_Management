@@ -1,4 +1,5 @@
 import { Component,ElementRef, HostListener, ViewChild } from '@angular/core';
+import { UserServiceService } from '../../shared/services/user-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,7 +7,7 @@ import { Component,ElementRef, HostListener, ViewChild } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-
+  topUsers: any[] | undefined;
   isWebView: boolean = window.innerWidth > 758; // Assuming the cutoff for web view is 768 pixels
 
   showMoreClickedRecentlyAdded: boolean = false;
@@ -22,9 +23,13 @@ export class DashboardComponent {
     this.updateDisplayedBooks();
     this.isWebView = window.innerWidth > 758;
   }
+  constructor(private userService: UserServiceService) {
+  
+  }
 
   ngOnInit() {
     this.updateDisplayedBooks();
+    this.getTopReaders();
   }
 
   selectedBook: any;
@@ -145,6 +150,18 @@ export class DashboardComponent {
 
   ];
 
+  getTopReaders(): void {
+    this.userService.getTopReaders()
+      .subscribe(
+        (data: any) => {
+          this.topUsers = data;
+        },
+        (error) => {
+          console.log('Error: ', error);
+        }
+      );
+  }
+
 
   onShowMoreClicked(section: string) {
     if (section === 'recentlyAdded') {
@@ -156,7 +173,7 @@ export class DashboardComponent {
 
   updateDisplayedBooks() {
     const screenWidth = window.innerWidth;
-    console.log(screenWidth);
+    //console.log(screenWidth);
     if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
@@ -169,7 +186,7 @@ export class DashboardComponent {
 
   get booksToRecentDisplay(): any[] {
     const screenWidth = window.innerWidth;
-    console.log(screenWidth);
+    //console.log(screenWidth);
     if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
@@ -182,7 +199,7 @@ export class DashboardComponent {
 
   get booksToPopularDisplay(): any[] {
     const screenWidth = window.innerWidth;
-    console.log(screenWidth);
+    //console.log(screenWidth);
     if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
