@@ -90,7 +90,7 @@ import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mo
     RevokeBookModalComponent,
     BooksCardSharedComponent,
     AddBookMobileComponent,
-    AddBookCommonComponent
+    AddBookCommonComponent,
     RevokeBookModalComponent,
     MobileAccordianComponent,
     AssignPermissionSubPartComponent,
