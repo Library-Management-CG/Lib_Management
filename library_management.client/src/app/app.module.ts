@@ -47,6 +47,12 @@ import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revok
 import { WebcamModule } from 'ngx-webcam';
 import { AddBookMobileComponent } from './admin/add-book-mobile/add-book-mobile.component';
 import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.component';
+import { MobileAccordianComponent } from './admin/access-control-mobile/mobile-accordian/mobile-accordian.component';
+import { AssignPermissionSubPartComponent } from './admin/assign-permission-modal/assign-permission-sub-part/assign-permission-sub-part.component';
+import { TimeRemainingModalComponent } from './user/time-remaining-modal/time-remaining-modal.component';
+import { RatingModalComponent } from './user/rating-modal/rating-modal.component';
+import { MyBooksMobileComponent } from './user/my-books-mobile/my-books-mobile.component';
+import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mobile/my-books-card-mobile.component';
 
 
 
@@ -84,7 +90,14 @@ import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.
     RevokeBookModalComponent,
     BooksCardSharedComponent,
     AddBookMobileComponent,
-    AddBookCommonComponent
+    AddBookCommonComponent,
+    RevokeBookModalComponent,
+    MobileAccordianComponent,
+    AssignPermissionSubPartComponent,
+    TimeRemainingModalComponent,
+    RatingModalComponent,
+    MyBooksMobileComponent,
+    MyBooksCardMobileComponent
   ],
   imports: [
     BrowserModule,
