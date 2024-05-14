@@ -74,9 +74,34 @@
   left: 0.5rem;
   bottom: 0.45rem;
   transform: scale(1.18);
- 
 }
 
+.not-avaliable-tag {
+  background: #FFE8E8;
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  border-radius: 0.25rem;
+  color:#CC1A07;
+  display: flex;
+  height: 1.75rem;
+  padding: 0.4375rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.noRatingYet {
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: left;
+  color: #6D6D6D;
+  border: 1px solid black;
+  width: 100%;
+}
 
 /*.book-details {
   width: 196px;

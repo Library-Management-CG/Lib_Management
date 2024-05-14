@@ -7,6 +7,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
     public interface IUserService
     {
         List<UserBookDTO> GetTopBookReaders();
+        List<BooksDetails> GetRecentBooks();
     }
 
     public class UserService:IUserService
@@ -45,6 +46,34 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 return users;
             }
 
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+
+
+        public List<BooksDetails> GetRecentBooks()
+        {
+            try
+            {
+                var recentBooks = _context.AuthorBooks
+                .OrderByDescending(ab => ab.Book.CreatedAtUtc)
+                .Take(6)
+                .Select(ab => new BooksDetails
+                {
+                    Title = ab.Book.Title,
+                    AuthorName = ab.Author.AuthorName,
+                    Description = ab.Book.Description,
+                    CreatedAtUtc = ab.Book.CreatedAtUtc,
+                    Points = ab.Book.Ratings.Any() ? ab.Book.Ratings.Average(r => r.Points) : 0,
+                    StatusName = ab.Book.BookQrMappings.FirstOrDefault().Status.StatusName
+                })
+                .ToList();
+
+                return recentBooks;
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);

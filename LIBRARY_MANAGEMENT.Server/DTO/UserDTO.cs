@@ -10,4 +10,15 @@
         public string? LastName { get; set; }
         public int BookCount { get; set; }
     }
+
+    public class BooksDetails
+    {
+        public string? Title { get; set; }
+        public string AuthorName { get; set; } = null!;
+        public string? Description { get; set; }
+        public DateTime CreatedAtUtc { get; set; }
+        public double Points { get; set; } = 0;
+        public string StatusName { get; set; } = null!;
+
+    }
 }

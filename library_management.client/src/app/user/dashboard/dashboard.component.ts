@@ -16,6 +16,8 @@ export class DashboardComponent {
   displayedRecentlyAddedBooks: any[] = [];
   displayedMostPopularBooks: any[] = [];
 
+  recentlyAddedBooks: any[] = [];
+
   initialBooksToShow: number = 3;
 
   @HostListener('window:resize', ['$event'])
@@ -28,6 +30,7 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
+    this.getRecentBooks();
     this.updateDisplayedBooks();
     this.getTopReaders();
   }
@@ -37,36 +40,6 @@ export class DashboardComponent {
   openModal(book: any) {
     this.selectedBook = book;
   }
-
-
-  recentlyAddedBooks = [
-    {
-      title: 'The jigyasa Cloud',
-      author: 'Daryl Bishop',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed : 26
-    },
-
-    {
-      title: 'The Invi',
-      author: 'Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 4,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'The ok',
-      author: 'Nick',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 29
-    },
-
-    
-
-  ];
 
   mostPopularBooks = [
 
@@ -149,6 +122,18 @@ export class DashboardComponent {
 
 
   ];
+
+  getRecentBooks(): void {
+    this.userService.getRecentBooks()
+      .subscribe(
+        (data: any) => {
+          this.recentlyAddedBooks = data;
+        },
+        (error) => {
+          console.log('Error: ', error);
+        }
+      );
+  }
 
   getTopReaders(): void {
     this.userService.getTopReaders()
