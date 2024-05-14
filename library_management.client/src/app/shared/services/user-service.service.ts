@@ -13,6 +13,6 @@ export class UserServiceService {
   constructor(private http: HttpClient, private config: ConfigServiceService) { }
 
   getTopReaders(): Observable<any[]> {
-     return this.http.get<any[]>(this.apiUrl + 'User/top');
+    return this.http.post<any[]>(this.apiUrl + 'User/top', {});
   }
 }
