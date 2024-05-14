@@ -5,3 +5,58 @@
   height: 9.5625rem;
   border-radius: 10rem;
 }
+
+.rate-component.form-group {
+  margin-bottom: .875rem;
+}
+
+.rate-component > legend {
+  display: inline-block;
+  margin-bottom: 0;
+  font-size: 1em;
+}
+
+.rate-component input {
+  display: none;
+}
+
+.rate-component label:before {
+  content: "\f005"; /* Star */
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  font-weight: 400;
+  margin-right: .125em;
+  font-size: 2.3125em;
+}
+
+.rate-component input ~ label {
+  color: #ced4da; /* same color as form elements */
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.rate-component input:checked ~ label,
+.rate-component input:hover:enabled ~ label {
+  color: #ffcc00;
+}
+
+  .rate-component input:checked ~ label:before,
+  .rate-component input:hover:enabled ~ label:before {
+    font-weight: 900;
+  }
+
+.rate-component input:checked:disabled ~ label {
+  color: #ced4da; /* same color as form elements */
+  cursor: default;
+}
+
+.rate-component input:disabled ~ label {
+  cursor: default;
+}
+.close-button {
+  outline: none;
+}
+
+.btn {
+  box-shadow: none;
+}
