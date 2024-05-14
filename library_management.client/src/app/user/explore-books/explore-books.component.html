@@ -4,7 +4,7 @@
     <img src="../../../assets/icons/explore-books/Keyboard arrow right.svg" />
     <div class="header-txt">Explore Books</div>
   </div>
-  <div class="subhead">
+  <div class="subhead col-12">
     <div class="explore-books-heading col-8">Explore Books</div>
     <div class="check-box-component col-2">
       <label class="check-box-component" for="flexCheckDefault" (click)="toggleCheckbox()">
@@ -68,11 +68,27 @@
     </div>
     
   </div>
-  <div class="book-cards-view">
-    <app-books-card-shared></app-books-card-shared>
-    <app-books-card-shared></app-books-card-shared>
-    <app-books-card-shared></app-books-card-shared>
-    <app-books-card-shared></app-books-card-shared>
-    <app-books-card-shared></app-books-card-shared>
-   </div>
+  <div class="book-cards-view row">
+    <div class="col-md-2">
+      <app-books-card-shared></app-books-card-shared>
+
+    </div>
+    <div class="col-md-2">
+      <app-books-card-shared></app-books-card-shared>
+
+    </div>
+    <div class="col-md-2">
+      <app-books-card-shared></app-books-card-shared>
+
+    </div>
+    <div class="col-md-2">
+      <app-books-card-shared></app-books-card-shared>
+
+    </div>
+    <div class="col-md-2">
+      <app-books-card-shared></app-books-card-shared>
+
+    </div>
+  </div>
+
 </div>

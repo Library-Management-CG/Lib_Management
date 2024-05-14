@@ -25,7 +25,6 @@
                     <span class="option-name">{{value.name}}</span>
                   </div>
                 </div>
-
               </ng-option>-->
             <ng-select [(ngModel)]="selectedUser" class="custom" placeholder="Select User">
               <ng-option *ngFor="let user of users" [value]="user.id">{{user.name}}</ng-option>
