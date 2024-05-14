@@ -1,3 +1,4 @@
+
 .title-image {
   display: flex;
   width: 160px;
@@ -7,6 +8,15 @@
 
 .close {
   cursor: pointer;
+}
+
+.modal {
+  border-radius: 1rem;
+}
+
+
+.modal-body{
+    margin-top: -1rem;
 }
 
 .modal-header{
@@ -109,8 +119,42 @@
   border-radius: 8px 0px 0px 0px;
 }
 
-@media only screen and (max-width: 526px) {
-    .image-content{
+@media only screen and (max-width: 700px) {
+  .modal {
+    border-radius: 1rem;
+    animation: bottomSlide 0.3s ease-out;
+  }
 
+  @keyframes bottomSlide {
+    from {
+      transform: translateY(100%);
     }
+
+    to {
+      transform: translateY(0%);
+    }
+  }
+
+
+  .col-md-2 {
+    order: -1;
+  }
+
+  .book-modal-image {
+    display: flex;
+    justify-content:center;
+
+  }
+
+
+  .image-content {
+    width: 6.875rem;
+    height: 10.1875rem;
+    border-radius: 0.5rem;
+
+  }
+
+
+
+ 
 }

@@ -44,6 +44,9 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { CommentsModalComponent } from './admin/manage-books/inner-table/comments-modal/comments-modal.component';
 import { ArchiveModalComponent } from './admin/manage-books/inner-table/archive-modal/archive-modal.component';
 import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
+import { WebcamModule } from 'ngx-webcam';
+import { AddBookMobileComponent } from './admin/add-book-mobile/add-book-mobile.component';
+import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.component';
 
 
 
@@ -78,7 +81,10 @@ import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revok
     InnerTableComponent,
     CommentsModalComponent,
     ArchiveModalComponent,
-    RevokeBookModalComponent
+    RevokeBookModalComponent,
+    BooksCardSharedComponent,
+    AddBookMobileComponent,
+    AddBookCommonComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +105,10 @@ import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revok
     FormsModule,
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
-    AvatarModule
+    FormsModule,
+    AvatarModule,
+    WebcamModule
+  /*  AvatarModule*/
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
