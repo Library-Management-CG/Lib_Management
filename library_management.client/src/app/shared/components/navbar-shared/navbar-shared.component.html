@@ -83,7 +83,7 @@
       </div>
       <!--admin-->
       <div class="form-inline" *ngIf="isAdmin()==true">
-        <div class="settings" (click)="open_settings()">
+        <div class="settings" (click)="open_settings()" >
           <img src="../../../../assets/icons/Settings.svg" />
 
         </div>
@@ -119,12 +119,12 @@
       <!--User-mobile-view-->
       <div class="mobile-container" *ngIf="isAdmin()==false">
 
-        <div class="avatars">
+        <div class="avatars"  (click)="toggleActiveButton('readers-hub');closeMobileNavbar()">
           <div class="user-icon">
             <img src="../../../../assets/icons/user_icon.svg" />
           </div>
 
-          <div class="full-name-email">
+          <div class="full-name-email"  >
             <div class="full-name">
               {{roleName}}
             </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="mobile-container" *ngIf="isAdmin()==true">
 
-        <div class="avatars">
+        <div class="avatars"  (click)="toggleActiveButton('Dashboard');closeMobileNavbar()">
           <div class="user-icon">
             <img src="../../../../assets/icons/user_icon.svg" />
           </div>

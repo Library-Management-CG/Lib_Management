@@ -25,7 +25,45 @@ import { AddBooksModalComponent } from './admin/add-books-modal/add-books-modal.
 import { SuccessModalComponent } from './shared/components/success-modal/success-modal.component';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import { AccessControlWebComponent } from './admin/access-control-web/access-control-web.component';
+import { AccessControlMobileComponent } from './admin/access-control-mobile/access-control-mobile.component';
+import { AssignPermissionModalComponent } from './admin/assign-permission-modal/assign-permission-modal.component';
+import { ListPanelComponent } from './admin/access-control-web/list-panel/list-panel.component';
+import { PermissionPanelComponent } from './admin/access-control-web/permission-panel/permission-panel.component';
+import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { OuterTableComponent } from './admin/manage-books/outer-table/outer-table.component';
+import { StylePaginatorDirective } from './admin/manage-books/outer-table/style-paginator.directive';
+import { InnerTableComponent } from './admin/manage-books/inner-table/inner-table.component';
+import { CommonModule, DatePipe } from '@angular/common';
+import { CommentsModalComponent } from './admin/manage-books/inner-table/comments-modal/comments-modal.component';
+import { ArchiveModalComponent } from './admin/manage-books/inner-table/archive-modal/archive-modal.component';
+import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
+import { WebcamModule } from 'ngx-webcam';
+import { AddBookMobileComponent } from './admin/add-book-mobile/add-book-mobile.component';
+import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.component';
+import { MobileAccordianComponent } from './admin/access-control-mobile/mobile-accordian/mobile-accordian.component';
+import { AssignPermissionSubPartComponent } from './admin/assign-permission-modal/assign-permission-sub-part/assign-permission-sub-part.component';
+import { TimeRemainingModalComponent } from './user/time-remaining-modal/time-remaining-modal.component';
+import { RatingModalComponent } from './user/rating-modal/rating-modal.component';
+import { MyBooksMobileComponent } from './user/my-books-mobile/my-books-mobile.component';
+import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mobile/my-books-card-mobile.component';
 import { ExploreBooksComponent } from './user/explore-books/explore-books.component';
+
+
+
+
 
 
 @NgModule({
@@ -43,6 +81,31 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
     NavbarSharedComponent,
     BookDetailsModalComponent,
     BooksCardSharedComponent,
+    AccessControlWebComponent,
+    AccessControlMobileComponent,
+    AssignPermissionModalComponent,
+    ListPanelComponent,
+    PermissionPanelComponent,
+    AdminNameCardComponent,
+    NavbarSharedComponent,
+    OuterTableComponent,
+    ManageBooksComponent,
+    StylePaginatorDirective,
+    InnerTableComponent,
+    CommentsModalComponent,
+    ArchiveModalComponent,
+    RevokeBookModalComponent,
+    BooksCardSharedComponent,
+    AddBookMobileComponent,
+    AddBookCommonComponent,
+    RevokeBookModalComponent,
+    MobileAccordianComponent,
+    AssignPermissionSubPartComponent,
+    TimeRemainingModalComponent,
+    RatingModalComponent,
+    MyBooksMobileComponent,
+    MyBooksCardMobileComponent
+    BooksCardSharedComponent,
     IssueBookModalComponent,
     SearchBoxComponent,
     IssueModalBodyComponent,
@@ -52,17 +115,29 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     HttpClientModule,
     AppRoutingModule,
-    UserRoutingModule, AdminRoutingModule,
+    UserRoutingModule,
+    AdminRoutingModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
     FormsModule,
     AvatarModule,
-    /*  AvatarModule*/
-
+    WebcamModule
+  /*  AvatarModule*/
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
+import { Observable, Subject } from 'rxjs';
 //declare var $: any;
 declare var
   webkitSpeechRecognition:any
@@ -14,17 +16,13 @@ export class AddBooksModalComponent {
   /*@ViewChild('exampleModalCenter') modal: any;*/
   stepperIndex: number = 0;
   counterValue: number = 0;
+  video: any;
+  canvas: any;
+  capturedImage: string | undefined;
 
   selectedBook: any;
 
   listOfBooks: any = [];
-
-  cars = [
-    { id: 1, name: 'Volvo' },
-    { id: 2, name: 'Saab' },
-    { id: 3, name: 'Opel' },
-    { id: 4, name: 'Audi' },
-  ];
 
   bookForm: FormGroup;
 
@@ -56,7 +54,92 @@ export class AddBooksModalComponent {
     this.stepperIndex = 0;
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
+    //this.isCaptured = false;
+    //this.video = document.getElementById('video');
+    //this.canvas = document.getElementById('canvas');
+    //navigator.mediaDevices.getUserMedia({ video: true })
+    //  .then(stream => {
+    //    this.video.srcObject = stream;
+    //  })
+    //  .catch(err => console.error('Error accessing camera: ', err));
+
+
+
+    WebcamUtil.getAvailableVideoInputs().then(
+      (mediaDevices: MediaDeviceInfo[]) => {
+        this.isCameraExist = mediaDevices && mediaDevices.length > 0;
+      }
+    );
+  }
+
+  //showWebcam = true;
+  isCaptured: boolean = false;
+
+  showWebcam = true;
+  isCameraExist = true;
+
+  errors: WebcamInitError[] = [];
+
+  // webcam snapshot trigger
+  private trigger: Subject<void> = new Subject<void>();
+  private nextWebcam: Subject<boolean | string> = new Subject<
+    boolean | string
+  >();
+
+
+  takeSnapshot(): void {
+    this.trigger.next();
+  }
+
+  onOffWebCame() {
+    this.showWebcam = !this.showWebcam;
+  }
+
+  handleInitError(error: WebcamInitError) {
+    this.errors.push(error);
+  }
+
+  changeWebCame(directionOrDeviceId: boolean | string) {
+    this.nextWebcam.next(directionOrDeviceId);
+  }
+
+  handleImage(webcamImage: WebcamImage) {
+    //this.getPicture.emit(webcamImage);
+    this.showWebcam = false;
+  }
+
+  get triggerObservable(): Observable<void> {
+    return this.trigger.asObservable();
+  }
+
+  get nextWebcamObservable(): Observable<boolean | string> {
+    return this.nextWebcam.asObservable();
+  }
+
+
+  OpenCapture() {
+    // Your capture logic here
+    this.isCaptured = true;
+  }
+
+  
+  capture() {
+    const context = this.canvas.getContext('2d');
+    context.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
+    this.capturedImage = this.canvas.toDataURL('image/png');
+
+    if (this.capturedImage) {
+      localStorage.setItem('capturedImage', this.capturedImage);
+    }
+  }
+
+  clear() {
+    // Clear the captured image from local storage
+    localStorage.removeItem('capturedImage');
+    this.isCaptured = false;
+    //this.capturedImage = null;
+    this.capturedImage = undefined;
   }
 
   
