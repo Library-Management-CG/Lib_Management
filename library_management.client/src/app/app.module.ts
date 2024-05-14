@@ -102,7 +102,8 @@ import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revok
     AvatarModule
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  //exports: [StylePaginatorDirective]
 })
 export class AppModule { }
 

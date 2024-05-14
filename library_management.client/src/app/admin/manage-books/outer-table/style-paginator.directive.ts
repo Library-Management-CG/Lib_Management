@@ -23,7 +23,7 @@ import { map, startWith, Subscription } from 'rxjs';
 })
 
 
-export class StylePaginatorDirective implements AfterViewInit {
+export class StylePaginatorDirective {
 
   @Output() pageIndexChangeEmitter = new EventEmitter<number>();
 
@@ -156,7 +156,7 @@ export class StylePaginatorDirective implements AfterViewInit {
     );
 
     const pageDefaultLabel = nativeElement.querySelector(
-      '#mat-paginator-page-size-label-0'
+      '.mat-mdc-paginator-page-size-label'
     );
 
     this.ren.setStyle(pageDefaultLabel, 'color', '#706F73');
@@ -362,7 +362,25 @@ export class StylePaginatorDirective implements AfterViewInit {
     this.ren.appendChild(pageSelectIcon, newSvg);
 
 
+    const element = nativeElement.querySelector(
+      '.mat-mdc-paginator-outer-container'
+    );
+
+    const newDiv = this.ren.createElement('div')
+    const textSpan = this.ren.createElement('span')
+    const text = this.ren.createText(`Total Items: ${this.totalItems}`);
+    this.ren.appendChild(textSpan, text);
+    this.ren.appendChild(newDiv, textSpan);
+    this.ren.addClass(newDiv, 'total-items'); 
+
+    const firstChild = element.firstChild;
+
+
+    this.ren.insertBefore(element, newDiv, firstChild);
 
   }
+
+  private totalItems: number = 9;
+
 
 }

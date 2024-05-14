@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-archive-modal',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./archive-modal.component.css']
 })
 export class ArchiveModalComponent {
+
+  @Input() bookName: string = '';
+  @Input() bookQrCode: string = '';
+
 
 }

@@ -19,6 +19,8 @@ export class InnerTableComponent implements OnChanges {
 
 
   @Input() bookDataArray2: BookData[] = [];
+  @Input() bookName: string = '';
+  bookQrCode: string = '';
 
   dataSource = new MatTableDataSource<BookData>([]); // Initialize with empty array
   displayedColumns: string[] = ['empty','qrNumber', 'issuedTo', 'issueDate', 'returnDate', 'status', 'comments', 'action'];
