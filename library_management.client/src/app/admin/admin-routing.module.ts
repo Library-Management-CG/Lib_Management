@@ -8,6 +8,7 @@ import { AccessControlWebComponent } from './access-control-web/access-control-w
 import { AccessControlMobileComponent } from './access-control-mobile/access-control-mobile.component';
 import { AssignPermissionModalComponent } from './assign-permission-modal/assign-permission-modal.component';
 import { AssignPermissionSubPartComponent } from './assign-permission-modal/assign-permission-sub-part/assign-permission-sub-part.component';
+import { AddBookMobileComponent } from './add-book-mobile/add-book-mobile.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     path: 'admin/manage-books',
     component: ManageBooksComponent,
 
+  },
+  {
+    path: 'admin/add-book-mobile',
+    component: AddBookMobileComponent,
   },
   { path: 'admin/accesscontrol', component: AccessControlWebComponent },
   { path: 'admin/accesscontrolmobile', component: AccessControlMobileComponent },

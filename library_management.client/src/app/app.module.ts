@@ -44,6 +44,9 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { CommentsModalComponent } from './admin/manage-books/inner-table/comments-modal/comments-modal.component';
 import { ArchiveModalComponent } from './admin/manage-books/inner-table/archive-modal/archive-modal.component';
 import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
+import { WebcamModule } from 'ngx-webcam';
+import { AddBookMobileComponent } from './admin/add-book-mobile/add-book-mobile.component';
+import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.component';
 import { MobileAccordianComponent } from './admin/access-control-mobile/mobile-accordian/mobile-accordian.component';
 import { AssignPermissionSubPartComponent } from './admin/assign-permission-modal/assign-permission-sub-part/assign-permission-sub-part.component';
 import { TimeRemainingModalComponent } from './user/time-remaining-modal/time-remaining-modal.component';
@@ -85,6 +88,10 @@ import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mo
     CommentsModalComponent,
     ArchiveModalComponent,
     RevokeBookModalComponent,
+    BooksCardSharedComponent,
+    AddBookMobileComponent,
+    AddBookCommonComponent
+    RevokeBookModalComponent,
     MobileAccordianComponent,
     AssignPermissionSubPartComponent,
     TimeRemainingModalComponent,
@@ -111,7 +118,10 @@ import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mo
     FormsModule,
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
-    AvatarModule
+    FormsModule,
+    AvatarModule,
+    WebcamModule
+  /*  AvatarModule*/
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
