@@ -16,7 +16,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             _userService = userService;
         }
 
-        [HttpPost("top")]
+        [HttpGet("top")]
         public IActionResult GetTopBookReaders()
         {
             var topUsers =  _userService.GetTopBookReaders();
