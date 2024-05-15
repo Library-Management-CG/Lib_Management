@@ -14,6 +14,7 @@
 
     public class BooksDetails
     {
+        public Guid BookId { get; set; }
         public string? Title { get; set; }
         public string AuthorName { get; set; } = null!;
         public string? Description { get; set; }

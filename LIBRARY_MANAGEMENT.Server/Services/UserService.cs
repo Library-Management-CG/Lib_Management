@@ -1,6 +1,7 @@
 ﻿using LIBRARY_MANAGEMENT.Server.DTO;
 using LIBRARY_MANAGEMENT.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace LIBRARY_MANAGEMENT.Server.Services
 {
@@ -59,26 +60,42 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         {
             try
             {
-                var recentBooks = _context.AuthorBooks
-                .OrderByDescending(ab => ab.Book.CreatedAtUtc)
-                .Take(9)
-                .Select(ab => new BooksDetails
-                {
-                    Title = ab.Book.Title,
-                    AuthorName = ab.Author.AuthorName,
-                    Description = ab.Book.Description,
-                    CreatedAtUtc = ab.Book.CreatedAtUtc,
-                    Points = ab.Book.Ratings.Any() ? Math.Floor(ab.Book.Ratings.Average(r => r.Points)) : 0,
-                    StatusName = ab.Book.BookQrMappings
-                    .Where(bqm => bqm.BookId == ab.Book.Id)
-                    .OrderByDescending(bqm => bqm.CreatedAtUtc)
-                    .Select(bqm => bqm.Status.StatusName)
-                    .FirstOrDefault(), 
-                    numberOfPeopleReviewed = ab.Book.Ratings.Count
-                })
-                .ToList();
+                var recentBooks = _context.BookQrMappings
+                    .Include(bqm => bqm.Book.Ratings)
+               .Select(bqm => new
+               {
+                   BookId = bqm.BookId,
+                   Book = bqm.Book,
+                   StatusName = bqm.Status.StatusName,
+                   CreatedAtUtc = bqm.CreatedAtUtc
+               })
+               .OrderByDescending(bqm => bqm.CreatedAtUtc)
+               .ToList();
 
-                return recentBooks;
+                    var booksDetails = recentBooks
+                        .Select(rb => new BooksDetails
+                        {
+                            BookId = rb.BookId,
+                            Title = rb.Book.Title,
+                            AuthorName = _context.AuthorBooks
+                                .Where(ab => ab.BookId == rb.BookId)
+                                .Select(ab => ab.Author.AuthorName)
+                                .FirstOrDefault(),
+                            Description = rb.Book.Description,
+                            CreatedAtUtc = rb.CreatedAtUtc,
+                            Points = rb.Book.Ratings.Any() ? Math.Floor(rb.Book.Ratings.Average(r => r.Points)) : 0,
+                            StatusName = rb.StatusName,
+                            numberOfPeopleReviewed = rb.Book.Ratings.Count
+                        })
+                        .ToList();
+
+                var latestbook = booksDetails.
+                         GroupBy(bqm => bqm.BookId)
+                        .Select(group => group.OrderByDescending(bqm => bqm.CreatedAtUtc).FirstOrDefault())
+                        .Take(9)
+                        .ToList();
+
+                return latestbook;
             }
             catch (Exception ex)
             {
