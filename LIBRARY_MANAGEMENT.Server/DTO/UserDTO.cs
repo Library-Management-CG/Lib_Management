@@ -10,4 +10,11 @@
         public string? LastName { get; set; }
         public int BookCount { get; set; }
     }
+
+    public class allAdminsDTO
+    {
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+
+    }
 }

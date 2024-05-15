@@ -7,6 +7,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
     public interface IUserService
     {
         List<UserBookDTO> GetTopBookReaders();
+        Task<List<allAdminsDTO>> getAllAdminsService();
     }
 
     public class UserService:IUserService
@@ -50,6 +51,17 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 Console.WriteLine(ex.Message);
                 throw ex;
             }
+        }
+
+        public async Task<List<allAdminsDTO>> getAllAdminsService()
+        {
+            List<allAdminsDTO> allAdminsDTOs = await _context.Users.Where(r => r.Role.RoleName.ToLower() == "admin")
+                                         .Select(u => new allAdminsDTO
+                                         {
+                                             FirstName = u.FirstName == null ? null : u.FirstName,
+                                             LastName = u.LastName==null?null: u.LastName,
+                                         }).ToListAsync();
+            return allAdminsDTOs;
         }
     }
 }
