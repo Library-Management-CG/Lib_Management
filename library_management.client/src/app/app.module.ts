@@ -52,7 +52,6 @@ import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +83,7 @@ import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.
     RevokeBookModalComponent,
     BooksCardSharedComponent,
     AddBookMobileComponent,
-    AddBookCommonComponent
+    AddBookCommonComponent,
   ],
   imports: [
     BrowserModule,

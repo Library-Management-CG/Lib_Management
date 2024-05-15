@@ -64,6 +64,7 @@
                  [length]="dataSource.data.length"
                  [pageSize]="1"
                  [pageSizeOptions]="[1, 2, 3, 5]"
+                 [currentPageSize]="this.dataSource.paginator?.pageSize"
                  aria-label="Select page">
   </mat-paginator>
   <!--<mat-paginator [length]="100"

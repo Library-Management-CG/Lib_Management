@@ -32,12 +32,16 @@ export class StylePaginatorDirective {
   @Input() renderButtonsNumber = 2;
   @Input() appCustomLength = 0;
   @Input() hideDefaultArrows = false;
+  @Input() pageSizeOptions: number[] = [];
+  @Input() currentPageSize: number | undefined;
 
   private dotsEndRef!: HTMLElement;
   private dotsStartRef!: HTMLElement;
   private bubbleContainerRef!: HTMLElement;
   private subscription = new Subscription();
   private buttonsRef: HTMLElement[] = [];
+  private totalItems: any = this.matPag.length;
+
 
   constructor(
     @Host() @Self() @Optional() private readonly matPag: MatPaginator,
@@ -55,10 +59,18 @@ export class StylePaginatorDirective {
    * react on parent component changing the appCustomLength - rerender bubbles
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes?.['appCustomLength']?.firstChange) {
+    console.log("print ", this.currentPageSize);
+
+    if ('appCustomLength' in changes && !changes?.['appCustomLength']?.firstChange) {
       // remove buttons before creating new ones
       this.removeButtons();
-      // switch back to page 0
+      this.switchPage(0);
+      this.renderButtons();
+    }
+
+    if ('currentPageSize' in changes && !changes['currentPageSize'].firstChange) {
+      this.removeButtons();
+      this.removeDotsElements();
       this.switchPage(0);
       this.renderButtons();
     }
@@ -308,6 +320,9 @@ export class StylePaginatorDirective {
     // set style none by default
     this.ren.setStyle(dotsEl, 'display', 'none');
 
+    this.dotsElements.push(dotsEl);
+
+
     return dotsEl;
   }
 
@@ -380,7 +395,12 @@ export class StylePaginatorDirective {
 
   }
 
-  private totalItems: number = 9;
+  private dotsElements: HTMLElement[] = [];
 
-
+  private removeDotsElements(): void {
+    this.dotsElements.forEach(dotsEl => {
+      this.ren.removeChild(this.bubbleContainerRef, dotsEl);
+    });
+    this.dotsElements = []; // Clear the array
+  }
 }

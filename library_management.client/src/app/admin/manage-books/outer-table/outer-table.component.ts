@@ -77,6 +77,83 @@ const ELEMENT_DATA: Element[] = [
     copies: 6,
     expanded: false,
     bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
+  },
+  {
+    bookName: 'Great Expectations',
+    author: 'Charles Dickens',
+    copies: 6,
+    expanded: false,
+    bookData: [] // Assume no records yet
   }
   // Add more data for each book as needed...
 ];
@@ -115,13 +192,14 @@ const ELEMENT_DATA: Element[] = [
 export class OuterTableComponent {
 
   @Input() filterValue: string = '';
-
   console = console;
   displayedColumns = ['bookName', 'author', 'copies'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   isNormalRow(index : any, row: any) { console.log(row); return !row.expanded; }
   isExpandedRow(index: any, row: any) { return row.expanded; }
   pageEvent !: PageEvent;
+  currentPageSize: number = this.dataSource.paginator?.pageSize == null ? 0 : this.dataSource.paginator?.pageSize;
+
 
   @ViewChild(MatPaginator, { static: true }) paginator !: MatPaginator;
   @ViewChild('paginatorLabel', { static: false }) paginatorLabel !: ElementRef;
@@ -153,4 +231,10 @@ export class OuterTableComponent {
   collapseAll() {
     for (const el of this.dataSource.data) { el.expanded = false; }
   }
+
+
+  //dataShow(event?: PageEvent) {
+  //  console.log(event);
+  //  this.currentPageSize = event?.pageSize != null ? event?.pageSize : this.currentPageSize;
+  //}
 }
