@@ -10,6 +10,10 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
+import { IssueBookModalComponent } from './admin/issue-book-modal/issue-book-modal.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
+import { IssueModalBodyComponent } from './admin/issue-modal-body/issue-modal-body.component';
+import { IssueMobileComponent } from './admin/issue-mobile/issue-mobile.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { NavbarSharedComponent } from './shared/components/navbar-shared/navbar-shared.component';
 import { AvatarModule } from 'ngx-avatars';
@@ -53,6 +57,7 @@ import { TimeRemainingModalComponent } from './user/time-remaining-modal/time-re
 import { RatingModalComponent } from './user/rating-modal/rating-modal.component';
 import { MyBooksMobileComponent } from './user/my-books-mobile/my-books-mobile.component';
 import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mobile/my-books-card-mobile.component';
+import { ExploreBooksComponent } from './user/explore-books/explore-books.component';
 
 
 
@@ -97,7 +102,14 @@ import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mo
     TimeRemainingModalComponent,
     RatingModalComponent,
     MyBooksMobileComponent,
-    MyBooksCardMobileComponent
+    MyBooksCardMobileComponent,
+    BooksCardSharedComponent,
+    IssueBookModalComponent,
+    SearchBoxComponent,
+    IssueModalBodyComponent,
+    IssueMobileComponent,
+    ExploreBooksComponent,
+    //  FormsModule
   ],
   imports: [
     BrowserModule,

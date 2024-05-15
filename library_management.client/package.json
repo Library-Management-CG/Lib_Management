@@ -29,6 +29,9 @@
     "ngx-lottie": "^10.0.0",
     "ngx-webcam": "^0.4.1",
     "run-script-os": "*",
+    "@ng-select/ng-select": "^11.2.0",
+    "jest-editor-support": "*",
+    "run-script-os": "*",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

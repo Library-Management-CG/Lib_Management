@@ -1,5 +1,6 @@
 import { Component,ElementRef, HostListener, ViewChild } from '@angular/core';
 import { UserServiceService } from '../../shared/services/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,14 +18,11 @@ export class DashboardComponent {
   displayedMostPopularBooks: any[] = [];
 
   initialBooksToShow: number = 3;
-
+  constructor(private router: Router, private userService: UserServiceService) { }
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.updateDisplayedBooks();
     this.isWebView = window.innerWidth > 758;
-  }
-  constructor(private userService: UserServiceService) {
-  
   }
 
   ngOnInit() {
@@ -222,4 +220,7 @@ export class DashboardComponent {
     return this.mostPopularBooks.length > maxBooksToShow;
   }
 
+  exploreBooks() {
+    this.router.navigate(['explore-books']);
+  }
 }
