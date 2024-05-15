@@ -26,7 +26,6 @@ import { AccessControlMobileComponent } from './admin/access-control-mobile/acce
 import { AssignPermissionModalComponent } from './admin/assign-permission-modal/assign-permission-modal.component';
 import { ListPanelComponent } from './admin/access-control-web/list-panel/list-panel.component';
 import { PermissionPanelComponent } from './admin/access-control-web/permission-panel/permission-panel.component';
-import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
@@ -47,6 +46,9 @@ import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revok
 import { WebcamModule } from 'ngx-webcam';
 import { AddBookMobileComponent } from './admin/add-book-mobile/add-book-mobile.component';
 import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.component';
+import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
+import { CaptureComponent } from './admin/capture/capture.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -84,7 +86,8 @@ import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.
     RevokeBookModalComponent,
     BooksCardSharedComponent,
     AddBookMobileComponent,
-    AddBookCommonComponent
+    AddBookCommonComponent,
+    CaptureComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +110,8 @@ import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.
     NgSelectModule,
     FormsModule,
     AvatarModule,
-    WebcamModule
+    WebcamModule,
+    ImageCropperModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],

@@ -20,10 +20,10 @@ export class AdminDashboardComponent {
 
   handleButtonClick() {
     if (window.innerWidth <= 767) {
-      // Navigate to the desired page if screen size is mobile or less
+      
       this.router.navigate(['/admin/add-book-mobile']);
     } else {
-      // Open the modal if screen size is larger than mobile
+      
       this.openModal();
     }
   }

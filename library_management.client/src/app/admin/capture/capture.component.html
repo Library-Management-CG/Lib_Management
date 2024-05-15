@@ -1,0 +1,98 @@
+<div class="modal fade" id="webcam" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered struct" role="document">
+    <div class="modal-content">
+      <!--<div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>-->
+      <div class="modal-body">
+        <!--<div *ngIf="isCameraExist; else noCameraExist">
+    <div style="text-align:center">
+      <div class="btn-group">
+
+
+      </div>
+      <br />-->
+        <webcam [height]="380" 
+                [width]="500" 
+                [trigger]="triggerObservable"
+                (imageCapture)="handleImage($event)"
+                *ngIf="showWebcam"
+                [switchCamera]="nextWebcamObservable"></webcam>
+        
+        <div *ngIf="srcc!=''">
+          <!--<input type="file" (change)="fileChangeEvent($event)" />-->
+
+          <image-cropper [imageURL]="srcc"
+                         [maintainAspectRatio]="true"
+                         [aspectRatio]="4 / 6"
+                         (imageLoaded)="imageLoaded($event)"
+                         (cropperReady)="cropperReady()"
+                         
+                         (imageCropped)="imageCropped($event)"
+                         (loadImageFailed)="loadImageFailed()"></image-cropper>                         <!--format="png"-->
+          <!--<img src="{{srcc}}" />-->
+          <!--<img [src]="srcc" />-->
+
+
+        </div>
+        <!--</div>-->
+        <!--<div *ngIf="errors.length > 0">
+      <h4>Error Messages:</h4>
+      <ul *ngFor="let error of errors">
+        <li>{{ error | json }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <ng-template #noCameraExist> Camera device not available </ng-template>-->
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary cancel-btn" >Close</button>-->
+
+        <div class="cancel-btn" (click)="close()" aria-label="Close">
+          <div class="cancel-text">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+
+
+
+
+        <div class="next-button" (click)="takeSnapshot()">
+          <div class="next-text">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+        </div>
+
+        <!--<button class="button " (click)="takeSnapshot()">Take Picture</button>-->
+
+        <div class="next-button" (click)="changeWebCame(true)">
+          <div class="next-text">
+            <i class="fa-solid fa-camera-rotate"></i>
+          </div>
+        </div>
+
+        <!--<button class="button" (click)="changeWebCame(true)">Toggle Camera</button>-->
+        <!--<button class="button" (click)="onOffWebCame()">Switch camera</button>-->
+        <!--<button type="button" class="btn btn-primary" (click)="save()">Save changes</button>-->
+
+        <div class="next-button" (click)="onOffWebCame()">
+          <div class="next-text">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+        </div>
+        
+
+        <div class="next-button" (click)="save()">
+          <div class="next-text">
+            <i class="fa-solid fa-floppy-disk"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

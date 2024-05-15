@@ -1,5 +1,6 @@
 using LIBRARY_MANAGEMENT.Server.Log;
 using LIBRARY_MANAGEMENT.Server.Models;
+using LIBRARY_MANAGEMENT.Server.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,8 @@ builder.Logging.AddDbLogger(options =>
 {
     builder.Configuration.GetSection("Logging").GetSection("Database").GetSection("Options").Bind(options);
 });
+
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 
