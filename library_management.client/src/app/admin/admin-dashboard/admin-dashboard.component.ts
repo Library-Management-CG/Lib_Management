@@ -93,6 +93,7 @@ export class AdminDashboardComponent {
       imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
       ratingUrl: 5,
       numberOfPeopleReviewed: 28
+
     },
 
 
