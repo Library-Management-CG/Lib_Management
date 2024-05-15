@@ -13,7 +13,7 @@ export class AdminDashboardComponent {
 
   constructor(private router: Router) { }
 
-  handleButtonClick() {
+  handleButton() {
     if (window.innerWidth <= 767) {
       
       this.router.navigate(['/admin/add-book-mobile']);
