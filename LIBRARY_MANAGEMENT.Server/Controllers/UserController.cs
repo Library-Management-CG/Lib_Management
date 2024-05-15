@@ -23,14 +23,14 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             return Ok(topUsers);
         }
 
-        [HttpGet("recent")]
+        [HttpPost("recent")]
         public IActionResult GetRecentBooks()
         {
             var recentBooks = _userService.GetRecentBooks();
             return Ok(recentBooks);
         }
 
-        [HttpGet("mostPopular")]
+        [HttpPost("mostPopular")]
         public IActionResult GetMostPopularBooks()
         {
             var recentBooks = _userService.GetMostPopularBooks();

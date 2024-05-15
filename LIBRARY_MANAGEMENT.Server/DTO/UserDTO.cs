@@ -6,6 +6,7 @@
 
     public class UserBookDTO
     {
+        public Guid Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public int BookCount { get; set; }

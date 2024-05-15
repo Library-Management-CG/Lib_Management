@@ -17,10 +17,10 @@ export class UserServiceService {
   }
 
   getRecentBooks(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'User/recent');
+    return this.http.post<any[]>(this.apiUrl + 'User/recent', {});
   }
 
   getMostPopularBooks(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'User/mostPopular');
+    return this.http.post<any[]>(this.apiUrl + 'User/mostPopular', {});
   }
 }

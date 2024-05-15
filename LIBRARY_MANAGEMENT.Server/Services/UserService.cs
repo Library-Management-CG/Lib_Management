@@ -35,7 +35,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 var users = _context.Users
                     .Where(user => topUsers.Contains(user.Id))
                     .Select(user => new UserBookDTO
-                    {
+                    {   Id = user.Id,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         BookCount = _context.BookIssues
@@ -61,7 +61,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             {
                 var recentBooks = _context.AuthorBooks
                 .OrderByDescending(ab => ab.Book.CreatedAtUtc)
-                .Take(10)
+                .Take(9)
                 .Select(ab => new BooksDetails
                 {
                     Title = ab.Book.Title,
