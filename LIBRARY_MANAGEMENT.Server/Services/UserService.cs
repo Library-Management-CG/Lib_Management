@@ -69,7 +69,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     Description = ab.Book.Description,
                     CreatedAtUtc = ab.Book.CreatedAtUtc,
                     Points = ab.Book.Ratings.Any() ? Math.Floor(ab.Book.Ratings.Average(r => r.Points)) : 0,
-                    StatusName = ab.Book.BookQrMappings.FirstOrDefault().Status.StatusName,
+                    StatusName = ab.Book.BookQrMappings
+                    .Where(bqm => bqm.BookId == ab.Book.Id)
+                    .OrderByDescending(bqm => bqm.CreatedAtUtc)
+                    .Select(bqm => bqm.Status.StatusName)
+                    .FirstOrDefault(), 
                     numberOfPeopleReviewed = ab.Book.Ratings.Count
                 })
                 .ToList();
@@ -104,7 +108,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     Description = book.Description,
                     CreatedAtUtc = book.CreatedAtUtc,
                     Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
-                    StatusName = book.BookQrMappings.FirstOrDefault()?.Status.StatusName, 
+                    StatusName = book.BookQrMappings
+                    .Where(bqm => bqm.BookId == book.Id)
+                    .OrderByDescending(bqm => bqm.CreatedAtUtc)
+                    .Select(bqm => bqm.Status.StatusName)
+                    .FirstOrDefault(),
                     numberOfPeopleReviewed = book.Ratings.Count
                 })
                 .ToList();
