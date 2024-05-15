@@ -191,3 +191,43 @@
 
  
 }
+.arrow{
+    display:none;
+}
+
+
+@media screen and (max-width: 426px) {
+  .header{
+      display:none;
+  }
+  .explore-books-heading {
+    color: var(--Primary-Grey, #343435);
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Literata;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .arrow{
+      display:block;
+      margin-right:0.75rem;
+  }
+  .subhead{
+      margin-left:-1.1rem;
+  }
+  .selectors{
+      display:flex;
+      flex-direction:row;
+  }
+  .subhead{
+      display:flex;
+      flex-direction:column;
+  }
+  .subhead-heading{
+      display:flex;
+      flex-direction:row;
+  }
+  
+}
