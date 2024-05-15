@@ -114,7 +114,7 @@ import { RevokePermissionModalComponent } from './shared/components/revoke-permi
     ExploreBooksComponent,
     //  FormsModule
     AddBookCommonComponent,
-    CaptureComponent
+    CaptureComponent,
     MyBooksCardMobileComponent,
     RevokePermissionModalComponent
   ],
