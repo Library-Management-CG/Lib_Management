@@ -1,8 +1,9 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
-//declare var $: any;
+declare var $: any;
 declare var
   webkitSpeechRecognition: any
   ;
@@ -28,7 +29,17 @@ export class AddBookCommonComponent {
 
   bookForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  captureImg:any=""
+  getPicture(event: any) {
+    this.bookForm.patchValue({
+      img: ''
+    });
+
+    this.captureImg = event;
+    console.log("hello",this.capturedImage);
+  }
+
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
       authorName: ['', Validators.required],
@@ -73,6 +84,23 @@ export class AddBookCommonComponent {
         this.isCameraExist = mediaDevices && mediaDevices.length > 0;
       }
     );
+
+  }
+
+  openWebcam() {
+    //if (window.innerWidth <= 767) {
+
+     // this.router.navigate(['/admin/add-book-mobile']);
+    //} else {
+
+      this.openModal();
+    //}
+  }
+  openModal(): void {
+    // Assuming you're using Bootstrap modal
+    // You need to include Bootstrap JS in your project
+    // You can use jQuery to trigger the modal
+    $('#webcam').modal('show');
   }
 
   //showWebcam = true;
@@ -275,7 +303,9 @@ export class AddBookCommonComponent {
         img: this.selectedBook.volumeInfo.imageLinks.smallThumbnail,
         description: this.selectedBook.volumeInfo.description,
       });
+      this.captureImg = '';
     }
+    
     console.log(this.bookForm);
     return;
   }

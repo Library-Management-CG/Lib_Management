@@ -12,6 +12,16 @@ declare var $: any;
 export class AdminDashboardComponent {
 
   constructor(private router: Router) { }
+
+  handleButtonClick() {
+    if (window.innerWidth <= 767) {
+      
+      this.router.navigate(['/admin/add-book-mobile']);
+    } else {
+      
+      this.openModal();
+    }
+  }
   counti: number[] = [];
 
   //ngOnInit(): void {

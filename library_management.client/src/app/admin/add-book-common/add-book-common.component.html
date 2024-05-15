@@ -9,6 +9,7 @@
       <img *ngIf="stepperIndex==1" src="../../../assets/icons/add-books-modal/ScanBook-Blue.svg" />
     </div>
   </div>-->
+<app-capture (getPicture)="getPicture($event)"></app-capture>
 <div *ngIf="stepperIndex==0" class="content">
   <div class="stack">
     <div class="form-field">
@@ -25,6 +26,7 @@
                 <div *ngIf="car && car.volumeInfo && car.volumeInfo.imageLinks && car.volumeInfo.imageLinks.smallThumbnail" class="single-img">
                   <img src="{{car.volumeInfo.imageLinks.smallThumbnail}}" width="36px" height="55.636px" />
                 </div>
+               
                 <div class="text-outer">
                   <div class="title">
                     {{car.volumeInfo.title}}
@@ -71,7 +73,7 @@
         </div>
 
         <div class="col-md-5 book-section">
-          <div *ngIf="bookForm.value.img==''" class="dummy-book-outer">
+          <div *ngIf="bookForm.value.img=='' && captureImg==''" class="dummy-book-outer">
             <div class="dummy-img">
               <img src="../../../assets/icons/add-books-modal/Dummy-Image.svg" />
             </div>
@@ -79,8 +81,11 @@
               No Preview
             </div>
           </div>
-          <img class="dummy-book-outer" *ngIf="bookForm.value.img!=''" src="{{bookForm.value.img}}" />
-          <div class="cap-button" (click)="onOffWebCame()">
+
+          <img class="dummy-book-outer" *ngIf="bookForm.value.img!='' && captureImg==''" src="{{bookForm.value.img}}" />
+          <img class="dummy-book-outer" *ngIf="captureImg!='' && bookForm.value.img==''" src="{{captureImg}}"/>
+
+          <div class="cap-button" (click)="openWebcam()">
             <div>
               <img src="../../../assets/icons/add-books-modal/Camera alt.svg" />
             </div>

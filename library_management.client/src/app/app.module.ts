@@ -30,7 +30,6 @@ import { AccessControlMobileComponent } from './admin/access-control-mobile/acce
 import { AssignPermissionModalComponent } from './admin/assign-permission-modal/assign-permission-modal.component';
 import { ListPanelComponent } from './admin/access-control-web/list-panel/list-panel.component';
 import { PermissionPanelComponent } from './admin/access-control-web/permission-panel/permission-panel.component';
-import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
@@ -58,6 +57,9 @@ import { RatingModalComponent } from './user/rating-modal/rating-modal.component
 import { MyBooksMobileComponent } from './user/my-books-mobile/my-books-mobile.component';
 import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mobile/my-books-card-mobile.component';
 import { ExploreBooksComponent } from './user/explore-books/explore-books.component';
+import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
+import { CaptureComponent } from './admin/capture/capture.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -110,6 +112,8 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
     IssueMobileComponent,
     ExploreBooksComponent,
     //  FormsModule
+    AddBookCommonComponent,
+    CaptureComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +136,8 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
     NgSelectModule,
     FormsModule,
     AvatarModule,
-    WebcamModule
+    WebcamModule,
+    ImageCropperModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],
