@@ -14,4 +14,7 @@ export class ManageBooksComponent {
     this.filterValue = (event.target as HTMLInputElement).value;
   }
   constructor() { }
+  handleButtonClick() {
+
+  }
 }
