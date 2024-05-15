@@ -6,14 +6,12 @@ import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { UserRoutingModule } from './user/user-routing.module';
 import { MyBooksComponent } from './user/my-books/my-books.component';
 import { ManageBooksComponent } from './admin/manage-books/manage-books.component';
 import { IssueBookModalComponent } from './admin/issue-book-modal/issue-book-modal.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
-import { FormsModule } from '@angular/forms';
 import { IssueModalBodyComponent } from './admin/issue-modal-body/issue-modal-body.component';
 import { IssueMobileComponent } from './admin/issue-mobile/issue-mobile.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -104,7 +102,7 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
     TimeRemainingModalComponent,
     RatingModalComponent,
     MyBooksMobileComponent,
-    MyBooksCardMobileComponent
+    MyBooksCardMobileComponent,
     BooksCardSharedComponent,
     IssueBookModalComponent,
     SearchBoxComponent,

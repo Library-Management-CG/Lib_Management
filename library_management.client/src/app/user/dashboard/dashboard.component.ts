@@ -18,14 +18,11 @@ export class DashboardComponent {
   displayedMostPopularBooks: any[] = [];
 
   initialBooksToShow: number = 3;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserServiceService) { }
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.updateDisplayedBooks();
     this.isWebView = window.innerWidth > 758;
-  }
-  constructor(private userService: UserServiceService) {
-  
   }
 
   ngOnInit() {

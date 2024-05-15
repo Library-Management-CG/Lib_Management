@@ -10,13 +10,9 @@ declare var $: any;
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent {
+
+  constructor(private router: Router) { }
   counti: number[] = [];
-  openModal(): void {
-    // Assuming you're using Bootstrap modal
-    // You need to include Bootstrap JS in your project
-    // You can use jQuery to trigger the modal
-    $('#exampleModalCenter').modal('show');
-  }
 
   //ngOnInit(): void {
   //  //$(document).ready(function () {
