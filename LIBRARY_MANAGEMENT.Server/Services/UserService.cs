@@ -8,6 +8,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
     {
         List<UserBookDTO> GetTopBookReaders();
         List<BooksDetails> GetRecentBooks();
+        List<BooksDetails> GetMostPopularBooks();
     }
 
     public class UserService:IUserService
@@ -67,12 +68,48 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     AuthorName = ab.Author.AuthorName,
                     Description = ab.Book.Description,
                     CreatedAtUtc = ab.Book.CreatedAtUtc,
-                    Points = ab.Book.Ratings.Any() ? ab.Book.Ratings.Average(r => r.Points) : 0,
-                    StatusName = ab.Book.BookQrMappings.FirstOrDefault().Status.StatusName
+                    Points = ab.Book.Ratings.Any() ? Math.Floor(ab.Book.Ratings.Average(r => r.Points)) : 0,
+                    StatusName = ab.Book.BookQrMappings.FirstOrDefault().Status.StatusName,
+                    numberOfPeopleReviewed = ab.Book.Ratings.Count
                 })
                 .ToList();
 
                 return recentBooks;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+
+        public List<BooksDetails> GetMostPopularBooks()
+        {
+            try
+            {
+                var popularBooks = _context.Books
+                     .Include(book => book.Ratings) 
+                    .Include(book => book.AuthorBooks)
+                        .ThenInclude(ab => ab.Author)
+                    .Include(book => book.BookQrMappings)
+                        .ThenInclude(bqm => bqm.Status)
+                    .OrderByDescending(book => book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0)
+                    .Take(6)
+                    .ToList();
+
+                var booksDetails = popularBooks.Select(book => new BooksDetails
+                {
+                    Title = book.Title,
+                    AuthorName = book.AuthorBooks.FirstOrDefault()?.Author.AuthorName, 
+                    Description = book.Description,
+                    CreatedAtUtc = book.CreatedAtUtc,
+                    Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
+                    StatusName = book.BookQrMappings.FirstOrDefault()?.Status.StatusName, 
+                    numberOfPeopleReviewed = book.Ratings.Count
+                })
+                .ToList();
+
+                return booksDetails;
             }
             catch (Exception ex)
             {

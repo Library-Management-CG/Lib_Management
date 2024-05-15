@@ -27,7 +27,7 @@
                     <ng-container *ngFor="let star of getEmptyStarsArray(books?.points)">
                       <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
                     </ng-container>
-                    <div class="numberOfPeopleReviewed"> (29) </div>
+                    <div class="numberOfPeopleReviewed"> ({{books?.numberOfPeopleReviewed}}) </div>
                   </ng-container>
 
                   <ng-template #noRatingYet>

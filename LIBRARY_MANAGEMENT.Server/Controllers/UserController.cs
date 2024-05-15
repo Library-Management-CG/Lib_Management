@@ -29,6 +29,13 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             var recentBooks = _userService.GetRecentBooks();
             return Ok(recentBooks);
         }
+
+        [HttpGet("mostPopular")]
+        public IActionResult GetMostPopularBooks()
+        {
+            var recentBooks = _userService.GetMostPopularBooks();
+            return Ok(recentBooks);
+        }
     }
 }
 

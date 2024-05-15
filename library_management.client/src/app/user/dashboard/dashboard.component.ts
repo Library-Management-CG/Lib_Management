@@ -17,6 +17,7 @@ export class DashboardComponent {
   displayedMostPopularBooks: any[] = [];
 
   recentlyAddedBooks: any[] = [];
+  mostPopularBooks: any[] = [];
 
   initialBooksToShow: number = 3;
 
@@ -31,6 +32,7 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.getRecentBooks();
+    this.getMostPopularBooks();
     this.updateDisplayedBooks();
     this.getTopReaders();
   }
@@ -41,93 +43,23 @@ export class DashboardComponent {
     this.selectedBook = book;
   }
 
-  mostPopularBooks = [
-
-    {
-      title: 'The Invisible Cloud',
-      author: 'Bishop',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 4,
-      numberOfPeopleReviewed: 30
-    },
-
-    {
-      title: 'The Invisible',
-      author: 'Daryl',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed: 28
-    },
-
-   
-
-    {
-      title: 'The Cloud',
-      author: 'John',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 1,
-      numberOfPeopleReviewed: 25
-    },
-
-    {
-      title: 'The ok',
-      author: 'Sam',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 26
-    },
-
-    {
-      title: 'my',
-      author: 'my my',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed: 20
-    },
-
-    {
-      title: 'daryl',
-      author: 'Daryl',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 5,
-      numberOfPeopleReviewed: 15
-    },
-
-
-    {
-      title: 'The ok',
-      author: 'ok',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 27
-    },
-
-
-    {
-      title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 28
-    },
-
-
-    {
-      title: 'The ok',
-      author: 'NickBishop',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 21
-    },
-
-
-  ];
-
   getRecentBooks(): void {
     this.userService.getRecentBooks()
       .subscribe(
         (data: any) => {
           this.recentlyAddedBooks = data;
+        },
+        (error) => {
+          console.log('Error: ', error);
+        }
+      );
+  }
+
+  getMostPopularBooks(): void {
+    this.userService.getMostPopularBooks()
+      .subscribe(
+        (data: any) => {
+          this.mostPopularBooks = data;
         },
         (error) => {
           console.log('Error: ', error);

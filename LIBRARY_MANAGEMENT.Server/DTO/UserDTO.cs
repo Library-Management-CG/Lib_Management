@@ -19,6 +19,7 @@
         public DateTime CreatedAtUtc { get; set; }
         public double Points { get; set; } = 0;
         public string StatusName { get; set; } = null!;
+        public int numberOfPeopleReviewed { get; set; }
 
     }
 }

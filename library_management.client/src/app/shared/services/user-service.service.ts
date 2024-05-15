@@ -19,4 +19,8 @@ export class UserServiceService {
   getRecentBooks(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl + 'User/recent');
   }
+
+  getMostPopularBooks(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + 'User/mostPopular');
+  }
 }
