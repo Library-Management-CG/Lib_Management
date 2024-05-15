@@ -53,6 +53,7 @@ import { TimeRemainingModalComponent } from './user/time-remaining-modal/time-re
 import { RatingModalComponent } from './user/rating-modal/rating-modal.component';
 import { MyBooksMobileComponent } from './user/my-books-mobile/my-books-mobile.component';
 import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mobile/my-books-card-mobile.component';
+import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 
 
 
@@ -97,7 +98,8 @@ import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mo
     TimeRemainingModalComponent,
     RatingModalComponent,
     MyBooksMobileComponent,
-    MyBooksCardMobileComponent
+    MyBooksCardMobileComponent,
+    RevokePermissionModalComponent
   ],
   imports: [
     BrowserModule,
