@@ -61,7 +61,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             {
                 var recentBooks = _context.AuthorBooks
                 .OrderByDescending(ab => ab.Book.CreatedAtUtc)
-                .Take(6)
+                .Take(10)
                 .Select(ab => new BooksDetails
                 {
                     Title = ab.Book.Title,
