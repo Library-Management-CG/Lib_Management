@@ -594,3 +594,20 @@
   }
 }
 
+@media screen and (max-width:760px) and (min-width:502px) {
+  .total-books-outer {
+    background-size: 118%;
+    margin-top:1rem;
+  }
+  .issue-books-outer {
+    margin-top: 1rem;
+    background-size: 118%; /* or contain, or specific dimensions */
+  }
+   .banner-image img {
+    width: 8rem;
+    height: 7.3125rem;
+  }
+
+
+
+}
