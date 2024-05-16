@@ -86,13 +86,28 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                             Description = rb.Book.Description,
                             CreatedAtUtc = rb.CreatedAtUtc,
                             Points = rb.Book.Ratings.Any() ? Math.Floor(rb.Book.Ratings.Average(r => r.Points)) : 0,
-                            StatusName = _context.BookIssues
-                            .Any(issue => issue.BookQrMappingid == rb.Id && issue.ReceiveDate == null)
-                            ? "Not Available"
-                            : "Available",
+
+                            StatusName = "Available",
+
                             numberOfPeopleReviewed = rb.Book.Ratings.Count
                         })
                         .ToList();
+
+                foreach (var bookDetail in booksDetails)
+                {
+                    bool anyCopyAvailable = false;
+                    var bookQrMappings = _context.BookQrMappings.Where(bqm => bqm.BookId == bookDetail.BookId).ToList();
+                    foreach (var mapping in bookQrMappings)
+                    {
+                        if (_context.BookIssues.Any(issue => issue.BookQrMappingid == mapping.Id && issue.ReceiveDate != null))
+                        {
+                            anyCopyAvailable = true;
+                            break;
+                        }
+                    }
+                    bookDetail.StatusName = anyCopyAvailable ? "Available" : "Not Available";
+                }
+
 
                 var latestbook = booksDetails.
                          GroupBy(bqm => bqm.BookId)
@@ -120,11 +135,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     .Include(book => book.BookQrMappings)
                         .ThenInclude(bqm => bqm.Status)
                     .OrderByDescending(book => book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0)
-                    .Take(6)
+                    .ThenByDescending(book => book.Ratings.Count)
+                    .Take(9)
                     .ToList();
 
                 var booksDetails = popularBooks.Select(book => new BooksDetails
                 {
+                    BookId = book.Id,
                     Title = book.Title,
                     AuthorName = _context.AuthorBooks
                                 .Where(ab => ab.BookId == book.Id)
@@ -133,13 +150,29 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     Description = book.Description,
                     CreatedAtUtc = book.CreatedAtUtc,
                     Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
-                    StatusName = _context.BookIssues
-                    .Any(issue => issue.BookQrMappingid == book.BookQrMappings.FirstOrDefault().Id && issue.ReceiveDate == null)
-                    ? "Not Available"
-                    : "Available",
+
+                    StatusName = "Available",
+              
+                   
                     numberOfPeopleReviewed = book.Ratings.Count
                 })
                 .ToList();
+
+                foreach (var bookDetail in booksDetails)
+                {
+                    bool anyCopyAvailable = false;
+                    var bookQrMappings = _context.BookQrMappings.Where(bqm => bqm.BookId == bookDetail.BookId).ToList();
+                    foreach (var mapping in bookQrMappings)
+                    {
+                        if (_context.BookIssues.Any(issue => issue.BookQrMappingid == mapping.Id && issue.ReceiveDate != null))
+                        {
+                            anyCopyAvailable = true;
+                            break;
+                        }
+                    }
+                    bookDetail.StatusName = anyCopyAvailable ? "Available" : "Not Available";
+                }
+
 
                 return booksDetails;
             }
