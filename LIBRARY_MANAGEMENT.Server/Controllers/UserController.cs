@@ -27,6 +27,20 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             return Ok(topUsers);
         }
 
+        [HttpPost("recent")]
+        public IActionResult GetRecentBooks()
+        {
+            var recentBooks = _userService.GetRecentBooks();
+            return Ok(recentBooks);
+        }
+
+        [HttpPost("mostPopular")]
+        public IActionResult GetMostPopularBooks()
+        {
+            var recentBooks = _userService.GetMostPopularBooks();
+            return Ok(recentBooks);
+        }
+
         [HttpPost("allAdmins")]
         public async Task<List<allAdminsDTO>> getAllAdmins()
         {

@@ -19,4 +19,12 @@ export class UserServiceService {
   getAllAdmins(): Observable<any[]> {
     return this.http.post<any[]>(this.apiUrl + 'User/allAdmins', {});
   }
+
+  getRecentBooks(): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'User/recent', {});
+  }
+
+  getMostPopularBooks(): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'User/mostPopular', {});
+  }
 }

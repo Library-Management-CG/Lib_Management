@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { AdminServiceService } from '../../shared/services/Admin-service .service';
 declare var $: any;
 
 @Component({
@@ -10,94 +11,30 @@ declare var $: any;
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent {
-  //ngOnInit(): void {
-  //  $(document).ready(function () {
-  //    $('#exampleModalCenter').modal('show');
-  //  });
-  //}
 
-  constructor(private router: Router) { }
+  totalbooks: any;
+  issuebooks: any;
+  constructor(private router: Router, private AdminService: AdminServiceService) { }
 
-  handleButtonClick() {
+  handleButton() {
     if (window.innerWidth <= 767) {
-      // Navigate to the desired page if screen size is mobile or less
+
       this.router.navigate(['/admin/add-book-mobile']);
     } else {
-      // Open the modal if screen size is larger than mobile
-      this.openModal();
+
+      this.openModalAdd();
     }
   }
-  counti: number[] = [];
-  openModal(): void {
-    // Assuming you're using Bootstrap modal
-    // You need to include Bootstrap JS in your project
-    // You can use jQuery to trigger the modal
+
+  openModalAdd(): void {
+
     $('#exampleModalCenter').modal('show');
   }
 
-  //ngOnInit(): void {
-  //  //$(document).ready(function () {
-  //  //  $('#exampleModalCenter').modal('show');
-  //  //});
-  //    for (let i = 1; i <= 10; i++) {
-  //        this.counti.push(i);
-  //    }
-  //}
-  mostPopularBooks = [
-
-    {
-      title: 'The Invisible Cloud',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 4,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'The Invisible',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed: 28
-    },
+  counti: number[] = [];
 
 
-
-    {
-      title: 'The Cloud',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 1,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'my',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'daryl',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 5,
-      numberOfPeopleReviewed: 28
-
-    },
-
-
-  ];
+  mostPopularBooks = [];
   
   @Output() getPicture = new EventEmitter<WebcamImage>();
   showWebcam = true;
@@ -118,7 +55,51 @@ export class AdminDashboardComponent {
         this.isCameraExist = mediaDevices && mediaDevices.length > 0;
       }
     );
+    this.gettotalcount();
+    this.getissuecount();
+    this.topChoicesBookData();
   }
+
+  gettotalcount() {
+    this.AdminService.getTotalBooks().subscribe(
+      (data) => {
+        this.totalbooks = data;
+        
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  
+  }
+
+  getissuecount() {
+    this.AdminService.getissueBooks().subscribe(
+      (data) => {
+        this.issuebooks = data;
+
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+
+  }
+  topChoicesBookData() {
+    this.AdminService.topChoicesBook().subscribe(
+      (data) => {
+        this.mostPopularBooks = data;
+        console.log(data);
+
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+
+  }
+
+
 
   takeSnapshot(): void {
     this.trigger.next();
@@ -157,6 +138,22 @@ export class AdminDashboardComponent {
   get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
+
+  handleButtonClick(): void {
+    const isMobile = window.matchMedia('(max-width: 450px)').matches;
+    if (isMobile) {
+      this.router.navigate(['/admin/issue-mobile']); // Use the router to navigate
+    } else {
+      this.openModal();
+    }
+  }
+
+  openModal(): void {
+
+    $('#exampleModalIssue').modal('show');
+  }
+
+ 
 
   get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
