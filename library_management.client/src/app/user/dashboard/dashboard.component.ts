@@ -1,4 +1,6 @@
 import { Component,ElementRef, HostListener, ViewChild } from '@angular/core';
+import { UserServiceService } from '../../shared/services/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,7 +8,7 @@ import { Component,ElementRef, HostListener, ViewChild } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-
+  topUsers: any[] | undefined;
   isWebView: boolean = window.innerWidth > 758; // Assuming the cutoff for web view is 768 pixels
 
   showMoreClickedRecentlyAdded: boolean = false;
@@ -15,8 +17,11 @@ export class DashboardComponent {
   displayedRecentlyAddedBooks: any[] = [];
   displayedMostPopularBooks: any[] = [];
 
-  initialBooksToShow: number = 3;
+  recentlyAddedBooks: any[] = [];
+  mostPopularBooks: any[] = [];
 
+  initialBooksToShow: number = 3;
+  constructor(private router: Router, private userService: UserServiceService) { }
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.updateDisplayedBooks();
@@ -24,7 +29,10 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
+    this.getRecentBooks();
+    this.getMostPopularBooks();
     this.updateDisplayedBooks();
+    this.getTopReaders();
   }
 
   selectedBook: any;
@@ -33,117 +41,41 @@ export class DashboardComponent {
     this.selectedBook = book;
   }
 
+  getRecentBooks(): void {
+    this.userService.getRecentBooks()
+      .subscribe(
+        (data: any) => {
+          this.recentlyAddedBooks = data;
+        },
+        (error) => {
+          console.log('Error: ', error);
+        }
+      );
+  }
 
-  recentlyAddedBooks = [
-    {
-      title: 'The jigyasa Cloud',
-      author: 'Daryl Bishop',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed : 26
-    },
+  getMostPopularBooks(): void {
+    this.userService.getMostPopularBooks()
+      .subscribe(
+        (data: any) => {
+          this.mostPopularBooks = data;
+        },
+        (error) => {
+          console.log('Error: ', error);
+        }
+      );
+  }
 
-    {
-      title: 'The Invi',
-      author: 'Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 4,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'The ok',
-      author: 'Nick',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 29
-    },
-
-    
-
-  ];
-
-  mostPopularBooks = [
-
-    {
-      title: 'The Invisible Cloud',
-      author: 'Bishop',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 4,
-      numberOfPeopleReviewed: 30
-    },
-
-    {
-      title: 'The Invisible',
-      author: 'Daryl',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed: 28
-    },
-
-   
-
-    {
-      title: 'The Cloud',
-      author: 'John',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 1,
-      numberOfPeopleReviewed: 25
-    },
-
-    {
-      title: 'The ok',
-      author: 'Sam',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 26
-    },
-
-    {
-      title: 'my',
-      author: 'my my',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed: 20
-    },
-
-    {
-      title: 'daryl',
-      author: 'Daryl',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 5,
-      numberOfPeopleReviewed: 15
-    },
-
-
-    {
-      title: 'The ok',
-      author: 'ok',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 27
-    },
-
-
-    {
-      title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 28
-    },
-
-
-    {
-      title: 'The ok',
-      author: 'NickBishop',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 21
-    },
-
-
-  ];
+  getTopReaders(): void {
+    this.userService.getTopReaders()
+      .subscribe(
+        (data: any) => {
+          this.topUsers = data;
+        },
+        (error) => {
+          console.log('Error: ', error);
+        }
+      );
+  }
 
 
   onShowMoreClicked(section: string) {
@@ -156,7 +88,7 @@ export class DashboardComponent {
 
   updateDisplayedBooks() {
     const screenWidth = window.innerWidth;
-    console.log(screenWidth);
+    //console.log(screenWidth);
     if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
@@ -169,7 +101,7 @@ export class DashboardComponent {
 
   get booksToRecentDisplay(): any[] {
     const screenWidth = window.innerWidth;
-    console.log(screenWidth);
+    //console.log(screenWidth);
     if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
@@ -182,7 +114,7 @@ export class DashboardComponent {
 
   get booksToPopularDisplay(): any[] {
     const screenWidth = window.innerWidth;
-    console.log(screenWidth);
+    //console.log(screenWidth);
     if (screenWidth <= 758) {
       this.initialBooksToShow = 2;
     } else {
@@ -205,4 +137,7 @@ export class DashboardComponent {
     return this.mostPopularBooks.length > maxBooksToShow;
   }
 
+  exploreBooks() {
+    this.router.navigate(['explore-books']);
+  }
 }

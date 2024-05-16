@@ -18,7 +18,7 @@ export class NavbarSharedComponent {
   isHighlighted: boolean = true;
   isTogglerClicked: boolean = false;
    isSettingsClicked: boolean = false;
-
+  isMyBooksClicked: boolean = false;
   constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef) {
 
   }
@@ -53,22 +53,31 @@ export class NavbarSharedComponent {
     this.isSettingsClicked = false;
 
     if (button === 'my-books') {
-      this.router.navigate(['/my-books']);
+      this.isMyBooksClicked = true;
+      this.routeBasedOnScreenSizeMyBooks();
+
     }
 
-    else if(button === 'readers-hub') {
+    else if (button === 'readers-hub') {
+      this.isMyBooksClicked = false;
+
       this.router.navigate(['/']);
     }
     else if (button === 'Dashboard') {
+      this.isMyBooksClicked = false;
+
       this.router.navigate(['/admin']);
     }
     else if (button === 'manage-books') {
+      this.isMyBooksClicked = false;
+
       this.router.navigate(['admin/manage-books']);
     }
 
   }
   toggleToUser(button: string) {
     this.isSettingsClicked = false;
+    this.isMyBooksClicked = false;
 
     if (button === 'readers-hub') {
       this.router.navigate(['/']);
@@ -77,6 +86,7 @@ export class NavbarSharedComponent {
   }
   toggletoAdmin(button: string) {
     this.isSettingsClicked = false;
+    this.isMyBooksClicked = false;
 
     if (button === 'Dashboard') {
       this.router.navigate(['/admin']);
@@ -97,17 +107,27 @@ export class NavbarSharedComponent {
   open_settings() {
     this.isHighlighted = false;
     this.isDropdownOpenadmin = false;
-    
+    this.isMyBooksClicked = false;
+
     this.isSettingsClicked = true; // Flag indicating that settings button is clicked
     this.routeBasedOnScreenSize(); 
   }
 
   routeBasedOnScreenSize() {
     if (this.isSettingsClicked) {
-      if (window.innerWidth <= 425) {
+      if (window.innerWidth <= 765) {
         this.router.navigate(['/admin/accesscontrolmobile']);
       } else {
         this.router.navigate(['/admin/accesscontrol']);
+      }
+    }
+  }
+  routeBasedOnScreenSizeMyBooks() {
+    if (this.isMyBooksClicked) {
+      if (window.innerWidth <= 765) {
+        this.router.navigate(['/my-books-mobile']);
+      } else {
+        this.router.navigate(['/my-books']);
       }
     }
   }
@@ -117,6 +137,9 @@ export class NavbarSharedComponent {
     // Check responsiveness only after settings button is clicked
     if (this.isSettingsClicked) {
       this.routeBasedOnScreenSize();
+    }
+    if (this.isMyBooksClicked) {
+      this.routeBasedOnScreenSizeMyBooks();
     }
   }
 
@@ -128,6 +151,7 @@ export class NavbarSharedComponent {
   open_search() {
     this.isHighlighted = false;
     this.isDropdownOpen = false;
+    this.isMyBooksClicked = false;
 
     this.isSettingsClicked = false;
 
