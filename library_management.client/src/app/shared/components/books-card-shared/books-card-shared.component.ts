@@ -18,6 +18,10 @@ export class BooksCardSharedComponent {
   constructor(private router: Router) {
 
   }
+
+  ngOnInit() {
+    console.log(this.books.statusName);
+  }
   isAdmin() {
     return this.router.url.toLowerCase().includes('admin');
   }
