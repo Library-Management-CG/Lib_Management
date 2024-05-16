@@ -41,7 +41,7 @@
           <div class="stack   ">
             <div class="total-number ">
               <span class="Total-books-text ">Total Books</span>
-              <span class="number ">120</span>
+              <span class="number ">{{totalbooks}}</span>
             </div>
 
 
@@ -70,7 +70,7 @@
           <div class="stack  ">
             <div class="total-number ">
               <span class="Total-books-text " >Issue Books</span>
-              <span class="number ">60</span>
+              <span class="number ">{{issuebooks}}</span>
             </div>
 
 
@@ -95,7 +95,7 @@
   </div>
   <div class="row card-row " style="margin-top:3rem">
     <div *ngFor="let book of mostPopularBooks" class="col-5 col-sm-6 col-md-2 gapp  m-0 p-0">
-      <app-books-card-shared [books]="book"></app-books-card-shared>
+      <app-books-card-shared [Topbooks]="book"></app-books-card-shared>
     </div>
   </div>
 
