@@ -133,11 +133,10 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     Description = book.Description,
                     CreatedAtUtc = book.CreatedAtUtc,
                     Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
-                    StatusName = book.BookQrMappings
-                    .Where(bqm => bqm.BookId == book.Id)
-                    .OrderByDescending(bqm => bqm.CreatedAtUtc)
-                    .Select(bqm => bqm.Status.StatusName)
-                    .FirstOrDefault(),
+                    StatusName = _context.BookIssues
+                    .Any(issue => issue.BookQrMappingid == book.BookQrMappings.FirstOrDefault().Id && issue.ReceiveDate == null)
+                    ? "Not Available"
+                    : "Available",
                     numberOfPeopleReviewed = book.Ratings.Count
                 })
                 .ToList();
