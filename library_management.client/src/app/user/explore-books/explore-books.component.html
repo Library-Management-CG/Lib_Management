@@ -1,17 +1,17 @@
-<div class="explore-books-body">
+<div class="container-fluid">
   <div class="header">
     <div class="header-txt">Reader’s Hub</div>
     <img src="../../../assets/icons/explore-books/Keyboard arrow right.svg" />
     <div class="header-txt">Explore Books</div>
   </div>
   <div class="subhead col-12">
-    <div class="subhead-heading">
+    <div class="subhead-heading col-6">
       <div class="arrow" (click)="redirect_back()"><img src="../../../assets/icons/explore-books/ArrowRight.svg" /></div>
       <div class="explore-books-heading col-8">Explore Books</div>
     </div>
     
-    <div class="selectors">
-    <div class="check-box-component col-2">
+    <div class="selectors col-6">
+    <div class="check-box-component ">
       <label class="check-box-component" for="flexCheckDefault" (click)="toggleCheckbox()">
         <img *ngIf="isChecked == false" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
         <img *ngIf="isChecked == true" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
@@ -20,7 +20,7 @@
     </div>
     
 
-    <div class="newasset-dropdown col-2">
+    <div class="newasset-dropdown col-5">
       <div class="dropdown-button">
         <span class="rating-txt">Select Rating</span>
         <img src="../../../assets/icons/explore-books/Frame.svg" class="frame"/>
@@ -63,24 +63,24 @@
     </div>
     </div>
   </div>
-  <div class="book-cards-view row">
-    <div class="col-md-2">
+  <div class="row d-flex custom-container">
+    <div class="col-5 col-md-2">
       <app-books-card-shared></app-books-card-shared>
 
     </div>
-    <div class="col-md-2">
+    <div class="col-5 col-md-2">
       <app-books-card-shared></app-books-card-shared>
 
     </div>
-    <div class="col-md-2">
+    <div class="col-5 col-md-2">
       <app-books-card-shared></app-books-card-shared>
 
     </div>
-    <div class="col-md-2">
+    <div class="col-5 col-md-2">
       <app-books-card-shared></app-books-card-shared>
 
     </div>
-    <div class="col-md-2">
+    <div class="col-5 col-md-2">
       <app-books-card-shared></app-books-card-shared>
 
     </div>
