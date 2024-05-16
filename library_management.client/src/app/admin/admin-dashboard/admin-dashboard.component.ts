@@ -22,9 +22,15 @@ export class AdminDashboardComponent {
       this.router.navigate(['/admin/add-book-mobile']);
     } else {
 
-      this.openModal();
+      this.openModalAdd();
     }
   }
+
+  openModalAdd(): void {
+
+    $('#exampleModalCenter').modal('show');
+  }
+
   counti: number[] = [];
 
 
