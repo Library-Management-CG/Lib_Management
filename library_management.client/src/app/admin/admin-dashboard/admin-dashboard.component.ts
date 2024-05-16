@@ -12,6 +12,8 @@ declare var $: any;
 })
 export class AdminDashboardComponent {
 
+  selectedBook: any;
+
   totalbooks: any;
   issuebooks: any;
   constructor(private router: Router, private AdminService: AdminServiceService) { }
@@ -25,6 +27,12 @@ export class AdminDashboardComponent {
       this.openModalAdd();
     }
   }
+
+
+  openModaldesc(book: any) {
+    this.selectedBook = book;
+  }
+
 
   openModalAdd(): void {
 

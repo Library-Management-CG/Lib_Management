@@ -69,7 +69,7 @@
           <img src="../../../assets/icons/Admin-dashboard/User.svg" class="user" />
           <div class="stack  ">
             <div class="total-number ">
-              <span class="Total-books-text " >Issue Books</span>
+              <span class="Total-books-text ">Issue Books</span>
               <span class="number ">{{issuebooks}}</span>
             </div>
 
@@ -95,10 +95,10 @@
   </div>
   <div class="row card-row " style="margin-top:3rem">
     <div *ngFor="let book of mostPopularBooks" class="col-5 col-sm-6 col-md-2 gapp  m-0 p-0">
-      <app-books-card-shared [Topbooks]="book"></app-books-card-shared>
-    </div>
+  <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+  <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>    </div>
   </div>
-
+ 
 
 
 
