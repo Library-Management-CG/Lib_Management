@@ -26,9 +26,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             try
             {
                 var topUsers = _context.BookIssues
-                   .OrderByDescending(issue => issue.IssueTo)
                    .GroupBy(issue => issue.IssueTo)
                    .OrderByDescending(group => group.Count())
+                   .ThenBy(group => group.Key)
                    .Take(7)
                    .Select(group => group.Key)
                    .ToList();
@@ -40,9 +40,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         BookCount = _context.BookIssues
-                        .Where(mapping => mapping.IssueTo == user.Id)
-                        .Count()
+                            .Count(mapping => mapping.IssueTo == user.Id)
                     })
+                    .OrderByDescending(user => user.BookCount)
                     .ToList();
 
                 return users;
