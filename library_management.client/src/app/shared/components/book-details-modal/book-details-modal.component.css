@@ -68,7 +68,6 @@
 
 .rating-book {
   display: flex;
-  width: 30px;
   height: 20px;
   margin-top : 11px;
   gap: 2px;
@@ -117,6 +116,21 @@
 .image-content {
   width: 141px;
   border-radius: 8px 0px 0px 0px;
+}
+
+
+.not-avaliable-tag {
+  background: #FFE8E8;
+  font-family: Lato;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 6px;
+  width: 79px;
+  padding: 8px;
+  border-radius: 4px 4px 4px 4px;
+  color: #CC1A07;
+  display: flex;
+  margin-left: 6px;
 }
 
 @media only screen and (max-width: 700px) {
