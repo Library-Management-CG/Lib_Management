@@ -15,6 +15,12 @@
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public Guid Id { get; set; }
 
+    }
+    public class updateUserDTO
+    {
+        public Guid userId { get; set; }
+        public string role { get; set; }
     }
 }

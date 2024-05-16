@@ -11,11 +11,6 @@
     </div>
   </div>-->
   <div class="admin-list ">
-    <app-admin-name-card></app-admin-name-card>
-    <app-admin-name-card></app-admin-name-card>
-    <app-admin-name-card></app-admin-name-card>
-    <app-admin-name-card></app-admin-name-card>
-     <app-admin-name-card></app-admin-name-card>
-
+    <app-admin-name-card *ngFor="let admin of adminList" [admin]="admin" (adminSelected)="onAdminSelected($event)"></app-admin-name-card>
   </div>
 </div>

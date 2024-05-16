@@ -15,4 +15,8 @@ export class UserServiceService {
   getTopReaders(): Observable<any[]> {
     return this.http.post<any[]>(this.apiUrl + 'User/top', {});
   }
+
+  getAllAdmins(): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'User/allAdmins', {});
+  }
 }
