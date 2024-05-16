@@ -5,21 +5,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  cursor:pointer;
-}
-
-.Acces-heading {
-  color: var(--Primary-Gray, #343435);
-  font-family: Lato;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 }
 
 
 .dashboard-accesscontrol {
-  margin-left: 1rem;
+ margin-left:1rem;
+ 
 }
 
 
@@ -40,7 +31,6 @@
   background: var(--Primary-Blue, #28519E);
   margin-right:1.5rem;
   align-items:flex-end;
-  outline:none;
 }
 
 
@@ -125,7 +115,7 @@
   height: 42.125rem;
   flex-shrink: 0;
   align-self: stretch;
-  gap:1%;
+  gap:2%;
 }
 /*
 @media screen and (min-width: 1000px) and (max-width: 1320px) {

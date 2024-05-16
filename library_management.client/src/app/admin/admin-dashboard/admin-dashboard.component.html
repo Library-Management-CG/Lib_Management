@@ -49,8 +49,8 @@
 
         </div>
         <div class="button-outer">
-          <button type="button" class="btn btn-primary add-button" (click)="handleButton()">
-            data-toggle="modal" data-target="#exampleModalCenter">
+          <button type="button" class="btn btn-primary add-button" (click)="handleButtonClick()">
+            <!--data-toggle="modal" data-target="#exampleModalCenter">-->
             <img src="../../../assets/icons/Admin-dashboard/Add.svg" />
             <span>Add New Book</span>
           </button>
@@ -60,8 +60,6 @@
       </div>
     </div>
 
-
-    <app-issue-book-modal></app-issue-book-modal>
     <div class="col-lg-2 col-md-3 pl-0 media-outer pr-0 padding-outer-rightCard">
       <div class="issue-books-outer">
         <div class="outer-issue">
@@ -69,7 +67,7 @@
           <img src="../../../assets/icons/Admin-dashboard/User.svg" class="user" />
           <div class="stack  ">
             <div class="total-number ">
-              <span class="Total-books-text " >Issue Books</span>
+              <span class="Total-books-text ">Issue Books</span>
               <span class="number ">60</span>
             </div>
 
@@ -78,7 +76,7 @@
 
         </div>
         <div class="button-outer">
-          <button type="button" class="btn btn-primary issue-button " (click)="handleButtonClick()">
+          <button type="button" class="btn btn-primary issue-button ">
             <img src="../../../assets/icons/Admin-dashboard/issue-books.svg" />
             <span>Issue Book</span>
           </button>
@@ -98,7 +96,6 @@
       <app-books-card-shared [books]="book"></app-books-card-shared>
     </div>
   </div>
-
 
 
 

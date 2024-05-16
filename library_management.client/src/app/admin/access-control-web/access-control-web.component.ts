@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-access-control-web',
@@ -8,12 +7,4 @@ import { Router } from '@angular/router';
 })
 export class AccessControlWebComponent {
 
-  constructor(private router: Router) {
-
-  }
-
-  routeTODasboard() {
-    this.router.navigate(['/admin']);
-
-  }
 }

@@ -17,7 +17,7 @@
             Uncertain about your next read? Discover some genuine<br /> treasures nestled within our library.
           </div>
 
-          <button type="button" class="explore-button" (click)="exploreBooks()">
+          <button type="button" class="explore-button">
             <div class="explore-button-text">Explore Books</div>
           </button>
 
@@ -82,25 +82,93 @@
               <p class="leaderboard-heading">Leaderboard</p>
               <div class="leaderboard-stack">
                 <div class="cards">
-                  <div *ngFor="let user of topUsers; let i = index" class="card card-{{ i + 1 }}">
-
-
-           
-                      <div class="card-content">
-                        <img src="../../../assets/icons/{{ i + 1 }}.svg" />
-                        <div class="card-name">
-                          <span class="card-name-span">{{ user.firstName }} {{ user.lastName }}</span>
-                          <div class="card-book">
-                            <img src="../../../assets/icons/card-book.svg" />
-                            <span class="card-book-span">{{ user.bookCount }}</span>
-                          </div>
+                  <div class="card card-1">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/1.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
                         </div>
                       </div>
-                      <img *ngIf="i < 3" src="../../../assets/icons/trophy 1.svg" class="trophy" />
-              
-
+                    </div>
+                    <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
                   </div>
-
+                  <div class="card card-2">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/2.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
+                  </div>
+                  <div class="card card-3">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/3.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="../../../assets/icons/trophy 1.svg" class="trophy" />
+                  </div>
+                  <div class="card card-4">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/4.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-5">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/5.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-6">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/6.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-7">
+                    <div class="card-content">
+                      <img src="../../../assets/icons/7.svg" />
+                      <div class="card-name">
+                        <span class="card-name-span">Cameron Williamson</span>
+                        <div class="card-book">
+                          <img src="../../../assets/icons/card-book.svg" />
+                          <span class="card-book-span">10 Books</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="card card-8">
                     <div class="card-content">
                       <div class="card-name">
@@ -109,9 +177,9 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
+          </div>
 
         </div>
 

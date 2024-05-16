@@ -17,38 +17,30 @@
             <div class="col-md-8">
               <div class="title-and-author">
                 <div class="modal-title">{{ books?.title }}</div>
-                <div class="name-of-author">{{ books?.authorName }}</div>
+                <div class="name-of-author">{{ books?.author }}</div>
                 <div class="rating-book">
-
-                  <ng-container *ngIf="books?.points > 0; else noRatingYet">
-                    <ng-container *ngFor="let star of getStarsArray(books?.points)">
-                      <img src="../../../assets/icons/filled_star.svg" class="star-icon" />
-                    </ng-container>
-                    <ng-container *ngFor="let star of getEmptyStarsArray(books?.points)">
-                      <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
-                    </ng-container>
-                    <div class="numberOfPeopleReviewed"> ({{books?.numberOfPeopleReviewed}}) </div>
+                  <ng-container *ngFor="let star of getStarsArray(books.ratingUrl)">
+                    <img src="../../../assets/icons/filled_star.svg" class="star-icon" />
                   </ng-container>
+                  <ng-container *ngFor="let star of getEmptyStarsArray(books.ratingUrl)">
+                    <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
+                  </ng-container>  <div class="numberOfPeopleReviewed"> ({{books?.numberOfPeopleReviewed}}) </div>
 
-                  <ng-template #noRatingYet>
-                    <p style="font-family: Lato; font-size: 14px; font-weight: 400; text-align: left; color: #6D6D6D;">
-                      Not rated yet
-                    </p>
-                  </ng-template>
-
-                  <img *ngIf="isAdmin()==false" src="../../../../assets/icons/Line 113.svg" class="line" />
-                  <div *ngIf="isAdmin()==false && books?.statusName == 'Available' " class="tag">AVALIABLE</div>
-                  <div *ngIf="isAdmin()==false && books?.statusName == 'Not Available' " class="not-avaliable-tag">NOT AVALIABLE</div>
+                  <img *ngIf="isAdmin()==false" src="../../../../assets/icons/Line 113.svg" class="line"/>
+                  <div *ngIf="isAdmin()==false" class="tag">AVALIABLE</div>
 
                 </div>
               </div>
               <div class="book-content">
-                {{books?.description}}
+                The Design of Everyday Things is a best-selling book by cognitive scientist
+                and usability engineer Donald Norman about how design serves as the communication between object and user.
+                How to optimize that conduit of communication in order to make the experience of using the object pleasurable.
+
               </div>
             </div>
 
             <div class="book-modal-image col-md-2  col-12 order-md-last order-md-first">
-              <img src="../../../../assets/icons/Admin-dashboard/book-image.svg" class="image-content"/>
+              <img [src]="books?.imageUrl" class="image-content"/>
             </div>
           </div>
         </div>

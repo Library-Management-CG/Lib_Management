@@ -10,10 +10,15 @@ declare var $: any;
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent {
+  //ngOnInit(): void {
+  //  $(document).ready(function () {
+  //    $('#exampleModalCenter').modal('show');
+  //  });
+  //}
 
   constructor(private router: Router) { }
 
-  handleButton() {
+  handleButtonClick() {
     if (window.innerWidth <= 767) {
       
       this.router.navigate(['/admin/add-book-mobile']);
@@ -23,6 +28,12 @@ export class AdminDashboardComponent {
     }
   }
   counti: number[] = [];
+  openModal(): void {
+    // Assuming you're using Bootstrap modal
+    // You need to include Bootstrap JS in your project
+    // You can use jQuery to trigger the modal
+    $('#exampleModalCenter').modal('show');
+  }
 
   //ngOnInit(): void {
   //  //$(document).ready(function () {
@@ -145,22 +156,6 @@ export class AdminDashboardComponent {
   get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
-
-  handleButtonClick(): void {
-    const isMobile = window.matchMedia('(max-width: 450px)').matches;
-    if (isMobile) {
-      this.router.navigate(['/admin/issue-mobile']); // Use the router to navigate
-    } else {
-      this.openModal();
-    }
-  }
-
-  openModal(): void {
-
-    $('#exampleModalIssue').modal('show');
-  }
-
- 
 
   get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();

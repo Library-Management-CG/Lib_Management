@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-access-control-mobile',
@@ -7,27 +6,5 @@ import { Router } from '@angular/router';
   styleUrls: ['./access-control-mobile.component.css']
 })
 export class AccessControlMobileComponent {
-  constructor(private router: Router) {
 
-  }
-  showBody = false;
-  counti: any[] = [];
-  toggle() {
-    this.showBody = !this.showBody;
-  }
-  ngOnInit(): void{
-    for (var i = 0; i < 5; i++) {
-      this.counti[i] = i; 
-    }
-  }
-  openModal() {
-    this.router.navigate(['admin/assignPermission']);
-
-  }
-
-  routeTODasboard() {
-    this.router.navigate(['/admin']);
-
-  }
- 
 }
