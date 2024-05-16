@@ -25,4 +25,11 @@
         public int numberOfPeopleReviewed { get; set; }
 
     }
+
+    public class allAdminsDTO
+    {
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+
+    }
 }

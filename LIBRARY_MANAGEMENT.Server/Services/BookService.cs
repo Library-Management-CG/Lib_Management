@@ -11,6 +11,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<Boolean> AddNewAuthors(NewBooksDTO books);
         Task<Boolean> AddAuthorBooks(NewBooksDTO books);
         Task<Boolean> AddBookQr(NewBooksDTO books);
+
+        Task<int> gettotalbooks();
+
+        Task<int> issuebooks();
+        Task<List<TopChoicesBookDTO>> topChoices();
+
     }
     public class BookService : IBookService
     {
@@ -26,13 +32,14 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         public async Task<Boolean> AddNewBooks(NewBooksDTO books)
         {
             Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
-            if (check == null)
+            if (check != null)
             {
                 return true;
             }
             try
             {
                 Book b = new Book {
+                    //Id = Guid.NewGuid(),
                     Title = books.bookName,
                     Description = books.description,
                     CreatedAtUtc = DateTime.UtcNow,
@@ -69,6 +76,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 {
                     Author a = new Author
                     {
+                        //Id = Guid.NewGuid(),
                         AuthorName = parts[i],
                         CreatedAtUtc = DateTime.UtcNow,
                         CreatedBy = books.LoggedIn,
@@ -89,7 +97,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         }
         public async Task<Boolean> AddAuthorBooks(NewBooksDTO books)
         {
-            Guid bookId = await _context.Books.Where(s => s.Title == books.bookName).Select(s => s.Id).FirstOrDefaultAsync();
+            Guid bookId = await _context.Books.Where(s => s.Isbn == books.ISBN).Select(s => s.Id).FirstOrDefaultAsync();
             string[] parts = books.authorName.Split(',');
 
             for (int i = 0; i < parts.Length; i++)
@@ -98,9 +106,10 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
                 try
                 {
-                    Guid authorId = await _context.Authors.Where(a => a.AuthorName == parts[i]).Select(s => s.Id).FirstOrDefaultAsync();
+                    Guid authorId = await _context.Authors.Where(a => a.AuthorName.ToLower() == parts[i].ToLower()).Select(s => s.Id).FirstOrDefaultAsync();
                     AuthorBook au = new AuthorBook
                     {
+                        //Id = Guid.NewGuid(),
                         BookId = bookId,
                         AuthorId = authorId,
                     };
@@ -119,7 +128,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         public async Task<Boolean> AddBookQr(NewBooksDTO books)
         {
-            Guid bookId = await _context.Books.Where(s => s.Title == books.bookName).Select(s => s.Id).FirstOrDefaultAsync();
+            Guid bookId = await _context.Books.Where(s => s.Isbn == books.ISBN).Select(s => s.Id).FirstOrDefaultAsync();
 
             for(int i = 0; i < books.qr.Count(); i++)
             {
@@ -128,6 +137,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 {
                     BookQrMapping bqr = new BookQrMapping
                     {
+                       // Id = Guid.NewGuid(),
                         BookId = bookId,
                         Qrnumber = qr,
                         StatusId = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not assigned").Select(s => s.Id).FirstOrDefaultAsync(),
@@ -147,5 +157,72 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
             return true; 
         }
+
+
+        public async Task<int> gettotalbooks()
+        {
+            try
+            {
+                int totalBookCount = await _context.BookQrMappings.CountAsync();
+
+                return totalBookCount;
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception(" total books count failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return 0;
+            }
+          
+        }
+
+
+        public async Task<int> issuebooks()
+        {
+            try
+            {
+
+                int issueBookCount = await _context.BookIssues.CountAsync(b => b.ReceiveDate == null);
+
+
+
+                return issueBookCount;
+            }
+
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("issue book count failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return 0;
+            }
+
+        }
+        public async Task<List<TopChoicesBookDTO>> topChoices()
+        {
+            List<TopChoicesBookDTO> topbooks = await _context.Books
+           .Include(r => r.Ratings)
+           .Include(book => book.AuthorBooks)
+            .ThenInclude(authorBook => authorBook.Author)
+            .Select(book => new TopChoicesBookDTO
+    {
+        bookName = book.Title,
+        description = book.Description,
+        authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+        rating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+        totalratingcount=book.Ratings.Count()
+
+
+          }).OrderByDescending(book => book.totalratingcount)
+          .ThenByDescending(book=>book.rating)
+           .Take(10)
+
+        .ToListAsync();
+
+            return topbooks;
+        }
+
+
     }
 }

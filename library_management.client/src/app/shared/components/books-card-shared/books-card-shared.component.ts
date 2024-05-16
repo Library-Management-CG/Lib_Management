@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class BooksCardSharedComponent {
 
   @Input() books: any = {};
+  @Input() Topbooks: any = {};
+
   @Output() openModalEvent = new EventEmitter<any>();
 
   openModal(book: any) {
