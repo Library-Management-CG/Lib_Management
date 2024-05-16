@@ -14,9 +14,10 @@
 
     public class BooksDetails
     {
+        public Guid BookQRMappingId { get; set; }
         public Guid BookId { get; set; }
         public string? Title { get; set; }
-        public string AuthorName { get; set; } = null!;
+        public List<string> AuthorName { get; set; } = null!;
         public string? Description { get; set; }
         public DateTime CreatedAtUtc { get; set; }
         public double Points { get; set; } = 0;

@@ -64,10 +64,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     .Include(bqm => bqm.Book.Ratings)
                .Select(bqm => new
                {
-                   BookId = bqm.BookId,
-                   Book = bqm.Book,
-                   StatusName = bqm.Status.StatusName,
-                   CreatedAtUtc = bqm.CreatedAtUtc
+                   bqm.Id,
+                   bqm.BookId,
+                   bqm.Book,
+                   bqm.Status.StatusName,
+                   bqm.CreatedAtUtc
                })
                .OrderByDescending(bqm => bqm.CreatedAtUtc)
                .ToList();
@@ -75,16 +76,20 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     var booksDetails = recentBooks
                         .Select(rb => new BooksDetails
                         {
+                            BookQRMappingId = rb.Id,
                             BookId = rb.BookId,
                             Title = rb.Book.Title,
                             AuthorName = _context.AuthorBooks
                                 .Where(ab => ab.BookId == rb.BookId)
                                 .Select(ab => ab.Author.AuthorName)
-                                .FirstOrDefault(),
+                                .ToList(),
                             Description = rb.Book.Description,
                             CreatedAtUtc = rb.CreatedAtUtc,
                             Points = rb.Book.Ratings.Any() ? Math.Floor(rb.Book.Ratings.Average(r => r.Points)) : 0,
-                            StatusName = rb.StatusName,
+                            StatusName = _context.BookIssues
+                            .Any(issue => issue.BookQrMappingid == rb.Id && issue.ReceiveDate == null)
+                            ? "Not Available"
+                            : "Available",
                             numberOfPeopleReviewed = rb.Book.Ratings.Count
                         })
                         .ToList();
@@ -121,7 +126,10 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 var booksDetails = popularBooks.Select(book => new BooksDetails
                 {
                     Title = book.Title,
-                    AuthorName = book.AuthorBooks.FirstOrDefault()?.Author.AuthorName, 
+                    AuthorName = _context.AuthorBooks
+                                .Where(ab => ab.BookId == book.Id)
+                                .Select(ab => ab.Author.AuthorName)
+                                .ToList(),
                     Description = book.Description,
                     CreatedAtUtc = book.CreatedAtUtc,
                     Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
