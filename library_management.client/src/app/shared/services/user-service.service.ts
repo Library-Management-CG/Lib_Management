@@ -27,4 +27,8 @@ export class UserServiceService {
   getMostPopularBooks(): Observable<any[]> {
     return this.http.post<any[]>(this.apiUrl + 'User/mostPopular', {});
   }
+
+  getMyBooksMobile(userId: number): Observable<any[]> {
+    return this.http.post<any[]>(`${this.apiUrl}BookIssue/my-books`, { userId: userId });
+  }
 }

@@ -34,16 +34,16 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                                  join b in _context.Books
                                                  on qr.BookId equals b.Id
 
-                                                 join ab in _context.AuthorBooks
-                                                 on b.Id equals ab.BookId
+                                                 //join ab in _context.AuthorBooks
+                                                 //on b.Id equals ab.BookId
 
-                                                 join a in _context.Authors
-                                                 on ab.AuthorId equals a.Id into authorGroup
-                                                 from author in authorGroup.DefaultIfEmpty()
+                                                 //join a in _context.Authors
+                                                 //on ab.AuthorId equals a.Id into authorGroup
+                                                 //from author in authorGroup.DefaultIfEmpty()
 
-                                                 join r in _context.Ratings
-                                                 on b.Id equals r.BookId into ratingGroup
-                                                 from rating in ratingGroup.DefaultIfEmpty()
+                                                 //join r in _context.Ratings
+                                                 //on b.Id equals r.BookId into ratingGroup
+                                                 //from rating in ratingGroup.DefaultIfEmpty()
 
                                                  join s in _context.Statuses
                                                  on qr.StatusId equals s.Id
@@ -51,16 +51,34 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                                  where u.Id == user.userId
                                                  select new MyBooksDTO
                                                  {
+                                                     bookId = b.Id, 
                                                      bookName = b.Title,
-                                                     author = author.AuthorName??"",
+                                                     //author = [],
+                                                     points = 0,
                                                      qrCode = qr.Qrnumber,
                                                      issueDate = bi.IssueDate,
-                                                     returnDate = bi.ReturnDate,
-                                                     points = rating != null ? rating.Points : 0,
+                                                     returnDate = bi.ReceiveDate,
                                                      status = s.StatusName,
                                                  }).OrderByDescending(d => d.issueDate).ToListAsync();
+
+                foreach (var item in result)
+                {
+                    item.points = await _context.Ratings
+                                                .Where(r => r.BookId == item.bookId && r.CreatedBy == user.userId)
+                                                .Select(p => p.Points)
+                                                .FirstOrDefaultAsync();
+                    item.author = await _context.Authors
+                        .Where(a => a.Id == _context.AuthorBooks
+                            .Where(au => au.BookId == item.bookId)
+                            .Select(s => s.AuthorId)
+                            .FirstOrDefault())
+                        .Select(s => s.AuthorName)
+                        .ToListAsync();
+                }
+
                 return result;
-            }catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("get my books service failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
             }
 

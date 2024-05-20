@@ -208,7 +208,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             .Select(book => new TopChoicesBookDTO
     {
                 title = book.Title,
-        description = book.Description,
+                description = book.Description,
                 authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
                 points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
                 numberOfPeopleReviewed = book.Ratings.Count()
