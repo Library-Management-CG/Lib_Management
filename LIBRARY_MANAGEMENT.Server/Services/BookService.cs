@@ -2,6 +2,7 @@
 using LIBRARY_MANAGEMENT.Server.DTO;
 using LIBRARY_MANAGEMENT.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace LIBRARY_MANAGEMENT.Server.Services
 {
@@ -11,6 +12,10 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<Boolean> AddNewAuthors(NewBooksDTO books);
         Task<Boolean> AddAuthorBooks(NewBooksDTO books);
         Task<Boolean> AddBookQr(NewBooksDTO books);
+        Task<IEnumerable<BooksDetailDTO>> GetAllBooks();
+        Task<List<BookQrDetailDTO>> GetBookInfo(Guid bookId);
+
+
     }
     public class BookService : IBookService
     {
@@ -147,5 +152,88 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
             return true; 
         }
+
+        public async Task<IEnumerable<BooksDetailDTO>> GetAllBooks()
+        {
+            var books = await _context.Books
+                .Include(b => b.AuthorBooks)
+                .ThenInclude(ab => ab.Author)
+                .ToListAsync();
+
+            var booksWithDetails = new List<BooksDetailDTO>();
+
+            foreach (var book in books)
+            {
+                var numberOfCopies = await _context.BookQrMappings.CountAsync(bqm => bqm.BookId == book.Id);
+                var bookQrDetails = await GetBookInfo(book.Id);
+
+                booksWithDetails.Add(new BooksDetailDTO
+                {
+                    BookId = book.Id,
+                    Title = book.Title,
+                    AuthorNames = string.Join(", ", book.AuthorBooks.Select(ab => ab.Author.AuthorName)),
+                    NumberOfCopies = numberOfCopies,
+                    BookQrDetails = bookQrDetails
+                });
+            }
+
+            return booksWithDetails;
+        }
+
+        public async Task<List<BookQrDetailDTO>> GetBookInfo(Guid bookId)
+        {
+            var bookQrMappings = await _context.BookQrMappings
+                .Where(bqm => bqm.BookId == bookId)
+                .Include(bqm => bqm.Status)
+                .ToListAsync();
+
+            var bookQrDetails = new List<BookQrDetailDTO>();
+
+            foreach (var bqm in bookQrMappings)
+            {
+                var issuedTo = await GetIssuedTo(bqm.Id);
+                var issueDate = await GetIssueDate(bqm.Id);
+                var returnDate = await GetReturnDate(bqm.Id);
+
+                bookQrDetails.Add(new BookQrDetailDTO
+                {
+                    BookQrMappingId = bqm.Id,
+                    qrNumber = bqm.Qrnumber,
+                    issuedTo = issuedTo,
+                    issueDate = issueDate,
+                    returnDate = returnDate,
+                    status = bqm.Status.StatusName
+                });
+            }
+
+            return bookQrDetails;
+        }
+
+
+        private async Task<string?> GetIssuedTo(Guid bookQrMappingId)
+        {
+            var bookIssue = await _context.BookIssues
+                .Include(bi => bi.IssueToNavigation)
+                .FirstOrDefaultAsync(bi => bi.BookQrMappingid == bookQrMappingId && bi.ReceiveDate == null);
+
+            return bookIssue != null ? $"{bookIssue.IssueToNavigation.FirstName} {bookIssue.IssueToNavigation.LastName}" : null;
+        }
+
+        private async Task<DateTime?> GetIssueDate(Guid bookQrMappingId)
+        {
+            var bookIssue = await _context.BookIssues
+                .FirstOrDefaultAsync(bi => bi.BookQrMappingid == bookQrMappingId && bi.ReceiveDate == null);
+
+            return bookIssue != null ? bookIssue.IssueDate : null;
+        }
+
+        private async Task<DateTime?> GetReturnDate(Guid bookQrMappingId)
+        {
+            var bookIssue = await _context.BookIssues
+                .FirstOrDefaultAsync(bi => bi.BookQrMappingid == bookQrMappingId && bi.ReceiveDate == null);
+
+            return bookIssue != null ? bookIssue.ReturnDate : null;
+        }
+
     }
 }

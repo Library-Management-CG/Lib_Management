@@ -12,7 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<LibraryManagementSystemContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<IBookQrMappingService, BookQrMappingService>();
 
 builder.Services.AddCors(options =>
 {
@@ -27,7 +29,7 @@ builder.Logging.AddDbLogger(options =>
     builder.Configuration.GetSection("Logging").GetSection("Database").GetSection("Options").Bind(options);
 });
 
-builder.Services.AddScoped<IBookService, BookService>();
+
 
 var app = builder.Build();
 

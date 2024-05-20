@@ -3,6 +3,7 @@ using LIBRARY_MANAGEMENT.Server.Models;
 using LIBRARY_MANAGEMENT.Server.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LIBRARY_MANAGEMENT.Server.Controllers
 {
@@ -10,14 +11,12 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly LibraryManagementSystemContext _context;
-        private readonly BookService _bookService;
-        private readonly ILogger<BookService> _logger;
+        private readonly IBookService _bookService;
+        private readonly ILogger<BookController> _logger;
 
 
-        public BookController(LibraryManagementSystemContext context, BookService bookService, ILogger<BookService> logger)
+        public BookController(IBookService bookService, ILogger<BookController> logger)
         {
-            _context = context;
             _bookService = bookService;
             _logger = logger;
         }
@@ -39,6 +38,22 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
                 return BadRequest(e);
             }
         }
+
+        [HttpPost("get-books")]
+        public async Task<ActionResult<IEnumerable<BooksDetailDTO>>> GetAllBooks()
+        {
+            try
+            {
+                var books = await _bookService.GetAllBooks();
+                return Ok(books);
+            }
+            catch (Exception e)
+            {
+                _logger.Log(LogLevel.Error, new EventId(124, "ErrorEvent"), "002", new Exception("error getting books", e), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return BadRequest(e);
+            }
+        }
+
     }
 }
     
