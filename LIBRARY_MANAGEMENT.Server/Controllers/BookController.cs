@@ -11,11 +11,12 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
+        private readonly LibraryManagementSystemContext _context;
         private readonly IBookService _bookService;
-        private readonly ILogger<BookController> _logger;
+        private readonly ILogger<BookService> _logger;
 
 
-        public BookController(IBookService bookService, ILogger<BookController> logger)
+        public BookController(LibraryManagementSystemContext context, IBookService bookService, ILogger<BookService> logger)
         {
             _bookService = bookService;
             _logger = logger;
@@ -39,6 +40,25 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             }
         }
 
+
+        [HttpGet("totalbooks")]
+        public async Task<int>gettotalbooks()
+        {
+            return await _bookService.gettotalbooks();
+        }
+
+
+        [HttpGet("issuebooks")]
+        public async Task<int> issuebooks()
+        {
+            return await _bookService.issuebooks();
+        }
+        [HttpGet("topChoicesBook")]
+        public async Task<List<TopChoicesBookDTO>> topChoicesBook()
+        {
+            return await _bookService.topChoices();
+        }
+
         [HttpPost("get-books")]
         public async Task<ActionResult<IEnumerable<BooksDetailDTO>>> GetAllBooks()
         {
@@ -54,6 +74,9 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             }
         }
 
+
+
     }
+
+
 }
-    

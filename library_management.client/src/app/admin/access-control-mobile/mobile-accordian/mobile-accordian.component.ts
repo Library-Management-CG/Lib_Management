@@ -8,8 +8,12 @@ import { Component, Input } from '@angular/core';
 export class MobileAccordianComponent {
   showBody = false;
   @Input() index: number = 0;
+  isToggleChecked = true;
+ 
 
-
+  onModalClose(event: boolean) {
+    this.isToggleChecked = event;
+  }
 
   toggle() {
     this.showBody = !this.showBody;

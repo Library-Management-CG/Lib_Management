@@ -60,6 +60,7 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
 import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 import { CaptureComponent } from './admin/capture/capture.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 
 
 
@@ -112,7 +113,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ExploreBooksComponent,
     //  FormsModule
     AddBookCommonComponent,
-    CaptureComponent
+    CaptureComponent,
+    MyBooksCardMobileComponent,
+    RevokePermissionModalComponent
   ],
   imports: [
     BrowserModule,
