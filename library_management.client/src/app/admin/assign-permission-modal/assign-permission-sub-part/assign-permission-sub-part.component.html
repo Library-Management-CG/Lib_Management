@@ -21,9 +21,15 @@
       <div class="user ">
         <span class="user-text ">User</span>
 
-        <!--<ng-select class=" search-input ngselect ">
-          <ng-option class="dropdown">
-            ftvt
+        <!--<ng-select placeholder="Select User" [(ngModel)]="selectedUser" [searchable]="true" [clearable]="false">
+          <ng-option *ngFor="let value of adminList" [value]="value.id">
+            <div class="option">
+              <ngx-avatars name="{{value.firstName}} {{value.lastName}}" [textSizeRatio]=2.7 bgColor=#b8dde1 fgColor=#264f9d [round]="true" size="33"></ngx-avatars>
+              <div class="name-id">
+                <span class="option-name">{{value.firstName}} {{value.lastName}}</span>
+                <span class="option-id">{{value.cgiid}}</span>
+              </div>
+            </div>
           </ng-option>
         </ng-select>-->
 

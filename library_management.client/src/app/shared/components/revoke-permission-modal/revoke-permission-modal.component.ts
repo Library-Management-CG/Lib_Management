@@ -15,6 +15,8 @@ export class RevokePermissionModalComponent {
 
   @Output() modalClosed = new EventEmitter<boolean>();
 
+  @Output() revokeEvent = new EventEmitter<boolean>();
+
   handleModalClose() {
     this.modalClosed.emit(true);
   }
@@ -41,6 +43,8 @@ export class RevokePermissionModalComponent {
     //  (error) => {
     //    console.log("User not found");
     //  });
+
+    this.revokeEvent.emit(true);
   }
 
 }

@@ -9,6 +9,7 @@ import { UserServiceService } from '../../../shared/services/user-service.servic
 export class ListPanelComponent {
   adminList: any = [];
   @Output() adminSelectedFromList: EventEmitter<any> = new EventEmitter<any>();
+  selectedAdmin: any = 0;
 
   constructor(private userService: UserServiceService) {
 
@@ -16,6 +17,7 @@ export class ListPanelComponent {
 
   ngOnInit() {
     this.getAllAdmins();
+    
   }
 
   getAllAdmins() {
@@ -23,6 +25,10 @@ export class ListPanelComponent {
       (data:any) => {
         console.log(data);
         this.adminList = data;
+        if (this.adminList) {
+          this.onAdminSelected(this.adminList[0]);
+          this.selectedAdmin = this.adminList[0];
+        }
       },
       (error: any) => {
         console.log("User not found");
@@ -30,7 +36,7 @@ export class ListPanelComponent {
   }
 
   onAdminSelected(admin: any) {
-    console.log('Selected admin:', admin);
     this.adminSelectedFromList.emit(admin);
+    this.selectedAdmin = admin;
   }
 }

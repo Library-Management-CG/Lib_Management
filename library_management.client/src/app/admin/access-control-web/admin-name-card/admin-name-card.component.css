@@ -152,3 +152,17 @@
   border: 1px solid black;
 }
 
+/*.admin-card {
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+  .admin-card:hover {
+    background-color: #f0f0f0;
+  }
+
+  .admin-card.selected {
+    background-color: black;*/ /* Change to desired color */
+    /*color: white;*/ /* Ensure text is readable on selected background */
+  /*}*/

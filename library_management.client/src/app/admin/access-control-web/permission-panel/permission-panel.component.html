@@ -1,12 +1,12 @@
-<app-revoke-permission-modal (modalClosed)="onModalClose($event)"></app-revoke-permission-modal>
+<app-revoke-permission-modal (modalClosed)="onModalClose($event)" (revokeEvent)="revokeEvent($event)"></app-revoke-permission-modal>
 
 <div class="permissions-panel-container">
   <div class="permissions-panel-header">
-    <div class="admin-name">
-      <ngx-avatars name="Savannah Nguyen" [textSizeRatio]=2.7 bgColor=#b8dde1 fgColor=#264f9d [round]="true" size="35" [style.fontWeight]="'501'" [style.fontSize]="'0.0.875rem'" [style.color]="'#002C3F'"></ngx-avatars>
+    <div class="admin-name" *ngIf="selectedAdmin">
+      <ngx-avatars  name="{{selectedAdmin.firstName}} {{selectedAdmin.lastName}}" [textSizeRatio]=2.7 bgColor=#b8dde1 fgColor=#264f9d [round]="true" size="35" [style.fontWeight]="'501'" [style.fontSize]="'0.0.875rem'" [style.color]="'#002C3F'"></ngx-avatars>
 
       <div class="admin-name-id">
-        <span class="name">Savannah Nguyen</span>
+        <span *ngIf="selectedAdmin" class="name">{{selectedAdmin.firstName}} {{selectedAdmin.lastName}}</span>
       </div>
     </div>
    

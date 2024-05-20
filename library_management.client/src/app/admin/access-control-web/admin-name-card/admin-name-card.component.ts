@@ -8,8 +8,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class AdminNameCardComponent {
   @Input() admin: any;
   @Output() adminSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Input() isSelected: boolean = false;
 
   selectAdmin() {
-    this.adminSelected.emit(this.admin); // Emit the selected admin
+    this.adminSelected.emit(this.admin); 
   }
 }

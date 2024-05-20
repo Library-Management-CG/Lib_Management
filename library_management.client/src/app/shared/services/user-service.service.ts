@@ -27,4 +27,8 @@ export class UserServiceService {
   getMostPopularBooks(): Observable<any[]> {
     return this.http.post<any[]>(this.apiUrl + 'User/mostPopular', {});
   }
+
+  revokeUser(revokeParams:any): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'User/add-admin', revokeParams );
+  }
 }
