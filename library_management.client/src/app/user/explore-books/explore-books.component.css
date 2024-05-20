@@ -288,21 +288,20 @@
 
 }
 
-@media only screen and (max-width: 320px) {
+/*@media only screen and (max-width: 320px) {
   
 
   .newasset-dropdown .content {
-    margin-left: -9.9rem;
+    margin-left: -10rem;
   }
-}
+}*/
 @media only screen and (max-width: 376px) {
 
 
   .newasset-dropdown .content {
-    margin-left: -9.1rem;
+    margin-left: -9.8rem;
   }
 }
-
 
 .custom-container{
     gap: 2rem;

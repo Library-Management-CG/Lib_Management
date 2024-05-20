@@ -15,7 +15,7 @@
   background: #FFF;
 }
 
-.row {
+.row-modal {
   margin-right: 0px;
 }
 
@@ -58,7 +58,7 @@
   margin-bottom: 0px !important;
 }
 
-.modal-body {
+.body {
   padding-top: 0px !important;
   padding: 0rem 1.5rem 0.8rem 1.5rem;
 }
@@ -128,7 +128,7 @@
   height: 2rem;
 }
 
-.form-group label {
+.custom-form-group label {
   color: var(--Primary-Grey, #343435);
   font-family: Lato;
   font-size: 0.8125rem;
@@ -137,7 +137,7 @@
   line-height: normal;
 }
 
-.form-group input {
+.custom-form-group input {
   color: var(--Primary-Grey, #343435);
   font-family: Lato;
   font-size: 0.875rem;
@@ -214,7 +214,7 @@
 /*padding-right: 30px;*/ /* Ensure space for the icon */
 /*}*/
 
-.form-control {
+.form-control-custom {
   color: var(--Primary-Gray, #343435);
   font-family: Lato;
   font-size: 1rem;
@@ -374,9 +374,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-.col-7 {
-  padding-right: 0px !important;
-}
+
 .issue-button-mobile {
   display: none;
  
@@ -427,7 +425,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: normal;
   }
 
-  .col-md-7{
+  .form-col{
       padding-right:0rem !important;
   }
 

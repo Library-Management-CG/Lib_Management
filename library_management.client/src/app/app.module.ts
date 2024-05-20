@@ -58,6 +58,8 @@ import { RatingModalComponent } from './user/rating-modal/rating-modal.component
 import { MyBooksMobileComponent } from './user/my-books-mobile/my-books-mobile.component';
 import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mobile/my-books-card-mobile.component';
 import { ExploreBooksComponent } from './user/explore-books/explore-books.component';
+import { NewExploreBooksComponent } from './user/new-explore-books/new-explore-books.component';
+import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.component';
 
 
 
@@ -109,6 +111,8 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
     IssueModalBodyComponent,
     IssueMobileComponent,
     ExploreBooksComponent,
+    NewExploreBooksComponent,
+    RatingDropdownComponent,
     //  FormsModule
   ],
   imports: [

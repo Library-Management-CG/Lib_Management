@@ -221,6 +221,6 @@ export class DashboardComponent {
   }
 
   exploreBooks() {
-    this.router.navigate(['explore-books']);
+    this.router.navigate(['new-explore-books']);
   }
 }

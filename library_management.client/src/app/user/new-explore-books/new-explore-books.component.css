@@ -1,0 +1,37 @@
+.inner {
+  width: 100%;
+  margin: auto;
+  margin-top:4rem;
+}
+.column {
+  width: 18%;
+  margin: 1%;
+  float: left;
+  box-sizing: border-box;
+}
+.clear{
+    clear:both;
+}
+
+@media only screen and (min-width:200px) and (max-width: 567px){
+  .inner {
+    width: 100%;
+  }
+  .column {
+    width: 48%;
+  }
+}
+
+@media only screen and (min-width: 568px) and (max-width: 992px) {
+  .inner {
+    width: 100%;
+  }
+
+  .column {
+    width: 30%; 
+    margin: 1%;
+  }
+}
+.rating{
+    margin-left:10rem;
+}
