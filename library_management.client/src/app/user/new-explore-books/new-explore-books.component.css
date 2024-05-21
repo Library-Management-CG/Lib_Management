@@ -35,3 +35,77 @@
 .rating{
     margin-left:10rem;
 }
+
+.head-body {
+  display: flex;
+  flex-direction: row;
+  margin:1.5rem 2rem;
+}
+.header-txt {
+  color: var(--Primary-Gray, #343435);
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.subhead{
+    margin:1.5rem 0rem 2.5rem 0rem;
+    display: flex;
+    position:relative;
+    flex-direction: row;
+}
+.explore-books-heading {
+  color: var(--Primary-Grey, #343435);
+
+  font-family: Literata;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding:0rem !important;
+} {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-txt {
+  color: var(--Primary-Gray, #343435);
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.subhead {
+  margin: 1.5rem 0rem 2.5rem 0rem;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items:center;
+}
+
+.explore-books-heading {
+  color: var(--Primary-Grey, #343435);
+  font-family: Literata;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 0rem !important;
+}
+.check-box-text {
+  color: var(--Primary-Gray, #343435);
+  font-family: Lato;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.check-box-component {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.2rem;
+  gap:1rem;
+}
