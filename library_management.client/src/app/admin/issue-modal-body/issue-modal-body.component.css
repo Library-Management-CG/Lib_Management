@@ -10,11 +10,6 @@
   margin-left: 0px;
 }
 
-.modal-content {
-  border-radius: 0.5rem;
-  background: #FFF;
-}
-
 .row-modal {
   margin-right: 0px;
 }
@@ -49,11 +44,6 @@
   margin-bottom: 1.5rem;
 }
 
-.modal-header {
-  border-bottom: none;
-  padding: 1.5rem 1.5rem 0rem 1.5rem;
-}
-
 .top-heading {
   margin-bottom: 0px !important;
 }
@@ -61,11 +51,6 @@
 .body {
   padding-top: 0px !important;
   padding: 0rem 1.5rem 0.8rem 1.5rem;
-}
-
-.modal-footer {
-  padding-top: 0;
-  padding: 1rem 0rem;
 }
 
 .image-container {
@@ -89,10 +74,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 0.5rem;
-}
-
-.modal-dialog {
-  max-width: 40.625rem;
 }
 
 .date-container-form {
@@ -185,10 +166,6 @@
 /*.footer-buttons{
     gap:1rem;
 }*/
-.modal-footer {
-  border-top: 1px solid #ccc;
-  margin: 0rem 1.5rem 0rem 1.5rem;
-}
 
 .textarea {
   height: 140px;
@@ -381,9 +358,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media only screen and (max-width: 450px) {
-  .modal-body{
-      padding:1rem;
-  }
+  
   .body-text {
     color: var(--Primary-Grey, #343435);
     font-family: Literata;
@@ -595,7 +570,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none;
   box-shadow: none;
 }*/
-.modal.fade .modal-dialog {
+/*.modal.fade .modal-dialog {
   transform: translate3d(0, 10vh, 0);
   transition: transform 1s ease-out;
 }
@@ -604,3 +579,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: translate3d(0, -50vh, 0);
   transition: transform 0.5s ease-out;
 }
+*/
