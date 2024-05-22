@@ -5,7 +5,7 @@
       <img src="../../../../assets/icons/Book 1.svg" class="book" />
       <h5 id="exampleModalLabel">Book Details</h5>
     </div>
-    <img src="../../../../assets/icons/Close (1).svg" class="close" data-bs-dismiss="modal" />
+    <img *ngIf="isDesktopView()" src="../../../../assets/icons/Close (1).svg" class="close" data-bs-dismiss="modal" />
   </div>
 
   <div *ngIf="books">
@@ -14,7 +14,7 @@
         <div class="row">
           <div class="col-md-8">
             <div class="title-and-author">
-              <div class="modal-title">{{ books?.title }}</div>
+              <div class="book-title-content">{{ books?.title }}</div>
               <div class="name-of-author">{{ books?.authorName }}</div>
               <div class="rating-book">
 

@@ -17,6 +17,10 @@ export class ModalContentComponent {
     return this.router.url.toLowerCase().includes('admin');
   }
 
+  isDesktopView(): boolean {
+    return window.innerWidth > 758; 
+  }
+
   getStarsArray(rating: number): boolean[] {
     const stars = [];
     for (let i = 0; i < rating; i++) {
