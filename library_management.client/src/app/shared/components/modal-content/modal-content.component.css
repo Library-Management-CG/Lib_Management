@@ -177,10 +177,9 @@
     .not-avaliable-tag {
       background: #FFE8E8;
       font-family: Lato;
-      font-size: 8px;
       font-weight: 600;
       line-height: 6px;
-      width: 79px;
+      width: fit-content;
       padding: 8px;
       border-radius: 4px 4px 4px 4px;
       color: #CC1A07;
@@ -188,4 +187,14 @@
       margin-left: 6px;
     }
 
+    .container{
+        padding-right: 0rem;
+    }
+
   }
+
+@media only screen and (max-width: 350px) {
+  .not-avaliable-tag {
+    font-size: 5.6px;
+  }
+}

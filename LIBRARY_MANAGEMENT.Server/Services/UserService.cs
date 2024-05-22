@@ -1,6 +1,7 @@
 ﻿using LIBRARY_MANAGEMENT.Server.DTO;
 using LIBRARY_MANAGEMENT.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace LIBRARY_MANAGEMENT.Server.Services
@@ -15,10 +16,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
     public class UserService:IUserService
     {
         private readonly LibraryManagementSystemContext _context;
+        private readonly ILogger<BookService> _logger;
 
-        public UserService(LibraryManagementSystemContext context)
+        public UserService(LibraryManagementSystemContext context, ILogger<BookService> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public List<UserBookDTO> GetTopBookReaders()
@@ -50,7 +53,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 throw ex;
             }
         }
@@ -119,7 +122,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 throw ex;
             }
         }
@@ -179,7 +182,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 throw ex;
             }
         }
