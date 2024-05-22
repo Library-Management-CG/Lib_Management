@@ -10,17 +10,12 @@
   cursor: pointer;
 }
 
-.modal {
-  border-radius: 1rem;
+.modal-body {
+  margin-top: -1rem;
 }
 
-
-.modal-body{
-    margin-top: -1rem;
-}
-
-.modal-header{
-    border: none;
+.modal-header {
+  border: none;
 }
 
 .modal-title {
@@ -63,13 +58,13 @@
   font-weight: 500;
   line-height: 16.8px;
   text-align: left;
-  color:#6D6D6D;
+  color: #6D6D6D;
 }
 
 .rating-book {
   display: flex;
   height: 20px;
-  margin-top : 11px;
+  margin-top: 11px;
   gap: 2px;
 }
 
@@ -136,9 +131,9 @@
 @media only screen and (max-width: 700px) {
   .modal {
     border-radius: 1rem;
-   /* animation: bottomSlide 0.3s ease-out;*/
+    /* animation: bottomSlide 0.3s ease-out;*/
   }
-/*
+  /*
   @keyframes bottomSlide {
     from {
       transform: translateY(100%);
@@ -156,8 +151,7 @@
 
   .book-modal-image {
     display: flex;
-    justify-content:center;
-
+    justify-content: center;
   }
 
 
@@ -165,10 +159,5 @@
     width: 6.875rem;
     height: 10.1875rem;
     border-radius: 0.5rem;
-
   }
-
-
-
- 
 }

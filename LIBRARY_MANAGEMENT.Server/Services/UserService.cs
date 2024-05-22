@@ -141,6 +141,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
                 var booksDetails = popularBooks.Select(book => new BooksDetails
                 {
+                    BookQRMappingId = book.BookQrMappings.FirstOrDefault().Id,
                     BookId = book.Id,
                     Title = book.Title,
                     AuthorName = _context.AuthorBooks

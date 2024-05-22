@@ -60,6 +60,9 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
 import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 import { CaptureComponent } from './admin/capture/capture.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatListModule } from '@angular/material/list';
+import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
 
 
 
@@ -113,7 +116,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ExploreBooksComponent,
     //  FormsModule
     AddBookCommonComponent,
-    CaptureComponent
+    CaptureComponent,
+    ModalContentComponent
   ],
   imports: [
     BrowserModule,
@@ -137,7 +141,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FormsModule,
     AvatarModule,
     WebcamModule,
-    ImageCropperModule
+    ImageCropperModule,
+    MatBottomSheetModule,
+    MatListModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],
