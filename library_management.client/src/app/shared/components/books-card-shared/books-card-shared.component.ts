@@ -36,7 +36,8 @@ export class BooksCardSharedComponent {
 
   openBottomSheet(book: any): void {
     this.openModalEvent.emit(book);
-    this._bottomSheet.open(ModalContentComponent);
+    const bottomSheetRef = this._bottomSheet.open(ModalContentComponent);
+    bottomSheetRef.instance.books = book; 
   }
 
   ngOnInit() {
