@@ -366,7 +366,7 @@ app-books-card-shared{
 }
 
 
-@media only screen and (max-width: 390px) and (min-width: 370px){
+@media only screen and (max-width: 390px) and (min-width: 350px){
   .books-stack-container {
     left: 22px;
     transform: scale(0.96);
