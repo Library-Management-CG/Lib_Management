@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class BooksCardSharedComponent {
 
   @Input() books: any = {};
+  @Input() Topbooks: any = {};
+
   @Output() openModalEvent = new EventEmitter<any>();
 
   openModal(book: any) {
@@ -17,6 +19,10 @@ export class BooksCardSharedComponent {
 
   constructor(private router: Router) {
 
+  }
+
+  ngOnInit() {
+    console.log(this.books.statusName);
   }
   isAdmin() {
     return this.router.url.toLowerCase().includes('admin');

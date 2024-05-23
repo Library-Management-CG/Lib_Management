@@ -601,7 +601,7 @@
   }
   .issue-books-outer {
     margin-top: 1rem;
-    background-size: 118%; /* or contain, or specific dimensions */
+    background-size: 118%;  
   }
    .banner-image img {
     width: 8rem;

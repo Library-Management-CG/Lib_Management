@@ -30,7 +30,6 @@ import { AccessControlMobileComponent } from './admin/access-control-mobile/acce
 import { AssignPermissionModalComponent } from './admin/assign-permission-modal/assign-permission-modal.component';
 import { ListPanelComponent } from './admin/access-control-web/list-panel/list-panel.component';
 import { PermissionPanelComponent } from './admin/access-control-web/permission-panel/permission-panel.component';
-import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
@@ -58,6 +57,10 @@ import { RatingModalComponent } from './user/rating-modal/rating-modal.component
 import { MyBooksMobileComponent } from './user/my-books-mobile/my-books-mobile.component';
 import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mobile/my-books-card-mobile.component';
 import { ExploreBooksComponent } from './user/explore-books/explore-books.component';
+import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
+import { CaptureComponent } from './admin/capture/capture.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 import { NewExploreBooksComponent } from './user/new-explore-books/new-explore-books.component';
 import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.component';
 
@@ -114,6 +117,10 @@ import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.
     NewExploreBooksComponent,
     RatingDropdownComponent,
     //  FormsModule
+    AddBookCommonComponent,
+    CaptureComponent,
+    MyBooksCardMobileComponent,
+    RevokePermissionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -136,7 +143,8 @@ import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.
     NgSelectModule,
     FormsModule,
     AvatarModule,
-    WebcamModule
+    WebcamModule,
+    ImageCropperModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],

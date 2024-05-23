@@ -1,0 +1,22 @@
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="revokeRoleModal" tabindex="-1" role="dialog" aria-labelledby="revokeRoleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="revoke-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="handleModalClose()">
+          <img src="../../../../assets/icons/revoke-permission-modal/modal-close-icon.svg" />
+        </button>
+      </div>
+      <div class="revoke-content">
+        <img src="../../../../assets/icons/revoke-permission-modal/alert.svg" />
+        <div class="revoke-message">
+          You are revoking admin permissions from vandit
+          <br />Are you sure?
+        </div>
+        <div class="revoke-buttons">
+          <button type="button" class="no-button" data-dismiss="modal" (click)="handleModalClose()"><span>No</span></button>
+          <button type="button" class="yes-button" data-dismiss="modal" (click)="changeRole()"><span>Yes, Revoke</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

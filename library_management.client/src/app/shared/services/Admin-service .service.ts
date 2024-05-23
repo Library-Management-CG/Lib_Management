@@ -6,21 +6,20 @@ import { ConfigServiceService } from './config-service.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserServiceService {
+export class AdminServiceService {
 
   private apiUrl = this.config.apiUrl;
   users: any;
   constructor(private http: HttpClient, private config: ConfigServiceService) { }
 
-  getTopReaders(): Observable<any[]> {
-    return this.http.post<any[]>(this.apiUrl + 'User/top', {});
+  getTotalBooks(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'Book/totalbooks');
   }
 
-  getRecentBooks(): Observable<any[]> {
-    return this.http.post<any[]>(this.apiUrl + 'User/recent', {});
+  getissueBooks(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'Book/issuebooks');
   }
-
-  getMostPopularBooks(): Observable<any[]> {
-    return this.http.post<any[]>(this.apiUrl + 'User/mostPopular', {});
+  topChoicesBook(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'Book/topChoicesBook');
   }
 }

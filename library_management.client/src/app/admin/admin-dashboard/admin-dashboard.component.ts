@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { AdminServiceService } from '../../shared/services/Admin-service .service';
 declare var $: any;
 
 @Component({
@@ -11,71 +12,29 @@ declare var $: any;
 })
 export class AdminDashboardComponent {
 
-  constructor(private router: Router) { }
+  totalbooks: any;
+  issuebooks: any;
+  constructor(private router: Router, private AdminService: AdminServiceService) { }
+
+  handleButton() {
+    if (window.innerWidth <= 767) {
+
+      this.router.navigate(['/admin/add-book-mobile']);
+    } else {
+
+      this.openModalAdd();
+    }
+  }
+
+  openModalAdd(): void {
+
+    $('#exampleModalCenter').modal('show');
+  }
+
   counti: number[] = [];
 
-  //ngOnInit(): void {
-  //  //$(document).ready(function () {
-  //  //  $('#exampleModalCenter').modal('show');
-  //  //});
-  //    for (let i = 1; i <= 10; i++) {
-  //        this.counti.push(i);
-  //    }
-  //}
-  mostPopularBooks = [
 
-    {
-      title: 'The Invisible Cloud',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 4,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'The Invisible',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed: 28
-    },
-
-
-
-    {
-      title: 'The Cloud',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 1,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'The ok',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 2,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'my',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 3,
-      numberOfPeopleReviewed: 28
-    },
-
-    {
-      title: 'daryl',
-      author: 'Daryl Bishop & Nick Smith',
-      imageUrl: '../../../assets/icons/Book - The Invisible Cloud.svg',
-      ratingUrl: 5,
-      numberOfPeopleReviewed: 28
-    },
-
-
-  ];
+  mostPopularBooks = [];
   
   @Output() getPicture = new EventEmitter<WebcamImage>();
   showWebcam = true;
@@ -96,7 +55,51 @@ export class AdminDashboardComponent {
         this.isCameraExist = mediaDevices && mediaDevices.length > 0;
       }
     );
+    this.gettotalcount();
+    this.getissuecount();
+    this.topChoicesBookData();
   }
+
+  gettotalcount() {
+    this.AdminService.getTotalBooks().subscribe(
+      (data) => {
+        this.totalbooks = data;
+        
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  
+  }
+
+  getissuecount() {
+    this.AdminService.getissueBooks().subscribe(
+      (data) => {
+        this.issuebooks = data;
+
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+
+  }
+  topChoicesBookData() {
+    this.AdminService.topChoicesBook().subscribe(
+      (data) => {
+        this.mostPopularBooks = data;
+        console.log(data);
+
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+
+  }
+
+
 
   takeSnapshot(): void {
     this.trigger.next();
