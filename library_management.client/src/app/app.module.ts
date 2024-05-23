@@ -63,6 +63,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 import { NewExploreBooksComponent } from './user/new-explore-books/new-explore-books.component';
 import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.component';
+import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatListModule } from '@angular/material/list';
+import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
 
 
 
@@ -120,7 +123,9 @@ import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.
     AddBookCommonComponent,
     CaptureComponent,
     MyBooksCardMobileComponent,
-    RevokePermissionModalComponent
+    RevokePermissionModalComponent,
+    CaptureComponent,
+    ModalContentComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +149,9 @@ import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.
     FormsModule,
     AvatarModule,
     WebcamModule,
-    ImageCropperModule
+    ImageCropperModule,
+    MatBottomSheetModule,
+    MatListModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],
