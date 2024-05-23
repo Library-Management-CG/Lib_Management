@@ -66,12 +66,14 @@ import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.
 import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list';
 import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
+import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.component';
+
+
+import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 
 
 
-
-
-
+LOAD_WASM().subscribe();
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,7 +127,11 @@ import { ModalContentComponent } from './shared/components/modal-content/modal-c
     MyBooksCardMobileComponent,
     RevokePermissionModalComponent,
     CaptureComponent,
-    ModalContentComponent
+    ModalContentComponent,
+    RevokePermissionModalComponent,
+    MobileAccordianComponent,
+    ScannerComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -151,7 +157,9 @@ import { ModalContentComponent } from './shared/components/modal-content/modal-c
     WebcamModule,
     ImageCropperModule,
     MatBottomSheetModule,
-    MatListModule
+    MatListModule,
+    ImageCropperModule,
+    NgxScannerQrcodeModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],

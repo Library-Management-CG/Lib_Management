@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-books',
@@ -7,14 +8,17 @@ import {Component} from '@angular/core';
 
 })
 export class ManageBooksComponent {
+  constructor(private router: Router) { }
 
   filterValue: string = '';
 
   applyNewFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value;
   }
-  constructor() { }
-  handleButtonClick() {
+  
+  handleButtonClick(): void {
+
+    this.router.navigate(['admin/issue-mobile-scanner']);
 
   }
 }

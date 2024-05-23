@@ -10,6 +10,7 @@ import { AssignPermissionModalComponent } from './assign-permission-modal/assign
 import { AssignPermissionSubPartComponent } from './assign-permission-modal/assign-permission-sub-part/assign-permission-sub-part.component';
 import { AddBookMobileComponent } from './add-book-mobile/add-book-mobile.component';
 import { IssueMobileComponent } from './issue-mobile/issue-mobile.component';
+import { ScannerComponent } from './issue-modal-body/scanner/scanner.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'admin/issue-mobile',
     component: IssueMobileComponent
+  },
+   {
+    path: 'admin/issue-mobile-scanner',
+    component: ScannerComponent
   }
 
 ]

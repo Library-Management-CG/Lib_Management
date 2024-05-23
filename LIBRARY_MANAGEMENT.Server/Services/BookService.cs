@@ -207,15 +207,15 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             .ThenInclude(authorBook => authorBook.Author)
             .Select(book => new TopChoicesBookDTO
     {
-        bookName = book.Title,
-        description = book.Description,
-        authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
-        rating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
-        totalratingcount=book.Ratings.Count()
+                title = book.Title,
+                description = book.Description,
+                authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+                numberOfPeopleReviewed = book.Ratings.Count()
 
 
-          }).OrderByDescending(book => book.totalratingcount)
-          .ThenByDescending(book=>book.rating)
+          }).OrderByDescending(book => book.numberOfPeopleReviewed)
+          .ThenByDescending(book=>book.points)
            .Take(10)
 
         .ToListAsync();
