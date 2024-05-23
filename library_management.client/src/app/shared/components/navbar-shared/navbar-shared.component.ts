@@ -175,4 +175,13 @@ export class NavbarSharedComponent {
       this.isTogglerClicked = false;
     }
   }
+  open_explore() {
+    // Redirect to the explore-books route
+    this.redirectToExploreBooks();
+  }
+
+  redirectToExploreBooks() {
+    // Navigate to the explore-books route
+    this.router.navigate(['/explore-books']);
+  }
 }

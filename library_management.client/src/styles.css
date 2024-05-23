@@ -39,6 +39,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   line-height: 1.25rem;
 }
 
+
+.mat-bottom-sheet-container {
+  border-top-left-radius: 24px !important;
+  border-top-right-radius: 24px !important;
+}
+
 .g-bubble:hover {
   background: var(--blue-8, rgba(40, 81, 158, 0.08));
   border: 1px solid var(--Blue, #28519E);

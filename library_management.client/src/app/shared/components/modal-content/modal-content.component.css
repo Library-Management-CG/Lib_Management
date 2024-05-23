@@ -1,5 +1,5 @@
 
-/*.title-image {
+.title-image {
   display: flex;
   width: 160px;
   height: 24px;
@@ -10,20 +10,15 @@
   cursor: pointer;
 }
 
-.modal {
-  border-radius: 1rem;
-}
+/*.modal-body {
+  margin-top: -1rem;
+}*/
 
+/*.modal-header {
+  border: none;
+}*/
 
-.modal-body{
-    margin-top: -1rem;
-}
-
-.modal-header{
-    border: none;
-}
-
-.modal-title {
+.book-title-content {
   font-family: Literata;
   font-size: 19px;
   font-weight: 600;
@@ -53,7 +48,6 @@
 }
 
 .title-and-author {
-  width: 321px;
   height: 98px;
 }
 
@@ -63,14 +57,14 @@
   font-weight: 500;
   line-height: 16.8px;
   text-align: left;
-  color:#6D6D6D;
+  color: #6D6D6D;
 }
 
 .rating-book {
   display: flex;
   height: 20px;
-  margin-top : 11px;
-  gap: 2px;
+  margin-top: 11px;
+/*  gap: 2px;*/
 }
 
 .numberOfPeopleReviewed {
@@ -133,12 +127,11 @@
   margin-left: 6px;
 }
 
-@media only screen and (max-width: 700px) {
-  .modal {
-    border-radius: 1rem;*/
-   /* animation: bottomSlide 0.3s ease-out;*/
-  /*}*/
-/*
+
+
+  @media only screen and (max-width: 700px) {
+   
+    /*
   @keyframes bottomSlide {
     from {
       transform: translateY(100%);
@@ -149,26 +142,59 @@
     }
   }
 */
+    #exampleModalLabel {
+      font-family: Literata;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 19.7px;
+      text-align: left;
+    }
 
-  /*.col-md-2 {
-    order: -1;
+    .col-md-2 {
+      order: -1;
+    }
+
+    .book-modal-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .book-title-content {
+      font-family: Literata;
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 31.19px;
+      text-align: left;
+    }
+
+
+    .image-content {
+      width: 6.875rem;
+      height: 9.1875rem;
+      border-radius: 1.7rem;
+    }
+
+    .not-avaliable-tag {
+      background: #FFE8E8;
+      font-family: Lato;
+      font-weight: 600;
+      line-height: 6px;
+      width: fit-content;
+      padding: 8px;
+      border-radius: 4px 4px 4px 4px;
+      color: #CC1A07;
+      display: flex;
+      margin-left: 6px;
+    }
+
+    .container{
+        padding-right: 0rem;
+    }
+
   }
 
-  .book-modal-image {
-    display: flex;
-    justify-content:center;
-
+@media only screen and (max-width: 350px) {
+  .not-avaliable-tag {
+    font-size: 5.6px;
   }
-
-
-  .image-content {
-    width: 6.875rem;
-    height: 10.1875rem;
-    border-radius: 0.5rem;
-
-  }
-
-
-
- 
-}*/
+}
