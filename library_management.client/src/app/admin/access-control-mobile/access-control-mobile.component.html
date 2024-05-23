@@ -7,8 +7,8 @@
       <span class="heading-text">Access Control</span>
     </div>
     <div class="accordion">
-      <div *ngFor="let count of counti; let index = index">
-        <app-mobile-accordian [index]="index"></app-mobile-accordian>
+      <div>
+        <app-mobile-accordian *ngFor="let adminMobile of adminListMobile; let index = index" [adminMobile]="adminMobile" [index]="index" (revokeSingleUserMobile)="onRevokeSingleUserMobile($event)"></app-mobile-accordian>
       </div>
     </div>
 

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-revoke-permission-modal',
@@ -6,16 +7,19 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./revoke-permission-modal.component.css']
 })
 export class RevokePermissionModalComponent {
-  selectedAdmin: any;
+  
   isToggleChecked = true;
   //handleModalClose() {
   //  this.isToggleChecked = true;
   //}
 
-
+  @Input() selectedAdmin: any;
   @Output() modalClosed = new EventEmitter<boolean>();
+  @Output() revokeAdminMobile = new EventEmitter<boolean>();
 
   @Output() revokeEvent = new EventEmitter<boolean>();
+
+  constructor(private router: Router) { }
 
   handleModalClose() {
     this.modalClosed.emit(true);
@@ -43,8 +47,15 @@ export class RevokePermissionModalComponent {
     //  (error) => {
     //    console.log("User not found");
     //  });
+    if (window.innerWidth <= 767) {
+      console.log("helloji from revoke",this.selectedAdmin);
+      this.revokeAdminMobile.emit(true);
+    } else {
 
-    this.revokeEvent.emit(true);
+      this.revokeEvent.emit(true);
+    }
+    
+    
   }
 
 }

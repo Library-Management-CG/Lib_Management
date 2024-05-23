@@ -9,6 +9,7 @@ import { UserServiceService } from '../../../shared/services/user-service.servic
 })
 export class AssignPermissionSubPartComponent {
   adminList: any;
+  selectedUser: any;
   constructor(private router: Router, private userService: UserServiceService) {
 
   }
@@ -22,7 +23,7 @@ export class AssignPermissionSubPartComponent {
   }
 
   getAllAdmins() {
-    this.userService.getAllAdmins().subscribe(
+    this.userService.getAllUsers().subscribe(
       (data: any) => {
         console.log(data);
         this.adminList = data;
@@ -30,6 +31,21 @@ export class AssignPermissionSubPartComponent {
           //this.onAdminSelected(this.adminList[0]);
           //this.selectedAdmin = this.adminList[0];
         }
+      },
+      (error: any) => {
+        console.log("User not found");
+      });
+  }
+
+  Save() {
+    var revokeParams = {
+      userId: this.selectedUser,
+      role: "admin"
+    }
+    console.log(revokeParams);
+    this.userService.revokeUser(revokeParams).subscribe(
+      (data: any) => {
+        console.log(data);
       },
       (error: any) => {
         console.log("User not found");

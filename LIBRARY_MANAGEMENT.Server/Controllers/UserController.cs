@@ -54,6 +54,20 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             }
         }
 
+        [HttpPost("allUsers")]
+        public async Task<List<allAdminsDTO>> getAllUsers()
+        {
+            try
+            {
+                return await _userService.getAllUsersService();
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("get all-Admins failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return new List<allAdminsDTO>();
+            }
+        }
+
         [HttpPost("add-admin")]
         public async Task<IActionResult> AddAdmin([FromBody]updateUserDTO user)
         {

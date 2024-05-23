@@ -15,6 +15,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         List<BooksDetails> GetMostPopularBooks();
         Task<List<allAdminsDTO>> getAllAdminsService();
         Task<Boolean> AddAdminService(updateUserDTO user);
+        Task<List<allAdminsDTO>> getAllUsersService();
     }
 
     public class UserService:IUserService
@@ -167,6 +168,19 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                              FirstName = u.FirstName == null ? null : u.FirstName,
                                              LastName = u.LastName==null?null: u.LastName,
                                              
+                                         }).ToListAsync();
+            return allAdminsDTOs;
+        }
+
+        public async Task<List<allAdminsDTO>> getAllUsersService()
+        {
+            List<allAdminsDTO> allAdminsDTOs = await _context.Users.Where(r => r.Role.RoleName.ToLower() == "user")
+                                         .Select(u => new allAdminsDTO
+                                         {
+                                             Id = u.Id,
+                                             FirstName = u.FirstName == null ? null : u.FirstName,
+                                             LastName = u.LastName == null ? null : u.LastName,
+
                                          }).ToListAsync();
             return allAdminsDTOs;
         }
