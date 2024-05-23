@@ -13,6 +13,8 @@ declare var $: any;
 export class BooksCardSharedComponent {
 
   @Input() books: any = {};
+  @Input() Topbooks: any = {};
+
   @Output() openModalEvent = new EventEmitter<any>();
   showModalToggle: boolean = false;
 

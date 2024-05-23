@@ -44,36 +44,14 @@ public partial class LibraryManagementSystemContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<CustomError>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__CustomEr__3214EC079257AB1D");
-
-            entity.ToTable("custom_errors", "library_user");
-
-            entity.Property(e => e.Id)
-                .HasColumnName("Id")
-                .HasColumnType("uniqueidentifier");
-
-            entity.Property(e => e.Val)
-                .HasColumnName("Val")
-                .HasColumnType("nvarchar(MAX)")
-                .IsRequired();
-
-            entity.Property(e => e.Created)
-                .HasColumnName("Created")
-                .HasColumnType("datetime")
-                .IsRequired();
-        });
-
-
         modelBuilder.Entity<Action>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__action__3213E83F70CAE8F9");
+            entity.HasKey(e => e.Id).HasName("PK__action__3213E83F04965B02");
 
             entity.ToTable("action", "library_book_issue");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.ActionName)
                 .HasMaxLength(20)
@@ -83,12 +61,12 @@ public partial class LibraryManagementSystemContext : DbContext
 
         modelBuilder.Entity<Author>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__author__3213E83F3FEDD883");
+            entity.HasKey(e => e.Id).HasName("PK__author__3213E83F6A8A1F06");
 
             entity.ToTable("author", "library_book");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.AuthorName)
                 .HasMaxLength(50)
@@ -106,24 +84,24 @@ public partial class LibraryManagementSystemContext : DbContext
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.AuthorCreatedByNavigations)
                 .HasForeignKey(d => d.CreatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__author__createdB__4E88ABD4");
+                .HasConstraintName("FK__author__createdB__5CD6CB2B");
 
             entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.AuthorUpdatedByNavigations)
                 .HasForeignKey(d => d.UpdatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__author__updatedB__4F7CD00D");
+                .HasConstraintName("FK__author__updatedB__5DCAEF64");
         });
 
         modelBuilder.Entity<AuthorBook>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__authorBo__3213E83FB3A3808E");
+            entity.HasKey(e => e.Id).HasName("PK__authorBo__3213E83F624E720B");
 
             entity.ToTable("authorBooks", "library_book");
 
             entity.HasIndex(e => new { e.BookId, e.AuthorId }, "authorBooks_index_0").IsUnique();
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.AuthorId).HasColumnName("authorId");
             entity.Property(e => e.BookId).HasColumnName("bookId");
@@ -131,22 +109,22 @@ public partial class LibraryManagementSystemContext : DbContext
             entity.HasOne(d => d.Author).WithMany(p => p.AuthorBooks)
                 .HasForeignKey(d => d.AuthorId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__authorBoo__autho__5165187F");
+                .HasConstraintName("FK__authorBoo__autho__5FB337D6");
 
             entity.HasOne(d => d.Book).WithMany(p => p.AuthorBooks)
                 .HasForeignKey(d => d.BookId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__authorBoo__bookI__5070F446");
+                .HasConstraintName("FK__authorBoo__bookI__5EBF139D");
         });
 
         modelBuilder.Entity<Book>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__book__3213E83F8AD7FAEF");
+            entity.HasKey(e => e.Id).HasName("PK__book__3213E83F524A536C");
 
             entity.ToTable("book", "library_book");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.CreatedAtUtc)
                 .HasColumnType("datetime")
@@ -165,22 +143,22 @@ public partial class LibraryManagementSystemContext : DbContext
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.BookCreatedByNavigations)
                 .HasForeignKey(d => d.CreatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__book__createdBy__4CA06362");
+                .HasConstraintName("FK__book__createdBy__5AEE82B9");
 
             entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.BookUpdatedByNavigations)
                 .HasForeignKey(d => d.UpdatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__book__updatedBy__4D94879B");
+                .HasConstraintName("FK__book__updatedBy__5BE2A6F2");
         });
 
         modelBuilder.Entity<BookIssue>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__bookIssu__3213E83FD77FEE0B");
+            entity.HasKey(e => e.Id).HasName("PK__bookIssu__3213E83F828E5E48");
 
             entity.ToTable("bookIssue", "library_book_issue");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.BookQrMappingid).HasColumnName("bookQrMappingid");
             entity.Property(e => e.CreatedAtUtc)
@@ -205,27 +183,27 @@ public partial class LibraryManagementSystemContext : DbContext
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.BookIssueCreatedByNavigations)
                 .HasForeignKey(d => d.CreatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__bookIssue__creat__5DCAEF64");
+                .HasConstraintName("FK__bookIssue__creat__6C190EBB");
 
             entity.HasOne(d => d.IssueToNavigation).WithMany(p => p.BookIssueIssueToNavigations)
                 .HasForeignKey(d => d.IssueTo)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__bookIssue__issue__5CD6CB2B");
+                .HasConstraintName("FK__bookIssue__issue__6B24EA82");
 
             entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.BookIssueUpdatedByNavigations)
                 .HasForeignKey(d => d.UpdatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__bookIssue__updat__5EBF139D");
+                .HasConstraintName("FK__bookIssue__updat__6D0D32F4");
         });
 
         modelBuilder.Entity<BookQrMapping>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__bookQrMa__3213E83FAB1D787B");
+            entity.HasKey(e => e.Id).HasName("PK__bookQrMa__3213E83FDB932F8F");
 
             entity.ToTable("bookQrMapping", "library_book_issue");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.BookId).HasColumnName("bookId");
             entity.Property(e => e.CreatedAtUtc)
@@ -242,36 +220,36 @@ public partial class LibraryManagementSystemContext : DbContext
             entity.HasOne(d => d.Book).WithMany(p => p.BookQrMappings)
                 .HasForeignKey(d => d.BookId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__bookQrMap__bookI__5535A963");
+                .HasConstraintName("FK__bookQrMap__bookI__6383C8BA");
 
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.BookQrMappingCreatedByNavigations)
                 .HasForeignKey(d => d.CreatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__bookQrMap__creat__571DF1D5");
+                .HasConstraintName("FK__bookQrMap__creat__656C112C");
 
             entity.HasOne(d => d.Status).WithMany(p => p.BookQrMappings)
                 .HasForeignKey(d => d.StatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__bookQrMap__statu__5629CD9C");
+                .HasConstraintName("FK__bookQrMap__statu__6477ECF3");
 
             entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.BookQrMappingUpdatedByNavigations)
                 .HasForeignKey(d => d.UpdatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__bookQrMap__updat__5812160E");
+                .HasConstraintName("FK__bookQrMap__updat__66603565");
         });
 
         modelBuilder.Entity<Comment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__comment__3213E83F6B10EDD2");
+            entity.HasKey(e => e.Id).HasName("PK__comment__3213E83F7EFD7C5A");
 
             entity.ToTable("comment", "library_book_issue");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.ActionId).HasColumnName("actionId");
-            entity.Property(e => e.BookQrMappingid).HasColumnName("bookQrMappingid");
             entity.Property(e => e.bookIssueId).HasColumnName("bookIssueId");
+            entity.Property(e => e.BookQrMappingid).HasColumnName("bookQrMappingid");
             entity.Property(e => e.CreatedAtUtc)
                 .HasColumnType("datetime")
                 .HasColumnName("createdAtUTC");
@@ -285,74 +263,84 @@ public partial class LibraryManagementSystemContext : DbContext
             entity.HasOne(d => d.Action).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.ActionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__comment__actionI__59063A47");
+                .HasConstraintName("FK__comment__actionI__6754599E");
+
+            entity.HasOne(d => d.bookIssue).WithMany(p => p.Comments)
+                .HasForeignKey(d => d.bookIssueId)
+                .HasConstraintName("FK__comment__bookIss__571DF1D5");
 
             entity.HasOne(d => d.BookQrMapping).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.BookQrMappingid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__comment__bookQrM__59FA5E80");
-
-            entity.HasOne(d => d.bookIssue).WithMany(p => p.Comments)
-                .HasForeignKey(d => d.bookIssueId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__comment__bookIss__5812160E");
+                .HasConstraintName("FK__comment__bookQrM__68487DD7");
 
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.CommentCreatedByNavigations)
                 .HasForeignKey(d => d.CreatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__comment__created__5AEE82B9");
+                .HasConstraintName("FK__comment__created__693CA210");
 
             entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.CommentUpdatedByNavigations)
                 .HasForeignKey(d => d.UpdatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__comment__updated__5BE2A6F2");
+                .HasConstraintName("FK__comment__updated__6A30C649");
+        });
+
+        modelBuilder.Entity<CustomError>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__CustomEr__3214EC0741724411");
+
+            entity.ToTable("CustomError", "library_user");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.Created).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<Rating>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__rating__3213E83F70046466");
+            entity.HasKey(e => e.Id).HasName("PK__rating__3213E83FB331945C");
 
             entity.ToTable("rating", "library_book");
 
             entity.HasIndex(e => new { e.BookId, e.CreatedBy }, "rating_index_1").IsUnique();
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.BookId).HasColumnName("bookId");
             entity.Property(e => e.CreatedAtUtc)
-                .IsRowVersion()
-                .IsConcurrencyToken()
+                .HasColumnType("datetime")
                 .HasColumnName("createdAtUTC");
             entity.Property(e => e.CreatedBy).HasColumnName("createdBy");
             entity.Property(e => e.Points).HasColumnName("points");
-            entity.Property(e => e.UpdatedAtUtc).HasColumnName("updatedAtUTC");
+            entity.Property(e => e.UpdatedAtUtc)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAtUTC");
             entity.Property(e => e.UpdatedBy).HasColumnName("updatedBy");
 
             entity.HasOne(d => d.Book).WithMany(p => p.Ratings)
                 .HasForeignKey(d => d.BookId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__rating__bookId__52593CB8");
+                .HasConstraintName("FK__rating__bookId__60A75C0F");
 
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.RatingCreatedByNavigations)
                 .HasForeignKey(d => d.CreatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__rating__createdB__534D60F1");
+                .HasConstraintName("FK__rating__createdB__619B8048");
 
             entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.RatingUpdatedByNavigations)
                 .HasForeignKey(d => d.UpdatedBy)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__rating__updatedB__5441852A");
+                .HasConstraintName("FK__rating__updatedB__628FA481");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__role__3213E83F2CE3238F");
+            entity.HasKey(e => e.Id).HasName("PK__role__3213E83F7CE14560");
 
             entity.ToTable("role", "library_user");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.RoleName)
                 .HasMaxLength(20)
@@ -362,12 +350,12 @@ public partial class LibraryManagementSystemContext : DbContext
 
         modelBuilder.Entity<Status>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__status__3213E83FB0DD4756");
+            entity.HasKey(e => e.Id).HasName("PK__status__3213E83F2B153EFC");
 
             entity.ToTable("status", "library_book_issue");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.StatusName)
                 .HasMaxLength(255)
@@ -376,16 +364,15 @@ public partial class LibraryManagementSystemContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__user__3213E83F282B27FE");
+            entity.HasKey(e => e.Id).HasName("PK__user__3213E83F4533951D");
 
             entity.ToTable("user", "library_user");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("id");
             entity.Property(e => e.CreatedAtUtc)
-                .IsRowVersion()
-                .IsConcurrencyToken()
+                .HasColumnType("datetime")
                 .HasColumnName("createdAtUTC");
             entity.Property(e => e.CreatedBy).HasColumnName("createdBy");
             entity.Property(e => e.FirstName)
@@ -398,7 +385,9 @@ public partial class LibraryManagementSystemContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("password");
             entity.Property(e => e.RoleId).HasColumnName("roleId");
-            entity.Property(e => e.UpdatedAtUtc).HasColumnName("updatedAtUTC");
+            entity.Property(e => e.UpdatedAtUtc)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAtUTC");
             entity.Property(e => e.UpdatedBy).HasColumnName("updatedBy");
             entity.Property(e => e.Username)
                 .HasMaxLength(50)
@@ -406,21 +395,20 @@ public partial class LibraryManagementSystemContext : DbContext
 
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.InverseCreatedByNavigation)
                 .HasForeignKey(d => d.CreatedBy)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__user__createdBy__49C3F6B7");
+                .HasConstraintName("FK__user__createdBy__5812160E");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__user__roleId__4BAC3F29");
+                .HasConstraintName("FK__user__roleId__59FA5E80");
 
             entity.HasOne(d => d.UpdatedByNavigation).WithMany(p => p.InverseUpdatedByNavigation)
                 .HasForeignKey(d => d.UpdatedBy)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__user__updatedBy__4AB81AF0");
+                .HasConstraintName("FK__user__updatedBy__59063A47");
+        });
 
 
-            modelBuilder.Entity<Action>()
+        modelBuilder.Entity<Action>()
             .ToTable("action", "library_book_issue");
 
 
@@ -459,7 +447,6 @@ public partial class LibraryManagementSystemContext : DbContext
             modelBuilder.Entity<User>()
     .ToTable("user", "library_user");
 
-        });
 
         OnModelCreatingPartial(modelBuilder);
     }

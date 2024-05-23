@@ -60,6 +60,9 @@ import { ExploreBooksComponent } from './user/explore-books/explore-books.compon
 import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 import { CaptureComponent } from './admin/capture/capture.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
+import { NewExploreBooksComponent } from './user/new-explore-books/new-explore-books.component';
+import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.component';
 import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list';
 import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
@@ -114,8 +117,13 @@ import { ModalContentComponent } from './shared/components/modal-content/modal-c
     IssueModalBodyComponent,
     IssueMobileComponent,
     ExploreBooksComponent,
+    NewExploreBooksComponent,
+    RatingDropdownComponent,
     //  FormsModule
     AddBookCommonComponent,
+    CaptureComponent,
+    MyBooksCardMobileComponent,
+    RevokePermissionModalComponent,
     CaptureComponent,
     ModalContentComponent
   ],

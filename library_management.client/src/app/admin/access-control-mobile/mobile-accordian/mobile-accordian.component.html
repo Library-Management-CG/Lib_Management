@@ -1,4 +1,6 @@
-<div  id="faq">
+<app-revoke-permission-modal (modalClosed)="onModalClose($event)"></app-revoke-permission-modal>
+
+<div id="faq">
   <div class="card ">
     <div class="card-header" [id]="'faqhead' + index">
       <div class="btn btn-header-link" data-toggle="collapse" [attr.data-target]="'#faq' + index" aria-expanded="true" [attr.aria-controls]="'faq' + index" (click)="toggle()">
@@ -19,7 +21,7 @@
           <span>Status</span>
 
           <label class="switch">
-            <input type="checkbox" checked>
+            <input type="checkbox" [(ngModel)]="isToggleChecked" data-toggle="modal" data-target="#revokeRoleModal">
             <span class="slider round"></span>
           </label>
         </div>

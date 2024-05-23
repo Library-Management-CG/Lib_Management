@@ -4,25 +4,25 @@
     height:10rem;
     width:16.0625rem;
 }
-.modal-body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    gap:0.5rem;
-    margin-top:-2rem;
+.time-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: -2rem;
 }
 
-.modal-content{
+.time-content {
   width: 28.875rem;
-  height:22.4375rem;
+  height: 22.4375rem;
 }
 
 
-.modal-header{
-    border:none;
+.time-header {
+  border: none;
 }
-.modal-footer {
+.time-modal-footer {
   border: none;
   display:flex;
   justify-content:center;
@@ -43,8 +43,10 @@
   font-weight: 600;
   line-height: normal;
 }
-.modal{
-    padding-bottom:2.25rem !important;
+
+
+#timeremaining{
+  padding-bottom: 2.25rem !important;
 }
 .save {
   color: #FFF;

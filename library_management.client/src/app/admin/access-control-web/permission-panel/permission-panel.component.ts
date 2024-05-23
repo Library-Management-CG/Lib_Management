@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./permission-panel.component.css']
 })
 export class PermissionPanelComponent {
+
   isToggleChecked = true;
+
+  onModalClose(event: boolean) {
+    this.isToggleChecked = event;
+  }
 
 }

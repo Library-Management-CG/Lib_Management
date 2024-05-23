@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.modal-title {
+.add-book-title {
   color: var(--Primary-Grey, #343435);
   /* leading-trim: both;
   text-edge: cap;*/
@@ -23,15 +23,15 @@
   
 }
 
-.modal-header{
-    border:none;
+.header-padding {
+  border: none;
 }
 
-.modal-footer {
+.add-book-footer {
   /*border: none;*/
   margin: 0rem 1.1rem;
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .stepper-header {
@@ -67,7 +67,7 @@
   padding: 1.5rem;
 }
 
-.modal-dialog {
+.modal-dialog-custom {
   margin-top: 1rem;
 }
 
