@@ -127,7 +127,7 @@ LOAD_WASM().subscribe();
     MyBooksCardMobileComponent,
     RevokePermissionModalComponent,
     CaptureComponent,
-    ModalContentComponent
+    ModalContentComponent,
     RevokePermissionModalComponent,
     MobileAccordianComponent,
     ScannerComponent,
@@ -157,7 +157,7 @@ LOAD_WASM().subscribe();
     WebcamModule,
     ImageCropperModule,
     MatBottomSheetModule,
-    MatListModule
+    MatListModule,
     ImageCropperModule,
     NgxScannerQrcodeModule
   /*  AvatarModule*/
