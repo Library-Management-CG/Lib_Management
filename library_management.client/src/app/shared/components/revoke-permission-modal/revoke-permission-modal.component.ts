@@ -13,7 +13,7 @@ export class RevokePermissionModalComponent {
   //  this.isToggleChecked = true;
   //}
 
-  @Input() selectedAdmin: any;
+  //@Input() selectedAdmin: any;
   @Output() modalClosed = new EventEmitter<boolean>();
   @Output() revokeAdminMobile = new EventEmitter<boolean>();
 
@@ -48,7 +48,6 @@ export class RevokePermissionModalComponent {
     //    console.log("User not found");
     //  });
     if (window.innerWidth <= 767) {
-      console.log("helloji from revoke",this.selectedAdmin);
       this.revokeAdminMobile.emit(true);
     } else {
 

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../../shared/services/user-service.service';
+declare var $: any;
 
 @Component({
   selector: 'app-access-control-mobile',
@@ -12,6 +13,8 @@ export class AccessControlMobileComponent {
   constructor(private router: Router, private userService: UserServiceService) {
 
   }
+  currIdx: any;
+  currAdmin: any;
   showBody = false;
   counti: any[] = [];
   toggle() {
@@ -47,39 +50,35 @@ export class AccessControlMobileComponent {
 
   }
 
-  //onRevokeSingleUserMobile(event: any) {
-  //  console.log();
-  //  //var revokeParams = {
-  //  //  userId: this.adminListMobile.id,
-  //  //  role: "user"
-  //  //}
-  //  //console.log(revokeParams);
-  //  //console.log("index",);
-  //  //this.userService.revokeUser(revokeParams).subscribe(
-  //  //  (data: any) => {
-  //  //    console.log(data);
-  //  //  },
-  //  //  (error: any) => {
-  //  //    console.log("User not found");
-  //  //  });
-  //}
+  onRevokeAdminMobile(event: any) {
+    console.log("hello", this.currAdmin);
+    const revokeParams = {
+      userId: this.currAdmin.id,
+      role: "user"
+    };
+    this.userService.revokeUser(revokeParams).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.adminListMobile.splice(this.currIdx, 1);
+      },
+      (error: any) => {
+        console.log("User not found");
+      }
+    );
+  }
+
 
   onRevokeSingleUserMobile(event: { admin: any, index: number }) {
-    console.log("Revoke admin:", event.admin);
-    //const revokeParams = {
-    //  userId: event.admin.id,
-    //  role: "user"
-    //};
-    //this.userService.revokeUser(revokeParams).subscribe(
-    //  (data: any) => {
-    //    console.log(data);
-    //    // Optionally update the UI to reflect the change
-    //    this.adminListMobile.splice(event.index, 1);
-    //  },
-    //  (error: any) => {
-    //    console.log("User not found");
-    //  }
-    //);
+
+
+    //console.log("Revoke admin:", event.admin);
+    this.currIdx = event.index;
+    this.currAdmin = event.admin;
+    
   }
  
 }
+
+
+
+

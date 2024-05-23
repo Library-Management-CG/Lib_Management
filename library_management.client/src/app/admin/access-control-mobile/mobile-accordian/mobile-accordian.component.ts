@@ -14,25 +14,23 @@ export class MobileAccordianComponent {
 
   @Output() revokeSingleUserMobile = new EventEmitter<{ admin: any, index: number }>();
 
-  constructor(private userService: UserServiceService) {
-    console.log("Hello ji", this.adminMobile);
-  }
+  constructor(private userService: UserServiceService) {  }
 
-  onRevokeAdminMobile(event: any) {
-    console.log(event);
-    this.revokeSingleUserMobile.emit({ admin: this.adminMobile, index: this.index });
-  }
+  //onRevokeAdminMobile(event: any) {
+  //  //console.log(event);
+  //  //this.revokeSingleUserMobile.emit({ admin: this.adminMobile, index: this.index });
+  //}
 
   onModalClose(event: boolean) {
     this.isToggleChecked = event;
     console.log(this.adminMobile);
   }
 
-  OnInit() {
-    console.log("Hello ji", this.adminMobile);
-  }
-
   toggle() {
     this.showBody = !this.showBody;
+  }
+
+  changes() {
+    this.revokeSingleUserMobile.emit({ admin: this.adminMobile, index: this.index });
   }
 }
