@@ -18,6 +18,18 @@
   border: none;
 }*/
 
+.border-line{
+    border: none;
+}
+
+.header-line {
+  border: none;
+}
+
+.book-body {
+  margin-top: -1rem;
+}
+
 .book-title-content {
   font-family: Literata;
   font-size: 19px;
@@ -108,7 +120,8 @@
 }
 
 .image-content {
-  width: 141px;
+ 
+  width: 121px;
   border-radius: 8px 0px 0px 0px;
 }
 

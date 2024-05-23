@@ -43,6 +43,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-bottom-sheet-container {
   border-top-left-radius: 24px !important;
   border-top-right-radius: 24px !important;
+  padding: 0px !important;
 }
 
 .g-bubble:hover {
