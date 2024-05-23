@@ -1,0 +1,55 @@
+<div class="explore-outer">
+  <div class="head-body">
+    <div class="header-txt">Reader’s Hub</div>
+    <img  src="../../../assets/icons/explore-books/Keyboard arrow right.svg" />
+    <div class="header-txt">Explore Books</div>
+  </div>
+
+  <div class="subhead sta str">
+    <div class="subhead-heading sta str ">
+      <span class="arrow" (click)="redirect_back()"><img src="../../../assets/icons/explore-books/ArrowRight.svg" /></span>
+      <span class="explore-books-heading">Explore Books</span>
+    </div>
+
+    <div class="selectors str">
+      <div class="check-box-component sta str ">
+        <div class="check-box-label sta" for="flexCheckDefault" (click)="toggleCheckbox()">
+          <img class="check-image" *ngIf="isChecked == false" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+          <img class="check-image" *ngIf="isChecked == true" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
+          <span class="check-box-text sta">Available Books</span>
+        </div>
+      </div>
+
+      <div class="rating sta">
+        <app-rating-dropdown></app-rating-dropdown>
+      </div>
+    </div>
+
+  </div>
+  
+  
+
+  <div class="inner">
+    <div class="column">
+      <app-books-card-shared></app-books-card-shared>
+      <div class="clear"></div>
+    </div>
+    <div class="column">
+      <app-books-card-shared></app-books-card-shared>
+      <div class="clear"></div>
+    </div>
+    <div class="column">
+      <app-books-card-shared></app-books-card-shared>
+      <div class="clear"></div>
+    </div>
+    <div class="column">
+      <app-books-card-shared></app-books-card-shared>
+      <div class="clear"></div>
+    </div>
+    <div class="column">
+      <app-books-card-shared></app-books-card-shared>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+</div>

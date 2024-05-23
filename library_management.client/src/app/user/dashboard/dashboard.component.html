@@ -35,14 +35,15 @@
 
       <div class="row">
 
-        <div class="all-lib-books col-md-7">
+        <div class="all-lib-books col-md-7 col-12">
 
           <p class="recently-added">Recently Added</p>
           <div class="row">
 
-            <div class="col-md-4 col-6"  *ngFor="let book of booksToRecentDisplay">
+            <div class="col-md-4 col-6" *ngFor="let book of booksToRecentDisplay">
               <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
-              <app-books-card-shared  [books]="book" (openModalEvent)="openModal(book)"></app-books-card-shared>
+             
+              <app-books-card-shared [books]="book" (openModalEvent)="openModal(book)"></app-books-card-shared>
             </div>
 
           </div>
@@ -59,6 +60,7 @@
           <div class="row">
             <div class="col-md-4 col-6" *ngFor="let book of booksToPopularDisplay">
               <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+            
               <app-books-card-shared [books]="book" (openModalEvent)="openModal(book)"></app-books-card-shared>
             </div>
             

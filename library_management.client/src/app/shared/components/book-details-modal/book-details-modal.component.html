@@ -1,58 +1,5 @@
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <div class="title-image">
-          <img src="../../../../assets/icons/Book 1.svg" class="book" />
-          <h5 id="exampleModalLabel">Book Details</h5>
-        </div>
-        <img src="../../../../assets/icons/Close (1).svg" class="close" data-bs-dismiss="modal"/>
-      </div>
-     
-      <div class="modal-body" *ngIf = "books">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="title-and-author">
-                <div class="modal-title">{{ books?.title }}</div>
-                <div class="name-of-author">{{ books?.authorName }}</div>
-                <div class="rating-book">
-
-                  <ng-container *ngIf="books?.points > 0; else noRatingYet">
-                    <ng-container *ngFor="let star of getStarsArray(books?.points)">
-                      <img src="../../../assets/icons/filled_star.svg" class="star-icon" />
-                    </ng-container>
-                    <ng-container *ngFor="let star of getEmptyStarsArray(books?.points)">
-                      <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
-                    </ng-container>
-                    <div class="numberOfPeopleReviewed"> ({{books?.numberOfPeopleReviewed}}) </div>
-                  </ng-container>
-
-                  <ng-template #noRatingYet>
-                    <p style="font-family: Lato; font-size: 14px; font-weight: 400; text-align: left; color: #6D6D6D;">
-                      Not rated yet
-                    </p>
-                  </ng-template>
-
-                  <img *ngIf="isAdmin()==false" src="../../../../assets/icons/Line 113.svg" class="line" />
-                  <div *ngIf="isAdmin()==false && books?.statusName == 'Available' " class="tag">AVALIABLE</div>
-                  <div *ngIf="isAdmin()==false && books?.statusName == 'Not Available' " class="not-avaliable-tag">NOT AVALIABLE</div>
-
-                </div>
-              </div>
-              <div class="book-content">
-                {{books?.description}}
-              </div>
-            </div>
-
-            <div class="book-modal-image col-md-2  col-12 order-md-last order-md-first">
-              <img src="../../../../assets/icons/Admin-dashboard/book-image.svg" class="image-content"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-modal-content [books]="books"></app-modal-content>
   </div>
 </div>

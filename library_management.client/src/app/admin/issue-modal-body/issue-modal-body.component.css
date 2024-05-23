@@ -10,12 +10,7 @@
   margin-left: 0px;
 }
 
-.modal-content {
-  border-radius: 0.5rem;
-  background: #FFF;
-}
-
-.row {
+.row-modal {
   margin-right: 0px;
 }
 
@@ -49,23 +44,13 @@
   margin-bottom: 1.5rem;
 }
 
-.modal-header {
-  border-bottom: none;
-  padding: 1.5rem 1.5rem 0rem 1.5rem;
-}
-
 .top-heading {
   margin-bottom: 0px !important;
 }
 
-.modal-body {
+.body {
   padding-top: 0px !important;
   padding: 0rem 1.5rem 0.8rem 1.5rem;
-}
-
-.modal-footer {
-  padding-top: 0;
-  padding: 1rem 0rem;
 }
 
 .image-container {
@@ -89,10 +74,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 0.5rem;
-}
-
-.modal-dialog {
-  max-width: 40.625rem;
 }
 
 .date-container-form {
@@ -128,7 +109,7 @@
   height: 2rem;
 }
 
-.form-group label {
+.custom-form-group label {
   color: var(--Primary-Grey, #343435);
   font-family: Lato;
   font-size: 0.8125rem;
@@ -137,7 +118,7 @@
   line-height: normal;
 }
 
-.form-group input {
+.custom-form-group input {
   color: var(--Primary-Grey, #343435);
   font-family: Lato;
   font-size: 0.875rem;
@@ -185,10 +166,6 @@
 /*.footer-buttons{
     gap:1rem;
 }*/
-.modal-footer {
-  border-top: 1px solid #ccc;
-  margin: 0rem 1.5rem 0rem 1.5rem;
-}
 
 .textarea {
   height: 140px;
@@ -214,7 +191,7 @@
 /*padding-right: 30px;*/ /* Ensure space for the icon */
 /*}*/
 
-.form-control {
+.form-control-custom {
   color: var(--Primary-Gray, #343435);
   font-family: Lato;
   font-size: 1rem;
@@ -374,18 +351,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-.col-7 {
-  padding-right: 0px !important;
-}
+
 .issue-button-mobile {
   display: none;
  
 }
 
 @media only screen and (max-width: 450px) {
-  .modal-body{
-      padding:1rem;
-  }
+  
   .body-text {
     color: var(--Primary-Grey, #343435);
     font-family: Literata;
@@ -427,7 +400,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: normal;
   }
 
-  .col-md-7{
+  .form-col{
       padding-right:0rem !important;
   }
 
@@ -455,154 +428,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 0.58475rem;
   }
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*@media screen and (max-width: 768px) {
-  .modal-body {
-    border: 1px solid blue;
-    position: absolute;
-  }
-
-  .heading-items {
-    padding-top: 3.5rem;
-    display: flex;
-  }
-
-  .body-text {
-    color: var(--Primary-Grey, #343435);
-    font-family: Literata;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-  .page-heading {
-    color: var(--Primary-Grey, #343435);
-    leading-trim: both;
-    text-edge: cap;
-    font-family: Literata;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-left: 0.75rem;
-  }
-
-  p {
-    margin-top: 12px;
-  }
-  .col-7 {
-    padding-right: 0px !important;
-    position: relative;
-    top: 22rem;
-    right: 7rem;
-  }
-  .col-5{
-      position:relative;
-  }
- .qrImage {
-    position: relative;
-    bottom: 13.5rem;
-  }
-  .mobile-view-issue {
-    border: 1px solid red;
-  }
-
-  .page-heading-img {
-    margin-left: 1rem;
-  }
-
-  .body-text {
-  }
-  .bookImage {
-    position: absolute;
-    border:1px solid black;
-   
-  }
- .date-container-form {
-  display:flex;
-  flex-direction:column;
-
-  }
-}
-*/
-
-/*.ng-select,
-.ng-select .ng-select-container,
-.ng-select.ng-select-single .ng-select-container {
-  width: 21.6rem !important;*/ /* Adjust the width as needed */
-  /*  border-top: 1px solid var(--secondary-Light-Grey, #E9ECEB);*/
-  /* border-bottom: 1px solid var(--secondary-Light-Grey, #E9ECEB);*/
-  /*margin-left: 0.1rem;
-  margin-right: 0.1rem;
-  border-right: none;
-  outline: none;
-  box-shadow: none;
-}*/
-.modal.fade .modal-dialog {
-  transform: translate3d(0, 10vh, 0);
-  transition: transform 1s ease-out;
-}
-
-.modal.in .modal-dialog {
-  transform: translate3d(0, -50vh, 0);
-  transition: transform 0.5s ease-out;
 }
