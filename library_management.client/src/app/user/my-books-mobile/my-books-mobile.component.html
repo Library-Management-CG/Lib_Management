@@ -6,21 +6,22 @@
   <div class="search-box ">
 
     <img src="../../../assets/icons/My-books-mobile/search.svg" />
-    <input type="text" class="search-text" placeholder="Search your book history" [(ngModel)]="searchTerm" (input)="searchBook()" />
+    <input type="text" class="search-text" placeholder="Search your book history"  [(ngModel)]="filterValue"
+ (input)="applyBookFilter($event)"/>
 
 
   </div>
 
 
   <div class="recently-issue">Recently Issued</div>
-  <div *ngFor="let book of myBooks">
+  <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
     <div *ngIf="book. returnDate==null">
       <app-my-books-card-mobile [books]="book"></app-my-books-card-mobile>
     </div>
   </div>
-  <div class="recently-issue">Previously Issued</div>
+  <div class="recently-issue" *ngIf="hasBooksWithReturnDate()">Previously Issued</div>
 
-  <div *ngFor="let book of myBooks">
+  <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
     <div *ngIf="book. returnDate!=null">
       <app-my-books-card-mobile [books]="book"></app-my-books-card-mobile>
     </div>

@@ -61,12 +61,19 @@ import { AdminNameCardComponent } from './admin/access-control-web/admin-name-ca
 import { CaptureComponent } from './admin/capture/capture.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
+import { NewExploreBooksComponent } from './user/new-explore-books/new-explore-books.component';
+import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.component';
+import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatListModule } from '@angular/material/list';
+import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
+import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.component';
+
+
+import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 
 
 
-
-
-
+LOAD_WASM().subscribe();
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,12 +119,19 @@ import { RevokePermissionModalComponent } from './shared/components/revoke-permi
     IssueModalBodyComponent,
     IssueMobileComponent,
     ExploreBooksComponent,
+    NewExploreBooksComponent,
+    RatingDropdownComponent,
     //  FormsModule
     AddBookCommonComponent,
     CaptureComponent,
     MyBooksCardMobileComponent,
     RevokePermissionModalComponent,
-    MobileAccordianComponent
+    CaptureComponent,
+    ModalContentComponent
+    RevokePermissionModalComponent,
+    MobileAccordianComponent,
+    ScannerComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -141,7 +155,11 @@ import { RevokePermissionModalComponent } from './shared/components/revoke-permi
     FormsModule,
     AvatarModule,
     WebcamModule,
-    ImageCropperModule
+    ImageCropperModule,
+    MatBottomSheetModule,
+    MatListModule
+    ImageCropperModule,
+    NgxScannerQrcodeModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],

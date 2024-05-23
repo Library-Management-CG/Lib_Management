@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-explore-books',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./explore-books.component.css']
 })
 export class ExploreBooksComponent {
+  constructor(private router: Router) { };
   isChecked: boolean = false;
-
+   
   toggleCheckbox(): void {
     this.isChecked = !this.isChecked;
   }
@@ -18,4 +20,10 @@ export class ExploreBooksComponent {
   c4: any = 0;
 
   handleCheckboxChange() { }
+  redirect_back() {
+    this.redirectToUserDashboard();
+  }
+  redirectToUserDashboard() {
+    this.router.navigate(['']);
+  }
 }

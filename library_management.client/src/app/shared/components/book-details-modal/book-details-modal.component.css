@@ -1,5 +1,5 @@
 
-.title-image {
+/*.title-image {
   display: flex;
   width: 160px;
   height: 24px;
@@ -135,10 +135,10 @@
 
 @media only screen and (max-width: 700px) {
   .modal {
-    border-radius: 1rem;
-    animation: bottomSlide 0.3s ease-out;
-  }
-
+    border-radius: 1rem;*/
+   /* animation: bottomSlide 0.3s ease-out;*/
+  /*}*/
+/*
   @keyframes bottomSlide {
     from {
       transform: translateY(100%);
@@ -148,9 +148,9 @@
       transform: translateY(0%);
     }
   }
+*/
 
-
-  .col-md-2 {
+  /*.col-md-2 {
     order: -1;
   }
 
@@ -171,4 +171,4 @@
 
 
  
-}
+}*/
