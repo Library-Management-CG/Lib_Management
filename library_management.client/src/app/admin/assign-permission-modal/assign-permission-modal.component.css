@@ -4,16 +4,14 @@
 }
 
 
-.modal-title {
+.modal-title-custom {
   color: var(--Primary-Gray, #343435);
-
   font-family: Literata;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 2.125rem; /* 170% */
+  line-height: 2.125rem;
   margin-left: 1rem;
- 
 }
 
 .Assign-permission-text {
@@ -75,13 +73,7 @@
 }
 
 
-.modal-footer{
-    border:none;
-}
-
-
-
-.modal-header {
+.modal-footer-custom {
   border: none;
 }
 
@@ -120,9 +112,9 @@
 .st {
   border: 1px solid black;
 }
-.modal-body{
-    padding:1.5rem;
-    margin-top:-0.5rem;
+.modal-body-custom {
+  padding: 1.5rem;
+  margin-top: -0.5rem;
 }
 
 

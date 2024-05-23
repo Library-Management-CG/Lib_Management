@@ -61,6 +61,8 @@ import { AdminNameCardComponent } from './admin/access-control-web/admin-name-ca
 import { CaptureComponent } from './admin/capture/capture.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
+import { NewExploreBooksComponent } from './user/new-explore-books/new-explore-books.component';
+import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.component';
 
 
 
@@ -112,6 +114,8 @@ import { RevokePermissionModalComponent } from './shared/components/revoke-permi
     IssueModalBodyComponent,
     IssueMobileComponent,
     ExploreBooksComponent,
+    NewExploreBooksComponent,
+    RatingDropdownComponent,
     //  FormsModule
     AddBookCommonComponent,
     CaptureComponent,

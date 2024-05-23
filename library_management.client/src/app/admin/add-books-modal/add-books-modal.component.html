@@ -1,7 +1,7 @@
 <app-success-modal (doneClicked)="onDoneClicked()"></app-success-modal>
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered  outer-width" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-custom outer-width" role="document">
     <div class="modal-content modal-height">
       <div class="modal-header header-padding">
         <div class="add-book-header">
@@ -9,7 +9,7 @@
             <img src="../../../assets/icons/add-books-modal/Book 1.svg" />
           </div>
           <div>
-            <h5 class="modal-title" id="exampleModalLongTitle">Add New Book</h5>
+            <h5 class="modal-title add-book-title" id="exampleModalLongTitle">Add New Book</h5>
           </div>
         </div>
         <div>
@@ -189,7 +189,7 @@
         </div>
         <!--</form>-->
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer add-book-footer">
         <div class="right-button">
           <div *ngIf="stepperIndex==0" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close">
             <div class="cancel-text">
