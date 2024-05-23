@@ -12,7 +12,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
     {
         List<UserBookDTO> GetTopBookReaders();
         List<BooksDetails> GetRecentBooks();
-        List<BooksDetails> GetMostPopularBooks();
+        //List<BooksDetails> GetMostPopularBooks();
         Task<List<allAdminsDTO>> getAllAdminsService();
         Task<Boolean> AddAdminService(updateUserDTO user);
     }
@@ -117,46 +117,46 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
         }
 
-        public List<BooksDetails> GetMostPopularBooks()
-        {
-            try
-            {
-                var popularBooks = _context.Books
-                     .Include(book => book.Ratings) 
-                    .Include(book => book.AuthorBooks)
-                        .ThenInclude(ab => ab.Author)
-                    .Include(book => book.BookQrMappings)
-                        .ThenInclude(bqm => bqm.Status)
-                    .OrderByDescending(book => book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0)
-                    .Take(6)
-                    .ToList();
+        //public List<BooksDetails> GetMostPopularBooks()
+        //{
+        //    try
+        //    {
+        //        var popularBooks = _context.Books
+        //             .Include(book => book.Ratings) 
+        //            .Include(book => book.AuthorBooks)
+        //                .ThenInclude(ab => ab.Author)
+        //            .Include(book => book.BookQrMappings)
+        //                .ThenInclude(bqm => bqm.Status)
+        //            .OrderByDescending(book => book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0)
+        //            .Take(6)
+        //            .ToList();
 
-                var booksDetails = popularBooks.Select(book => new BooksDetails
-                {
-                    Title = book.Title,
-                    AuthorName = _context.AuthorBooks
-                                .Where(ab => ab.BookId == book.Id)
-                                .Select(ab => ab.Author.AuthorName)
-                                .ToList(),
-                    Description = book.Description,
-                    CreatedAtUtc = book.CreatedAtUtc,
-                    Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
-                    StatusName = _context.BookIssues
-                    .Any(issue => issue.BookQrMappingid == book.BookQrMappings.FirstOrDefault().Id && issue.ReceiveDate == null)
-                    ? "Not Available"
-                    : "Available",
-                    numberOfPeopleReviewed = book.Ratings.Count
-                })
-                .ToList();
+        //        var booksDetails = popularBooks.Select(book => new BooksDetails
+        //        {
+        //            Title = book.Title,
+        //            AuthorName = _context.AuthorBooks
+        //                        .Where(ab => ab.BookId == book.Id)
+        //                        .Select(ab => ab.Author.AuthorName)
+        //                        .ToList(),
+        //            Description = book.Description,
+        //            CreatedAtUtc = book.CreatedAtUtc,
+        //            Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
+        //            StatusName = _context.BookIssues
+        //            .Any(issue => issue.BookQrMappingid == book.BookQrMappings.FirstOrDefault().Id && issue.ReceiveDate == null)
+        //            ? "Not Available"
+        //            : "Available",
+        //            numberOfPeopleReviewed = book.Ratings.Count
+        //        })
+        //        .ToList();
 
-                return booksDetails;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw ex;
-            }
-        }
+        //        return booksDetails;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        throw ex;
+        //    }
+        //}
 
         public async Task<List<allAdminsDTO>> getAllAdminsService()
         {

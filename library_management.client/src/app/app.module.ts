@@ -61,12 +61,14 @@ import { AdminNameCardComponent } from './admin/access-control-web/admin-name-ca
 import { CaptureComponent } from './admin/capture/capture.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
+import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.component';
+
+
+import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 
 
 
-
-
-
+LOAD_WASM().subscribe();
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,7 +119,9 @@ import { RevokePermissionModalComponent } from './shared/components/revoke-permi
     CaptureComponent,
     MyBooksCardMobileComponent,
     RevokePermissionModalComponent,
-    MobileAccordianComponent
+    MobileAccordianComponent,
+    ScannerComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -141,7 +145,8 @@ import { RevokePermissionModalComponent } from './shared/components/revoke-permi
     FormsModule,
     AvatarModule,
     WebcamModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgxScannerQrcodeModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],

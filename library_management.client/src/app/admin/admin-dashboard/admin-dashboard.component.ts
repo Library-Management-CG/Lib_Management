@@ -148,12 +148,9 @@ export class AdminDashboardComponent {
   }
 
   handleButtonClick(): void {
-    const isMobile = window.matchMedia('(max-width: 450px)').matches;
-    if (isMobile) {
-      this.router.navigate(['/admin/issue-mobile']); // Use the router to navigate
-    } else {
-      this.openModal();
-    }
+   
+      this.router.navigate(['admin/issue-mobile-scanner']); 
+   
   }
 
   openModal(): void {

@@ -8,12 +8,22 @@ import { UserServiceService } from '../../shared/services/user-service.service';
   styleUrls: ['./my-books-mobile.component.css']
 })
 export class MyBooksMobileComponent {
+  filteredBooks: any[]
+  filterValue: string = '';
 
   myBooks: any = [];
   userId: any;
   constructor(private router: Router, private userservice: UserServiceService) {
-
+    this.filteredBooks = this.myBooks;
   }
+
+
+  applyBookFilter(event: Event) {
+    this.filterValue = (event.target as HTMLInputElement).value;
+    this.filteredBooks = this.myBooks.filter((book: { bookName: string; }) =>
+      book.bookName.toLowerCase().includes(this.filterValue.toLowerCase())
+    );
+ }
 
   routeTODasboard() {
     this.router.navigate(['/']);
@@ -29,7 +39,10 @@ export class MyBooksMobileComponent {
     this.userservice.getMyBooksMobile(this.userId).subscribe(
       (data) => {
         this.myBooks = data;
-        console.log(data);
+        this.filteredBooks = this.myBooks;
+
+        console.log(this.myBooks);
+        
       },
       (error) => {
         console.error('Error:', error);
@@ -37,20 +50,12 @@ export class MyBooksMobileComponent {
     );
   }
 
-  searchTerm: string = '';
-
-  searchBook() {
-    // Filter myBooks array based on the search term
-    if (this.searchTerm.trim() !== '') { // Check if searchTerm is not empty
-      // Convert searchTerm to lowercase for case-insensitive search
-      const searchTermLowerCase = this.searchTerm.toLowerCase();
-      this.myBooks = this.myBooks.filter((book: { title: string; }) => {
-        // Assuming 'title' is the property you want to filter by
-        return book.title.toLowerCase().includes(searchTermLowerCase);
-      });
-    } else {
-      // If searchTerm is empty, reset myBooks array to the original data
-      this.getMyBooksMobile();
-    }
+  hasBooksWithReturnDate(): boolean {
+    const books = this.filteredBooks && this.filteredBooks.length ? this.filteredBooks : this.myBooks;
+    return books.some((book: { returnDate: null; }) => book.returnDate !== null);
   }
+
+
+
+ 
 }
