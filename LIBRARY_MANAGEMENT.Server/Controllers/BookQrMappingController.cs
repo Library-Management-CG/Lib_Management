@@ -49,5 +49,38 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpPost("revoke")]
+        public async Task<ActionResult> RevokeBook(ArchiveBookQrMappingInputDTO inputDTO)
+        {
+
+            // input - bookIssueid, updatedBy, description
+            // Algo -
+            // 1. find bookIssueid from book issue table
+            // 2. bookQrMappingid found status set to available
+            // 3. fill recive date as the DateTime.UtcNow, updated by 
+            // 4. also post a comment with bookissueId and actionId as recieved
+            try
+            {
+
+                if (inputDTO.IsArchive)
+                {
+                    await _bookQrMappingService.ArchiveBookQrMapping(inputDTO);
+                    return Ok("BookQrMapping archived successfully.");
+                }
+                else
+                {
+                    await _bookQrMappingService.ArchiveBookQrMapping(inputDTO);
+                    return Ok("BookQrMapping retrieved successfully.");
+                }
+
+            }
+
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error processing BookQrMapping operation.");
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
