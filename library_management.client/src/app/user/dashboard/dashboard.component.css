@@ -265,6 +265,7 @@ app-books-card-shared{
     align-items: flex-start;
     gap: 24px;
     overflow-y: hidden;
+    margin-left: 20px;
   }
 
 
