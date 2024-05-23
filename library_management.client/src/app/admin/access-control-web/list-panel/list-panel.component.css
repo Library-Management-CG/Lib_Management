@@ -83,3 +83,21 @@ app-admin-name-card{
 
   }*/
 
+
+/*.admin-card {
+  border: 1px solid #ccc;*/
+  /*padding: 10px;
+  margin: 10px;*/
+  /*cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+  .admin-card:hover {
+    background-color: #f0f0f0;
+  }
+
+  .admin-card.selected {
+    background-color: #007bff;*/ /* Change to desired color */
+    /*color: white;*/ /* Ensure text is readable on selected background */
+  /*}*/
+

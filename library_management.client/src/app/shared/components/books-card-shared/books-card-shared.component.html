@@ -13,7 +13,9 @@
     <div class="book-title">
       {{ books?.title }}
     </div>
-    <div class="author-name">{{ books?.authorName }}</div>
+    <!--<div class="author-name">{{ books?.authorName }}</div>-->
+    <div class="author-name">{{ books?.authorName.join(' & ') }}</div>
+
     <div class="rating ">
       <!--<img src="../../../../assets/icons/Admin-dashboard/Rating.svg" />-->
       <ng-container *ngIf="books?.points > 0; else noRatingYet">

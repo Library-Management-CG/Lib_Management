@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-admin-name-card',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-name-card.component.css']
 })
 export class AdminNameCardComponent {
+  @Input() admin: any;
+  @Output() adminSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Input() isSelected: boolean = false;
 
+  selectAdmin() {
+    this.adminSelected.emit(this.admin); 
+  }
 }

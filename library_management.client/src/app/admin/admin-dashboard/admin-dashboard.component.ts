@@ -12,6 +12,8 @@ declare var $: any;
 })
 export class AdminDashboardComponent {
 
+  selectedBook: any;
+
   totalbooks: any;
   issuebooks: any;
   constructor(private router: Router, private AdminService: AdminServiceService) { }
@@ -25,6 +27,12 @@ export class AdminDashboardComponent {
       this.openModalAdd();
     }
   }
+
+
+  openModaldesc(book: any) {
+    this.selectedBook = book;
+  }
+
 
   openModalAdd(): void {
 
@@ -140,12 +148,9 @@ export class AdminDashboardComponent {
   }
 
   handleButtonClick(): void {
-    const isMobile = window.matchMedia('(max-width: 450px)').matches;
-    if (isMobile) {
-      this.router.navigate(['/admin/issue-mobile']); // Use the router to navigate
-    } else {
-      this.openModal();
-    }
+   
+      this.router.navigate(['admin/issue-mobile-scanner']); 
+   
   }
 
   openModal(): void {

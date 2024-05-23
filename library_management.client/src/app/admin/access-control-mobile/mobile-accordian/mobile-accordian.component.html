@@ -1,12 +1,14 @@
-<app-revoke-permission-modal (modalClosed)="onModalClose($event)"></app-revoke-permission-modal>
 
 <div id="faq">
   <div class="card ">
     <div class="card-header" [id]="'faqhead' + index">
       <div class="btn btn-header-link" data-toggle="collapse" [attr.data-target]="'#faq' + index" aria-expanded="true" [attr.aria-controls]="'faq' + index" (click)="toggle()">
-        <ngx-avatars name="Savannah Nguyen" [textSizeRatio]=2.7 bgColor=#B8DDE1 fgColor=#002C3F [round]="true" size="35" [style.fontWeight]="'601'" [style.fontSize]="'0.0.875rem'" [style.color]="'#002C3F'"></ngx-avatars>
+        <ngx-avatars *ngIf="adminMobile && adminMobile.firstName && adminMobile.lastName" name="{{adminMobile.firstName}} {{adminMobile.lastName}}" [textSizeRatio]=2.7 bgColor=#B8DDE1 fgColor=#002C3F [round]="true" size="35" [style.fontWeight]="'601'" [style.fontSize]="'0.0.875rem'" [style.color]="'#002C3F'"></ngx-avatars>
+        <ngx-avatars *ngIf="adminMobile && adminMobile.firstName && adminMobile.lastName && (adminMobile.lastName==null||adminMobile.lastName==undefined)" name="{{adminMobile.firstName}}" [textSizeRatio]=2.7 bgColor=#B8DDE1 fgColor=#002C3F [round]="true" size="35" [style.fontWeight]="'601'" [style.fontSize]="'0.0.875rem'" [style.color]="'#002C3F'"></ngx-avatars>
 
-        <span class="name_card">Savannah Nguyen</span>
+
+        <span *ngIf="adminMobile && adminMobile.firstName && adminMobile.lastName" class="name_card">{{adminMobile.firstName}} {{adminMobile.lastName}}</span>
+        <span *ngIf="adminMobile && adminMobile.firstName && (adminMobile.lastName==null||adminMobile.lastName==undefined)" class="name_card">{{adminMobile.firstName}}</span>
         <span class="image_toggle">
           <img *ngIf="showBody==false" src="../../../assets/icons/Access-control-mobile/arrow-icon.svg" data-toggle="collapse" [attr.data-target]="'#faq' + index" />
           <img *ngIf="showBody==true" src="../../../assets/icons/Access-control-mobile/arrow iconrotated.svg" data-toggle="collapse" [attr.data-target]="'#faq' + index" />
@@ -19,9 +21,9 @@
 
         <div class="status-toggle">
           <span>Status</span>
-
+          <!--Status-->
           <label class="switch">
-            <input type="checkbox" [(ngModel)]="isToggleChecked" data-toggle="modal" data-target="#revokeRoleModal">
+            <input type="checkbox" [(ngModel)]="isToggleChecked" (change)="changes()" data-toggle="modal" data-target="#revokeRoleModal">
             <span class="slider round"></span>
           </label>
         </div>

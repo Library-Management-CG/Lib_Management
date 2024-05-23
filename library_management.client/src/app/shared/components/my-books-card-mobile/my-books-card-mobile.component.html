@@ -7,10 +7,11 @@
     <div class="text-outer ">
       <div class="text-header">
         <span class="book-heading">
-          The Psychology of Money
-          Money
+          {{books.bookName}}
         </span>
-        <span class="author">Morgan Housel</span>
+        <span *ngIf="books.author" class="author" >
+          {{ books?.author.join(' & ')}}
+        </span>
       </div>
       <div class="date">
         <div class="issue-date">
@@ -18,7 +19,7 @@
             Date of Issue
           </span>
           <span class="date-text">
-            03-12-2024
+            {{books.issueDate | date:'MM-dd-yyyy'}}
           </span>
         </div>
         <div class="issue-date">
@@ -26,7 +27,7 @@
             Date of Return
           </span>
           <span class="date-text">
-            03-12-2024
+            {{books.returnDate | date:'MM-dd-yyyy'}}
           </span>
         </div>
       </div>
@@ -38,10 +39,10 @@
 
     <div class="rating ">
       <!--<img src="../../../../assets/icons/Admin-dashboard/Rating.svg" />-->
-      <ng-container *ngFor="let star of getStarsArray(3)">
+      <ng-container *ngFor="let star of getStarsArray(books.points)">
         <img src="../../../../assets/icons/My-books-mobile/Star filled.svg" class="star-icon" />
       </ng-container>
-      <ng-container *ngFor="let star of getEmptyStarsArray(3)">
+      <ng-container *ngFor="let star of getEmptyStarsArray(books.points)">
         <img src="../../../../assets/icons/My-books-mobile/Star empty.svg" class="star-icon" />
       </ng-container>
     </div>
