@@ -11,7 +11,10 @@ export class NewExploreBooksComponent {
 
   exploreBooks = [];
   selectedBook: any;
-  availablebooks=[]
+  availablebooks = []
+  ratingFilteredBook: any[] = [];
+  selectedRatings: number[] = [];
+
   constructor(private router: Router, private user: UserServiceService) { };
   isChecked: boolean = false;
 
@@ -20,6 +23,10 @@ export class NewExploreBooksComponent {
 
     this.exploreBookData();
    
+  }
+  onSelectedValuesChange(selectedValues: number[]): void {
+    this.selectedRatings = selectedValues;
+    this.getFilteredBooks();
   }
 
   toggleCheckbox(): void {
@@ -65,6 +72,17 @@ export class NewExploreBooksComponent {
       }
     );
 
+  }
+  getFilteredBooks(): void {
+    this.user.getRatingFilteredBooks(this.selectedRatings).subscribe(
+      data => {
+        this.ratingFilteredBook = data;
+        console.log('Filtered books:', this.ratingFilteredBook);
+      },
+      error => {
+        console.error('Error fetching filtered books:', error);
+      }
+    );
   }
 
 

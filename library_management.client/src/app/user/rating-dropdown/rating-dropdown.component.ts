@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-rating-dropdown',
@@ -12,6 +12,7 @@ export class RatingDropdownComponent {
   c3 = false;
   c4 = false;
   c5 = false;
+  @Output() selectedValuesChange = new EventEmitter<number[]>();
 
   handleCheckboxChange(value: number, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
@@ -36,6 +37,8 @@ export class RatingDropdownComponent {
 
 
     console.log('Currently selected values:', selectedValues);
+    this.selectedValuesChange.emit(selectedValues);
+
   }
 
   toggleSelectAll() {

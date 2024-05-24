@@ -49,7 +49,9 @@ export class UserServiceService {
   availableExplore(): Observable<any> {
     return this.http.get<any>(this.apiUrl + 'Book/availableBook');
   }
-
+  getRatingFilteredBooks(ratingFilters: number[]): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'Book/RatingFilter', ratingFilters);
+  }
 
   private adminListSubject = new BehaviorSubject<any>(null);
   adminListChanged$ = this.adminListSubject.asObservable();
