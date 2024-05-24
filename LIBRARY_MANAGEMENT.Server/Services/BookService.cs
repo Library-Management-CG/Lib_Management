@@ -17,7 +17,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<int> issuebooks();
         Task<List<TopChoicesBookDTO>> topChoices();
         Task<List<ExploreBookDTO>> exploreBook();
-        Task<List<availableBookDTO>> availableBook();
+        Task<List<ExploreBookDTO>> availableBook();
 
 
 
@@ -253,32 +253,30 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
 
 
-        public async Task<List<availableBookDTO>> availableBook()
+        public async Task<List<ExploreBookDTO>> availableBook()
         {
 
 
-            var availableStatus = await _context.Statuses
-                                            .Where(s => s.StatusName == "available")
-                                            .Select(s => s.Id)
-                                            .FirstOrDefaultAsync();
+            List<ExploreBookDTO> exploreBook = await _context.Books
+           .Include(r => r.Ratings)
+           .Include(book => book.AuthorBooks)
+            .ThenInclude(authorBook => authorBook.Author)
+            .Include(qr => qr.BookQrMappings)
+            .ThenInclude(status => status.Status).Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available"))
 
-            if (availableStatus == default)
+            .Select(book => new ExploreBookDTO
             {
-                return new List<availableBookDTO>();
-            }
+                title = book.Title,
+                description = book.Description,
+                authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+                numberOfPeopleReviewed = book.Ratings.Count(),
+                CreatedAtUtc = book.CreatedAtUtc,
 
-            var books = await (from book in _context.Books
-                               join qrMapping in _context.BookQrMappings on book.Id equals qrMapping.BookId
-                               where qrMapping.StatusId == availableStatus
-                               select new availableBookDTO
-                               {
-                                   BookId = book.Id,
-                                   title = book.Title,
-                                   description = book.Description,
-                                   StatusName = "available"
-                               }).ToListAsync();
+            }).OrderByDescending(book => book.CreatedAtUtc)
+             .ToListAsync();
 
-            return books;
+            return exploreBook;
 
         }
 

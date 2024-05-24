@@ -32,26 +32,11 @@
         public int numberOfPeopleReviewed { get; set; }
         public DateTime CreatedAtUtc { get; set; }
         public string? StatusName { get; set; }
-        public Guid BookQRMappingId { get; set; }
-        public Guid BookId { get; set; }
-
+   
 
     }
 
-    public class availableBookDTO
-    {
-        public string? title { get; set; }
-        public List<string> authorName { get; set; }
-        public string? description { get; set; }
-        public int points { get; set; }
-        public int numberOfPeopleReviewed { get; set; }
-        public DateTime CreatedAtUtc { get; set; }
-        public string? StatusName { get; set; }
-        public Guid BookQRMappingId { get; set; }
-        public Guid BookId { get; set; }
-
-
-    }
+ 
 
 
 }

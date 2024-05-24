@@ -66,7 +66,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
 
 
         [HttpGet("availableBook")]
-        public async Task<List<availableBookDTO>> availableBook()
+        public async Task<List<ExploreBookDTO>> availableBook()
         {
             return await _bookService.availableBook();
         }
