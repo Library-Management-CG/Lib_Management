@@ -40,6 +40,17 @@ export class UserServiceService {
     return this.http.post<any[]>(`${this.apiUrl}BookIssue/my-books`, { userId: userId });
   }
 
+
+  explorebooks(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'Book/exploreBook');
+  }
+
+
+  availableExplore(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'Book/availableBook');
+  }
+
+
   private adminListSubject = new BehaviorSubject<any>(null);
   adminListChanged$ = this.adminListSubject.asObservable();
 
