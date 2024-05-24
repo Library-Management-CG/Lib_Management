@@ -17,6 +17,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<int> issuebooks();
         Task<List<TopChoicesBookDTO>> topChoices();
         Task<List<ExploreBookDTO>> exploreBook();
+        Task<List<availableBookDTO>> availableBook();
+
 
 
     }
@@ -247,6 +249,37 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         .ToListAsync();
 
             return exploreBook;
+        }
+
+
+
+        public async Task<List<availableBookDTO>> availableBook()
+        {
+
+
+            var availableStatus = await _context.Statuses
+                                            .Where(s => s.StatusName == "available")
+                                            .Select(s => s.Id)
+                                            .FirstOrDefaultAsync();
+
+            if (availableStatus == default)
+            {
+                return new List<availableBookDTO>();
+            }
+
+            var books = await (from book in _context.Books
+                               join qrMapping in _context.BookQrMappings on book.Id equals qrMapping.BookId
+                               where qrMapping.StatusId == availableStatus
+                               select new availableBookDTO
+                               {
+                                   BookId = book.Id,
+                                   title = book.Title,
+                                   description = book.Description,
+                                   StatusName = "available"
+                               }).ToListAsync();
+
+            return books;
+
         }
 
 
