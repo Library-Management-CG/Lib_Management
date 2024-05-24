@@ -8,6 +8,7 @@
   font-weight: 600;
   line-height: normal;
   margin-left: 0px;
+  margin-bottom: 0rem !important;
 }
 
 .row-modal {
@@ -21,7 +22,7 @@
 }
 
 .issue-icn {
-  margin: 0rem 0.5rem 0.8rem 0rem;
+  margin: 0rem 0.5rem -0.1rem 0rem;
 }
 
 .body-text {
@@ -48,9 +49,10 @@
   margin-bottom: 0px !important;
 }
 
-.body {
+.outer-container {
   padding-top: 0px !important;
-  padding: 0rem 1.5rem 0.8rem 1.5rem;
+  padding: 0rem 0.5rem 0.8rem 1.5rem;
+  width: 40rem;
 }
 
 .image-container {
@@ -375,7 +377,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    flex: 1 0 0;
     border-radius: 2rem;
     background: var(--Primary-Blue, #28519E);
     color: #FFF;
@@ -384,6 +385,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+
   }
   .date-container-form {
     display: flex;
@@ -400,8 +402,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: normal;
   }
 
-  .form-col{
-      padding-right:0rem !important;
+  .form-col {
+    padding-right: 0rem !important;
+    margin-right: 1rem;
+    margin-top: 3rem;
   }
 
   .custom-date-input{
@@ -416,7 +420,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .qrImage-modal {
       display:none;
   }
-
+  .outer-container{
+      width:100%!important;
+  }
   .qrImage-page {
     display: flex;
     width: 5.12781rem;
@@ -426,6 +432,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
     width: auto;
     border-radius: 0.58475rem;
+    margin-right:1rem;
   }
 
 }

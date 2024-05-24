@@ -2,6 +2,7 @@
 using LIBRARY_MANAGEMENT.Server.DTO;
 using LIBRARY_MANAGEMENT.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace LIBRARY_MANAGEMENT.Server.Services
 {
@@ -130,14 +131,14 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         {
             Guid bookId = await _context.Books.Where(s => s.Isbn == books.ISBN).Select(s => s.Id).FirstOrDefaultAsync();
 
-            for(int i = 0; i < books.qr.Count(); i++)
+            for (int i = 0; i < books.qr.Count(); i++)
             {
                 string qr = books.qr[i];
                 try
                 {
                     BookQrMapping bqr = new BookQrMapping
                     {
-                       // Id = Guid.NewGuid(),
+                        // Id = Guid.NewGuid(),
                         BookId = bookId,
                         Qrnumber = qr,
                         StatusId = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not assigned").Select(s => s.Id).FirstOrDefaultAsync(),
@@ -152,10 +153,10 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 catch (Exception ex)
                 {
                     _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new bookqrModel failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
-                }               
+                }
             }
 
-            return true; 
+            return true;
         }
 
 
@@ -176,7 +177,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception(" total books count failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 return 0;
             }
-          
+
         }
 
 
@@ -206,16 +207,16 @@ namespace LIBRARY_MANAGEMENT.Server.Services
            .Include(book => book.AuthorBooks)
             .ThenInclude(authorBook => authorBook.Author)
             .Select(book => new TopChoicesBookDTO
-    {
-        bookName = book.Title,
-        description = book.Description,
-        authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
-        rating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
-        totalratingcount=book.Ratings.Count()
+            {
+                bookName = book.Title,
+                description = book.Description,
+                authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                rating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+                totalratingcount = book.Ratings.Count()
 
 
-          }).OrderByDescending(book => book.totalratingcount)
-          .ThenByDescending(book=>book.rating)
+            }).OrderByDescending(book => book.totalratingcount)
+          .ThenByDescending(book => book.rating)
            .Take(10)
 
         .ToListAsync();
@@ -223,6 +224,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             return topbooks;
         }
 
+        
 
+    
     }
 }

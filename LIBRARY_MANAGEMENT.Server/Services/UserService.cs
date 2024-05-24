@@ -11,6 +11,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         List<BooksDetails> GetRecentBooks();
         List<BooksDetails> GetMostPopularBooks();
         Task<List<allAdminsDTO>> getAllAdminsService();
+        Task<IEnumerable<UserInfoDTO>> listUsers();
     }
 
     public class UserService:IUserService
@@ -160,6 +161,20 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                              LastName = u.LastName==null?null: u.LastName,
                                          }).ToListAsync();
             return allAdminsDTOs;
+        }
+        public async Task<IEnumerable<UserInfoDTO>> listUsers()
+        {
+            var result = await (from u in _context.Users
+
+                                select new UserInfoDTO
+                                {
+                                    Id = u.Id,
+                                    FirstName = u.FirstName,
+                                    LastName = u.LastName,
+
+                                }
+                             ).ToListAsync();
+            return result;
         }
     }
 }

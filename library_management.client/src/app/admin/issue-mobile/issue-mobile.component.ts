@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-issue-mobile',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class IssueMobileComponent {
 
+  constructor(private router: Router) { };
+  redirect_back() {
+    this.redirectToAdminDashboard();
+  }
+  redirectToAdminDashboard() {
+    this.router.navigate(['/admin']);
+  }
 }

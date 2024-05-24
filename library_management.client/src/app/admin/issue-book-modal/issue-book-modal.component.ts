@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-issue-book-modal',
   templateUrl: './issue-book-modal.component.html',
@@ -14,6 +15,7 @@ export class IssueBookModalComponent {
   //returnDateInput: string | undefined; // Variable to store the current date for return date input
   returnDateInputValue: string;
   issueDateInputValue: string;
+    router: any;
   constructor() {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
@@ -85,5 +87,6 @@ export class IssueBookModalComponent {
     const day = date.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
+
 }
 
