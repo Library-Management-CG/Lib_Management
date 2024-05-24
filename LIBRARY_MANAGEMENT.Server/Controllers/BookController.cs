@@ -58,6 +58,11 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             return await _bookService.topChoices();
         }
+        [HttpGet("exploreBook")]
+        public async Task<List<ExploreBookDTO>> exploreBook()
+        {
+            return await _bookService.exploreBook();
+        }
 
 
 

@@ -16,6 +16,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         Task<int> issuebooks();
         Task<List<TopChoicesBookDTO>> topChoices();
+        Task<List<ExploreBookDTO>> exploreBook();
+
 
     }
     public class BookService : IBookService
@@ -206,7 +208,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
            .Include(book => book.AuthorBooks)
             .ThenInclude(authorBook => authorBook.Author)
             .Select(book => new TopChoicesBookDTO
-    {
+            {
                 title = book.Title,
                 description = book.Description,
                 authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
@@ -221,6 +223,30 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         .ToListAsync();
 
             return topbooks;
+        }
+
+        public async Task<List<ExploreBookDTO>> exploreBook()
+        {
+            List<ExploreBookDTO> exploreBook = await _context.Books
+           .Include(r => r.Ratings)
+           .Include(book => book.AuthorBooks)
+            .ThenInclude(authorBook => authorBook.Author)
+            .Select(book => new ExploreBookDTO
+            {
+                title = book.Title,
+                description = book.Description,
+                authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+                numberOfPeopleReviewed = book.Ratings.Count()
+
+
+            }).OrderByDescending(book => book.numberOfPeopleReviewed)
+          .ThenByDescending(book => book.points)
+           .Take(10)
+
+        .ToListAsync();
+
+            return exploreBook;
         }
 
 
