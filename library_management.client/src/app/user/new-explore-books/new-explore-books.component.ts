@@ -14,6 +14,7 @@ export class NewExploreBooksComponent {
   availablebooks = []
   ratingFilteredBook: any[] = [];
   selectedRatings: number[] = [];
+  availableBooksOfRatingFilter: any[] = [];
 
   constructor(private router: Router, private user: UserServiceService) { };
   isChecked: boolean = false;
@@ -22,17 +23,24 @@ export class NewExploreBooksComponent {
   ngOnInit(): void {
 
     this.exploreBookData();
+
    
   }
   onSelectedValuesChange(selectedValues: number[]): void {
     this.selectedRatings = selectedValues;
     this.getFilteredBooks();
   }
-
+  filterAvailableBooksOfRatingFilter(): void {
+    this.availableBooksOfRatingFilter = this.ratingFilteredBook.filter(book => book.statusName === 'Available');
+    
+  }
   toggleCheckbox(): void {
     this.isChecked = !this.isChecked;
     if (this.isChecked) {
       this.availableBookData();
+    }
+    if (this.isChecked && this.selectedRatings.length > 0) {
+      this.filterAvailableBooksOfRatingFilter();
     }
   }
   redirect_back() {
