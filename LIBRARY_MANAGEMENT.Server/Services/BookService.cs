@@ -231,20 +231,20 @@ namespace LIBRARY_MANAGEMENT.Server.Services
            .Include(r => r.Ratings)
            .Include(book => book.AuthorBooks)
             .ThenInclude(authorBook => authorBook.Author)
+            .Include(qr=>qr.BookQrMappings)
+            .ThenInclude(status=>status.Status)
             .Select(book => new ExploreBookDTO
             {
                 title = book.Title,
                 description = book.Description,
                 authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
                 points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
-                numberOfPeopleReviewed = book.Ratings.Count()
+                numberOfPeopleReviewed = book.Ratings.Count(),
+                CreatedAtUtc=book.CreatedAtUtc,
+                StatusName = book.BookQrMappings.Any(qr => qr.Status.StatusName== "Available") ? "Available" : "Not Available"
 
-
-            }).OrderByDescending(book => book.numberOfPeopleReviewed)
-          .ThenByDescending(book => book.points)
-           .Take(10)
-
-        .ToListAsync();
+            }).OrderByDescending(book => book.CreatedAtUtc)
+             .ToListAsync();
 
             return exploreBook;
         }
