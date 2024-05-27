@@ -38,4 +38,12 @@
         public Guid userId { get; set; }
         public string role { get; set; }
     }
+    public class UserInfoDTO
+    {
+        public Guid Id { get; set; }
+        public string? FullName { get; set; }
+
+
+
+    }
 }

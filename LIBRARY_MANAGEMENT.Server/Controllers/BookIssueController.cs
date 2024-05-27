@@ -30,7 +30,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             try
             {
-                List<MyBooksDTO> books = await _bookIssueService.GetMyBooksService(user);
+                List<MyBooksDTO> books = await _bookissueservice.GetMyBooksService(user);
                 return books;
             }
             catch (Exception ex)
