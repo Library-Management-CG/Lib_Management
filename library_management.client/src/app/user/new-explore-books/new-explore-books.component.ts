@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../../shared/services/user-service.service';
+import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 
 @Component({
   selector: 'app-new-explore-books',
@@ -9,21 +10,29 @@ import { UserServiceService } from '../../shared/services/user-service.service';
 })
 export class NewExploreBooksComponent {
 
-  exploreBooks = [];
+  exploreBooks: any[] = [];
   selectedBook: any;
   availablebooks = []
   ratingFilteredBook: any[] = [];
   selectedRatings: number[] = [];
   availableBooksOfRatingFilter: any[] = [];
 
-  constructor(private router: Router, private user: UserServiceService) { };
+  constructor(private router: Router, private user: UserServiceService, private exploreBooksService:ExploreBooksService ) { };
   isChecked: boolean = false;
 
 
   ngOnInit(): void {
 
     this.exploreBookData();
-
+    this.exploreBooksService.getFilterValue().subscribe(filterValue => {
+      console.log('Filter Value:', filterValue);
+      if (filterValue) {
+        this.filterExploreBooks(filterValue);
+      } else {
+        // Reset the filter or apply a default filter logic
+        this.exploreBookData(); // For example, reload all explore books
+      }
+    });
    
   }
   onSelectedValuesChange(selectedValues: number[]): void {
@@ -93,7 +102,12 @@ export class NewExploreBooksComponent {
     );
   }
 
+  filterExploreBooks(filterValue: string): void {
 
+    this.exploreBooks = this.exploreBooks.filter(book => {
+      return book.title.toLowerCase().includes(filterValue.toLowerCase());
+    });
+  }
 
 
 }
