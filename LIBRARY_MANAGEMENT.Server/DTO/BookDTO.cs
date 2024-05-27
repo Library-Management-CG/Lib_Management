@@ -49,11 +49,11 @@
 
     public class TopChoicesBookDTO
     {
-        public string bookName { get; set; }
+        public string? title { get; set; }
         public List<string> authorName { get; set; }
-        public string description { get; set; }
-        public int rating { get; set; }
-        public int totalratingcount { get; set; }
+        public string? description { get; set; }
+        public int points { get; set; }
+        public int numberOfPeopleReviewed { get; set; }
     }
 
 

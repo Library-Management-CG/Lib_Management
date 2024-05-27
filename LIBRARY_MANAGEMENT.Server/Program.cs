@@ -15,6 +15,7 @@ builder.Services.AddDbContext<LibraryManagementSystemContext>(o => o.UseSqlServe
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<IBookQrMappingService, BookQrMappingService>();
+builder.Services.AddScoped<IBookIssueService, BookIssueService>();
 
 builder.Services.AddCors(options =>
 {

@@ -7,13 +7,15 @@
   <img src="../../../../assets/icons/Admin-dashboard/top-choice-rectangle-card.svg" class="book-card-rectangle" />
   <div class="book-details ml-0" [ngClass]="{'conditional-css': isAdmin() == false}">
 
-    <div *ngIf="isAdmin()==false && books?.statusName == 'Available' " class="tag">AVALIABLE</div>
-    <div *ngIf="isAdmin()==false && books?.statusName == 'Not Available' " class="not-avaliable-tag">NOT AVALIABLE</div>
+    <div *ngIf="isAdmin()==false && books?.statusName == 'Avaliable' " class="tag">AVALIABLE</div>
+    <div *ngIf="isAdmin()==false && books?.statusName == 'Not Avaliable' " class="not-avaliable-tag">NOT AVALIABLE</div>
 
     <div class="book-title">
       {{ books?.title }}
     </div>
-    <div class="author-name">{{ books?.authorName }}</div>
+    <!--<div class="author-name">{{ books?.authorName }}</div>-->
+    <div class="author-name">{{ books?.authorName.join(' & ') }}</div>
+
     <div class="rating ">
       <!--<img src="../../../../assets/icons/Admin-dashboard/Rating.svg" />-->
       <ng-container *ngIf="books?.points > 0; else noRatingYet">

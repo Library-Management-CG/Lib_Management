@@ -1,6 +1,6 @@
-<div class="modal-content">
+<div class="modal-content border-line">
 
-  <div class="modal-header">
+  <div class="modal-header header-line">
     <div class="title-image">
       <img src="../../../../assets/icons/Book 1.svg" class="book" />
       <h5 id="exampleModalLabel">Book Details</h5>
@@ -9,7 +9,7 @@
   </div>
 
   <div *ngIf="books">
-    <div class="modal-body">
+    <div class="modal-body book-body">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
@@ -35,8 +35,8 @@
                 </ng-template>
 
                 <img *ngIf="isAdmin()==false" src="../../../../assets/icons/Line 113.svg" class="line" />
-                <div *ngIf="isAdmin()==false && books?.statusName == 'Available' " class="tag">AVALIABLE</div>
-                <div *ngIf="isAdmin()==false && books?.statusName == 'Not Available' " class="not-avaliable-tag">NOT AVALIABLE</div>
+                <div *ngIf="isAdmin()==false && books?.statusName == 'Avaliable' " class="tag">AVALIABLE</div>
+                <div *ngIf="isAdmin()==false && books?.statusName == 'Not Avaliable' " class="not-avaliable-tag">NOT AVALIABLE</div>
 
               </div>
             </div>

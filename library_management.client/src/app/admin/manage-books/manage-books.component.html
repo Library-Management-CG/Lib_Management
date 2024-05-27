@@ -1,3 +1,4 @@
+
 <div class="container-fluid manage-outer">
   <div class="row manage-heading">
     <span>Manage Books</span>
@@ -5,14 +6,14 @@
   <div class="row manage-actions">
     <div class="search-bar">
       <img src="../../../assets/icons/manage-books/search-icon.svg" />
-      <input type="text" placeholder="Search By Book Name" (keyup)="applyNewFilter($event)"/>
+      <input type="text" placeholder="Search By Book Name" (keyup)="applyNewFilter($event)" />
     </div>
     <div class="action-buttons">
       <button class="add-book-button">
         <img src="../../../assets/icons/manage-books/add-book.svg" />
         <span>Add New Book</span>
       </button>
-      <button class="issue-book-button">
+      <button class="issue-book-button" (click)="handleButtonClick()">
         <img src="../../../assets/icons/manage-books/issue-book.svg" />
         <span>Issue Book</span>
       </button>

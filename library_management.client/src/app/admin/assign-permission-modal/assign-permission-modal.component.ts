@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserServiceService } from '../../shared/services/user-service.service';
 
 @Component({
   selector: 'app-assign-permission-modal',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./assign-permission-modal.component.css']
 })
 export class AssignPermissionModalComponent {
+ 
 
 }
