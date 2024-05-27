@@ -271,11 +271,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 var issuedTo = await GetIssuedTo(bqm.Id);
                 var issueDate = await GetIssueDate(bqm.Id);
                 var returnDate = await GetReturnDate(bqm.Id);
+                var issueId = await GetIssuedId(bqm.Id);
 
                 bookQrDetails.Add(new BookQrDetailDTO
                 {
                     BookQrMappingId = bqm.Id,
                     qrNumber = bqm.Qrnumber,
+                    BookIssueId = issueId,
                     issuedTo = issuedTo,
                     issueDate = issueDate,
                     returnDate = returnDate,
@@ -286,6 +288,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             return bookQrDetails;
         }
 
+        private async Task<Guid?> GetIssuedId(Guid bookQrMappingId)
+        {
+            var bookIssue = await _context.BookIssues
+                .FirstOrDefaultAsync(bi => bi.BookQrMappingid == bookQrMappingId && bi.ReceiveDate == null);
+
+            return bookIssue != null ? bookIssue.Id : null;
+        }
 
         private async Task<string?> GetIssuedTo(Guid bookQrMappingId)
         {

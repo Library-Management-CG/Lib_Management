@@ -24,7 +24,7 @@ import { SuccessModalComponent } from './shared/components/success-modal/success
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccessControlWebComponent } from './admin/access-control-web/access-control-web.component';
 import { AccessControlMobileComponent } from './admin/access-control-mobile/access-control-mobile.component';
 import { AssignPermissionModalComponent } from './admin/assign-permission-modal/assign-permission-modal.component';
@@ -146,6 +146,7 @@ import { ModalContentComponent } from './shared/components/modal-content/modal-c
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
     FormsModule,
+    ReactiveFormsModule,
     AvatarModule,
     WebcamModule,
     ImageCropperModule,

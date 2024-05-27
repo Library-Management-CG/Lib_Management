@@ -1,6 +1,8 @@
 ﻿using LIBRARY_MANAGEMENT.Server.DTO;
 using LIBRARY_MANAGEMENT.Server.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using System.IO.Compression;
 
 namespace LIBRARY_MANAGEMENT.Server.Services
 {
@@ -9,6 +11,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
     {
 
         Task ArchiveBookQrMapping(ArchiveBookQrMappingInputDTO inputDTO);
+        Task RevokeBook(RevokeBookInputDTO inputDTO);
     }
 
     public class BookQrMappingService: IBookQrMappingService
@@ -46,7 +49,16 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     throw new Exception($"{statusName} status name not found in the database.");
                 }
 
-                await AddComment(inputDTO);
+                var commentDTO = new CommentDTO
+                {
+                    Description = inputDTO.CommentDescription,
+                    CreatedBy = inputDTO.UpdatedBy,
+                    ActionName = inputDTO.IsArchive ? "archive" : "retrieve",
+                    BookIssueId = null,
+                    BookQrMappingId = inputDTO.BookQrMappingId,
+                };
+
+                await AddComment(commentDTO);
 
 
                 var bookQrMapping = await _context.BookQrMappings.FindAsync(inputDTO.BookQrMappingId);
@@ -64,22 +76,22 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         }
 
-        public async Task AddComment(ArchiveBookQrMappingInputDTO inputDTO)
+        public async Task AddComment(CommentDTO commentDTO)
         {
             try
             {
                 // Fetching the action Id from the Action table
-                var actionId = await GetActionId(inputDTO.IsArchive);
+                var actionId = await GetActionId(commentDTO.ActionName);
 
                 var comment = new Comment
                 {
-                    Description = inputDTO.CommentDescription,
+                    Description = commentDTO.Description,
                     ActionId = actionId,
-                    bookIssueId = null,
-                    BookQrMappingid = inputDTO.BookQrMappingId,
+                    bookIssueId = commentDTO.BookIssueId != null ? commentDTO.BookIssueId : null,
+                    BookQrMappingid = commentDTO.BookQrMappingId,
                     CreatedAtUtc = DateTime.UtcNow,
-                    CreatedBy = inputDTO.UpdatedBy,
-                    UpdatedBy = inputDTO.UpdatedBy,
+                    CreatedBy = commentDTO.CreatedBy,
+                    UpdatedBy = commentDTO.CreatedBy,
                     UpdatedAtUtc = DateTime.UtcNow
                 };
 
@@ -95,9 +107,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
         }
 
-        private async Task<Guid> GetActionId(bool isArchive)
+        private async Task<Guid> GetActionId(string actionName)
         {
-            var actionName = isArchive ? "archive" : "retrieve";
+            //var actionName = isArchive ? "archive" : "retrieve";
 
             var actionId = await _context.Actions
                 .Where(a => a.ActionName.ToLower() == actionName)
@@ -112,6 +124,65 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             return actionId;
         }
 
+
+        public async Task RevokeBook(RevokeBookInputDTO inputDTO)
+        {
+
+            var statusName = "available";
+
+            // Fetching the Guid Id from the Status table
+            var statusId = await _context.Statuses
+                .Where(s => s.StatusName.ToLower() == statusName)
+                .Select(s => s.Id)
+                .FirstOrDefaultAsync();
+
+            if (statusId == Guid.Empty)
+            {
+                throw new Exception($"{statusName} status name not found in the database.");
+            }
+
+            var bookIssue = await _context.BookIssues.FindAsync(inputDTO.BookIssueId);
+
+            if (bookIssue == null)
+            {
+                throw new Exception("Book Issue Id not found.");
+            }
+
+            bookIssue.ReceiveDate = DateTime.UtcNow;
+            bookIssue.UpdatedBy = inputDTO.UpdatedBy;
+            bookIssue.UpdatedAtUtc = DateTime.UtcNow;
+
+            _context.Update(bookIssue);
+
+            var commentDTO = new CommentDTO
+            {
+                Description = inputDTO.CommentDescription,
+                CreatedBy = inputDTO.UpdatedBy,
+                ActionName = "revoke",
+                BookIssueId = inputDTO.BookIssueId,
+                BookQrMappingId = bookIssue.BookQrMappingid,
+            };
+
+            await AddComment(commentDTO);
+
+
+            var bookQrMapping = await _context.BookQrMappings.FindAsync(bookIssue.BookQrMappingid);
+
+            if (bookQrMapping == null)
+            {
+                throw new Exception("BookQrMappingId not found.");
+            }
+
+            bookQrMapping.StatusId = statusId; // set status to available
+            bookQrMapping.UpdatedBy = inputDTO.UpdatedBy; // logged in user as the updated by
+            bookQrMapping.UpdatedAtUtc = DateTime.UtcNow; // current time
+
+            _context.Update(bookQrMapping);
+
+
+            await _context.SaveChangesAsync();
+
+        }
 
     }
 }

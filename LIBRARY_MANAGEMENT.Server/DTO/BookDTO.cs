@@ -29,6 +29,7 @@
     {
         public Guid BookQrMappingId { get; set; }
         public required string qrNumber { get; set; }
+        public Guid? BookIssueId { get; set; }
         public string? issuedTo { get; set; }
         public DateTime? issueDate { get; set;}
         public DateTime? returnDate { get; set;}

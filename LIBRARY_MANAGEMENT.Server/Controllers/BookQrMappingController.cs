@@ -51,7 +51,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         }
 
         [HttpPost("revoke")]
-        public async Task<ActionResult> RevokeBook(ArchiveBookQrMappingInputDTO inputDTO)
+        public async Task<ActionResult> RevokeBook(RevokeBookInputDTO inputDTO)
         {
 
             // input - bookIssueid, updatedBy, description
@@ -63,16 +63,8 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             try
             {
 
-                if (inputDTO.IsArchive)
-                {
-                    await _bookQrMappingService.ArchiveBookQrMapping(inputDTO);
-                    return Ok("BookQrMapping archived successfully.");
-                }
-                else
-                {
-                    await _bookQrMappingService.ArchiveBookQrMapping(inputDTO);
-                    return Ok("BookQrMapping retrieved successfully.");
-                }
+                    await _bookQrMappingService.RevokeBook(inputDTO);
+                    return Ok("Book retured successfully.");
 
             }
 
