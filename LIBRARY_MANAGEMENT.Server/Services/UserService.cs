@@ -86,13 +86,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                        .GroupBy(rb => rb.BookId)
                           .Select(group =>
                           {
-                              string statusName = "Not Avaliable"; 
+                              string statusName = "Not Available"; 
 
                               foreach (var book in group)
                               {
-                                  if (book.StatusName == "Avaliable")
+                                  if (book.StatusName == "Available")
                                   {
-                                      statusName = "Avaliable";
+                                      statusName = "Available";
                                       break; 
                                   }
                               }
@@ -146,13 +146,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
                 var booksDetails = popularBooks.Select(book =>
                 {
-                    string statusName = "Not Avaliable"; 
+                    string statusName = "Not Available"; 
 
                     foreach (var bqm in book.BookQrMappings)
                     {
-                        if (bqm.Status.StatusName == "Avaliable")
+                        if (bqm.Status.StatusName == "Available")
                         {
-                            statusName = "Avaliable";
+                            statusName = "Available";
                             break; 
                         }
                     }
