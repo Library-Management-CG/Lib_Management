@@ -17,11 +17,11 @@ export class ScannerComponent implements AfterViewInit {
 
 
 
-  constructor(private router: Router, private location: Location, private qrcode: NgxScannerQrcodeService, private cdRef: ChangeDetectorRef // Inject ChangeDetectorRef for manual change detection
+  constructor(private router: Router, private location: Location, private qrcode: NgxScannerQrcodeService, private cdRef: ChangeDetectorRef 
 ) { }
 
   @ViewChild('action') action: NgxScannerQrcodeComponent | undefined;
-  @ViewChild(IssueBookModalComponent) issueBookModal: IssueBookModalComponent | undefined; // ViewChild for the modal component
+  @ViewChild(IssueBookModalComponent) issueBookModal: IssueBookModalComponent | undefined; 
 
 
   ngAfterViewInit() {

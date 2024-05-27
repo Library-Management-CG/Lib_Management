@@ -45,7 +45,6 @@ export class BooksCardSharedComponent {
 
   ngOnInit() {
     /*console.log(this.books.statusName);*/
-    console.log('explorebook', this.explorebook);
   }
 
 
