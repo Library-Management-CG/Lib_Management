@@ -26,9 +26,9 @@
                   </div>
                 </div>
               </ng-option>-->
-            <ng-select class="custom" placeholder="select user">
-              <ng-option *ngfor="let user of users" [value]="user.id">{{user.name}}</ng-option>
-            </ng-select>
+          <ng-select class="custom" placeholder="select user">
+            <ng-option *ngFor="let user of totalusers" [value]="user.fullName">{{ user.fullName}}</ng-option>
+          </ng-select>
 
 
           </div>

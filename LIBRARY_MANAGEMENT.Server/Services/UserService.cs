@@ -169,8 +169,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                 select new UserInfoDTO
                                 {
                                     Id = u.Id,
-                                    FirstName = u.FirstName,
-                                    LastName = u.LastName,
+                                    FullName = u.FirstName+' '+u.LastName
 
                                 }
                              ).ToListAsync();
