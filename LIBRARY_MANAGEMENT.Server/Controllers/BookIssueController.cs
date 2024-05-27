@@ -8,17 +8,21 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookIssueController : ControllerBase
-    {
+    public class BookIssueController : ControllerBase { 
+
         private readonly LibraryManagementSystemContext _context;
         private readonly ILogger<BookIssueController> _logger;
-        private readonly IBookIssueService _bookIssueService;
+        private readonly IBookIssueService _bookissueservice;
+        public readonly IBookService _bookservice;
+        public readonly IUserService _userService;
 
-        public BookIssueController(LibraryManagementSystemContext context, ILogger<BookIssueController> logger, IBookIssueService bookIssueService)
+        public BookIssueController(LibraryManagementSystemContext context, ILogger<BookIssueController> logger, IBookService bookService, IUserService userService, IBookIssueService bookissueservice)
         {
             _context = context;
             _logger = logger;
-            _bookIssueService = bookIssueService;
+            _bookissueservice = bookissueservice;
+            _bookservice = bookService;
+            _userService = userService;
         }
 
         [HttpPost("my-books")]
@@ -34,6 +38,27 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
                 _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("get my books failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
             }
             return new List<MyBooksDTO>();
-        } 
+        }
+        [HttpGet("getUsers")]
+        public async Task<IEnumerable<UserInfoDTO>> listUsers()
+        {
+            return await _userService.listUsers();
+
+        }
+
+        [HttpPost("getBookDetails")]
+        public async Task<IEnumerable<BookDetailsDTO>> getBookDetails([FromBody] QrCodeDTO QrCodeDTO)
+        {
+            return await _bookissueservice.GetBookDetails(QrCodeDTO.Qrnumber);
+        }
+
+        [HttpPost("issueBooks")]
+        public async Task<IActionResult> issueBooks([FromBody] BookIssueDTO bookIssueDTO)
+        {
+            await _bookissueservice.IssueBookAsync(bookIssueDTO);
+
+            return Ok();
+        }
+
     }
 }
