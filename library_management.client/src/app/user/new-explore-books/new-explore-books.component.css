@@ -187,3 +187,17 @@
 }
 
 
+
+@media screen and (min-width: 1500px) {
+  .explore-outer {
+    width: 85rem;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .column {
+    width: 48%;
+    margin-bottom: 2rem;
+  }
+}

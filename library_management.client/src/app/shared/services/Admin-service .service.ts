@@ -25,4 +25,9 @@ export class AdminServiceService {
   getUsers(): Observable<any> {
     return this.http.get<any>(this.apiUrl + 'BookIssue/getUsers');
   }
+  getBookDetails(qrNumber: any): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'BookIssue/getBookDetails', qrNumber);
+  }
+
+
 }

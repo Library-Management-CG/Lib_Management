@@ -47,7 +47,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         }
 
         [HttpPost("getBookDetails")]
-        public async Task<IEnumerable<BookDetailsDTO>> getBookDetails([FromBody] QrCodeDTO QrCodeDTO)
+        public async Task<BookDetailsDTO> getBookDetails([FromBody] QrCodeDTO QrCodeDTO)
         {
             return await _bookissueservice.GetBookDetails(QrCodeDTO.Qrnumber);
         }

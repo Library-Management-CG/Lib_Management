@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { AdminServiceService } from '../../shared/services/Admin-service .service';
 
 @Component({
   selector: 'app-issue-book-modal',
@@ -15,13 +16,14 @@ export class IssueBookModalComponent {
   returnDateInputValue: string;
   issueDateInputValue: string;
   bookqr: any;
+    mappedBook: any;
   ngOnChanges() {
     this.bookqr = this.bookqrcode;
     console.log('Got  : ', this.bookqr);
     this.value(this.bookqr);
   }
 
-  constructor() {
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef) {
     const currentDate = new Date();
 
     this.returnDateInputValue = this.formatDate(currentDate);
@@ -40,9 +42,28 @@ export class IssueBookModalComponent {
 
   value(bookqr:any) {
     console.log('qrrrrr:', bookqr);
+    const revokeParams = {
+      qrNumber: bookqr,
+    };
+    this.AdminService.getBookDetails(revokeParams).subscribe(
+      (data: any) => {
+        this.mappedBook = data
+        this.cdr.detectChanges();
+
+        console.log('mapped', this.mappedBook);
+       
+      },
+      (error: any) => {
+        console.log("User not found");
+      }
+    );
 
   }
 
+
+  getBookDetails() {
+   
+  }
   
 
   // Function to handle selection of an option

@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
 
 @Component({
@@ -8,7 +8,8 @@ import { AdminServiceService } from '../../shared/services/Admin-service .servic
   encapsulation: ViewEncapsulation.None
 })
 export class IssueModalBodyComponent {
-
+  @Input() bookqrcode: any = '';
+  @Input() mappedBook: any;
   users: any[] = []; // Array to store users
   selectedOption: any; // Variable to store the selected option
   placeholder: string = "Search User"; // Initial placeholder value
@@ -43,6 +44,8 @@ export class IssueModalBodyComponent {
     //this.returnDateInput = currentDate.toISOString().split('T')[0];
 
   }
+
+
 
 
 
@@ -83,6 +86,8 @@ export class IssueModalBodyComponent {
     this.getUsers();
   }
 
+
+
   // Function to format the date as YYYY-MM-DD (required format for input type="date")
   private formatDate(date: Date): string {
     const year = date.getFullYear();
@@ -95,10 +100,21 @@ export class IssueModalBodyComponent {
     this.AdminService.getUsers().subscribe(
       (data) => {
         this.totalusers = data;
+        console.log('kdsbvsbdvj', this.mappedBook);
+
       },
       (error) => {
         console.error('Error:', error);
       }
     );
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['mappedBook']) {
+      console.log('kdsbvsbdvj', this.mappedBook);
+    }
+  }
+
+
+ 
 }

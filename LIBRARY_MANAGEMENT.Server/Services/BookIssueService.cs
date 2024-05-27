@@ -8,7 +8,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
     public interface IBookIssueService
     {
         Task<List<MyBooksDTO>> GetMyBooksService(CurrentUserDTO user);
-        Task<IEnumerable<BookDetailsDTO>> GetBookDetails(string? qrNumber);
+        Task<BookDetailsDTO> GetBookDetails(string? qrNumber);
         Task UpdateBookIssue(BookIssueDTO bookIssueDTO);
         Task UpdateQRMappingStatus(BookIssueDTO bookIssueDTO);
         Task<Guid> GetActionId(string actionName);
@@ -93,7 +93,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
             return null;
         }
-        public async Task<IEnumerable<BookDetailsDTO>> GetBookDetails(string qrNumber)
+        public async Task<BookDetailsDTO> GetBookDetails(string qrNumber)
         {
             var result = await (from b in _context.Books
                                 join m in _context.BookQrMappings on b.Id equals m.BookId
@@ -105,7 +105,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                     Id = b.Id,
                                     Title = b.Title,
                                     AuthorName = a.AuthorName
-                                }).ToListAsync();
+                                }).FirstOrDefaultAsync();
 
             return result;
         }
