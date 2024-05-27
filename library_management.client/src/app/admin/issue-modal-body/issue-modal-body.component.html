@@ -26,10 +26,9 @@
                   </div>
                 </div>
               </ng-option>-->
-            <ng-select [(ngModel)]="selectedUser" class="custom" placeholder="Select User">
-              <ng-option *ngFor="let user of users" [value]="user.id">{{user.name}}</ng-option>
-            </ng-select>
-
+          <ng-select [(ngModel)]="selectedUser" class="custom" placeholder="Select User">
+            <ng-option *ngFor="let user of totalusers" [value]="user.fullName">{{ user.fullName}}</ng-option>
+          </ng-select>
 
           </div>
           <div class="date-container-form">

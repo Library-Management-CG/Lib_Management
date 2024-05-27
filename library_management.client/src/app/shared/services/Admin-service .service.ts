@@ -22,4 +22,7 @@ export class AdminServiceService {
   topChoicesBook(): Observable<any> {
     return this.http.get<any>(this.apiUrl + 'Book/topChoicesBook');
   }
+  getUsers(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'BookIssue/getUsers');
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { AdminServiceService } from '../../shared/services/Admin-service .service';
 
 @Component({
   selector: 'app-issue-modal-body',
@@ -16,7 +17,8 @@ export class IssueModalBodyComponent {
   //returnDateInput: string | undefined; // Variable to store the current date for return date input
   returnDateInputValue: string;
   issueDateInputValue: string;
-  constructor() {
+  totalusers: any;
+  constructor(private AdminService: AdminServiceService) {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
 
@@ -78,6 +80,7 @@ export class IssueModalBodyComponent {
 
     // Set the issue date input value to the current date
     this.issueDateInputValue = this.formatDate(currentDate);
+    this.getUsers();
   }
 
   // Function to format the date as YYYY-MM-DD (required format for input type="date")
@@ -88,4 +91,14 @@ export class IssueModalBodyComponent {
     return `${year}-${month}-${day}`;
   }
 
+  getUsers() {
+    this.AdminService.getUsers().subscribe(
+      (data) => {
+        this.totalusers = data;
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
 }
