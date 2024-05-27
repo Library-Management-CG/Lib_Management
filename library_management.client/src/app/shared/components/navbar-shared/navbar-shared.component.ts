@@ -182,6 +182,6 @@ export class NavbarSharedComponent {
 
   redirectToExploreBooks() {
     // Navigate to the explore-books route
-    this.router.navigate(['/explore-books']);
+    this.router.navigate(['/new-explore-books']);
   }
 }

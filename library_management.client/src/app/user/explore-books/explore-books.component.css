@@ -308,3 +308,9 @@
 }
 
 
+@media screen and (min-width: 1500px) {
+  .outer-margin {
+    width: 85rem;
+    margin: auto;
+  }
+}
