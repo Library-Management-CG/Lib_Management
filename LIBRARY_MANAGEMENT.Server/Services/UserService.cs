@@ -139,8 +139,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         .ThenInclude(ab => ab.Author)
                     .Include(book => book.BookQrMappings)
                         .ThenInclude(bqm => bqm.Status)
-                    .OrderByDescending(book => book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0)
-                    .ThenByDescending(book => book.Ratings.Count)
+                    .OrderByDescending(book => book.Ratings.Count)
+                    .ThenByDescending(book => book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0)
                     .Take(9)
                     .ToList();
 
