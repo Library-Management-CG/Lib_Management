@@ -15,7 +15,15 @@ export class ExploreBooksService {
   private exploreBooksSource = new BehaviorSubject<any[]>([]);
   exploreBooks$ = this.exploreBooksSource.asObservable();
 
+  private mappedBookSource = new BehaviorSubject<any>(null);
+  mappedBook$ = this.mappedBookSource.asObservable();
+
   setExploreBooks(books: any[]) {
     this.exploreBooksSource.next(books);
+  }
+
+
+  setMappedBook(mappedBook: any) {
+    this.mappedBookSource.next(mappedBook);
   }
 }

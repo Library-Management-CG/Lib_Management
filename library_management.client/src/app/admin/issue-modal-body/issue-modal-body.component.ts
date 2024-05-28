@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
+import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 
 @Component({
   selector: 'app-issue-modal-body',
   templateUrl: './issue-modal-body.component.html',
   styleUrls: ['./issue-modal-body.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class IssueModalBodyComponent {
   @Input() qrvalue: any ;
@@ -22,7 +22,7 @@ export class IssueModalBodyComponent {
   bookqr: any;
   mappedBook: any;
 
-  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef) {
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService) {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
 
@@ -88,6 +88,14 @@ export class IssueModalBodyComponent {
     this.issueDateInputValue = this.formatDate(currentDate);
     this.getUsers();
 
+
+    this.exploreBooksService.mappedBook$.subscribe(mappedBook => {
+      if (mappedBook) {
+        this.mappedBook = mappedBook;
+        this.cdr.detectChanges();
+      }
+    });
+
   }
 
 
@@ -134,7 +142,8 @@ export class IssueModalBodyComponent {
     };
     this.AdminService.getBookDetails(revokeParams).subscribe(
       (data: any) => {
-        this.mappedBook = data
+        this.mappedBook = data;
+        this.exploreBooksService.setMappedBook(this.mappedBook);
         this.cdr.detectChanges();
 
         console.log('mapped', this.mappedBook);
