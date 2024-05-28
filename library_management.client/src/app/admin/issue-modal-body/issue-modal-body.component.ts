@@ -20,6 +20,7 @@ export class IssueModalBodyComponent {
   issueDateInputValue: string;
   totalusers: any;
   bookqr: any;
+  mappedBook: any;
 
   constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef) {
     // Initialize users array with dummy data (replace with actual data)
@@ -144,9 +145,9 @@ export class IssueModalBodyComponent {
       }
     );
   }
-    mappedBook(arg0: string, mappedBook: any) {
-        throw new Error('Method not implemented.');
-    }
+    //mappedBook(arg0: string, mappedBook: any) {
+    //    throw new Error('Method not implemented.');
+    //}
 
  
 }
