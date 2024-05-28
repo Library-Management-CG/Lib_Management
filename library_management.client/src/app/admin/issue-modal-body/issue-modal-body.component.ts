@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
 
 @Component({
@@ -8,8 +8,8 @@ import { AdminServiceService } from '../../shared/services/Admin-service .servic
   encapsulation: ViewEncapsulation.None
 })
 export class IssueModalBodyComponent {
-  @Input() bookqrcode: any = '';
-  @Input() mappedBook: any;
+  @Input() qrvalue: any ;
+  //@Input() mappedBook: any;
   users: any[] = []; // Array to store users
   selectedOption: any; // Variable to store the selected option
   placeholder: string = "Search User"; // Initial placeholder value
@@ -19,7 +19,9 @@ export class IssueModalBodyComponent {
   returnDateInputValue: string;
   issueDateInputValue: string;
   totalusers: any;
-  constructor(private AdminService: AdminServiceService) {
+  bookqr: any;
+
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef) {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
 
@@ -84,6 +86,7 @@ export class IssueModalBodyComponent {
     // Set the issue date input value to the current date
     this.issueDateInputValue = this.formatDate(currentDate);
     this.getUsers();
+
   }
 
 
@@ -100,7 +103,7 @@ export class IssueModalBodyComponent {
     this.AdminService.getUsers().subscribe(
       (data) => {
         this.totalusers = data;
-        console.log('kdsbvsbdvj', this.mappedBook);
+        //console.log('kdsbvsbdvj', this.mappedBook);
 
       },
       (error) => {
@@ -109,12 +112,41 @@ export class IssueModalBodyComponent {
     );
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['mappedBook']) {
-      console.log('kdsbvsbdvj', this.mappedBook);
+  //ngOnChanges(changes: SimpleChanges) {
+  //  if (changes['mappedBook']) {
+  //    console.log('kdsbvsbdvj', this.mappedBook);
+  //  }
+  //}
+  ngOnChanges() {
+    this.bookqr = this.qrvalue;
+    if (this.bookqr) {
+      console.log('cbjsbjbsdjbj  : ', this.qrvalue);
+
+      this.value(this.qrvalue);
     }
   }
+  value(bookqr: any) {
+    console.log('thisis my modalbidy:', bookqr);
+   
+    const revokeParams = {
+      qrNumber: bookqr,
+    };
+    this.AdminService.getBookDetails(revokeParams).subscribe(
+      (data: any) => {
+        this.mappedBook = data
+        this.cdr.detectChanges();
 
+        console.log('mapped', this.mappedBook);
+
+      },
+      (error: any) => {
+        console.log("User not found");
+      }
+    );
+  }
+    mappedBook(arg0: string, mappedBook: any) {
+        throw new Error('Method not implemented.');
+    }
 
  
 }

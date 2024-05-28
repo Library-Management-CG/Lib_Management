@@ -12,6 +12,8 @@ export class IssueBookModalComponent {
   selectedOption: any; // Variable to store the selected option
   placeholder: string = "Search User"; // Initial placeholder value
   selectedUser: number | undefined;
+  qr: any;
+  qrPresent: boolean = false;
  
   returnDateInputValue: string;
   issueDateInputValue: string;
@@ -42,21 +44,25 @@ export class IssueBookModalComponent {
 
   value(bookqr:any) {
     console.log('qrrrrr:', bookqr);
+    this.qr = bookqr;
+    if (this.qr) {
+      this.qrPresent = true;
+    }
     const revokeParams = {
       qrNumber: bookqr,
     };
-    this.AdminService.getBookDetails(revokeParams).subscribe(
-      (data: any) => {
-        this.mappedBook = data
-        this.cdr.detectChanges();
+    //this.AdminService.getBookDetails(revokeParams).subscribe(
+    //  (data: any) => {
+    //    this.mappedBook = data
+    //    this.cdr.detectChanges();
 
-        console.log('mapped', this.mappedBook);
+    //    console.log('mapped', this.mappedBook);
        
-      },
-      (error: any) => {
-        console.log("User not found");
-      }
-    );
+    //  },
+    //  (error: any) => {
+    //    console.log("User not found");
+    //  }
+    //);
 
   }
 
