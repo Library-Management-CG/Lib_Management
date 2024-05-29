@@ -8,7 +8,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
     public interface IBookIssueService
     {
         Task<List<MyBooksDTO>> GetMyBooksService(CurrentUserDTO user);
-        Task<BookDetailsDTO> GetBookDetails(string? qrNumber);
+        Task<BookDetailsDTO> GetBookDetails(string qrNumber);
         Task UpdateBookIssue(BookIssueDTO bookIssueDTO);
         Task UpdateQRMappingStatus(BookIssueDTO bookIssueDTO);
         Task<Guid> GetActionId(string actionName);
@@ -16,9 +16,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<Guid> GetBookIssueId(BookIssueDTO bookIssueDTO);
         Task UpdateComment(BookIssueDTO bookIssueDTO);
         Task IssueBookAsync(BookIssueDTO bookIssueDTO);
-
     }
-    public class BookIssueService: IBookIssueService
+
+    public class BookIssueService : IBookIssueService
     {
         private readonly ILogger<BookIssueController> _logger;
         private readonly LibraryManagementSystemContext _context;
@@ -34,35 +34,15 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             try
             {
                 List<MyBooksDTO> result = await (from bi in _context.BookIssues
-                                                 join u in _context.Users
-                                                 on bi.IssueTo equals u.Id
-
-                                                 join qr in _context.BookQrMappings
-                                                 on bi.BookQrMappingid equals qr.Id
-
-                                                 join b in _context.Books
-                                                 on qr.BookId equals b.Id
-
-                                                 //join ab in _context.AuthorBooks
-                                                 //on b.Id equals ab.BookId
-
-                                                 //join a in _context.Authors
-                                                 //on ab.AuthorId equals a.Id into authorGroup
-                                                 //from author in authorGroup.DefaultIfEmpty()
-
-                                                 //join r in _context.Ratings
-                                                 //on b.Id equals r.BookId into ratingGroup
-                                                 //from rating in ratingGroup.DefaultIfEmpty()
-
-                                                 join s in _context.Statuses
-                                                 on qr.StatusId equals s.Id
-
+                                                 join u in _context.Users on bi.IssueTo equals u.Id
+                                                 join qr in _context.BookQrMappings on bi.BookQrMappingid equals qr.Id
+                                                 join b in _context.Books on qr.BookId equals b.Id
+                                                 join s in _context.Statuses on qr.StatusId equals s.Id
                                                  where u.Id == user.userId
                                                  select new MyBooksDTO
                                                  {
-                                                     bookId = b.Id, 
+                                                     bookId = b.Id,
                                                      bookName = b.Title,
-                                                     //author = [],
                                                      points = 0,
                                                      qrCode = qr.Qrnumber,
                                                      issueDate = bi.IssueDate,
@@ -87,163 +67,195 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
                 return result;
             }
-            catch (Exception ex) {
-                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("get my books service failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("GetMyBooksService failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return null;
             }
-
-            return null;
         }
+
         public async Task<BookDetailsDTO> GetBookDetails(string qrNumber)
         {
-            var result = await (from b in _context.Books
-                                join m in _context.BookQrMappings on b.Id equals m.BookId
-                                join ab in _context.AuthorBooks on b.Id equals ab.BookId
-                                join a in _context.Authors on ab.AuthorId equals a.Id
-                                where m.Qrnumber == qrNumber
-                                select new BookDetailsDTO
-                                {
-                                    Id = b.Id,
-                                    Title = b.Title,
-                                    AuthorName = a.AuthorName,
-                                    BookQrMappingId = m.Id
-                                }).FirstOrDefaultAsync();
+            try
+            {
+                var result = await (from b in _context.Books
+                                    join m in _context.BookQrMappings on b.Id equals m.BookId
+                                    join ab in _context.AuthorBooks on b.Id equals ab.BookId
+                                    join a in _context.Authors on ab.AuthorId equals a.Id
+                                    where m.Qrnumber == qrNumber
+                                    select new BookDetailsDTO
+                                    {
+                                        Id = b.Id,
+                                        Title = b.Title,
+                                        AuthorName = a.AuthorName,
+                                        BookQrMappingId = m.Id
+                                    }).FirstOrDefaultAsync();
 
-            return result;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "002", new Exception("GetBookDetails failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return null;
+            }
         }
-
 
         public async Task UpdateBookIssue(BookIssueDTO bookIssueDTO)
         {
-            BookIssue bookIssue = new BookIssue
+            try
             {
-                BookQrMappingid = bookIssueDTO.BookQrMappingId,
-                IssueDate = DateTime.UtcNow,
-                ReturnDate = DateTime.UtcNow.AddDays(15),
-                IssueTo = bookIssueDTO.IssueTo,
-                CreatedAtUtc = DateTime.UtcNow,
-                UpdatedAtUtc = DateTime.UtcNow,
-                CreatedBy = bookIssueDTO.CreatedBy,
-                UpdatedBy = bookIssueDTO.CreatedBy,
-            };
-            _context.BookIssues.Update(bookIssue);
+                BookIssue bookIssue = new BookIssue
+                {
+                    BookQrMappingid = bookIssueDTO.BookQrMappingId,
+                    IssueDate = DateTime.UtcNow,
+                    ReturnDate = DateTime.UtcNow.AddDays(15),
+                    IssueTo = bookIssueDTO.IssueTo,
+                    CreatedAtUtc = DateTime.UtcNow,
+                    UpdatedAtUtc = DateTime.UtcNow,
+                    CreatedBy = bookIssueDTO.CreatedBy,
+                    UpdatedBy = bookIssueDTO.CreatedBy,
+                };
+                _context.BookIssues.Update(bookIssue);
 
-            await _context.SaveChangesAsync();
-        }
-        public async Task<Guid> GetId(string actionName)
-        {
-            var actionId = await _context.Actions
-                .Where(a => a.ActionName.ToLower() == actionName)
-                .Select(a => a.Id)
-                .FirstOrDefaultAsync();
-
-            if (actionId == Guid.Empty)
-            {
-                throw new Exception($"{actionName} action not found in the database.");
+                await _context.SaveChangesAsync();
             }
-
-            return actionId;
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "003", new Exception("UpdateBookIssue failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+            }
         }
+
         public async Task<Guid> GetActionId(string actionName)
         {
-            var actionId = await _context.Actions
-                .Where(a => a.ActionName.ToLower() == actionName)
-                .Select(a => a.Id)
-                .FirstOrDefaultAsync();
-
-            if (actionId == Guid.Empty)
+            try
             {
-                throw new Exception($"{actionName} action not found in the database.");
-            }
+                var actionId = await _context.Actions
+                    .Where(a => a.ActionName.ToLower() == actionName)
+                    .Select(a => a.Id)
+                    .FirstOrDefaultAsync();
 
-            return actionId;
+                if (actionId == Guid.Empty)
+                {
+                    throw new Exception($"{actionName} action not found in the database.");
+                }
+
+                return actionId;
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "004", new Exception("GetActionId failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return Guid.Empty;
+            }
         }
+
         public async Task<Guid> GetStatusId(string statusName)
         {
-            var statusId = await _context.Statuses
-                .Where(a => a.StatusName.ToLower() == statusName)
-                .Select(a => a.Id)
-                .FirstOrDefaultAsync();
-
-            if (statusId == Guid.Empty)
+            try
             {
-                throw new Exception($"{statusName} action not found in the database.");
-            }
+                var statusId = await _context.Statuses
+                    .Where(a => a.StatusName.ToLower() == statusName)
+                    .Select(a => a.Id)
+                    .FirstOrDefaultAsync();
 
-            return statusId;
+                if (statusId == Guid.Empty)
+                {
+                    throw new Exception($"{statusName} status not found in the database.");
+                }
+
+                return statusId;
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "005", new Exception("GetStatusId failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return Guid.Empty;
+            }
         }
+
         public async Task UpdateQRMappingStatus(BookIssueDTO bookIssueDTO)
         {
-            var entityToUpdate = _context.BookQrMappings.FirstOrDefault(d => d.Id == bookIssueDTO.BookQrMappingId);
-            var statusId = await GetStatusId("Not Avaliable");
-
-            if (entityToUpdate == null)
+            try
             {
-                throw new KeyNotFoundException("Book not found");
-            }
-            entityToUpdate.StatusId = statusId;
+                var entityToUpdate = _context.BookQrMappings.FirstOrDefault(d => d.Id == bookIssueDTO.BookQrMappingId);
+                var statusId = await GetStatusId("Not Avaliable");
 
-            _context.BookQrMappings.Update(entityToUpdate);
-            await _context.SaveChangesAsync();
+                if (entityToUpdate == null)
+                {
+                    throw new KeyNotFoundException("Book not found");
+                }
+                entityToUpdate.StatusId = statusId;
+
+                _context.BookQrMappings.Update(entityToUpdate);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "006", new Exception("UpdateQRMappingStatus failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+            }
         }
 
         public async Task<Guid> GetBookIssueId(BookIssueDTO bookIssueDTO)
         {
-            var bookIssueId = await _context.BookIssues
-                .Where(a => a.BookQrMappingid == bookIssueDTO.BookQrMappingId)
-                .Select(a => a.Id)
-                .FirstOrDefaultAsync();
-
-            if (bookIssueId == Guid.Empty)
+            try
             {
-                throw new Exception($"{bookIssueDTO.BookQrMappingId} not found in the database.");
-            }
+                var bookIssueId = await _context.BookIssues
+                    .Where(a => a.BookQrMappingid == bookIssueDTO.BookQrMappingId)
+                    .Select(a => a.Id)
+                    .FirstOrDefaultAsync();
 
-            return bookIssueId;
+                if (bookIssueId == Guid.Empty)
+                {
+                    throw new Exception($"{bookIssueDTO.BookQrMappingId} not found in the database.");
+                }
+
+                return bookIssueId;
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "007", new Exception("GetBookIssueId failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return Guid.Empty;
+            }
         }
+
         public async Task UpdateComment(BookIssueDTO bookIssueDTO)
         {
-            var actionId = await GetActionId("issue");
-            var bookIssueId = await GetBookIssueId(bookIssueDTO);
+            try
+            {
+                var actionId = await GetActionId("issue");
+                var bookIssueId = await GetBookIssueId(bookIssueDTO);
 
-            Comment comment = new Comment();
+                Comment comment = new Comment
+                {
+                    Description = bookIssueDTO.Description,
+                    BookQrMappingid = bookIssueDTO.BookQrMappingId,
+                    CreatedBy = bookIssueDTO.CreatedBy,
+                    UpdatedBy = bookIssueDTO.CreatedBy,
+                    CreatedAtUtc = DateTime.UtcNow,
+                    UpdatedAtUtc = DateTime.UtcNow,
+                    ActionId = actionId,
+                    bookIssueId = bookIssueId
+                };
 
-            comment.Description = bookIssueDTO.Description;
-            comment.BookQrMappingid = bookIssueDTO.BookQrMappingId;
-            comment.CreatedBy = bookIssueDTO.CreatedBy;
-            comment.UpdatedBy = bookIssueDTO.CreatedBy;
-            comment.CreatedAtUtc = DateTime.UtcNow;
-            comment.UpdatedAtUtc = DateTime.UtcNow;
-            comment.ActionId = actionId;
-            comment.bookIssueId = bookIssueId;
-
-            _context.Comments.Update(comment);
-            await _context.SaveChangesAsync();
+                _context.Comments.Update(comment);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "008", new Exception("UpdateComment failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+            }
         }
 
         public async Task IssueBookAsync(BookIssueDTO bookIssueDTO)
         {
-            await UpdateBookIssue(bookIssueDTO);
-            await UpdateQRMappingStatus(bookIssueDTO);
-            await UpdateComment(bookIssueDTO);
+            try
+            {
+                await UpdateBookIssue(bookIssueDTO);
+                await UpdateQRMappingStatus(bookIssueDTO);
+                await UpdateComment(bookIssueDTO);
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "009", new Exception("IssueBookAsync failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+            }
         }
-
     }
 }
-//var result = await (from s in _context.Software
-//                    join st in _context.SoftwareTypes
-//on s.SoftwareTypeId equals st.Id
-//                    join sa in _context.SoftwareAllocations
-//                    on s.Id equals sa.SoftwareId
-//                    where sa.IsArchived == false
-//                    //&& sa.ExpiryDate >= currentDate
-//                    select new GetSoftwareDTO
-//                    {
-//                        Id = s.Id,
-//                        SoftwareName = s.SoftwareName,
-//                        SoftwareType = st.TypeName,
-//                        ExpiryDate = sa.ExpiryDate,
-//                        Version = sa.Version,
-//                        LocationId = sa.LocationId,
-//                        AssignedTo = sa.AssignedTo,
-//                    }
-//                             ).ToListAsync();
