@@ -276,7 +276,7 @@ app-books-card-shared{
   }
 
   .show-more {
-    margin-left: 6rem;
+    margin-left: 6.29rem;
     border-radius: 43px;
     border: 1px solid var(--Primary-Blue, #28519E);
     display: flex;
@@ -341,9 +341,9 @@ app-books-card-shared{
   }
 
   .leaderboard-stack {
-    transform: scale(0.8);
+    transform: scale(0.9);
     height: 23.25rem;
-    margin-left: -5.5rem;
+    margin-left: -5.4rem;
     margin-top: -2rem;
   }
 
@@ -387,6 +387,12 @@ app-books-card-shared{
   }
 }
 
+@media only screen and (max-width: 526px) and (min-width: 400px) {
+  .all-lib-books {
+    margin-left: 30px;
+    padding-right: 34px;
+  }
+}
 
 @media only screen and (max-width: 1026px) and (min-width: 768px){
   .books-stack-container {
@@ -623,7 +629,7 @@ app-books-card-shared{
     line-height: normal;
   }
 
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 440px) {
 
     .cards {
       transform: scale(0.8);
