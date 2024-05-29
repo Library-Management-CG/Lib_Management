@@ -5,12 +5,6 @@
   margin-left: 1.5rem;
 }
 
-.sta{
-/*    border:1px solid black;
-*/}
-
-.str{
-}
 .selectors {
   width: 100% !important;
   margin-left: 45%;
@@ -112,6 +106,9 @@
   .selectors{
       margin-left:20% !important;
   }
+  .check-box-text {
+    width: 6.2rem;
+  }
 }
 
 .rating{
@@ -185,14 +182,14 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  width:100%;
+  width: 100%;
 }
 
 
 
 @media screen and (min-width: 1500px) {
   .explore-outer {
-    width: 85rem;
+    width: 85rem!important;
     margin: auto;
   }
 }
@@ -203,3 +200,4 @@
     margin-bottom: 2rem;
   }
 }
+
