@@ -11,6 +11,12 @@ export class ExploreBooksService {
   private apiUrl = this.config.apiUrl;
   constructor(private http: HttpClient, private config: ConfigServiceService) { }
 
+  private addBookPageSource = new BehaviorSubject<number>(0);
+  addBookPage$ = this.addBookPageSource.asObservable();
+
+  setaddBookPage(value: number) {
+    this.addBookPageSource.next(value);
+  }
 
   private exploreBooksSource = new BehaviorSubject<any[]>([]);
   exploreBooks$ = this.exploreBooksSource.asObservable();
@@ -32,7 +38,15 @@ export class ExploreBooksService {
   private qrCodesSource = new BehaviorSubject<any[]>([]);
   qrCodes$ = this.qrCodesSource.asObservable();
 
-
+  setQrCodeAtIndex(index: number, qrCode: any) {
+    const currentQrCodes = this.qrCodesSource.getValue();
+    if (index >= 0 && index < currentQrCodes.length) {
+      currentQrCodes[index] = qrCode;
+      this.qrCodesSource.next([...currentQrCodes]);
+    } else {
+      console.error('Index out of bounds');
+    }
+  }
 
   setQrCodes(qrCodes: any[]) {
     this.qrCodesSource.next(qrCodes);

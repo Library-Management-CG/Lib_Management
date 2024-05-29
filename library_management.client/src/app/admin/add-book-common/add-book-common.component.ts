@@ -72,6 +72,10 @@ export class AddBookCommonComponent {
   }
 
   ngOnInit(): void {
+    this.exploreService.addBookPage$.subscribe(idx => {
+      this.stepperIndex = idx;
+    });
+
     this.exploreService.qrCodes$.subscribe(qrCodes => {
       this.qrCodes = qrCodes;
     });
@@ -202,6 +206,7 @@ export class AddBookCommonComponent {
 
 
     this.exploreService.addQrCode({ value: '' });
+    console.log("array size", this.qrCodes);
   }
 
   decrement(index: number) {
@@ -218,6 +223,7 @@ export class AddBookCommonComponent {
 
 
     this.exploreService.removeQrCode(index);
+    console.log("array size", this.qrCodes);
   }
 
   //updateQuantityValue(event: any) {
@@ -248,10 +254,12 @@ export class AddBookCommonComponent {
 
   stepperIncrement() {
     this.stepperIndex++;
+    this.exploreService.setaddBookPage(this.stepperIndex);
   }
 
   stepperDecrement() {
     this.stepperIndex--;
+    this.exploreService.setaddBookPage(this.stepperIndex);
   }
 
   getBooks(event: any, type: string) {
@@ -358,7 +366,8 @@ export class AddBookCommonComponent {
     console.log(this.bookForm);
   }
 
-  Scanner(index:any) {
+  Scanner(index: any) {
+    $('#exampleModalCenter').modal('hide');
     const navigationExtras: NavigationExtras = {
       state: {
         page: "add",

@@ -105,7 +105,7 @@
       <div class="quantity-select">
         <label for="quantity">Quantity <span class="required">*</span></label>
         <div class="quantity-counter">
-          <div class="reduce-button" (click)="decrement()"><img src="../../../assets/icons/add-books-modal/reduce-quantity.svg" /></div>
+          <div class="reduce-button" (click)="decrement(0)"><img src="../../../assets/icons/add-books-modal/reduce-quantity.svg" /></div>
           <input type="number" class="counter-value" [value]="counterValue" [(ngModel)]="counterValue" (change)="changeQty()" />
           <div class="add-button" (click)="increment()"><img src="../../../assets/icons/add-books-modal/add-quantity.svg" /></div>
         </div>
@@ -117,7 +117,7 @@
   <div *ngIf="stepperIndex==1" class="content-2">
     <div class="scan">
 
-      <div class="qr-card" *ngFor="let car of bookForm.value.qr; let i = index">
+      <div class="qr-card" *ngFor="let car of qrCodes; let i = index">
         <div class="scan-qr">
           <div class="scan-qr-holder">
             <div class="img-1">
@@ -144,7 +144,7 @@
             <div class="rescan-text">rescan</div>
           </div>
 
-          <div class="delete" (click)="decrement()">
+          <div class="delete" (click)="decrement(i)">
             <div class="delete-text">delete</div>
           </div>
         </div>
