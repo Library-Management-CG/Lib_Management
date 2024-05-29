@@ -1,13 +1,13 @@
 <div class="modal fade" id="exampleModalIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header row">
-        <div class="d-flex top-heading col-10">
+  <div class="modal-dialog modal-dialog-centered modal-outer-boundary" role="document">
+    <div class="modal-content outer-container">
+      <div class="modal-header row header">
+        <div class="d-flex top-heading col-10 ">
             <img class="issue-icn" src="../../../assets/icons/issue-modal/User.svg" />
             <p class="heading">Issue Book</p>
           </div>
         <div class="col-xs-2">
-          <img src="../../../assets/icons/X.svg" data-bs-dismiss="modal"/>
+          <img src="../../../assets/icons/X.svg" data-bs-dismiss="modal" class="close-modal-button"/>
         </div>
       </div>
       <!--<div class="modal-body">
@@ -72,16 +72,7 @@
         </div>
       </div>-->
     <app-issue-modal-body [qrvalue]="qr"></app-issue-modal-body>
-      <div class="modal-footer">
-        <div class="row footer-buttons">
-          <div class="col-buttons">
-           <div class="cancel-btn" data-bs-dismiss="modal">Cancel</div>
-          </div>
-          <div class="col-buttons" >
-            <div class="save-btn">Issue</div>
-          </div>
-        </div>
-      </div>
+      
     </div>
 
   </div>

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+import { FormBuilder, FormGroup,FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-issue-modal-body',
@@ -8,8 +9,7 @@ import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
   styleUrls: ['./issue-modal-body.component.css'],
 })
 export class IssueModalBodyComponent {
-  @Input() qrvalue: any ;
-  //@Input() mappedBook: any;
+  @Input() qrvalue: any;
   users: any[] = []; // Array to store users
   selectedOption: any; // Variable to store the selected option
   placeholder: string = "Search User"; // Initial placeholder value
@@ -21,8 +21,10 @@ export class IssueModalBodyComponent {
   totalusers: any;
   bookqr: any;
   mappedBook: any;
+  issueBookForm!: FormGroup;
 
-  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService) {
+
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder) {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
 
@@ -49,6 +51,16 @@ export class IssueModalBodyComponent {
   }
 
 
+  createForm() {
+    this.issueBookForm = this.fb.group({
+
+      createdBy: [''],
+      issueTo: [''],
+      description: [''],
+      bookQrMappingId: ['']
+
+    });
+  }
 
 
 
@@ -95,6 +107,7 @@ export class IssueModalBodyComponent {
         this.cdr.detectChanges();
       }
     });
+    this.createForm();
 
   }
 
@@ -136,7 +149,7 @@ export class IssueModalBodyComponent {
   }
   value(bookqr: any) {
     console.log('thisis my modalbidy:', bookqr);
-   
+
     const revokeParams = {
       qrNumber: bookqr,
     };
@@ -144,6 +157,7 @@ export class IssueModalBodyComponent {
       (data: any) => {
         this.mappedBook = data;
         this.exploreBooksService.setMappedBook(this.mappedBook);
+
         this.cdr.detectChanges();
 
         console.log('mapped', this.mappedBook);
@@ -154,9 +168,30 @@ export class IssueModalBodyComponent {
       }
     );
   }
-    //mappedBook(arg0: string, mappedBook: any) {
-    //    throw new Error('Method not implemented.');
-    //}
+  //mappedBook(arg0: string, mappedBook: any) {
+  //    throw new Error('Method not implemented.');
+  //}
 
- 
-}
+
+  onSubmit() {
+    this.issueBookForm.get('createdBy')?.setValue('86D33C36-BFD3-41AD-94EB-7C658BB075FA');
+    this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
+
+    console.log(this.issueBookForm.value);
+
+    this.AdminService.issueBook(this.issueBookForm.value).subscribe(
+          response => {
+            console.log('data posted successfully', response);
+            
+          },
+          error => {
+            console.error('error posting data', error);
+            
+          }
+        );
+      }
+      
+    }
+
+  
+

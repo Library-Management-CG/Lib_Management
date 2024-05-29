@@ -104,7 +104,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                 {
                                     Id = b.Id,
                                     Title = b.Title,
-                                    AuthorName = a.AuthorName
+                                    AuthorName = a.AuthorName,
+                                    BookQrMappingId = m.Id
                                 }).FirstOrDefaultAsync();
 
             return result;
