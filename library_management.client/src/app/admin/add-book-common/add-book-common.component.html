@@ -120,28 +120,34 @@
       <div class="qr-card" *ngFor="let car of qrCodes; let i = index">
         <div class="scan-qr">
           <div class="scan-qr-holder">
-            <div class="img-1">
+            <div class="img-1" *ngIf="car.value ==''">
               <img src="../../../assets/icons/add-books-modal/Vector.svg" />
               <div class="img-2">
                 <img src="../../../assets/icons/add-books-modal/Rectangle.svg" (click)="Scanner(i)" />
               </div>
             </div>
+            <div class="img-1" *ngIf="car.value != ''">
+
+              <img src="../../../assets/icons/add-books-modal/qr image.svg" />
+            </div>
           </div>
+
+        
 
           <div class="scan-text-outer">
             <div class="scan-book-text">
-              Scan Book
+              {{ 'Book ' + (i+1) }}
             </div>
-            <div class="scan-book-text-subheading">
-              click here to scan
+            <div  *ngIf="car.value != ''" class="scan-book-text-subheading">
+              {{car}}
             </div>
           </div>
 
         </div>
 
         <div class="scan-qr-buttons">
-          <div class="rescan">
-            <div class="rescan-text">rescan</div>
+          <div class="rescan" (click)="Scanner(i)">
+            <div class="rescan-text" >rescan</div>
           </div>
 
           <div class="delete" (click)="decrement(i)">

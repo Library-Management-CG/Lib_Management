@@ -21,6 +21,7 @@ export class AddBookCommonComponent {
 
   qrCodes: any[] = [];
 
+
   //stepperIndex: number = 0;
   counterValue: number = 0;
   video: any;
