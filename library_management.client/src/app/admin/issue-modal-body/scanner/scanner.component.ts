@@ -21,10 +21,26 @@ export class ScannerComponent implements AfterViewInit {
 ) { }
 
   @ViewChild('action') action: NgxScannerQrcodeComponent | undefined;
-  @ViewChild(IssueBookModalComponent) issueBookModal: IssueBookModalComponent | undefined; 
+  @ViewChild(IssueBookModalComponent) issueBookModal: IssueBookModalComponent | undefined;
+
+  page: string = "issue";
+
+  ngOnInit() {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras?.state) {
+      this.page = navigation.extras.state['page'];
+      console.log("page type",this.page);
+    }
+  }
 
 
   ngAfterViewInit() {
+    const navigationState = this.router.getCurrentNavigation()?.extras?.state;
+
+    // Fallback for scenarios where the above method doesn't capture the state
+    this.page = navigationState ? navigationState['page'] : window.history.state.page;
+    console.log(this.page);
+
     if (this.action) {
       this.action.start();
       this.action.data.subscribe((data: any) => {
@@ -41,6 +57,14 @@ export class ScannerComponent implements AfterViewInit {
     } else {
       console.error('NgxScannerQrcodeComponent not found');
     }
+
+    //this.productId = {
+    //  name: history.state.name,
+    //  type: history.state.type,
+    //  version: history.state.version
+    //}
+
+    
   }
 
   toggleScanner() {
@@ -58,16 +82,23 @@ export class ScannerComponent implements AfterViewInit {
     if (isMobile) {
       this.router.navigate(['/admin/issue-mobile']); // Use the router to navigate
     } else {
+      console.log("add book modal",this.bookqrcode);
       this.closePage();
-
-      setTimeout(() => {
-        this.openModal();
-      },950);
-   
+      if (this.page == "add") {
+        setTimeout(() => {
+          this.openModalAdd();
+        }, 950);
+      } else {
+        setTimeout(() => {
+          this.openModal();
+        }, 950);
+      }
     }
   }
 
-
+  openModalAdd() {
+    $('#exampleModalCenter').modal('show');
+  }
  
 
 

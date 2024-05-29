@@ -15,6 +15,7 @@ export class ExploreBooksService {
   private exploreBooksSource = new BehaviorSubject<any[]>([]);
   exploreBooks$ = this.exploreBooksSource.asObservable();
 
+
   private mappedBookSource = new BehaviorSubject<any>(null);
   mappedBook$ = this.mappedBookSource.asObservable();
 
@@ -25,5 +26,26 @@ export class ExploreBooksService {
 
   setMappedBook(mappedBook: any) {
     this.mappedBookSource.next(mappedBook);
+  }
+
+
+  private qrCodesSource = new BehaviorSubject<any[]>([]);
+  qrCodes$ = this.qrCodesSource.asObservable();
+
+
+
+  setQrCodes(qrCodes: any[]) {
+    this.qrCodesSource.next(qrCodes);
+  }
+
+  addQrCode(qrCode: any) {
+    const currentQrCodes = this.qrCodesSource.getValue();
+    this.qrCodesSource.next([...currentQrCodes, qrCode]);
+  }
+
+  removeQrCode(index: number) {
+    const currentQrCodes = this.qrCodesSource.getValue();
+    currentQrCodes.splice(index, 1);
+    this.qrCodesSource.next([...currentQrCodes]);
   }
 }
