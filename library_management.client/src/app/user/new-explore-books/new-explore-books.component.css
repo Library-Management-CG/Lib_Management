@@ -1,5 +1,5 @@
 .inner {
-  width:95%;
+  width: 95%;
   margin: auto;
   margin-top: 4rem;
   margin-left: 1.5rem;
@@ -7,24 +7,24 @@
 
 .selectors {
   width: 100% !important;
-  margin-left: 45%;
+  margin-left: 48%;
   display: flex;
   flex-direction: row;
 }
-.rating{
-    margin-right:0rem;
+
+.rating {
+  margin-right: 0rem;
 }
 
   .rating[_ngcontent-ng-c923163720] {
     margin-left: 2rem !important;
   }
 
-  .check-box-component {
-    
-    display: flex;
-    flex-direction: row;
-    margin-top: 0.2rem;
-  }
+.check-box-component {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.2rem;
+}
 
 .check-box-label {
   display: flex;
@@ -38,13 +38,13 @@
 }
 
 
-.subhead-heading{
-    margin-left:2rem;
-    width:100%;
+.subhead-heading {
+  margin-left: 2rem;
+  width: 100%;
 }
 
-.arrow{
-    margin-right:1rem;
+.arrow {
+  margin-right: 1rem;
 }
 
 .column {
@@ -52,36 +52,56 @@
   margin: 1%;
   float: left;
   box-sizing: border-box;
+  margin-bottom:2rem;
 }
-.clear{
-    clear:both;
+
+.clear {
+  clear: both;
 }
-.column{
+
+@media screen and (min-width: 1500px) {
+  .explore-outer {
+    width: 85rem;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .column {
+    width: 48%;
     margin-bottom: 2rem;
+  }
 }
+
 @media only screen and (min-width:200px) and (max-width: 567px) {
   .inner {
     width: 100%;
   }
+
   .column {
     width: 48%;
   }
+
   .head-body {
     display: none !important;
   }
-  .subhead{
-      display:flex!important;
-      flex-direction:column!important;
+
+  .subhead {
+    display: flex !important;
+    flex-direction: column !important;
   }
-  .selectors{
-      margin-left:2rem !important;
-      position:relative;
-      margin-top:1.5rem;
+
+  .selectors {
+    margin-left: 2rem !important;
+    position: relative;
+    margin-top: 1.5rem;
   }
-  .rating{
-      position:absolute;
-      right:1.8rem;
+
+  .rating {
+    position: absolute;
+    right: 1.8rem;
   }
+
   .explore-books-heading {
     color: var(--Primary-Grey, #343435);
     leading-trim: both;
@@ -100,26 +120,25 @@
   }
 
   .column {
-    width: 20%; 
+    width: 20%;
     margin: 2%;
   }
-  .selectors{
-      margin-left:20% !important;
-  }
-  .check-box-text {
-    width: 6.2rem;
+
+  .selectors {
+    margin-left: 20% !important;
   }
 }
 
-.rating{
-    margin-left:20%!important;
+.rating {
+  margin-left: 20% !important;
 }
 
 .head-body {
   display: flex;
   flex-direction: row;
-  margin:1.5rem 2rem;
+  margin: 1.5rem 2rem;
 }
+
 .header-txt {
   color: var(--Primary-Gray, #343435);
   font-family: Lato;
@@ -128,22 +147,25 @@
   font-weight: 400;
   line-height: normal;
 }
-.subhead{
-    /*margin:1.5rem 0rem 2.5rem 0rem;*/
-    display: flex;
-/*    position:relative;
-*/    flex-direction: row;
+
+.subhead {
+  /*margin:1.5rem 0rem 2.5rem 0rem;*/
+  display: flex;
+  /*    position:relative;
+*/ flex-direction: row;
 }
+
 .explore-books-heading {
   color: var(--Primary-Grey, #343435);
-
   font-family: Literata;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  padding:0rem !important;
-} {
+  padding: 0rem !important;
+}
+
+{
   display: flex;
   flex-direction: row;
 }
@@ -166,6 +188,7 @@
   line-height: normal;
   padding: 0rem !important;
 }
+
 .check-box-text {
   color: var(--Primary-Gray, #343435);
   font-family: Lato;
@@ -184,20 +207,3 @@
   flex-direction: row;
   width: 100%;
 }
-
-
-
-@media screen and (min-width: 1500px) {
-  .explore-outer {
-    width: 85rem!important;
-    margin: auto;
-  }
-}
-
-@media screen and (max-width: 545px)  {
-  .column {
-    width: 48%;
-    margin-bottom: 2rem;
-  }
-}
-
