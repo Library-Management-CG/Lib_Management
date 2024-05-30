@@ -59,6 +59,10 @@
   clear: both;
 }
 
+.search-bar{
+    display:none;
+}
+
 @media screen and (min-width: 1500px) {
   .explore-outer {
     width: 85rem;
@@ -71,6 +75,26 @@
     width: 48%;
     margin-bottom: 2rem;
   }
+  .search-bar {
+    display: flex;
+  }
+  .explore-books-heading{
+      display:none;
+  }
+  .subhead-heading{
+      display:flex;
+
+  }
+  .search-bar {
+    width: 100%;
+    margin-right: 2rem !important;
+    border-radius: 20px;
+    border:1px solid grey;
+    height:2rem;
+  }
+    .search-bar:focus {
+      border: 1px solid grey;
+    }
 }
 
 @media only screen and (min-width:200px) and (max-width: 567px) {
@@ -112,6 +136,7 @@
     font-weight: 700;
     line-height: normal;
   }
+ 
 }
 
 @media only screen and (min-width: 568px) and (max-width: 1024px) {
