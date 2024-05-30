@@ -25,7 +25,7 @@ export class NewExploreBooksComponent {
 
     this.exploreBookData();
     this.exploreBooksService.getFilterValue().subscribe(filterValue => {
-      console.log('Filter Value:', filterValue);
+      //console.log('Filter Value:', filterValue);
       if (filterValue) {
         this.filterExploreBooks(filterValue);
       } else {
@@ -68,7 +68,7 @@ export class NewExploreBooksComponent {
     this.user.explorebooks().subscribe(
       (data) => {
         this.exploreBooks = data;
-        console.log(data);
+        //console.log(data);
 
       },
       (error) => {
@@ -82,7 +82,7 @@ export class NewExploreBooksComponent {
     this.user.availableExplore().subscribe(
       (data) => {
         this.availablebooks = data;
-        console.log(data);
+        //console.log(data);
 
       },
       (error) => {
@@ -95,7 +95,7 @@ export class NewExploreBooksComponent {
     this.user.getRatingFilteredBooks(this.selectedRatings).subscribe(
       data => {
         this.ratingFilteredBook = data;
-        console.log('Filtered books:', this.ratingFilteredBook);
+      //  console.log('Filtered books:', this.ratingFilteredBook);
       },
       error => {
         console.error('Error fetching filtered books:', error);
