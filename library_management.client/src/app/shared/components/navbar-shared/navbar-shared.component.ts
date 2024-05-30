@@ -20,7 +20,7 @@ export class NavbarSharedComponent {
   isTogglerClicked: boolean = false;
    isSettingsClicked: boolean = false;
   isMyBooksClicked: boolean = false;
-  filterValue:any
+  filterValue: string = '';
   constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef, private exploreBooksService: ExploreBooksService) {
 
   }

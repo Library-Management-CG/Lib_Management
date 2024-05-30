@@ -10,7 +10,7 @@ import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 })
 export class NewExploreBooksComponent {
 
-  exploreBooks = [];
+  exploreBooks: any[] = [];
   selectedBook: any;
   availablebooks = []
   ratingFilteredBook: any[] = [];
