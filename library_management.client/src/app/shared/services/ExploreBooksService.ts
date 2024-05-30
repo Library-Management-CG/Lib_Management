@@ -11,6 +11,19 @@ export class ExploreBooksService {
   private apiUrl = this.config.apiUrl;
   constructor(private http: HttpClient, private config: ConfigServiceService) { }
 
+
+  private filterValueSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public filterValue$: Observable<string> = this.filterValueSubject.asObservable();
+
+
+  setFilterValue(filterValue: string): void {
+    this.filterValueSubject.next(filterValue);
+  }
+
+  getFilterValue(): Observable<string> {
+    return this.filterValue$;
+  }
+
   private addBookPageSource = new BehaviorSubject<number>(0);
   addBookPage$ = this.addBookPageSource.asObservable();
 

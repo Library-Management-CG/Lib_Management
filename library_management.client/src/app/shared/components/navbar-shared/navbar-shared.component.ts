@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Renderer2 } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { ExploreBooksService } from '../../services/ExploreBooksService';
 
 @Component({
   selector: 'app-navbar-shared',
@@ -19,7 +20,8 @@ export class NavbarSharedComponent {
   isTogglerClicked: boolean = false;
    isSettingsClicked: boolean = false;
   isMyBooksClicked: boolean = false;
-  constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef) {
+  filterValue:any
+  constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef, private exploreBooksService: ExploreBooksService) {
 
   }
   ngOnInit(): void
@@ -184,4 +186,14 @@ export class NavbarSharedComponent {
     // Navigate to the explore-books route
     this.router.navigate(['/new-explore-books']);
   }
+
+
+  applyAccessoryFilter(event: Event) {
+    this.filterValue = (event.target as HTMLInputElement).value;
+    //console.log('exploresearch:', this.filterValue);
+    this.exploreBooksService.setFilterValue(this.filterValue);
+
+
+  }
+
 }
