@@ -57,6 +57,15 @@
 }
 
 
+.no-books-tag {
+  color: var(--Adhoc-Text-Grey, #6D6D6D);
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .st {
   border: 1px solid black;
 }

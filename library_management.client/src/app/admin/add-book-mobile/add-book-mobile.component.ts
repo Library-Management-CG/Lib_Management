@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 
 @Component({
   selector: 'app-add-book-mobile',
@@ -9,11 +10,18 @@ import { Router } from '@angular/router';
 export class AddBookMobileComponent {
 
   //@Output() nextClicked: any = new EventEmitter<any>();
-  constructor(private router: Router) { }
+  constructor(private router: Router, private exploreService: ExploreBooksService) { }
+  ngOnInit() {
+    this.exploreService.addBookPage$.subscribe(idx => {
+      this.stepperIndex = idx;
+    });
+  }
 
   stepperIndex: number = 0;
   Next() {
     this.stepperIndex = 1;
+    this.exploreService.setaddBookPage(this.stepperIndex);
+    console.log(this.stepperIndex);
     //this.nextClicked.stepperIndex();
   }
 
@@ -23,6 +31,8 @@ export class AddBookMobileComponent {
 
   Previous() {
     this.stepperIndex = 0;
+    this.exploreService.setaddBookPage(this.stepperIndex);
+    console.log(this.stepperIndex);
   }
 
   Add() {

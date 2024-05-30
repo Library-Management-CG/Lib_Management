@@ -9,7 +9,17 @@
   line-height: normal;
   margin-left: 0px;
 }
-
+.se {
+  border: 2px solid red;
+  padding: 0rem !important;
+}
+.header {
+  border-bottom: none !important;
+}
+.footer-buttons{
+    position: absolute;
+    right: 1.8rem;
+}
 .row-modal {
   margin-right: 0px;
 }
@@ -167,8 +177,9 @@
     gap:1rem;
 }*/
 
-.textarea {
-  height: 140px;
+.text-area {
+  height: 9.25rem !important;
+  resize: none;
 }
 
 .asteric {
@@ -342,7 +353,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* Style the custom icon */
 .calendar-icon {
   position: absolute;
-  position: absolute;
   right: 10px; /* Adjust the position as needed */
   top: 50%;
   transform: translateY(-50%);
@@ -351,14 +361,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-
+.date-container{
+    width: 9.8rem !important;
+}
 .issue-button-mobile {
   display: none;
- 
+}
+
+.comments-div{
+    margin:1rem 0rem 1.5rem 0rem;
+}
+.alert-container{
+    margin:0.5rem 0rem 0.5rem 0rem;
 }
 
 @media only screen and (max-width: 450px) {
-  
   .body-text {
     color: var(--Primary-Grey, #343435);
     font-family: Literata;
@@ -401,11 +418,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   .form-col{
-      padding-right:0rem !important;
-  }
-
-  .custom-date-input{
-    width: 100%;
+      padding:0rem !important;
+      margin-right:0rem !important;
   }
 
   .issue-book-header {
@@ -429,3 +443,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
 }
+
+
