@@ -23,6 +23,8 @@ public partial class Book
 
     public string? Isbn { get; set; }
 
+    public String imageData { get; set; }
+
     public virtual ICollection<AuthorBook> AuthorBooks { get; set; } = new List<AuthorBook>();
 
     public virtual ICollection<BookQrMapping> BookQrMappings { get; set; } = new List<BookQrMapping>();
