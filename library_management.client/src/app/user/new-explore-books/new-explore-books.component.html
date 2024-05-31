@@ -12,7 +12,8 @@
       <!--<input type="text" class="search-bar" placeholder="" />-->
       <div class="search-box ">
         <img src="../../../assets/icons/My-books-mobile/search.svg" />
-        <input type="text" class="search-text" placeholder=""/>
+        <input type="text" class="search-text" placeholder="" [(ngModel)]="filterValue"
+           (input)="applyBookFilter($event)"/>
       </div>
     </div>
 
