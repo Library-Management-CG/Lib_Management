@@ -31,7 +31,7 @@ export class MyBooksMobileComponent {
 
   ngOnInit(): void {
     // Assuming userId is initialized somewhere in your component
-    this.userId ='26A2B9CB-8029-4CCC-AD63-E56893E631F0'; // Initialize with your actual userId
+    this.userId ='3A5B5AF8-5703-4872-A098-0EF31480DB57'; // Initialize with your actual userId
     this.getMyBooksMobile();
   }
 
@@ -41,7 +41,7 @@ export class MyBooksMobileComponent {
         this.myBooks = data;
         this.filteredBooks = this.myBooks;
 
-        console.log(this.myBooks);
+        //console.log(this.myBooks);
         
       },
       (error) => {
@@ -53,6 +53,11 @@ export class MyBooksMobileComponent {
   hasBooksWithReturnDate(): boolean {
     const books = this.filteredBooks && this.filteredBooks.length ? this.filteredBooks : this.myBooks;
     return books.some((book: { returnDate: null; }) => book.returnDate !== null);
+  }
+
+  hasBookWithReturn(): boolean {
+    const books = this.filteredBooks && this.filteredBooks.length ? this.filteredBooks : this.myBooks;
+    return books.some((book: { returnDate: null; }) => book.returnDate == null);
   }
 
 
