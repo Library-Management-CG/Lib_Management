@@ -714,6 +714,13 @@ textarea {
   ::ng-deep .ng-select .ng-dropdown-panel {
     width: 25rem !important;
   }
+  .content {
+   max-height: none;
+
+  }
+  .content-2 {
+  max-height: none;
+   }
 }
 @media screen and (max-width: 375px){
   ::ng-deep .ng-select .ng-select-container, ::ng-deep .ng-select.ng-select-single .ng-select-container {

@@ -44,21 +44,24 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
             try
             {
-                Book b = new Book {
+                Book b = new Book
+                {
                     //Id = Guid.NewGuid(),
                     Title = books.bookName,
                     Description = books.description,
+                    imageData = books.img,
                     CreatedAtUtc = DateTime.UtcNow,
-                    CreatedBy = books.LoggedIn,
+                    CreatedBy = Guid.Parse(books.LoggedIn),
                     UpdatedAtUtc = DateTime.UtcNow,
-                    UpdatedBy = books.LoggedIn,
+                    UpdatedBy = Guid.Parse(books.LoggedIn),
                     Isbn = books.ISBN,
                 };
 
                 await _context.Books.AddAsync(b);
                 await _context.SaveChangesAsync();
                 return true;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 return false;
@@ -69,12 +72,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         {
             List<string> allAuthors = await _context.Authors.Select(a => a.AuthorName.ToLower()).ToListAsync();
 
-            string[] parts = books.authorName.Split(',');
+            //string[] parts = books.authorName.Split(',');
 
-            for (int i = 0; i < parts.Length; i++)
+            for (int i = 0; i < books.authorName.Count(); i++)
             {
-                parts[i] = parts[i].Trim();
-                if (allAuthors.Contains(parts[i].ToLower()))
+                var parts = books.authorName[i].Trim();
+                if (allAuthors.Contains(parts.ToLower()))
                 {
                     continue;
                 }
@@ -83,11 +86,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     Author a = new Author
                     {
                         //Id = Guid.NewGuid(),
-                        AuthorName = parts[i],
+                        AuthorName = parts,
                         CreatedAtUtc = DateTime.UtcNow,
-                        CreatedBy = books.LoggedIn,
+                        CreatedBy = Guid.Parse(books.LoggedIn),
                         UpdatedAtUtc = DateTime.UtcNow,
-                        UpdatedBy = books.LoggedIn,
+                        UpdatedBy = Guid.Parse(books.LoggedIn),
                     };
                     await _context.Authors.AddAsync(a);
                     await _context.SaveChangesAsync();
@@ -104,15 +107,15 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         public async Task<Boolean> AddAuthorBooks(NewBooksDTO books)
         {
             Guid bookId = await _context.Books.Where(s => s.Isbn == books.ISBN).Select(s => s.Id).FirstOrDefaultAsync();
-            string[] parts = books.authorName.Split(',');
+            //string[] parts = books.authorName.Split(',');
 
-            for (int i = 0; i < parts.Length; i++)
+            for (int i = 0; i < books.authorName.Count(); i++)
             {
-                parts[i] = parts[i].Trim();
+                var parts = books.authorName[i].Trim();
 
                 try
                 {
-                    Guid authorId = await _context.Authors.Where(a => a.AuthorName.ToLower() == parts[i].ToLower()).Select(s => s.Id).FirstOrDefaultAsync();
+                    Guid authorId = await _context.Authors.Where(a => a.AuthorName.ToLower() == parts.ToLower()).Select(s => s.Id).FirstOrDefaultAsync();
                     AuthorBook au = new AuthorBook
                     {
                         //Id = Guid.NewGuid(),
@@ -136,32 +139,39 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         {
             Guid bookId = await _context.Books.Where(s => s.Isbn == books.ISBN).Select(s => s.Id).FirstOrDefaultAsync();
 
-            for(int i = 0; i < books.qr.Count(); i++)
+            for (int i = 0; i < books.qr.Count(); i++)
             {
                 string qr = books.qr[i];
                 try
                 {
                     BookQrMapping bqr = new BookQrMapping
                     {
-                       // Id = Guid.NewGuid(),
+                        // Id = Guid.NewGuid(),
                         BookId = bookId,
                         Qrnumber = qr,
-                        StatusId = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not assigned").Select(s => s.Id).FirstOrDefaultAsync(),
+                        //StatusId = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not assigned").Select(s => s.Id).FirstOrDefaultAsync(),
                         CreatedAtUtc = DateTime.UtcNow,
-                        CreatedBy = books.LoggedIn,
+                        CreatedBy = Guid.Parse(books.LoggedIn),
                         UpdatedAtUtc = DateTime.UtcNow,
-                        UpdatedBy = books.LoggedIn,
+                        UpdatedBy = Guid.Parse(books.LoggedIn),
                     };
+
+                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not avaliable").Select(s => s.Id).FirstOrDefaultAsync();
+                    if (statusOfBook != null)
+                    {
+                        bqr.StatusId = statusOfBook;
+                    }
+
                     await _context.BookQrMappings.AddAsync(bqr);
                     await _context.SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {
                     _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new bookqrModel failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
-                }               
+                }
             }
 
-            return true; 
+            return true;
         }
 
 
@@ -220,8 +230,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
               description = book.Description,
               authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
               points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
-              numberOfPeopleReviewed = book.Ratings.Count()
-
+              numberOfPeopleReviewed = book.Ratings.Count(),
+              image=book.imageData
 
           }).OrderByDescending(book => book.numberOfPeopleReviewed)
         .ThenByDescending(book => book.points)
@@ -264,7 +274,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
               points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
               numberOfPeopleReviewed = book.Ratings.Count(),
               CreatedAtUtc = book.CreatedAtUtc,
-              StatusName = book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available"
+              StatusName = book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available",
+              image=book.imageData
 
           }).OrderByDescending(book => book.CreatedAtUtc)
            .ToListAsync();
@@ -304,6 +315,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
               points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
               numberOfPeopleReviewed = book.Ratings.Count(),
               CreatedAtUtc = book.CreatedAtUtc,
+              image = book.imageData
+
 
           }).OrderByDescending(book => book.CreatedAtUtc)
            .ToListAsync();
@@ -356,7 +369,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         points = b.AverageRating,
                         numberOfPeopleReviewed = b.Book.Ratings.Count(),
                         CreatedAtUtc = b.Book.CreatedAtUtc,
-                        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available"
+                        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available",
+                        image = b.Book.imageData
+
                     })
                     .OrderByDescending(book => book.points)
                     .ToListAsync();
