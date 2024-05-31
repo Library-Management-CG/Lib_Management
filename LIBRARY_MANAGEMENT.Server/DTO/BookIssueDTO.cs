@@ -37,7 +37,7 @@ namespace LIBRARY_MANAGEMENT.Server.DTO
     {
         public Guid Id { get; set; }
         public string? Title { get; set; }
-        public string AuthorName { get; set; } = null!;
+        public List<string> AuthorName { get; set; } = null!;
         public Guid BookQrMappingId { get; set; }
          public String image { get; set; }
 
