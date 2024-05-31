@@ -55,6 +55,20 @@
         public int points { get; set; }
         public int numberOfPeopleReviewed { get; set; }
     }
+    public class ExploreBookDTO
+    {
+        public string? title { get; set; }
+        public List<string> authorName { get; set; }
+        public string? description { get; set; }
+        public int points { get; set; }
+        public int numberOfPeopleReviewed { get; set; }
+        public DateTime CreatedAtUtc { get; set; }
+        public string? StatusName { get; set; }
+   
+
+    }
+
+ 
 
 
 }

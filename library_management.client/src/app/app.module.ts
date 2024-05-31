@@ -162,7 +162,8 @@ LOAD_WASM().subscribe();
     MatBottomSheetModule,
     MatListModule,
     ImageCropperModule,
-    NgxScannerQrcodeModule
+    NgxScannerQrcodeModule,
+    ReactiveFormsModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],

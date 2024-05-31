@@ -21,6 +21,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         Task<int> issuebooks();
         Task<List<TopChoicesBookDTO>> topChoices();
+        Task<List<ExploreBookDTO>> exploreBook();
+        Task<List<ExploreBookDTO>> availableBook();
+        Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters);
+
+
+
 
     }
     public class BookService : IBookService
@@ -206,26 +212,167 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         }
         public async Task<List<TopChoicesBookDTO>> topChoices()
         {
-            List<TopChoicesBookDTO> topbooks = await _context.Books
-           .Include(r => r.Ratings)
-           .Include(book => book.AuthorBooks)
-            .ThenInclude(authorBook => authorBook.Author)
-            .Select(book => new TopChoicesBookDTO
-    {
-                title = book.Title,
-                description = book.Description,
-                authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
-                points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
-                numberOfPeopleReviewed = book.Ratings.Count()
+
+            try
+            {
+                List<TopChoicesBookDTO> topbooks = await _context.Books
+         .Include(r => r.Ratings)
+         .Include(book => book.AuthorBooks)
+          .ThenInclude(authorBook => authorBook.Author)
+          .Select(book => new TopChoicesBookDTO
+          {
+              title = book.Title,
+              description = book.Description,
+              authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+              points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+              numberOfPeopleReviewed = book.Ratings.Count()
 
 
           }).OrderByDescending(book => book.numberOfPeopleReviewed)
-          .ThenByDescending(book=>book.points)
-           .Take(10)
+        .ThenByDescending(book => book.points)
+         .Take(10)
 
-        .ToListAsync();
+       .ToListAsync();
 
-            return topbooks;
+                return topbooks;
+
+            }
+
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                throw ex;
+            }
+
+
+
+
+
+        }
+
+        public async Task<List<ExploreBookDTO>> exploreBook()
+        {
+
+            try
+            {
+                List<ExploreBookDTO> exploreBook = await _context.Books
+         .Include(r => r.Ratings)
+         .Include(book => book.AuthorBooks)
+          .ThenInclude(authorBook => authorBook.Author)
+          .Include(qr => qr.BookQrMappings)
+          .ThenInclude(status => status.Status)
+          .Select(book => new ExploreBookDTO
+          {
+              title = book.Title,
+              description = book.Description,
+              authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+              points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+              numberOfPeopleReviewed = book.Ratings.Count(),
+              CreatedAtUtc = book.CreatedAtUtc,
+              StatusName = book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available"
+
+          }).OrderByDescending(book => book.CreatedAtUtc)
+           .ToListAsync();
+
+                return exploreBook;
+            }
+
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                throw ex;
+            }
+
+          
+        }
+
+
+
+        public async Task<List<ExploreBookDTO>> availableBook()
+        {
+
+
+            try
+            {
+                List<ExploreBookDTO> exploreBook = await _context.Books
+         .Include(r => r.Ratings)
+         .Include(book => book.AuthorBooks)
+          .ThenInclude(authorBook => authorBook.Author)
+          .Include(qr => qr.BookQrMappings)
+          .ThenInclude(status => status.Status).Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available"))
+
+          .Select(book => new ExploreBookDTO
+          {
+              title = book.Title,
+              description = book.Description,
+              authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+              points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+              numberOfPeopleReviewed = book.Ratings.Count(),
+              CreatedAtUtc = book.CreatedAtUtc,
+
+          }).OrderByDescending(book => book.CreatedAtUtc)
+           .ToListAsync();
+
+                return exploreBook;
+
+            }
+
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                throw ex;
+            }
+
+
+          
+
+        }
+
+        public async Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters)
+        {
+            try
+            {
+                // Get all books with related data
+                var booksQuery = _context.Books
+                    .Include(r => r.Ratings)
+                    .Include(book => book.AuthorBooks)
+                        .ThenInclude(authorBook => authorBook.Author)
+                    .Include(qr => qr.BookQrMappings)
+                        .ThenInclude(status => status.Status)
+                    .Select(book => new
+                    {
+                        Book = book,
+                        AverageRating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0
+                    });
+
+                // Filter books based on the provided ratings
+                if (ratingFilters != null && ratingFilters.Any())
+                {
+                    booksQuery = booksQuery.Where(b => ratingFilters.Contains(b.AverageRating));
+                }
+
+                // Project the filtered books to the DTO
+                var exploreBook = await booksQuery
+                    .Select(b => new ExploreBookDTO
+                    {
+                        title = b.Book.Title,
+                        description = b.Book.Description,
+                        authorName = b.Book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                        points = b.AverageRating,
+                        numberOfPeopleReviewed = b.Book.Ratings.Count(),
+                        CreatedAtUtc = b.Book.CreatedAtUtc,
+                        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available"
+                    })
+                    .OrderByDescending(book => book.points)
+                    .ToListAsync();
+
+                return exploreBook;
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("Adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                throw ex;
+            }
         }
 
 
