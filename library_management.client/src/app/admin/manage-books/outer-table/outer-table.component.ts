@@ -5,6 +5,7 @@ import { ManageBooksService } from '../../../shared/services/manage-books.servic
 
 export interface Element {
   bookName: string;
+  bookImage: String;
   author: string;
   copies: number;
   expanded: boolean;
@@ -213,6 +214,7 @@ export class OuterTableComponent {
 
   fetchDataFromApi() {
     this.manageBooksService.getAllBooks().subscribe(data => {
+      console.log(data);
       const transformedData = this.transformData(data);
       this.dataSource.data = transformedData;
     }, error => {
@@ -223,6 +225,7 @@ export class OuterTableComponent {
   transformData(apiData: any[]): Element[] {
     return apiData.map(book => ({
       bookName: book.title,
+      bookImage: book.imageLink,
       author: book.authorNames,
       copies: book.numberOfCopies,
       expanded: false,

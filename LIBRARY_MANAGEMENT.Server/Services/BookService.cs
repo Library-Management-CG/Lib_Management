@@ -395,6 +395,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 {
                     BookId = book.Id,
                     Title = book.Title,
+                    ImageLink = book.ImageData,
                     AuthorNames = string.Join(", ", book.AuthorBooks.Select(ab => ab.Author.AuthorName)),
                     NumberOfCopies = numberOfCopies,
                     BookQrDetails = bookQrDetails

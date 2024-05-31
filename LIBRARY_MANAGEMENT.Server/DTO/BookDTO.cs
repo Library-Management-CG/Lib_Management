@@ -20,6 +20,7 @@
     {
         public Guid BookId { get; set; }
         public string Title { get; set; }
+        public String? ImageLink { get; set; }
         public string AuthorNames { get; set; }
         public int NumberOfCopies { get; set; }
         public List<BookQrDetailDTO> BookQrDetails { get; set; }

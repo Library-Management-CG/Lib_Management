@@ -12,7 +12,9 @@
         <div class="book-name-cell" (click)="element.expanded = !element.expanded">
           <img *ngIf="element.expanded == false" src="../../../../assets/icons/manage-books/expand-icon.svg" />
           <img *ngIf="element.expanded == true" src="../../../../assets/icons/manage-books/collapse-icon.svg" />
-          <div class="book-thumbnail"></div>
+          <div class="book-thumbnail">
+            <img src={{element.bookImage}} alt="book_image"/>
+          </div>
           <span class="book-name">{{element.bookName}}</span>
         </div>
       </mat-cell>
