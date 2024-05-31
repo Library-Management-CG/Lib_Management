@@ -91,7 +91,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                     {
                                         Id = b.Id,
                                         Title = b.Title,
-                                        AuthorName = a.AuthorName,
+                                        AuthorName = b.AuthorBooks.Select(ab => ab.Author.AuthorName).ToList(),
                                         BookQrMappingId = m.Id,
                                         image=b.imageData
                                     }).FirstOrDefaultAsync();
