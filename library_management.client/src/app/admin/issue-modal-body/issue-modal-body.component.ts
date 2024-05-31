@@ -1,13 +1,15 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { AdminServiceService } from '../../shared/services/Admin-service .service';
+import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+import { FormBuilder, FormGroup,FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-issue-modal-body',
   templateUrl: './issue-modal-body.component.html',
   styleUrls: ['./issue-modal-body.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class IssueModalBodyComponent {
-
+  @Input() qrvalue: any;
   users: any[] = []; // Array to store users
   selectedOption: any; // Variable to store the selected option
   placeholder: string = "Search User"; // Initial placeholder value
@@ -16,7 +18,13 @@ export class IssueModalBodyComponent {
   //returnDateInput: string | undefined; // Variable to store the current date for return date input
   returnDateInputValue: string;
   issueDateInputValue: string;
-  constructor() {
+  totalusers: any;
+  bookqr: any;
+  mappedBook: any;
+  issueBookForm!: FormGroup;
+
+
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder) {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
 
@@ -40,6 +48,18 @@ export class IssueModalBodyComponent {
     //currentDate.setDate(currentDate.getDate() + 15);
     //this.returnDateInput = currentDate.toISOString().split('T')[0];
 
+  }
+
+
+  createForm() {
+    this.issueBookForm = this.fb.group({
+
+      createdBy: [''],
+      issueTo: [''],
+      description: [''],
+      bookQrMappingId: ['']
+
+    });
   }
 
 
@@ -78,7 +98,20 @@ export class IssueModalBodyComponent {
 
     // Set the issue date input value to the current date
     this.issueDateInputValue = this.formatDate(currentDate);
+    this.getUsers();
+
+
+    this.exploreBooksService.mappedBook$.subscribe(mappedBook => {
+      if (mappedBook) {
+        this.mappedBook = mappedBook;
+        this.cdr.detectChanges();
+      }
+    });
+    this.createForm();
+
   }
+
+
 
   // Function to format the date as YYYY-MM-DD (required format for input type="date")
   private formatDate(date: Date): string {
@@ -88,4 +121,77 @@ export class IssueModalBodyComponent {
     return `${year}-${month}-${day}`;
   }
 
-}
+  getUsers() {
+    this.AdminService.getUsers().subscribe(
+      (data) => {
+        this.totalusers = data;
+        //console.log('kdsbvsbdvj', this.mappedBook);
+
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  //ngOnChanges(changes: SimpleChanges) {
+  //  if (changes['mappedBook']) {
+  //    console.log('kdsbvsbdvj', this.mappedBook);
+  //  }
+  //}
+  ngOnChanges() {
+    this.bookqr = this.qrvalue;
+    if (this.bookqr) {
+      console.log('cbjsbjbsdjbj  : ', this.qrvalue);
+
+      this.value(this.qrvalue);
+    }
+  }
+  value(bookqr: any) {
+    console.log('thisis my modalbidy:', bookqr);
+
+    const revokeParams = {
+      qrNumber: bookqr,
+    };
+    this.AdminService.getBookDetails(revokeParams).subscribe(
+      (data: any) => {
+        this.mappedBook = data;
+        this.exploreBooksService.setMappedBook(this.mappedBook);
+
+        this.cdr.detectChanges();
+
+        console.log('mapped', this.mappedBook);
+
+      },
+      (error: any) => {
+        console.log("User not found");
+      }
+    );
+  }
+  //mappedBook(arg0: string, mappedBook: any) {
+  //    throw new Error('Method not implemented.');
+  //}
+
+
+  onSubmit() {
+    this.issueBookForm.get('createdBy')?.setValue('86D33C36-BFD3-41AD-94EB-7C658BB075FA');
+    this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
+
+    console.log(this.issueBookForm.value);
+
+    this.AdminService.issueBook(this.issueBookForm.value).subscribe(
+          response => {
+            console.log('data posted successfully', response);
+            
+          },
+          error => {
+            console.error('error posting data', error);
+            
+          }
+        );
+      }
+      
+    }
+
+  
+

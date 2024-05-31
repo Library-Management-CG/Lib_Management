@@ -17,6 +17,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<List<allAdminsDTO>> getAllAdminsService();
         Task<Boolean> AddAdminService(updateUserDTO user);
         Task<List<allAdminsDTO>> getAllUsersService();
+        Task<IEnumerable<UserInfoDTO>> listUsers();
     }
 
     public class UserService:IUserService
@@ -238,5 +239,19 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 return false;
             }
         }
+        public async Task<IEnumerable<UserInfoDTO>> listUsers()
+        {
+            var result = await (from u in _context.Users
+
+                                select new UserInfoDTO
+                                {
+                                    Id = u.Id,
+                                    FullName = u.FirstName + ' ' + u.LastName
+
+                                }
+                             ).ToListAsync();
+            return result;
+        }
+
     }
 }
