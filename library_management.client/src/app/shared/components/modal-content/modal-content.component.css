@@ -91,10 +91,10 @@
   margin-left: 5px;
 }
 
-.line {
-  width: 22px;
-  border: 1px 0px 0px 0px;
-  margin-left: 6px;
+.tags-container {
+  display: flex;
+  align-items: center;
+
 }
 
 .tag {
@@ -117,10 +117,10 @@
   font-weight: 500;
   line-height: 20px;
   text-align: left;
+  width:288px;
 }
 
 .image-content {
- 
   width: 121px;
   border-radius: 8px 0px 0px 0px;
 }
@@ -209,5 +209,22 @@
 @media only screen and (max-width: 350px) {
   .not-avaliable-tag {
     font-size: 5.6px;
+  }
+}
+
+
+@media only screen and (max-width: 400px) and (min-width: 350px){
+  .book-content {
+   display: flex;
+   width: 320px;
+  }
+}
+
+
+
+@media only screen and (max-width: 700px) and (min-width: 401px) {
+  .book-content {
+    display: flex;
+    width: 377px;
   }
 }
