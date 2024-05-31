@@ -260,7 +260,7 @@ export class AddBookCommonComponent {
 
   stepperDecrement() {
     this.stepperIndex--;
-    this.exploreService.setaddBookPage(this.stepperIndex);
+    this.exploreService.setaddBookPage(this.stepperIndex); 
   }
 
   getBooks(event: any, type: string) {
