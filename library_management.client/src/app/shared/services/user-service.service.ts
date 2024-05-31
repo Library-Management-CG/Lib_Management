@@ -36,6 +36,11 @@ export class UserServiceService {
     return this.http.post<any[]>(this.apiUrl + 'User/add-admin', revokeParams );
   }
 
+  addNewBook(books: any): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'Book/add-books', books);
+  }
+
+
   getMyBooksMobile(userId: number): Observable<any[]> {
     return this.http.post<any[]>(`${this.apiUrl}BookIssue/my-books`, { userId: userId });
   }

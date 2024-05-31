@@ -191,7 +191,7 @@
       </div>
       <div class="modal-footer add-book-footer">
         <div class="right-button">
-          <div *ngIf="stepperIndex==0" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close">
+          <div *ngIf="stepperIndex==0" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close" (click)="Reset()">
             <div class="cancel-text">
               Cancel
             </div>
@@ -204,18 +204,20 @@
           </div>
         </div>
         <div class="right-button-left">
-          <div *ngIf="stepperIndex==1" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close">
+          <div *ngIf="stepperIndex==1" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close" (click)="Reset()">
             <div class="cancel-text">
               Cancel
             </div>
           </div>
 
-          <div *ngIf="stepperIndex==0" class="next-button" (click)="stepperIncrement()">
+          <div *ngIf="stepperIndex==0" class="next-button" (click)="stepperIncrement()"
+               [ngClass]="{'empty-qrCodes': qrArr.length == 0}"
+               >
             <div class="next-text">
               Next
             </div>
           </div>
-          <div *ngIf="stepperIndex==1" class="next-button" data-bs-dismiss="modal" data-toggle="modal" data-target="#success">
+          <div *ngIf="stepperIndex==1" class="next-button" data-bs-dismiss="modal" data-toggle="modal" data-target="#success" (click)="addBookRequest()">
             <div class="next-text">
               Add
             </div>

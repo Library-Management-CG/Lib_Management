@@ -688,3 +688,9 @@ textarea {
   height: 0.0625rem;
   background: #E9ECEB;
 }
+
+
+.empty-qrCodes {
+  pointer-events: none;
+  opacity: 0.5;
+}

@@ -16,6 +16,8 @@ declare var
   styleUrls: ['./add-book-common.component.css']
 })
 export class AddBookCommonComponent {
+  book$ = this.exploreService.book$;
+
   /*@ViewChild('exampleModalCenter') modal: any;*/
   @Input() stepperIndex: number = 0;
 
@@ -37,10 +39,11 @@ export class AddBookCommonComponent {
   captureImg:any=""
   getPicture(event: any) {
     this.bookForm.patchValue({
-      img: ''
+      img: event
     });
 
-    this.captureImg = event;
+    //this.captureImg = event;
+    this.exploreService.setImg(event);
     console.log("hello",this.capturedImage);
   }
 
@@ -100,6 +103,37 @@ export class AddBookCommonComponent {
       }
     );
 
+
+    //this.book$.subscribe(book => {
+    //  console.log(book);
+    //});
+
+
+    this.exploreService.book$.subscribe(book => {
+      if (book) {
+        this.bookForm.patchValue({
+          bookName: book.bookName,
+          authorName: book.authorName,
+          img: book.img,
+          description: book.description
+        });
+        this.selectedBook = book.bookName;
+      }
+    });
+
+    var api = "https://www.googleapis.com/books/v1/volumes?q=default";
+
+    //setTimeout(() => {
+    fetch(api)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.listOfBooks = data.items;
+
+      })
+      .catch(error => {
+        console.error('Error fetching books:', error);
+      });
   }
 
   openWebcam() {
@@ -211,19 +245,21 @@ export class AddBookCommonComponent {
   }
 
   decrement(index: number) {
-    if (this.counterValue > 1) {
-      this.counterValue--;
-      this.bookForm.patchValue({
-        qty: this.counterValue,
-      });
-      const qrArray = this.bookForm.get('qr') as FormArray;
-      qrArray.removeAt(this.counterValue);
-      console.log(this.bookForm);
+    if (this.qrCodes.length > 1) {
+      if (this.counterValue > 1) {
+        this.counterValue--;
+        this.bookForm.patchValue({
+          qty: this.counterValue,
+        });
+        const qrArray = this.bookForm.get('qr') as FormArray;
+        qrArray.removeAt(this.counterValue);
+        console.log(this.bookForm);
+      }
+
+
+
+      this.exploreService.removeQrCode(index);
     }
-
-
-
-    this.exploreService.removeQrCode(index);
     console.log("array size", this.qrCodes);
   }
 
@@ -322,6 +358,16 @@ export class AddBookCommonComponent {
 
   testing(event: any) {
     console.log("hello", event.target);
+    
+
+    this.exploreService.setBook({
+      bookName: this.selectedBook.volumeInfo.title,
+      authorName: this.selectedBook.volumeInfo.authors,
+      img: this.selectedBook.volumeInfo.imageLinks.smallThumbnail,
+      description: this.selectedBook.volumeInfo.description,
+      ISBN: this.selectedBook.volumeInfo.industryIdentifiers.find((id:any) => id.type === "ISBN_13").identifier,
+    });
+
     if (this.selectedBook) {
       this.bookForm.patchValue({
         bookName: this.selectedBook.volumeInfo.title,
@@ -330,9 +376,12 @@ export class AddBookCommonComponent {
         description: this.selectedBook.volumeInfo.description,
       });
       this.captureImg = '';
+      console.log("book selected", this.bookForm);
+      this.selectedBook = this.selectedBook.volumeInfo.title;
     }
+
+
     
-    console.log(this.bookForm);
     return;
   }
 
