@@ -13,6 +13,10 @@ export class ModalContentComponent {
 
   }
 
+  isTagsContainerVisible() {
+    return this.books?.statusName != null;
+  }
+
   isAdmin() {
     return this.router.url.toLowerCase().includes('admin');
   }
