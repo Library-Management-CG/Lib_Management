@@ -8,7 +8,7 @@ app-books-card-shared{
 }
 
 .book-cards {
-  margin-bottom: 10px !important;
+  margin-bottom: 30px !important;
 }
 
 
@@ -153,7 +153,7 @@ app-books-card-shared{
   height: 40px;
   justify-content: center;
   align-items: center;
-
+  margin-top: -2rem;
   background: var(--Primary-Blue, #28519E);
   border: none;
   cursor: pointer;
@@ -281,8 +281,9 @@ app-books-card-shared{
   }
 
   .show-more {
-    margin-left: 6.29rem;
+    margin-left: 6rem;
     margin-bottom: 1.6rem;
+    margin-top: -14px;
     border-radius: 43px;
     border: 1px solid var(--Primary-Blue, #28519E);
     display: flex;
