@@ -26,7 +26,7 @@ export class NewExploreBooksComponent {
 
    
   }
-  onSelectedValuesChange(selectedValues: number[]): void {
+  onSelectedValuesChange(selectedValues:any): void {
     this.selectedRatings = selectedValues;
     this.getFilteredBooks();
   }

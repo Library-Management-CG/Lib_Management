@@ -1,44 +1,7 @@
 <div class="newasset-dropdown">
-  <div class="dropdown-button">
+  <div class="dropdown-button" (click)="openDropdown()">
     <span class="rating-txt">Select Rating</span>
     <img src="../../../assets/icons/explore-books/Frame.svg" class="frame" />
   </div>
-  <div class="content">
-    <label>
-      <input type="checkbox" [(ngModel)]="c" name="rating" class="hide" (change)="toggleSelectAll()" />
-      <img *ngIf="c" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
-      <img *ngIf="!c" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
-      <span class="option-txt">Select All</span>
-    </label>
-    <label>
-      <input type="checkbox" [(ngModel)]="c1" [value]="1" name="rating" class="hide" (change)="handleCheckboxChange(1, $event)" />
-      <img *ngIf="c1" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
-      <img *ngIf="!c1" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
-      <img class="star-img" src="../../../assets/icons/explore-books/Star (2).svg" />
-    </label>
-    <label>
-      <input type="checkbox" [(ngModel)]="c2" [value]="2" name="rating" class="hide" (change)="handleCheckboxChange(2, $event)" />
-      <img *ngIf="c2" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
-      <img *ngIf="!c2" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
-      <img class="star-img" src="../../../assets/icons/explore-books/Star (3).svg" />
-    </label>
-    <label>
-      <input type="checkbox" [(ngModel)]="c3" [value]="3" name="rating" class="hide" (change)="handleCheckboxChange(3, $event)" />
-      <img *ngIf="c3" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
-      <img *ngIf="!c3" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
-      <img class="star-img" src="../../../assets/icons/explore-books/Star (4).svg" />
-    </label>
-    <label>
-      <input type="checkbox" [(ngModel)]="c4" [value]="4" name="rating" class="hide" (change)="handleCheckboxChange(4, $event)" />
-      <img *ngIf="c4" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
-      <img *ngIf="!c4" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
-      <img class="star-img" src="../../../assets/icons/explore-books/Star (5).svg" />
-    </label>
-    <label>
-      <input type="checkbox" [(ngModel)]="c5" [value]="5" name="rating" class="hide" (change)="handleCheckboxChange(5, $event)" />
-      <img *ngIf="c5" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
-      <img *ngIf="!c5" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
-      <img class="star-img" src="../../../assets/icons/explore-books/Star (6).svg" />
-    </label>
-  </div>
+  <app-dropdown-content></app-dropdown-content>
 </div>

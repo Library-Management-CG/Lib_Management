@@ -70,6 +70,7 @@ import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.compo
 
 
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
+import { DropdownContentComponent } from './user/dropdown-content/dropdown-content.component';
 
 
 
@@ -131,6 +132,7 @@ LOAD_WASM().subscribe();
     RevokePermissionModalComponent,
     MobileAccordianComponent,
     ScannerComponent,
+    DropdownContentComponent,
 
   ],
   imports: [
