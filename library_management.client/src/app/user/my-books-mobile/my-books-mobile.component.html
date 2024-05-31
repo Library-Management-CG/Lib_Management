@@ -1,0 +1,42 @@
+ <div class="container-fluid">
+  <div class="Access-control-heading ">
+    <img src="../../../assets/icons/Access-control-mobile/ArrowRight.svg" (click)="routeTODasboard()" />
+    <span class="heading-text">My Books</span>
+  </div>
+  <div class="search-box ">
+
+    <img src="../../../assets/icons/My-books-mobile/search.svg" />
+    <input type="text" class="search-text" placeholder="Search your book history" [(ngModel)]="filterValue"
+           (input)="applyBookFilter($event)" />
+
+
+  </div>
+
+
+  <div class="recently-issue" *ngIf="hasBookWithReturn()">Recently Issued</div>
+  <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
+    <div *ngIf="book. returnDate==null">
+      <app-my-books-card-mobile [books]="book"></app-my-books-card-mobile>
+    </div>
+  </div>
+  <div *ngIf="filteredBooks.length==0 && hasBookWithReturn()">
+    <p class="no-books-tag">No Books Found</p>
+  </div>
+  <div class="recently-issue" *ngIf="hasBooksWithReturnDate()">Previously Issued</div>
+
+  <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
+    <div *ngIf="book. returnDate!=null">
+      <app-my-books-card-mobile [books]="book"></app-my-books-card-mobile>
+    </div>
+  </div>
+  <div *ngIf="filteredBooks.length==0 && hasBooksWithReturnDate() ">
+    <p class="no-books-tag">No Books Found</p>
+  </div>
+
+
+</div>
+
+
+
+
+

@@ -1,0 +1,58 @@
+<div class="modal-content border-line">
+
+  <div class="modal-header header-line">
+    <div class="title-image">
+      <img src="../../../../assets/icons/Book 1.svg" class="book" />
+      <h5 id="exampleModalLabel">Book Details</h5>
+    </div>
+    <img *ngIf="isDesktopView()" src="../../../../assets/icons/Close (1).svg" class="close" data-bs-dismiss="modal" />
+  </div>
+
+  <div *ngIf="books">
+    <div class="modal-body book-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="title-and-author">
+              <div class="book-title-content">{{ books?.title }}</div>
+              <div class="name-of-author">{{ books?.authorName }}</div>
+              <div class="rating-book">
+
+                <ng-container *ngIf="books?.points > 0; else noRatingYet">
+                  <ng-container *ngFor="let star of getStarsArray(books?.points)">
+                    <img src="../../../assets/icons/filled_star.svg" class="star-icon" />
+                  </ng-container>
+                  <ng-container *ngFor="let star of getEmptyStarsArray(books?.points)">
+                    <img src="../../../assets/icons/empty_star.svg" class="star-icon" />
+                  </ng-container>
+                  <div class="numberOfPeopleReviewed"> ({{books?.numberOfPeopleReviewed}}) </div>
+                </ng-container>
+
+                <ng-template #noRatingYet>
+                  <p style="font-family: Lato; font-size: 14px; font-weight: 400; text-align: left; color: #6D6D6D;">
+                    Not rated yet
+                  </p>
+                </ng-template>
+
+                
+                  <div [ngClass]="{'tags-container': isTagsContainerVisible() }">
+                    <img *ngIf="isAdmin()==false" src="../../../../assets/icons/Line 113.svg" class="line" />
+                    <div *ngIf="isAdmin()==false && books?.statusName == 'Available' " class="tag">AVAILABLE</div>
+                    <div *ngIf="isAdmin()==false && books?.statusName == 'Not Available' " class="not-avaliable-tag">NOT AVAILABLE</div>
+                  </div>
+               
+              </div>
+            </div>
+            <div class="book-content">
+              {{books?.description}}
+            </div>
+          </div>
+
+          <div class="book-modal-image col-md-2  col-12 order-md-last order-md-first">
+            <img src="../../../../assets/icons/Admin-dashboard/book-image.svg" class="image-content" />
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>

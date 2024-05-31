@@ -1,0 +1,33 @@
+<app-assign-permission-modal></app-assign-permission-modal>
+
+<div class="container-fluid  outer-div ">
+  <div class="dashboard-accesscontrol ">
+    <span class="dash-heading" (click)="routeTODasboard()">Dashboard</span>
+    <img src="../../../assets/icons/Access-control-web/Keyboard arrow right.svg" />
+    <span class="Acces-heading">Access Control</span>
+
+  </div>
+  <div class=" container-fluid  ">
+    <div class="access-header ">
+      <div class="access-header-title">
+        <span>Access Control</span>
+      </div>
+      <div class="access-header-button">
+        <button  data-toggle="modal" data-target="#AssignPermissionModal" >
+          <img src="../../../assets/icons/Access-control-web/Assign recieved.svg" />
+          <span>Assign Permission</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="access-content  row ">
+      <div class="col-lg-3 col-md-4" >
+        <app-list-panel (adminSelectedFromList)="onAdminSelectedFromList($event)"></app-list-panel>
+      </div>
+     <div class="col-lg-7 col-md-6">
+             <app-permission-panel [selectedAdmin]="selectedAdmin"></app-permission-panel>
+
+     </div>
+    </div>
+  </div>
+</div>

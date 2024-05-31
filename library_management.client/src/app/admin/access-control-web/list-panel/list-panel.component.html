@@ -1,0 +1,17 @@
+<div class="list-panel-container">
+  <div class="list-search-bar  ">
+    <div class="list-search-bar-input  ">
+      <img src="../../../../assets/icons/Access-control-web/Search.svg" class="search-icon" />
+      <input type="text" class="st" placeholder="Search Admin"   [(ngModel)]="filterValue"
+ (input)="applyAccessoryFilter($event)" />
+    </div>
+  </div>
+  <!--<div *ngIf="loading; else content" class="spinner-loading">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>-->
+  <div class="admin-list ">
+    <app-admin-name-card *ngFor= "let admin of filteredAdmin ? filteredAdmin : adminList" [admin]="admin" (adminSelected)="onAdminSelected($event)"></app-admin-name-card>
+  </div>
+</div>

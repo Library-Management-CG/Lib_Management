@@ -1,0 +1,138 @@
+.card {
+  width: 220px;
+  height: 340px;
+
+  cursor: pointer;
+  border: none;
+  margin-bottom: 1.5rem;
+}
+
+.book-card {
+  width: 220px;
+  height: 270px;
+}
+
+.book-card-rectangle {
+  width: 220px;
+  height: 190px;
+  position: absolute;
+  margin-top: 160px;
+  /*  border: 5px solid yellow;*/
+  transform: scaleX(1.2);
+}
+
+.star-icon {
+  margin-right: 2px;
+}
+
+.book-image {
+  margin-top: -18.75rem;
+  width: 210px;
+  margin-left: 5.79px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.book-details {
+  width: 196px;
+  height: 125px;
+  margin-top: 220px;
+  margin-left: 12px;
+  position: absolute;
+}
+
+.tag {
+  width: 79px;
+  height: 28px;
+  padding: 7px 8px 7px 8px;
+  gap: 10px;
+  border-radius: 4px 0px 0px 0px;
+  background: #CEF0DC;
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  color: #0D542A;
+}
+
+.book-title {
+  width: 196px;
+  height: 38px;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  text-align: left;
+  margin-top: 7px;
+}
+
+.author-name {
+  width: 163px;
+  height: 17px;
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: left;
+  color: #6D6D6D;
+}
+
+.rating {
+  display: flex;
+  color: var(--Adhoc-Text-Grey, #6D6D6D);
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media only screen and (max-width: 626px) {
+  .book-card {
+    width: 166px;
+  }
+
+  .book-image {
+    display: flex;
+    width: 109.31px;
+    height: 186.45px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: 6rem;
+    position: absolute;
+  }
+
+  .book-card-rectangle{
+      width: 165px;
+  }
+
+  .tag {
+    width: 79px;
+    height: 28px;
+    padding: 7px 8px 7px 8px;
+    border-radius: 4px 0px 0px 0px;
+  }
+
+  .book-title {
+    color: var(--Primary-Blue, #28519E);
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 142px;
+    height: 35px;
+  }
+
+  .author-name {
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: -1rem;
+    text-align: left;
+
+  }
+}

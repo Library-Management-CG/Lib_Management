@@ -1,1 +1,136 @@
-<p>user dashboard works!</p>
+<div class="outer-margin">
+
+
+  <div class="dashboard">
+
+
+    <div class="container-fluid">
+      <div class="lib-user-books-container col-md-12">
+
+        <div class="books-text-container">
+
+          <div class="books-laptop-heading">
+            Step Into the world of books!
+          </div>
+
+          <div class="sub-heading">
+            Uncertain about your next read? Discover some genuine<br /> treasures nestled within our library.
+          </div>
+
+          <button type="button" class="explore-button" (click)="exploreBooks()">
+            <div class="explore-button-text">Explore Books</div>
+          </button>
+
+        </div>
+
+        <div class="image-container">
+          <img src="../../../assets/icons/Rectangle.svg" class="books-stack-container" />
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="books-and-leaderboard col-md-12">
+
+      <div class="row">
+
+        <div class="all-lib-books col-md-7 col-12">
+
+          <p class="recently-added">Recently Added</p>
+          <div class="row">
+
+            <div class="col-md-4 col-6" *ngFor="let book of booksToRecentDisplay">
+              <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+             
+              <app-books-card-shared [books]="book" (openModalEvent)="openModal(book)"></app-books-card-shared>
+            </div>
+
+          </div>
+
+          <button type="button" *ngIf="showMoreButtonVisibleRecentlyAdded" class="show-more" (click)="onShowMoreClicked('recentlyAdded')">
+            <div class="show-more-text">
+              {{ showMoreClickedRecentlyAdded ? 'Show Less' : 'Show More' }}
+              <img *ngIf="!showMoreClickedRecentlyAdded" src="../../../assets/icons/expand_more.svg" [class.white-chevron]="isWebView"/>
+              <img *ngIf="showMoreClickedRecentlyAdded" src="../../../assets/icons/collapse.svg" [class.white-chevron]="isWebView"/>
+            </div>
+          </button>
+
+          <p class="recently-added">Most Popular</p>
+          <div class="row">
+            <div class="col-md-4 col-6" *ngFor="let book of booksToPopularDisplay">
+              <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+            
+              <app-books-card-shared [books]="book" (openModalEvent)="openModal(book)"></app-books-card-shared>
+            </div>
+            
+          </div>
+
+
+            <button type="button" *ngIf="showMoreButtonVisibleMostPopular" class="show-more" (click)="onShowMoreClicked('mostPopular')">
+              <div class="show-more-text">
+                {{ showMoreClickedMostPopular ? 'Show Less' : 'Show More' }}
+                <img *ngIf="!showMoreClickedMostPopular" src="../../../assets/icons/expand_more.svg" [class.white-chevron]="isWebView"/>
+                <img *ngIf="showMoreClickedMostPopular" src="../../../assets/icons/collapse.svg" [class.white-chevron]="isWebView"/>
+              </div>
+            </button>
+
+          </div>
+
+
+
+          <div class="col-md-3">
+            <div class="leaderboard">
+              <p class="leaderboard-heading">Leaderboard</p>
+              <div class="leaderboard-stack">
+                <div class="cards">
+                  <div *ngFor="let user of topUsers; let i = index" class="card card-{{ i + 1 }}">
+
+
+           
+                      <div class="card-content">
+                        <img src="../../../assets/icons/{{ i + 1 }}.svg" />
+                        <div class="card-name">
+                          <span class="card-name-span">{{ user.firstName }} {{ user.lastName }}</span>
+                          <div class="card-book">
+                            <img src="../../../assets/icons/card-book.svg" />
+                            <span class="card-book-span">{{ user.bookCount }}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <img *ngIf="i < 3" src="../../../assets/icons/trophy 1.svg" class="trophy" />
+              
+
+                  </div>
+
+                  <div class="card card-8">
+                    <div class="card-content">
+                      <div class="card-name">
+                        <span class="last-card">Top 7 Readers</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+        </div>
+
+        </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

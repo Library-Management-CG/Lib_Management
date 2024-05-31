@@ -1,0 +1,74 @@
+@import url('time-remaining-modal.component.css');
+.animation
+{
+    height:10rem;
+    width:16.0625rem;
+}
+.time-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: -2rem;
+}
+
+.time-content {
+  width: 28.875rem;
+  height: 22.4375rem;
+}
+
+
+.time-header {
+  border: none;
+}
+.time-modal-footer {
+  border: none;
+  display:flex;
+  justify-content:center;
+}
+.first_para {
+  color: var(--Primary-Grey, #343435);
+  font-family: Lato;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.second_para {
+  color: var(--Adhoc-Red, #CC1A07);
+  font-family: Lato;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+
+#timeremaining{
+  padding-bottom: 2.25rem !important;
+}
+.save {
+  color: #FFF;
+  font-family: Lato;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  border-radius: 1.875rem;
+  background: var(--Primary-Blue, #28519E);
+  display: flex;
+  width: 5.75rem;
+  height: 2.5rem;
+  padding: 0.75rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.close-button {
+  outline: none;
+
+}
+.btn {
+    box-shadow:none;
+}

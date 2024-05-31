@@ -1,0 +1,637 @@
+.dashboard {
+overflow: hidden !important;
+
+}
+/*here change*/
+app-books-card-shared{
+    margin-left: 32rem;
+}
+
+.lib-user-books-container {
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+  padding: 16px;
+  border-radius: 26px;
+  background: linear-gradient(92.42deg, #B1DAE4 31.51%, #408394 99.62%);
+}
+
+.books-text-container {
+  height: 175px;
+  margin-top: 29px;
+  margin-left: 65.92px;
+  gap: 32px;
+}
+
+
+.books-laptop-heading {
+  width: 678px;
+  height: 59px;
+  font-family: Lato;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 48px;
+  text-align: left;
+  color: #002C3F;
+  text-transform: uppercase;
+}
+
+.sub-heading {
+  width: 678px;
+  height: 66px;
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28.8px;
+  text-align: left;
+  color: #002C3F;
+}
+
+.explore-button {
+  width: 156px;
+  padding: 12px 20px 12px 20px;
+  gap: 8px;
+  border-radius: 30px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  background: var(--Primary-Blue, #28519E);
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.explore-button-text {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.6px;
+  text-align: left;
+  color: white;
+}
+
+
+.books-stack-container {
+    /*YAHA PE IMAGE KO CHANGE KARNa hai display end*/
+  margin-right: 2rem;
+  padding: 0px 0px 0.28px 0px;
+  width: 308px;
+  height: 285.72px;
+}
+
+.books-and-leaderboard{
+   /* display: flex;*/
+   padding-right: 2rem !important;
+}
+
+.all-lib-books {
+  height: 403px;
+  margin-top: 20px;
+  margin-left: 27px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 36px;
+  overflow-y: scroll;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+  .all-lib-books::-webkit-scrollbar {
+    display: none;
+  }
+
+
+.recently-added {
+  color: var(--Primary-Grey, #343435);
+  font-family: Literata;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  height: 14px;
+  width: 712px;
+}
+
+.leaderboard-heading {
+  color: var(--Primary-Grey, #343435);
+  font-family: Literata;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  height: 14px;
+  width: 712px;
+}
+
+.leaderboard {
+  width: 464px;
+  margin-top: 20px;
+}
+
+.leaderboard-stack{
+  width: 464px;
+
+  padding: 0px 16px 0px 16px;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.show-more {
+  width: 156px;
+  padding: 12px 20px 12px 20px;
+  gap: 8px;
+  border-radius: 30px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--Primary-Blue, #28519E);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin-left: 16rem;
+}
+
+.show-more-text {
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.6px;
+  text-align: left;
+  color: white;
+}
+
+.white-chevron {
+  filter: brightness(0) invert(1);
+}
+
+@media only screen and (max-width: 526px){
+  /*here change*/
+  app-books-card-shared {
+    margin-left: -42rem;
+  }
+
+  .lib-user-books-container {
+    border-radius: 16px;
+    background: linear-gradient(100.31deg, #DFEEF1 87.97%, #105465 162.07%);
+    overflow-x: hidden;
+    justify-content: center;
+    z-index: 0;
+  }
+
+  .books-text-container {
+      margin-left: 19px;
+  }
+    .books-laptop-heading {
+    display: flex;
+    align-items: center;
+    color: var(--Primary-Royal-Blue, #002C3F);
+    font-family: Lato;
+    font-size: 1.695rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+    width: 285px;
+    height: 58px;
+    z-index: 0;
+  }
+
+  .recently-added {
+    font-family: Lato;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    z-index: 0;
+  }
+
+  .leaderboard-heading {
+    font-family: Lato;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    z-index: 0;
+  }
+
+  .sub-heading {
+    width: 270px;
+    height: 62px;
+    font-family: Lato;
+    font-size: 16.5px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    font-family: Lato;
+    margin-top: 20px;
+    color: #002C3F;
+    z-index: 0;
+  }
+
+  .books-stack-container {
+    opacity: 0.16;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 49px;
+    background: url("../../../assets/icons/Rectangle.svg");
+    z-index: -2;
+  }
+
+  .explore-button {
+    width: 293px;
+    height: 38px;
+    padding: 12px 20px 12px 20px;
+    gap: 8px;
+    border-radius: 30px;
+    margin-top: 39px;
+    background: var(--Primary-Blue, #28519E);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    z-index: 100;
+  }
+
+
+  .all-lib-books {
+    height: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    overflow-y: hidden;
+    margin-left: 20px;
+  }
+
+
+  .leaderboard-stack {
+    height: 23.25rem;
+    margin-left: -1.7rem;
+    margin-top: -2rem;
+  }
+
+  .show-more {
+    margin-left: 6.29rem;
+    border-radius: 43px;
+    border: 1px solid var(--Primary-Blue, #28519E);
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+  }
+
+
+  .show-more-text {
+    color: var(--Primary-Blue, #28519E);
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .outer-margin {
+    width: 75rem;
+    margin: auto;
+  }
+}
+
+  @media only screen and (max-width: 390px) {
+    .lib-user-books-container {
+      border-radius: 16px;
+      background: linear-gradient(100.31deg, #DFEEF1 87.97%, #105465 162.07%);
+      overflow-x: hidden;
+      justify-content: center;
+    }
+
+    .books-text-container {
+      margin-left: 19px;
+    }
+
+
+    .explore-button {
+      width: 270px;
+      height: 36px;
+      padding: 12px 20px 12px 20px;
+      gap: 8px;
+      border-radius: 30px;
+      margin-top: 41px;
+      background: var(--Primary-Blue, #28519E);
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+  }
+
+@media only screen and (max-width: 325px) {
+  .books-stack-container {
+    left: -5px;
+    transform: scale(0.96);
+    margin-top: 3px;
+  }
+
+  .leaderboard-stack {
+    transform: scale(0.9);
+    height: 23.25rem;
+    margin-left: -5.4rem;
+    margin-top: -2rem;
+  }
+
+
+  .show-more {
+    margin-left: 4.5rem;
+    border-radius: 43px;
+    border: 1px solid var(--Primary-Blue, #28519E);
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+  }
+
+  .all-lib-books {
+    margin-left: 12.5px;
+    padding-right: 20px;
+  }
+
+}
+
+
+@media only screen and (max-width: 390px) and (min-width: 350px){
+  .books-stack-container {
+    left: 22px;
+    transform: scale(0.96);
+    margin-top: 3px;
+  }
+
+  .leaderboard-stack {
+    height: 23.25rem;
+    margin-left: -3.5rem;
+    margin-top: -2rem;
+  }
+
+  .all-lib-books {
+    margin-left: 17px;
+    padding-right: 34px;
+  }
+}
+
+@media only screen and (max-width: 526px) and (min-width: 400px) {
+  .all-lib-books {
+    margin-left: 30px;
+    padding-right: 34px;
+  }
+}
+
+@media only screen and (max-width: 1026px) and (min-width: 768px){
+  .books-stack-container {
+    margin-left: -2rem;
+    padding: 0px 0px 0.28px 0px;
+    width: 308px;
+    height: 282.72px;
+  }
+
+  .books-text-container {
+    height: 175px;
+    margin-top: 37px;
+    margin-left: 3.92px;
+  }
+
+  .leaderboard-stack {
+    margin-left: -3rem;
+    transform: scale(0.8);
+    margin-top: -1rem;
+  }
+}
+
+
+  @media only screen and (max-width: 768px) and (min-width: 673px) {
+
+    app-books-card-shared {
+      margin-left: -22rem;
+    }
+
+
+    .books-laptop-heading {
+      font-size: 27px;
+    }
+
+    .sub-heading {
+      font-size: 19px;
+      font-weight: 500;
+    }
+
+    .books-stack-container {
+      margin-left: -21rem;
+      padding: 0px 0px 0.28px 0px;
+      width: 479px;
+      height: 333px;
+      transform: scale(0.7);
+    }
+
+    .leaderboard-stack {
+      margin-left: -6rem;
+      transform: scale(0.6);
+      margin-top: -3rem;
+    }
+
+    .all-lib-books {
+      height: 303px;
+      margin-top: 20px;
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 36px;
+      overflow-y: scroll;
+      padding: 0px;
+      overflow-x: hidden;
+    }
+
+    .show-more {
+      margin-left: 9rem;
+    }
+  }
+
+
+  .st {
+    border: 1px solid black;
+  }
+
+
+  .cards {
+    flex-direction: column;
+    display: flex;
+    height: 28rem;
+    padding: 0rem 1rem;
+    align-items: flex-start;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+
+  .card {
+    transition: 0.2s;
+    position: relative;
+    width: 27rem;
+    height: 4.68719rem;
+    display: flex;
+    padding: 0rem 1rem;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .card-content {
+    display: flex;
+    padding-left: 1rem;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1 0 0;
+  }
+
+  .card-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.50rem;
+  }
+
+  .card-book {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+    .card-book img {
+      width: 1.25rem;
+      height: 0.95281rem;
+    }
+
+  .card-book-span {
+    color: #4C4C4C;
+    font-family: Lato;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .card-name-span {
+    color: var(--Primary-Grey, #343435);
+    font-family: Lato;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .card:not(:first-child) {
+    margin-top: var(--distance);
+  }
+
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-0.75rem);
+  }
+
+    .card:hover ~ .card,
+    .card:focus-within ~ .card {
+      transform: translateY(calc(var(--distance) * -0.8));
+    }
+
+  .cards {
+    --distance: -2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-1 {
+    border-radius: 0.5rem;
+    background: var(--Adhoc-Grediant, linear-gradient(113deg, #F9DDA1 19.55%, #FEC62E 64.92%));
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+    padding-left: 1.9rem;
+  }
+
+  .card-2 {
+    border-radius: 0.5rem;
+    background: linear-gradient(113deg, #F2A068 19.55%, #E88A4C 64.92%);
+    /* Shadow */
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-3 {
+    border-radius: 0.5rem;
+    background: linear-gradient(113deg, #D4D4D6 19.55%, #B5BEBE 64.92%);
+    /* Shadow */
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-4 {
+    border-radius: 0.5rem;
+    border: 1px solid var(--secondary-Light-Grey, #E9ECEB);
+    background: var(--Adhoc-Info-Blue, #E3F3FC);
+    /* Shadow */
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-5 {
+    border-radius: 0.5rem;
+    border: 1px solid var(--secondary-Light-Grey, #E9ECEB);
+    background: var(--Primary-Pure-White, #FFF);
+    /* Shadow */
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-6 {
+    border-radius: 0.5rem;
+    border: 1px solid var(--secondary-Light-Grey, #E9ECEB);
+    background: var(--secondary-Light-Blue, #B8DDE1);
+    /* Shadow */
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-7 {
+    border-radius: 0.5rem;
+    border: 1px solid var(--secondary-Light-Grey, #E9ECEB);
+    background: var(--Primary-Pure-White, #FFF);
+    /* Shadow */
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-8 {
+    border-radius: 0.5rem;
+    background: #EAEEF6;
+  }
+
+  .last-card {
+    color: var(--secondary-Grey, #B2B2B3);
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Lato;
+    font-size: 3rem;
+    font-style: italic;
+    font-weight: 900;
+    line-height: normal;
+  }
+
+  @media only screen and (max-width: 440px) {
+
+    .cards {
+      transform: scale(0.8);
+    }
+  }
