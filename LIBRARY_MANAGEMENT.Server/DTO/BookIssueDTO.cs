@@ -12,6 +12,7 @@ namespace LIBRARY_MANAGEMENT.Server.DTO
         public DateTime? returnDate { get; set; }
         public double? points { get; set; }
         public string status { get; set; }
+        public String image {  get; set; }
     } 
 
     public class CurrentUserDTO
@@ -38,6 +39,7 @@ namespace LIBRARY_MANAGEMENT.Server.DTO
         public string? Title { get; set; }
         public List<string> AuthorName { get; set; } = null!;
         public Guid BookQrMappingId { get; set; }
+         public String image { get; set; }
 
     }
 

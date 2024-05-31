@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+import { UserServiceService } from '../../shared/services/user-service.service';
 //declare var $: any;
 declare var
   webkitSpeechRecognition:any
@@ -27,7 +28,17 @@ export class AddBooksModalComponent {
 
   bookForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private exploreService: ExploreBooksService) {
+  addBook: any = {
+    bookName: "",
+    authorName: "",
+    description: "",
+    ISBN: "",
+    img:""
+  }
+
+  qrArr: any;
+
+  constructor(private formBuilder: FormBuilder, private exploreService: ExploreBooksService, private urserService: UserServiceService) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
       authorName: ['', Validators.required],
@@ -75,6 +86,16 @@ export class AddBooksModalComponent {
         this.isCameraExist = mediaDevices && mediaDevices.length > 0;
       }
     );
+
+
+    this.exploreService.book$.subscribe(arr => {
+      this.addBook = arr;
+      console.log("qwertyuiopoiuytrewq",arr);
+    })
+
+    this.exploreService.qrCodes$.subscribe(arr => {
+      this.qrArr = arr;
+    })
   }
 
   //showWebcam = true;
@@ -314,4 +335,36 @@ export class AddBooksModalComponent {
 
     console.log(this.bookForm);
   }
+
+  Reset() {
+    this.exploreService.resetBook();
+  }
+
+  addBookRequest() {
+    console.log("add book post req", this.addBook);
+
+    var book = {
+      bookName: this.addBook.bookName,
+      authorName: this.addBook.authorName,
+      img: this.addBook.img,
+      description: this.addBook.description,
+      ISBN: this.addBook.ISBN,
+      qty: this.qrArr.length,
+      qr: this.qrArr,
+      LoggedIn:'3A5B5AF8-5703-4872-A098-0EF31480DB57',
+    }
+
+    console.log("before we post", book);
+
+    this.urserService.addNewBook(book).subscribe(
+      (data: any[]) => {
+        console.error('Error posted');
+        this.Reset();
+      },
+      (error: any) => {
+        console.error('Error posting:', error);
+      }
+    );
+  }
 }
+

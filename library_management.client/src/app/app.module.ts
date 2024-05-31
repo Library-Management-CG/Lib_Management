@@ -70,6 +70,7 @@ import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.compo
 
 
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
+import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-component/capture-mobile-component.component';
 
 
 
@@ -131,6 +132,7 @@ LOAD_WASM().subscribe();
     RevokePermissionModalComponent,
     MobileAccordianComponent,
     ScannerComponent,
+    CaptureMobileComponentComponent,
 
   ],
   imports: [

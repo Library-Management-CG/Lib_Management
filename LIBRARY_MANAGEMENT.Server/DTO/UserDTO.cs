@@ -16,6 +16,8 @@
     {
         public Guid BookQRMappingId { get; set; }
         public Guid BookId { get; set; }
+        public String image { get; set; }
+
         public string? Title { get; set; }
         public List<string> AuthorName { get; set; } = null!;
         public string? Description { get; set; }

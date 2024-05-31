@@ -48,6 +48,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                                      issueDate = bi.IssueDate,
                                                      returnDate = bi.ReceiveDate,
                                                      status = s.StatusName,
+                                                     image=b.imageData
                                                  }).OrderByDescending(d => d.issueDate).ToListAsync();
 
                 foreach (var item in result)
@@ -90,8 +91,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                     {
                                         Id = b.Id,
                                         Title = b.Title,
-                                        AuthorName = b.AuthorBooks.Select(ab => ab.Author.AuthorName).ToList(),
-                                        BookQrMappingId = m.Id
+                                        AuthorName = a.AuthorName,
+                                        BookQrMappingId = m.Id,
+                                        image=b.imageData
                                     }).FirstOrDefaultAsync();
 
                 return result;

@@ -1,21 +1,21 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 declare var $: any;
 
-
 @Component({
-  selector: 'app-capture',
-  templateUrl: './capture.component.html',
-  styleUrls: ['./capture.component.css']
+  selector: 'app-capture-mobile-component',
+  templateUrl: './capture-mobile-component.component.html',
+  styleUrls: ['./capture-mobile-component.component.css']
 })
-export class CaptureComponent {
+export class CaptureMobileComponentComponent {
   croppedImage: any = '';
 
   @Output() getPicture = new EventEmitter<WebcamImage>();
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer, private router: Router) { }
   check() {
     console.log("hello");
   }
@@ -26,39 +26,37 @@ export class CaptureComponent {
       finalImg = this.updatedSRCC;
     }
     this.getPicture.emit(finalImg);
-    $(document).ready(function () {
-      $('#webcam').modal('hide');
-    });
+    this.router.navigate(['admin/add-book-mobile']);
+
   }
   close() {
-    $(document).ready(function () {
-      $('#webcam').modal('hide');
-      });
+    this.router.navigate(['admin/add-book-mobile']);
+
   }
 
   blobToDataURL(blobUrl: string): Promise<string> {
-  // Fetch the blob from the Blob URL
-  return fetch(blobUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to fetch blob: ${response.statusText}`);
-      }
-      return response.blob();
-    })
-    .then(blob => {
-      // Create a FileReader to read the Blob
-      return new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          resolve(reader.result as string);
-        };
-        reader.onerror = () => {
-          reject(new Error('Failed to read the Blob as Data URL'));
-        };
-        reader.readAsDataURL(blob);
+    // Fetch the blob from the Blob URL
+    return fetch(blobUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Failed to fetch blob: ${response.statusText}`);
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        // Create a FileReader to read the Blob
+        return new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            resolve(reader.result as string);
+          };
+          reader.onerror = () => {
+            reject(new Error('Failed to read the Blob as Data URL'));
+          };
+          reader.readAsDataURL(blob);
+        });
       });
-    });
-}
+  }
 
   updatedSRCC: any = "";
 
@@ -66,7 +64,7 @@ export class CaptureComponent {
     if (event.objectUrl != null || event.objectUrl != undefined) {
       //var reader = new FileReader();
       //var source = reader.readAsDataURL(event.objectUrl);
-      
+
       //this.srcc = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
       this.blobToDataURL(event.objectUrl).then(dataUrl => {
         console.log('Data URL:', dataUrl);
@@ -84,7 +82,7 @@ export class CaptureComponent {
   }
   cropperReady() {
     // cropper ready
-    
+
   }
   loadImageFailed() {
     // show message
@@ -96,9 +94,9 @@ export class CaptureComponent {
   calculateHeight(width: number): number {
     return (width * this.aspectRatioHeight) / this.aspectRatioWidth;
   }
-  
-  
-  showWebcam = false;
+
+
+  showWebcam = true;
   isCameraExist = true;
 
   errors: WebcamInitError[] = [];
