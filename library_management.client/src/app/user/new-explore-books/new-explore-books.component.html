@@ -1,7 +1,7 @@
 <div class="explore-outer">
   <div class="head-body">
     <div class="header-txt">Reader’s Hub</div>
-    <img  src="../../../assets/icons/explore-books/Keyboard arrow right.svg" />
+    <img src="../../../assets/icons/explore-books/Keyboard arrow right.svg" />
     <div class="header-txt">Explore Books</div>
   </div>
 
@@ -21,35 +21,30 @@
       </div>
 
       <div class="rating sta">
-        <app-rating-dropdown></app-rating-dropdown>
+        <app-rating-dropdown (selectedValuesChange)="onSelectedValuesChange($event)"></app-rating-dropdown>
       </div>
     </div>
 
   </div>
-  
-  
 
-  <div class="inner">
-    <div class="column">
-      <app-books-card-shared></app-books-card-shared>
-      <div class="clear"></div>
+
+
+  <div class="inner" *ngIf="selectedRatings.length<=0">
+    <div class="column" *ngFor="let book of  isChecked ? availablebooks : exploreBooks">
+      <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+      <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
     </div>
-    <div class="column">
-      <app-books-card-shared></app-books-card-shared>
-      <div class="clear"></div>
+
+  </div>
+  <div class="inner" *ngIf="selectedRatings.length>0">
+  <div class="column" *ngFor="let book of (isChecked ? availableBooksOfRatingFilter : ratingFilteredBook)">
+      <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+      <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
     </div>
-    <div class="column">
-      <app-books-card-shared></app-books-card-shared>
-      <div class="clear"></div>
-    </div>
-    <div class="column">
-      <app-books-card-shared></app-books-card-shared>
-      <div class="clear"></div>
-    </div>
-    <div class="column">
-      <app-books-card-shared></app-books-card-shared>
-      <div class="clear"></div>
-    </div>
+
   </div>
 
 </div>
+
+
+

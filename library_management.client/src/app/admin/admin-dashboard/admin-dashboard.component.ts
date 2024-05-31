@@ -97,7 +97,7 @@ export class AdminDashboardComponent {
     this.AdminService.topChoicesBook().subscribe(
       (data) => {
         this.mostPopularBooks = data;
-        console.log(data);
+        //console.log(data);
 
       },
       (error) => {

@@ -58,7 +58,24 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             return await _bookService.topChoices();
         }
+        [HttpGet("exploreBook")]
+        public async Task<List<ExploreBookDTO>> exploreBook()
+        {
+            return await _bookService.exploreBook();
+        }
 
+
+        [HttpGet("availableBook")]
+        public async Task<List<ExploreBookDTO>> availableBook()
+        {
+            return await _bookService.availableBook();
+        }
+
+        [HttpPost("RatingFilter")]
+        public async Task<List<ExploreBookDTO>> ratingFilteredBook([FromBody] List<int> ratingFilters)
+        {
+            return await _bookService.ratingFilteredBook(ratingFilters);
+        }
 
 
 

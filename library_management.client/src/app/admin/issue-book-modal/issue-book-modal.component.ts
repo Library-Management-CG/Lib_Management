@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { AdminServiceService } from '../../shared/services/Admin-service .service';
 
 @Component({
   selector: 'app-issue-book-modal',
@@ -11,17 +12,20 @@ export class IssueBookModalComponent {
   selectedOption: any; // Variable to store the selected option
   placeholder: string = "Search User"; // Initial placeholder value
   selectedUser: number | undefined;
+  qr: any;
+  qrPresent: boolean = false;
  
   returnDateInputValue: string;
   issueDateInputValue: string;
   bookqr: any;
+    mappedBook: any;
   ngOnChanges() {
     this.bookqr = this.bookqrcode;
     console.log('Got  : ', this.bookqr);
     this.value(this.bookqr);
   }
 
-  constructor() {
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef) {
     const currentDate = new Date();
 
     this.returnDateInputValue = this.formatDate(currentDate);
@@ -40,9 +44,32 @@ export class IssueBookModalComponent {
 
   value(bookqr:any) {
     console.log('qrrrrr:', bookqr);
+    this.qr = bookqr;
+    if (this.qr) {
+      this.qrPresent = true;
+    }
+    const revokeParams = {
+      qrNumber: bookqr,
+    };
+    //this.AdminService.getBookDetails(revokeParams).subscribe(
+    //  (data: any) => {
+    //    this.mappedBook = data
+    //    this.cdr.detectChanges();
+
+    //    console.log('mapped', this.mappedBook);
+       
+    //  },
+    //  (error: any) => {
+    //    console.log("User not found");
+    //  }
+    //);
 
   }
 
+
+  getBookDetails() {
+   
+  }
   
 
   // Function to handle selection of an option

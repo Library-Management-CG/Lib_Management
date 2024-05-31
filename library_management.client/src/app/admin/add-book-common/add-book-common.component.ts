@@ -1,8 +1,10 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+
 declare var $: any;
 declare var
   webkitSpeechRecognition: any
@@ -16,6 +18,9 @@ declare var
 export class AddBookCommonComponent {
   /*@ViewChild('exampleModalCenter') modal: any;*/
   @Input() stepperIndex: number = 0;
+
+  qrCodes: any[] = [];
+
 
   //stepperIndex: number = 0;
   counterValue: number = 0;
@@ -39,7 +44,7 @@ export class AddBookCommonComponent {
     console.log("hello",this.capturedImage);
   }
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private exploreService: ExploreBooksService) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
       authorName: ['', Validators.required],
@@ -68,6 +73,16 @@ export class AddBookCommonComponent {
   }
 
   ngOnInit(): void {
+    this.exploreService.addBookPage$.subscribe(idx => {
+      this.stepperIndex = idx;
+    });
+
+    this.exploreService.qrCodes$.subscribe(qrCodes => {
+      this.qrCodes = qrCodes;
+    });
+
+    this.exploreService.setQrCodes(this.qrCodes);
+
     //this.isCaptured = false;
     //this.video = document.getElementById('video');
     //this.canvas = document.getElementById('canvas');
@@ -188,10 +203,14 @@ export class AddBookCommonComponent {
     //this.addDeviceForm.patchValue({
     //  qty: this.counterValue
     //});
-    console.log(this.bookForm);
+    /* console.log(this.bookForm);*/
+
+
+    this.exploreService.addQrCode({ value: '' });
+    console.log("array size", this.qrCodes);
   }
 
-  decrement() {
+  decrement(index: number) {
     if (this.counterValue > 1) {
       this.counterValue--;
       this.bookForm.patchValue({
@@ -201,6 +220,11 @@ export class AddBookCommonComponent {
       qrArray.removeAt(this.counterValue);
       console.log(this.bookForm);
     }
+
+
+
+    this.exploreService.removeQrCode(index);
+    console.log("array size", this.qrCodes);
   }
 
   //updateQuantityValue(event: any) {
@@ -231,10 +255,12 @@ export class AddBookCommonComponent {
 
   stepperIncrement() {
     this.stepperIndex++;
+    this.exploreService.setaddBookPage(this.stepperIndex);
   }
 
   stepperDecrement() {
     this.stepperIndex--;
+    this.exploreService.setaddBookPage(this.stepperIndex);
   }
 
   getBooks(event: any, type: string) {
@@ -341,5 +367,16 @@ export class AddBookCommonComponent {
     console.log(this.bookForm);
   }
 
+  Scanner(index: any) {
+    $('#exampleModalCenter').modal('hide');
+    const navigationExtras: NavigationExtras = {
+      state: {
+        page: "add",
+        idx:index,
+      }
+    };
+
+    this.router.navigate(['/admin/issue-mobile-scanner'], navigationExtras);
+  }
 
 }

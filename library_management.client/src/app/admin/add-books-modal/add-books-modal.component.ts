@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 //declare var $: any;
 declare var
   webkitSpeechRecognition:any
@@ -26,7 +27,7 @@ export class AddBooksModalComponent {
 
   bookForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private exploreService: ExploreBooksService) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
       authorName: ['', Validators.required],
@@ -64,6 +65,9 @@ export class AddBooksModalComponent {
     //  })
     //  .catch(err => console.error('Error accessing camera: ', err));
 
+    this.exploreService.addBookPage$.subscribe(idx => {
+      this.stepperIndex = idx;
+    });
 
 
     WebcamUtil.getAvailableVideoInputs().then(
@@ -201,10 +205,14 @@ export class AddBooksModalComponent {
 
   stepperIncrement() {
     this.stepperIndex++;
+    this.exploreService.setaddBookPage(this.stepperIndex);
+    console.log(this.stepperIndex);
   }
 
   stepperDecrement() {
     this.stepperIndex--;
+    this.exploreService.setaddBookPage(this.stepperIndex);
+    console.log(this.stepperIndex);
   }
 
   getBooks(event: any, type: string) {
