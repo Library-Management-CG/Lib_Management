@@ -1,29 +1,30 @@
-<div class="modal fade" id="webcam" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered struct" role="document">
     <div class="modal-content">
-      <div class="modal-body">
-       
-        <webcam [height]="380" 
-                [width]="500" 
-                [trigger]="triggerObservable"
+      <div class="modal-body pad">
+
+        <webcam [trigger]="triggerObservable"
                 (imageCapture)="handleImage($event)"
                 *ngIf="showWebcam"
-                [switchCamera]="nextWebcamObservable"></webcam>
-        
-        <div *ngIf="srcc!=''">
+                [switchCamera]="nextWebcamObservable"
+                [height]="1000" 
+                [width]="1000"
+                class="webcam_size"
+                ></webcam>
+
+        <div *ngIf="srcc!=''" class="cropper-container">
 
           <image-cropper [imageURL]="srcc"
                          [maintainAspectRatio]="true"
-                         [aspectRatio]="4 / 6"
+                         [aspectRatio]="4/ 6"
                          (imageLoaded)="imageLoaded($event)"
                          (cropperReady)="cropperReady()"
-                         
                          (imageCropped)="imageCropped($event)"
-                         (loadImageFailed)="loadImageFailed()"></image-cropper>
-           </div>
-   
+                         (loadImageFailed)="loadImageFailed()"
+                        
+                         ></image-cropper>
+        </div>
 
-  <ng-template #noCameraExist> Camera device not available </ng-template>
+
+        <ng-template #noCameraExist> Camera device not available </ng-template>
       </div>
       <div class="modal-footer">
 
@@ -49,13 +50,13 @@
           </div>
         </div>
 
-        
+
         <div class="next-button" (click)="onOffWebCame()">
           <div class="next-text">
             <i class="fa-solid fa-arrows-rotate"></i>
           </div>
         </div>
-        
+
 
         <div class="next-button" (click)="save()">
           <div class="next-text">
@@ -65,5 +66,4 @@
 
       </div>
     </div>
-  </div>
-</div>
+  

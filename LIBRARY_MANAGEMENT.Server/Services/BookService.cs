@@ -230,8 +230,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
               description = book.Description,
               authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
               points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
-              numberOfPeopleReviewed = book.Ratings.Count()
-
+              numberOfPeopleReviewed = book.Ratings.Count(),
+              image=book.imageData
 
           }).OrderByDescending(book => book.numberOfPeopleReviewed)
         .ThenByDescending(book => book.points)
@@ -274,7 +274,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
               points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
               numberOfPeopleReviewed = book.Ratings.Count(),
               CreatedAtUtc = book.CreatedAtUtc,
-              StatusName = book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available"
+              StatusName = book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available",
+              image=book.imageData
 
           }).OrderByDescending(book => book.CreatedAtUtc)
            .ToListAsync();
@@ -314,6 +315,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
               points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
               numberOfPeopleReviewed = book.Ratings.Count(),
               CreatedAtUtc = book.CreatedAtUtc,
+              image = book.imageData
+
 
           }).OrderByDescending(book => book.CreatedAtUtc)
            .ToListAsync();
@@ -366,7 +369,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         points = b.AverageRating,
                         numberOfPeopleReviewed = b.Book.Ratings.Count(),
                         CreatedAtUtc = b.Book.CreatedAtUtc,
-                        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available"
+                        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available",
+                        image = b.Book.imageData
+
                     })
                     .OrderByDescending(book => book.points)
                     .ToListAsync();

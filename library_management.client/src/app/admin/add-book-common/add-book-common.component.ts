@@ -263,32 +263,7 @@ export class AddBookCommonComponent {
     console.log("array size", this.qrCodes);
   }
 
-  //updateQuantityValue(event: any) {
-  //  const newValue = parseInt(event.target.value, 10);
-  //  const deviceIdArray = this.addDeviceForm.get('deviceId') as FormArray;
-
-  //  if (!isNaN(newValue)) {
-  //    const currentValue = deviceIdArray.length;
-
-  //    if (newValue > currentValue) {
-  //      const elementsToAdd = newValue - currentValue;
-  //      for (let i = 1; i <= elementsToAdd; i++) {
-  //        this.pushValueIntoDeviceId('CGI-MOU-' + (this.laststoredcgi + i));
-  //      }
-  //    }
-
-  //    else if (newValue < currentValue) {
-  //      const elementsToRemove = currentValue - newValue;
-  //      for (let i = 0; i < elementsToRemove; i++) {
-  //        deviceIdArray.removeAt(deviceIdArray.length - 1);
-  //      }
-  //    }
-
-  //    this.counterValue = newValue;
-  //    this.addDeviceForm.get('qty')?.setValue(newValue);
-  //  }
-  //}
-
+ 
   stepperIncrement() {
     this.stepperIndex++;
     this.exploreService.setaddBookPage(this.stepperIndex);
@@ -427,5 +402,16 @@ export class AddBookCommonComponent {
 
     this.router.navigate(['/admin/issue-mobile-scanner'], navigationExtras);
   }
+  routeBasedOnScreenSize() {
+      if (window.innerWidth <= 765) {
+        this.router.navigate(['admin/add-book-scanner']);
+      } else {
+        this.openWebcam();
+
+      }
+  }
+ 
 
 }
+
+
