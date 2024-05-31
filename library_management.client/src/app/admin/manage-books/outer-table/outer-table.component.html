@@ -1,18 +1,20 @@
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" class="borderra">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
     <!-- Position Column -->
 
     <!-- Book Name Column -->
-    <ng-container matColumnDef="bookName">
-      <mat-header-cell *matHeaderCellDef>Book Name </mat-header-cell>
+    <ng-container matColumnDef="bookName" >
+      <mat-header-cell *matHeaderCellDef >Book Name </mat-header-cell>
       <mat-cell *matCellDef="let element" colspan="2">
         <div class="book-name-cell" (click)="element.expanded = !element.expanded">
           <img *ngIf="element.expanded == false" src="../../../../assets/icons/manage-books/expand-icon.svg" />
           <img *ngIf="element.expanded == true" src="../../../../assets/icons/manage-books/collapse-icon.svg" />
-          <div class="book-thumbnail"></div>
+          <div class="book-thumbnail">
+            <img src={{element.bookImage}} alt="book_image"/>
+          </div>
           <span class="book-name">{{element.bookName}}</span>
         </div>
       </mat-cell>
@@ -55,15 +57,16 @@
       <mat-row></mat-row>
       <div *ngIf="row.expanded">
         <!--This is the detail about the row {{ row.bookData | json }}-->
-        <app-inner-table [bookDataArray2]="row.bookData"></app-inner-table>
+        <app-inner-table [bookName]="row.bookName" [bookDataArray2]="row.bookData"></app-inner-table>
       </div>
     </div>
   </mat-table>
   <mat-paginator appStylePaginator
                  [appCustomLength]="dataSource.data.length"
                  [length]="dataSource.data.length"
-                 [pageSize]="1"
+                 [pageSize]="3"
                  [pageSizeOptions]="[1, 2, 3, 5]"
+                 [currentPageSize]="this.dataSource.paginator?.pageSize"
                  aria-label="Select page">
   </mat-paginator>
   <!--<mat-paginator [length]="100"

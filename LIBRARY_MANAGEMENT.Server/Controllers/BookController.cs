@@ -3,6 +3,7 @@ using LIBRARY_MANAGEMENT.Server.Models;
 using LIBRARY_MANAGEMENT.Server.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LIBRARY_MANAGEMENT.Server.Controllers
 {
@@ -17,7 +18,6 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
 
         public BookController(LibraryManagementSystemContext context, IBookService bookService, ILogger<BookService> logger)
         {
-            _context = context;
             _bookService = bookService;
             _logger = logger;
         }
@@ -77,6 +77,20 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             return await _bookService.ratingFilteredBook(ratingFilters);
         }
 
+        [HttpPost("get-books")]
+        public async Task<ActionResult<IEnumerable<BooksDetailDTO>>> GetAllBooks()
+        {
+            try
+            {
+                var books = await _bookService.GetAllBooks();
+                return Ok(books);
+            }
+            catch (Exception e)
+            {
+                _logger.Log(LogLevel.Error, new EventId(124, "ErrorEvent"), "002", new Exception("error getting books", e), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return BadRequest(e);
+            }
+        }
 
 
 
@@ -84,6 +98,3 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
 
 
 }
-
-
-

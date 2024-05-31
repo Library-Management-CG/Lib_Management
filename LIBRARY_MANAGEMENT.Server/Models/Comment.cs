@@ -14,7 +14,7 @@ public partial class Comment
     public Guid ActionId { get; set; }
 
     public Guid BookQrMappingid { get; set; }
-    public Guid bookIssueId { get; set; }
+    public Guid? bookIssueId { get; set; }
 
     public DateTime CreatedAtUtc { get; set; }
 
@@ -27,7 +27,7 @@ public partial class Comment
     public virtual Action Action { get; set; } = null!;
 
     public virtual BookQrMapping BookQrMapping { get; set; } = null!;
-    public virtual BookIssue bookIssue { get; set; }
+    public virtual BookIssue? bookIssue { get; set; }
 
     public virtual User CreatedByNavigation { get; set; } = null!;
 

@@ -1,8 +1,21 @@
-<app-time-remaining-modal></app-time-remaining-modal>
+<!--<app-time-remaining-modal></app-time-remaining-modal>
 <button data-toggle="modal" data-target="#timeremaining">
   <span>Assign Permission</span>
 </button>
 <app-rating-modal></app-rating-modal>
 <button data-toggle="modal" data-target="#rating">
   <span>Rating</span>
-</button>
+</button>-->
+
+<div class="container-fluid my-books-container st">
+  <div class="row my-books-header">
+    <span>My Books</span>
+    <div class="search-bar">
+      <img src="../../../assets/icons/manage-books/search-icon.svg" />
+      <input type="text" placeholder="Search Your Book History" />
+    </div>
+  </div>
+  <div class="row my-books-table">
+    <app-my-books-table></app-my-books-table>
+  </div>
+</div>

@@ -61,3 +61,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mdc-text-field--outlined {
   --mdc-outlined-text-field-container-shape: 1.25rem !important;
 }
+
+.total-items{
+  display: flex;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+  width: 10rem;
+}
+
+.total-items span {
+  color: var(--Primary-Grey, #343435);
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
