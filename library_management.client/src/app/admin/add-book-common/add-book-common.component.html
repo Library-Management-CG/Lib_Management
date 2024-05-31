@@ -86,7 +86,7 @@
             <img class="dummy-book-outer" *ngIf="bookForm.value.img!='' && captureImg==''" src="{{bookForm.value.img}}" />
             <img class="dummy-book-outer" *ngIf="captureImg!='' && bookForm.value.img==''" src="{{captureImg}}" />
 
-            <div class="cap-button" (click)="openWebcam()">
+            <div class="cap-button" (click)="routeBasedOnScreenSize()">
               <div>
                 <img src="../../../assets/icons/add-books-modal/Camera alt.svg" />
               </div>
