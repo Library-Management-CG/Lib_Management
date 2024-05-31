@@ -33,12 +33,12 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
                 if (inputDTO.IsArchive)
                 {
                     await _bookQrMappingService.ArchiveBookQrMapping(inputDTO);
-                    return Ok("BookQrMapping archived successfully.");
+                    return Ok(true);
                 }
                 else
                 {
                     await _bookQrMappingService.ArchiveBookQrMapping(inputDTO);
-                    return Ok("BookQrMapping retrieved successfully.");
+                    return Ok(true);
                 }
 
             }
@@ -74,5 +74,6 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
                 return BadRequest(e.Message);
             }
         }
+
     }
 }

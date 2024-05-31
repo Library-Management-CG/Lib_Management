@@ -16,6 +16,8 @@ builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<IBookQrMappingService, BookQrMappingService>();
 builder.Services.AddScoped<IBookIssueService, BookIssueService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+
 
 builder.Services.AddCors(options =>
 {

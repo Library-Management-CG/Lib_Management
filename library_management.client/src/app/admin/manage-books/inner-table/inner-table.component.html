@@ -1,6 +1,6 @@
 <app-revoke-book-modal></app-revoke-book-modal>
 <app-comments-modal></app-comments-modal>
-<app-archive-modal [bookName]="bookName" [bookQrCode] ="bookQrCode"></app-archive-modal>
+<app-archive-modal [bookName]="bookName" [bookData] ="bookData"></app-archive-modal>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -61,7 +61,7 @@
           </button>
         </div>
         <div class="archive-icon">
-          <button type="button" class="" data-toggle="modal" data-target="#archiveModal" (click)="bookQrCode = element.qrNumber">
+          <button type="button" class="" data-toggle="modal" data-target="#archiveModal" (click)="bookData = element">
             <img src="../../../../assets/icons/manage-books/archive.svg" />
           </button>
         </div>

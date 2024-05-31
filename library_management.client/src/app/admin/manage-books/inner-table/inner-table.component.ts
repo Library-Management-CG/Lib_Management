@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 declare var $: any;
 
 export interface BookData {
+  bookQrMappingId: any;
   qrNumber: string;
   issuedTo: string;
   issueDate: Date;
@@ -19,8 +20,8 @@ export class InnerTableComponent implements OnChanges {
 
 
   @Input() bookDataArray2: BookData[] = [];
-  @Input() bookName: string = '';
-  bookQrCode: string = '';
+  @Input() bookName: string = ''; 
+  bookData !: BookData;
 
   dataSource = new MatTableDataSource<BookData>([]); // Initialize with empty array
   displayedColumns: string[] = ['empty','qrNumber', 'issuedTo', 'issueDate', 'returnDate', 'status', 'comments', 'action'];

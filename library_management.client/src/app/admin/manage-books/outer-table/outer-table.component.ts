@@ -12,6 +12,7 @@ export interface Element {
 }
 
 export interface BookData {
+  bookQrMappingId: any;
   qrNumber: string;
   issuedTo: string;
   issueDate: Date;
@@ -226,6 +227,7 @@ export class OuterTableComponent {
       copies: book.numberOfCopies,
       expanded: false,
       bookData: book.bookQrDetails.map((detail: any) => ({
+        bookQrMappingId: detail.bookQrMappingId,
         qrNumber: detail.qrNumber,
         issuedTo: detail.issuedTo,
         issueDate: detail.issueDate ? new Date(detail.issueDate) : null,
