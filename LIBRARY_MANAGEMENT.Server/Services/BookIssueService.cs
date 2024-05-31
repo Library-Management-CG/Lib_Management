@@ -48,6 +48,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                                      issueDate = bi.IssueDate,
                                                      returnDate = bi.ReceiveDate,
                                                      status = s.StatusName,
+                                                     image=b.imageData
                                                  }).OrderByDescending(d => d.issueDate).ToListAsync();
 
                 foreach (var item in result)
@@ -79,16 +80,20 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             try
             {
                 var result = await (from b in _context.Books
+                                      .Include(b => b.AuthorBooks)
+                    .ThenInclude(ab => ab.Author)
                                     join m in _context.BookQrMappings on b.Id equals m.BookId
-                                    join ab in _context.AuthorBooks on b.Id equals ab.BookId
-                                    join a in _context.Authors on ab.AuthorId equals a.Id
+
+                                    //join ab in _context.AuthorBooks on b.Id equals ab.BookId
+                                    //join a in _context.Authors on ab.AuthorId equals a.Id
                                     where m.Qrnumber == qrNumber
                                     select new BookDetailsDTO
                                     {
                                         Id = b.Id,
                                         Title = b.Title,
                                         AuthorName = a.AuthorName,
-                                        BookQrMappingId = m.Id
+                                        BookQrMappingId = m.Id,
+                                        image=b.imageData
                                     }).FirstOrDefaultAsync();
 
                 return result;

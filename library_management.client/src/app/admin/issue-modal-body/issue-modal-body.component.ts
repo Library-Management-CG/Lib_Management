@@ -181,15 +181,17 @@ export class IssueModalBodyComponent {
 
     this.AdminService.issueBook(this.issueBookForm.value).subscribe(
           response => {
-            console.log('data posted successfully', response);
+        console.log('data posted successfully', response);
+        //alert('Book Issued Successfully!');
             
           },
           error => {
             console.error('error posting data', error);
             
           }
-        );
-      }
+    );
+  }
+     
       
     }
 

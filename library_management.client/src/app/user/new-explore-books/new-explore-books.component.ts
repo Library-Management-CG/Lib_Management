@@ -9,6 +9,10 @@ import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
   styleUrls: ['./new-explore-books.component.css']
 })
 export class NewExploreBooksComponent {
+  filterValue: string = '';
+
+  filteredexploreBooks: any[]
+
 
   exploreBooks: any[] = [];
   selectedBook: any;
@@ -17,7 +21,10 @@ export class NewExploreBooksComponent {
   selectedRatings: number[] = [];
   availableBooksOfRatingFilter: any[] = [];
 
-  constructor(private router: Router, private user: UserServiceService, private exploreBooksService: ExploreBooksService) { };
+  constructor(private router: Router, private user: UserServiceService, private exploreBooksService: ExploreBooksService) {
+    this.filteredexploreBooks = this.exploreBooks;
+
+  };
   isChecked: boolean = false;
 
 
@@ -68,6 +75,7 @@ export class NewExploreBooksComponent {
     this.user.explorebooks().subscribe(
       (data) => {
         this.exploreBooks = data;
+        this.filteredexploreBooks = this.exploreBooks;
         //console.log(data);
 
       },
@@ -108,6 +116,12 @@ export class NewExploreBooksComponent {
     this.exploreBooks = this.exploreBooks.filter(book => {
       return book.title.toLowerCase().includes(filterValue.toLowerCase());
     });
+  }
+
+  applyBookFilter(event: Event) {
+    this.filterValue = (event.target as HTMLInputElement).value;
+    this.exploreBooksService.setFilterValue(this.filterValue);
+   
   }
 
 

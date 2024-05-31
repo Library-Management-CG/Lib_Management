@@ -21,7 +21,6 @@
     right: 1.8rem;
 }
 .row-modal {
-  margin-right: 0px;
 }
 
 .top-heading {
@@ -425,6 +424,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .issue-book-header {
     display: flex;
     padding-right: 0rem;
+    padding-left: 0rem;
   }
 
   .qrImage-modal {
@@ -440,8 +440,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
     width: auto;
     border-radius: 0.58475rem;
+    position:absolute;
+    right:0.1rem;
   }
-
+  .body{
+      position:relative;
+  }
+  .footer{
+      display:none;
+  }
+  .date-container {
+    width: 100%!important;
+  }
 }
 
 

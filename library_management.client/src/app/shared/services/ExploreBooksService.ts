@@ -3,6 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ConfigServiceService } from './config-service.service';
 
+interface Book {
+  bookName: string;
+  authorName: string;
+  img: string;
+  description: string;
+  ISBN: string;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -74,5 +83,55 @@ export class ExploreBooksService {
     const currentQrCodes = this.qrCodesSource.getValue();
     currentQrCodes.splice(index, 1);
     this.qrCodesSource.next([...currentQrCodes]);
+  }
+
+
+
+
+
+
+
+  private bookSource = new BehaviorSubject<Book>({
+    bookName: '',
+    authorName: '',
+    img: '',
+    description: '',
+    ISBN: '',
+  });
+
+  book$ = this.bookSource.asObservable();
+
+  setBook(book: Book) {
+    this.bookSource.next(book);
+  }
+
+  resetBook() {
+    this.bookSource.next({
+      bookName: '',
+      authorName: '',
+      img: '',
+      description: '',
+      ISBN: ''
+    });
+  }
+
+  setBookName(bookName: string) {
+    const currentBook = this.bookSource.value;
+    this.bookSource.next({ ...currentBook, bookName });
+  }
+
+  setAuthorName(authorName: string) {
+    const currentBook = this.bookSource.value;
+    this.bookSource.next({ ...currentBook, authorName });
+  }
+
+  setImg(img: string) {
+    const currentBook = this.bookSource.value;
+    this.bookSource.next({ ...currentBook, img });
+  }
+
+  setDescription(description: string) {
+    const currentBook = this.bookSource.value;
+    this.bookSource.next({ ...currentBook, description });
   }
 }

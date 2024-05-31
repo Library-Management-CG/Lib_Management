@@ -1,37 +1,4 @@
-/*.align-text {
-  color: var(--Primary-Pure-White, #FFF);
-  font-family: Lato;
-  font-size: 1.52631rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  
-}
 
-.lower-button {
-  border-radius: 2rem;
-  background: var(--Primary-Pure-White, #FFF);
-  display: flex;
-  width: 10.75rem;
-  height: 2.5rem;
-  padding: 0.75rem 0.5rem;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-  color: var(--Primary-Blue, #28519E);
-  font-family: Lato;
-  font-size: 1.125rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.bottom-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}*/
 
 .align-text {
   color: var(--Primary-Pure-White, #FFF);

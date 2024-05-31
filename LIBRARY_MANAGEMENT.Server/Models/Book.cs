@@ -15,6 +15,7 @@ public partial class Book
     public string? Description { get; set; }
 
     public DateTime CreatedAtUtc { get; set; }
+    public String imageData { get; set; }
 
     public Guid CreatedBy { get; set; }
 
@@ -25,6 +26,8 @@ public partial class Book
     public String? ImageData { get; set; }
 
     public string? Isbn { get; set; }
+
+    //public String? imageData { get; set; }
 
     public virtual ICollection<AuthorBook> AuthorBooks { get; set; } = new List<AuthorBook>();
 

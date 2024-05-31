@@ -97,7 +97,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         CreatedAtUtc = rb.CreatedAtUtc,
                         Points = rb.Book.Ratings.Any() ? Math.Floor(rb.Book.Ratings.Average(r => r.Points)) : 0,
                         StatusName = "Not Available",
-                        numberOfPeopleReviewed = rb.Book.Ratings.Count
+                        numberOfPeopleReviewed = rb.Book.Ratings.Count,
+                        image=rb.Book.imageData
                     })
                     .ToList();
 
@@ -175,7 +176,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         CreatedAtUtc = book.CreatedAtUtc,
                         Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
                         StatusName = statusName,
-                        numberOfPeopleReviewed = book.Ratings.Count
+                        numberOfPeopleReviewed = book.Ratings.Count,
+                        image=book.imageData
                     };
                 }).ToList();
 
