@@ -1,12 +1,12 @@
 <div class="comment-card">
   <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy == null" class="icon icon-assigned">
-    <img class="recieved" src="../../../../assets/icons/comment-assigned.svg" />
+    <img class="recieved" src="../../../../../../assets/icons/manage-books/Assign recieved.svg" />
   </div>
   <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy != null" class="icon icon-recieved">
-    <img class="recieved" src="../../../../assets/icons/comment-recieved.svg" />
+    <img class="recieved" src="../../../../../../assets/icons/manage-books/Assign recieved.svg" />
   </div>
   <div *ngIf="commentDetails.assignedTo == null && commentDetails.receivedBy == null" class="icon icon-default">
-    <img class="recieved" src="../../../../assets/icons/comment-default.svg" />
+    <img class="recieved" src="../../../../../../assets/icons/manage-books/Comment.svg" />
   </div>
   <div class="comment-body">
     <div class="admin-detail">
