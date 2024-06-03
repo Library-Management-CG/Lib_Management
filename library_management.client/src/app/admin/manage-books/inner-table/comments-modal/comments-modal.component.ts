@@ -30,7 +30,7 @@ export class CommentsModalComponent {
     this.manageBooksService.getAllComments(inputData).subscribe(
       response => {
         this.commentsData = response;
-        this.loading = false;
+        //this.loading = false;
         console.log('Comments : ', response);
       },
       error => {

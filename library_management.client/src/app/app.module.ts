@@ -73,6 +73,7 @@ import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-component/capture-mobile-component.component';
 import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-table.component';
 import { SingleCommentComponent } from './admin/manage-books/inner-table/comments-modal/single-comment/single-comment.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -167,7 +168,8 @@ LOAD_WASM().subscribe();
     MatListModule,
     ImageCropperModule,
     NgxScannerQrcodeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],

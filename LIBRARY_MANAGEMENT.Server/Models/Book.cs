@@ -15,15 +15,13 @@ public partial class Book
     public string? Description { get; set; }
 
     public DateTime CreatedAtUtc { get; set; }
-    public String imageData { get; set; }
+    public String? imageData { get; set; }
 
     public Guid CreatedBy { get; set; }
 
     public Guid UpdatedBy { get; set; }
 
     public DateTime UpdatedAtUtc { get; set; }
-
-    public String? ImageData { get; set; }
 
     public string? Isbn { get; set; }
 

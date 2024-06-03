@@ -54,7 +54,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     //Id = Guid.NewGuid(),
                     Title = books.bookName,
                     Description = books.description,
-                    imageData = books.img,
+                    imageData = books.img, // Ensure this is the only place where imageData is assigned.
                     CreatedAtUtc = DateTime.UtcNow,
                     CreatedBy = Guid.Parse(books.LoggedIn),
                     UpdatedAtUtc = DateTime.UtcNow,
@@ -68,9 +68,10 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
             catch (Exception ex)
             {
-                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("Adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 return false;
             }
+
         }
 
         public async Task<Boolean> AddNewAuthors(NewBooksDTO books)
@@ -161,7 +162,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         UpdatedBy = Guid.Parse(books.LoggedIn),
                     };
 
-                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not avaliable").Select(s => s.Id).FirstOrDefaultAsync();
+                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not available").Select(s => s.Id).FirstOrDefaultAsync();
                     if (statusOfBook != null)
                     {
                         bqr.StatusId = statusOfBook;
@@ -410,7 +411,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 {
                     BookId = book.Id,
                     Title = book.Title,
-                    ImageLink = book.ImageData,
+                    ImageLink = book.imageData,
                     AuthorNames = string.Join(", ", book.AuthorBooks.Select(ab => ab.Author.AuthorName)),
                     NumberOfCopies = numberOfCopies,
                     BookQrDetails = bookQrDetails
