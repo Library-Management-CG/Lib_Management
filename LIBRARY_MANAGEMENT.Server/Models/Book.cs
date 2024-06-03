@@ -23,8 +23,6 @@ public partial class Book
 
     public DateTime UpdatedAtUtc { get; set; }
 
-    public String? ImageData { get; set; }
-
     public string? Isbn { get; set; }
 
     //public String? imageData { get; set; }
