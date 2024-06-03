@@ -64,7 +64,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             {
 
                     await _bookQrMappingService.RevokeBook(inputDTO);
-                    return Ok("Book retured successfully.");
+                    return Ok(true);
 
             }
 

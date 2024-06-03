@@ -33,6 +33,17 @@ export class ExploreBooksService {
     return this.filterValue$;
   }
 
+
+
+  private totalBooksSource = new BehaviorSubject<any>(null);
+  totalBook$ = this.totalBooksSource.asObservable();
+
+  settotalbooks(books: any) {
+    this.totalBooksSource.next(books);
+  }
+
+
+
   private addBookPageSource = new BehaviorSubject<number>(0);
   addBookPage$ = this.addBookPageSource.asObservable();
 

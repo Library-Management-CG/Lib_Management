@@ -2,10 +2,11 @@ import { Component, ViewChild, AfterViewInit, Input, SimpleChanges, ElementRef }
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ManageBooksService } from '../../../shared/services/manage-books.service';
+import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
 
 export interface Element {
   bookName: string;
-  bookImage: String;
+  bookImage: any;
   author: string;
   copies: number;
   expanded: boolean;
@@ -13,6 +14,7 @@ export interface Element {
 }
 
 export interface BookData {
+  bookIssueId: any;
   bookQrMappingId: any;
   qrNumber: string;
   issuedTo: string;
@@ -168,7 +170,7 @@ export interface BookData {
 })
 export class OuterTableComponent {
 
-  constructor(private manageBooksService: ManageBooksService) { }
+  constructor(private manageBooksService: ManageBooksService, private sanitizer: DomSanitizer) { }
 
   @Input() filterValue: string = '';
   console = console;
@@ -230,6 +232,7 @@ export class OuterTableComponent {
       copies: book.numberOfCopies,
       expanded: false,
       bookData: book.bookQrDetails.map((detail: any) => ({
+        bookIssueId: detail.bookIssueId,
         bookQrMappingId: detail.bookQrMappingId,
         qrNumber: detail.qrNumber,
         issuedTo: detail.issuedTo,
@@ -239,7 +242,6 @@ export class OuterTableComponent {
       }))
     }));
   }
-
 
   //dataShow(event?: PageEvent) {
   //  console.log(event);

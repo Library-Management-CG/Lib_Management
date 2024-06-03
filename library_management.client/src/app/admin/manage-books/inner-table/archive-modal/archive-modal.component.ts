@@ -22,6 +22,7 @@ export class ArchiveModalComponent implements OnInit {
   archiveForm !: FormGroup;
   @Input() bookData !: BookData;
   //@Input() bookQrMappingId: any;
+  @Input() isArchive: boolean = true;
   updatedBy: any;
   visible: Boolean = true;
 
@@ -47,7 +48,7 @@ export class ArchiveModalComponent implements OnInit {
       const formData = {
         BookQrMappingId: this.bookData.bookQrMappingId,
         UpdatedBy: this.updatedBy,
-        IsArchive: true,
+        IsArchive: this.isArchive,
         CommentDescription: this.archiveForm.get('comment')?.value
       };
 

@@ -14,13 +14,14 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>-->
-      <form [formGroup]="archiveForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="archiveForm" >
       <div class="archive-modal-section" *ngIf="visible">
         <div class="archive-modal-content">
           <div class="content-header">
             <div class="heading">
               <img src="../../../../../assets/icons/manage-books/archive-icon.svg" />
-              <span>Archive</span>
+              <span *ngIf="isArchive == true">Archive</span>
+              <span *ngIf="isArchive == false">Retrieve</span>
             </div>
             <div class="close">
               <img src="../../../../../assets/icons/manage-books/close-modal.svg" data-dismiss="modal"/>
@@ -28,7 +29,7 @@
           </div>
           <div class="content-body">
             <span>
-              Are you sure you want to archive the <span class="content-bold">‘{{bookName}}’</span> with  QR Number <span class="content-bold">{{bookData?.qrNumber}}</span> ?
+              Are you sure you want to {{isArchive == true? 'archive':'retrieve'}}  the <span class="content-bold">‘{{bookName}}’</span> with  QR Number <span class="content-bold">{{bookData?.qrNumber}}</span> ?
             </span>
           </div>
           <div class="content-comment">
@@ -43,9 +44,10 @@
           <button class="cancel-button" data-dismiss="modal">
             <span>No, Cancel</span>
           </button>
-          <button type="submit"  class="archive-button" [disabled]="archiveForm.invalid" #hiddenLabel>
-            <span>Yes, Archive</span>
-          </button>
+          <div class="archive-button" (click)="onSubmit()" data-dismiss="modal">
+            <span *ngIf="isArchive == true">Yes, Archive</span>
+            <span *ngIf="isArchive == false">Yes, Retrieve</span>
+          </div>
         </div>
       </div>
       </form>

@@ -161,7 +161,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         UpdatedBy = Guid.Parse(books.LoggedIn),
                     };
 
-                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not avaliable").Select(s => s.Id).FirstOrDefaultAsync();
+                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not available").Select(s => s.Id).FirstOrDefaultAsync();
                     if (statusOfBook != null)
                     {
                         bqr.StatusId = statusOfBook;
