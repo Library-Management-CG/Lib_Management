@@ -72,6 +72,7 @@ import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.compo
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-component/capture-mobile-component.component';
 import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-table.component';
+import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
 
 
 
@@ -135,6 +136,7 @@ LOAD_WASM().subscribe();
     ScannerComponent,
     CaptureMobileComponentComponent,
     MyBooksTableComponent,
+    SuccessMobileComponent,
 
   ],
   imports: [

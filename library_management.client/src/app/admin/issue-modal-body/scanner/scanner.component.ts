@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { NgxScannerQrcodeComponent, NgxScannerQrcodeService, ScannerQRCodeResult, ScannerQRCodeSelectedFiles } from 'ngx-scanner-qrcode';
 import { Location } from '@angular/common'; // Import Location service
 import { IssueBookModalComponent } from '../../issue-book-modal/issue-book-modal.component';
@@ -90,14 +90,7 @@ export class ScannerComponent implements AfterViewInit {
     const isMobile = window.matchMedia('(max-width: 450px)').matches;
     if (isMobile) {
       if (this.page == "add") {
-        //const navigationExtras: NavigationExtras = {
-        //  state: {
-        //    page: "add",
-        //    idx: index,
-        //  }
-        //};
-
-
+        this.exploreService.setQrCodeAtIndex(this.idx, this.bookqrcode);
         this.router.navigate(['/admin/add-book-mobile']);
       } else {
         this.router.navigate(['/admin/issue-mobile']);

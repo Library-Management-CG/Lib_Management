@@ -60,7 +60,9 @@ export class AddBookMobileComponent {
   }
 
   Add() {
+
     console.log("add book post req", this.addBook);
+    
 
     var book = {
       bookName: this.addBook.bookName,
@@ -79,6 +81,7 @@ export class AddBookMobileComponent {
       (data: any[]) => {
         console.error('Error posted');
         this.Reset();
+        this.router.navigate(['/admin/success-mobile']);
       },
       (error: any) => {
         console.error('Error posting:', error);

@@ -346,6 +346,7 @@ export class AddBooksModalComponent {
 
   addBookRequest() {
     console.log("add book post req", this.addBook);
+    
 
     var book = {
       bookName: this.addBook.bookName,
@@ -355,16 +356,16 @@ export class AddBooksModalComponent {
       ISBN: this.addBook.ISBN,
       qty: this.qrArr.length,
       qr: this.qrArr,
-      LoggedIn:'3A5B5AF8-5703-4872-A098-0EF31480DB57',
+      LoggedIn: '3A5B5AF8-5703-4872-A098-0EF31480DB57',
     }
 
     console.log("before we post", book);
 
     this.urserService.addNewBook(book).subscribe(
       (data: any[]) => {
-        console.log('new books added');
+        console.error('Error posted');
         this.Reset();
-       // this.openModal();
+        this.openModal();
       },
       (error: any) => {
         console.error('Error posting:', error);

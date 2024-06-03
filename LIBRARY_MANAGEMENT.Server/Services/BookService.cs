@@ -42,11 +42,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         public async Task<Boolean> AddNewBooks(NewBooksDTO books)
         {
-            Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
-            if (check != null)
-            {
-                return true;
-            }
+            //Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
+            //if (check != null)
+            //{
+            //    return true;
+            //}
             try
             {
                 Book b = new Book
@@ -410,7 +410,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 {
                     BookId = book.Id,
                     Title = book.Title,
-                    ImageLink = book.ImageData,
+                    ImageLink = book.imageData,
                     AuthorNames = string.Join(", ", book.AuthorBooks.Select(ab => ab.Author.AuthorName)),
                     NumberOfCopies = numberOfCopies,
                     BookQrDetails = bookQrDetails
