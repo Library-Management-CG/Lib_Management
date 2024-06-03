@@ -68,5 +68,13 @@ export class BooksCardSharedComponent {
     }
     return emptyStars;
   }
+  getTruncateLength(): number {
+    if (window.innerWidth > 758) {
+      return this.books?.statusName ? 25 : 57;
+    }
+    else {
+      return this.books?.statusName ? 20 : 40;
 
+    }
+  }
 }

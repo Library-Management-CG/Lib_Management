@@ -174,7 +174,7 @@ export class IssueModalBodyComponent {
 
 
   onSubmit() {
-    this.issueBookForm.get('createdBy')?.setValue('86D33C36-BFD3-41AD-94EB-7C658BB075FA');
+    this.issueBookForm.get('createdBy')?.setValue('26A2B9CB-8029-4CCC-AD63-E56893E631F0');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
 
     console.log(this.issueBookForm.value);
@@ -182,6 +182,8 @@ export class IssueModalBodyComponent {
     this.AdminService.issueBook(this.issueBookForm.value).subscribe(
           response => {
         console.log('data posted successfully', response);
+        this.exploreBooksService.settotalbooks(response);
+
         //alert('Book Issued Successfully!');
             
           },
