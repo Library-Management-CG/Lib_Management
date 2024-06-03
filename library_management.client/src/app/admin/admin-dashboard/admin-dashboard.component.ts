@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
+import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 declare var $: any;
 
 @Component({
@@ -16,7 +17,7 @@ export class AdminDashboardComponent {
 
   totalbooks: any;
   issuebooks: any;
-  constructor(private router: Router, private AdminService: AdminServiceService) { }
+  constructor(private router: Router, private AdminService: AdminServiceService, private explorebook: ExploreBooksService) { }
 
   handleButton() {
     if (window.innerWidth <= 767) {
@@ -63,16 +64,19 @@ export class AdminDashboardComponent {
         this.isCameraExist = mediaDevices && mediaDevices.length > 0;
       }
     );
-    this.gettotalcount();
-    this.getissuecount();
+    this.explorebook.totalBook$.subscribe(totalbooks => {
+      this.gettotalcount();
+      this.getissuecount();
+
+    });
     this.topChoicesBookData();
+   
   }
 
   gettotalcount() {
     this.AdminService.getTotalBooks().subscribe(
       (data) => {
-        this.totalbooks = data;
-        
+        this.totalbooks = data;   
       },
       (error) => {
         console.error('Error:', error);
@@ -97,6 +101,7 @@ export class AdminDashboardComponent {
     this.AdminService.topChoicesBook().subscribe(
       (data) => {
         this.mostPopularBooks = data;
+
         //console.log(data);
 
       },

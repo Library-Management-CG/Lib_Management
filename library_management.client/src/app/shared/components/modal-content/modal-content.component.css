@@ -4,6 +4,7 @@
   width: 160px;
   height: 24px;
   gap: 5px;
+  margin-left:0.8rem;
 }
 
 .close {
@@ -20,6 +21,9 @@
 
 .border-line{
     border: none;
+    width:40.56rem;
+    padding:0.5rem;
+    margin-left:-5rem !important;
 }
 
 .header-line {
@@ -60,7 +64,8 @@
 }
 
 .title-and-author {
-  height: 98px;
+  height: auto;
+  margin-bottom:1.25rem;
 }
 
 .name-of-author {
@@ -112,17 +117,22 @@
 }
 
 .book-content {
+  color: var(--Primary-Gray, #343435);
   font-family: Lato;
-  font-size: 13px;
+  font-size: 1rem;
+  font-style: normal;
   font-weight: 500;
-  line-height: 20px;
-  text-align: left;
-  width:288px;
+  line-height: 1.6875rem; /* 168.75% */
+  width: 24.25rem;
+  height: 10.125rem;
+  overflow-y: auto;
+  text-align: justify;
 }
 
 .image-content {
-  width: 121px;
-  border-radius: 8px 0px 0px 0px;
+  width: 8.8125rem;
+  height:13.0625rem;
+  margin-left:1.5rem;
 }
 
 
@@ -155,6 +165,10 @@
     }
   }
 */
+    .book-body {
+      padding:0rem !important;
+
+    }
     #exampleModalLabel {
       font-family: Literata;
       font-size: 15px;
@@ -163,15 +177,27 @@
       text-align: left;
     }
 
-    .col-md-2 {
-      order: -1;
+    .border-line {
+      width: 100vw ;
+      padding: 0rem;
+      overflow-x:hidden;
+      margin-left: 0rem !important;
     }
+   
 
     .book-modal-image {
       display: flex;
       justify-content: center;
+      order:-1;
+      margin-top:1rem;
+      margin-bottom:1rem;
     }
-
+    .book-content {
+     width:105% !important;
+      height: 10.125rem;
+      margin-left:-15px;
+      padding:0rem 1.5rem;
+    }
     .book-title-content {
       font-family: Literata;
       font-size: 19px;
@@ -183,8 +209,9 @@
 
     .image-content {
       width: 6.875rem;
-      height: 9.1875rem;
-      border-radius: 1.7rem;
+      height: 10.1875rem;
+      border-radius: 0.5rem;
+      margin-left:0rem;
     }
 
     .not-avaliable-tag {
@@ -203,6 +230,12 @@
     .container{
         padding-right: 0rem;
     }
+    .title-and-author {
+      height: auto;
+      margin-left: -15px;
+      padding: 0rem 1.5rem;
+      margin-bottom:1.25rem;
+    }
 
   }
 
@@ -213,18 +246,6 @@
 }
 
 
-@media only screen and (max-width: 400px) and (min-width: 350px){
-  .book-content {
-   display: flex;
-   width: 320px;
-  }
-}
 
 
 
-@media only screen and (max-width: 700px) and (min-width: 401px) {
-  .book-content {
-    display: flex;
-    width: 377px;
-  }
-}

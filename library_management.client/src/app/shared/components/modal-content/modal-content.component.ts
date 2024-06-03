@@ -10,9 +10,11 @@ export class ModalContentComponent {
   @Input() books: any = {};
 
   constructor(private router: Router) {
+  }
+  ngOnChanges(){
+    console.log('kfjv', this.books);
 
   }
-
   isTagsContainerVisible() {
     return this.books?.statusName != null;
   }
