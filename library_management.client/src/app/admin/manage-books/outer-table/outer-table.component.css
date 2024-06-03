@@ -50,7 +50,8 @@
   gap: 0.0875rem;
   flex-shrink: 0;
   border-radius: 0.175rem;
-  background: var(--secondary-Light-Grey, #E9ECEB);
+  background-size: cover;
+  background-position: center;
 }
 
 .book-name {

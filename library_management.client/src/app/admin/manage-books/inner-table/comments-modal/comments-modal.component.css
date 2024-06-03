@@ -47,9 +47,84 @@
 }
 
 .comment-modal-content {
+  height: 27.6125rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+/*.comments-outer-div {
+  height: 27.6125rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}*/
+
+.spinner-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.cal {
+  width: 1rem;
+  height: 1rem;
+  /*padding: 0.05rem 0.0875rem 0.075rem 0.1rem;*/
+  margin-right: 0.275rem;
+  /*justify-content: center;*/
+  align-items: center;
+}
+
+.cross:hover {
+  cursor: pointer;
+}
+
+.line-head {
+  width: 566px;
+  height: 1px;
+  background: #E9ECEB;
+}
+
+.body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: 24px;
+  flex-shrink: 0;
   align-self: stretch;
+  margin-top: 1.5rem;
+}
+
+.date-body {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+
+.line-date {
+  height: 2.5px;
+  flex: 1 0 0;
+  background: var(--Secondary-Light-Gray, #E9ECEB);
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  color: var(--Primary-Gray, #343435);
+  text-align: right;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.upper-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
 }

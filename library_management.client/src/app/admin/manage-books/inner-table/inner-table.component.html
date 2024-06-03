@@ -1,6 +1,6 @@
-<app-revoke-book-modal></app-revoke-book-modal>
-<app-comments-modal></app-comments-modal>
-<app-archive-modal [bookName]="bookName" [bookData] ="bookData"></app-archive-modal>
+<app-revoke-book-modal [bookIssueId]="bookData?.bookIssueId"></app-revoke-book-modal>
+<app-comments-modal [bookQrMappingId]="bookData?.bookQrMappingId"></app-comments-modal>
+<app-archive-modal [bookName]="bookName" [bookData] ="bookData" [isArchive] ="isArchive"></app-archive-modal>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -44,7 +44,7 @@
     <th mat-header-cell *matHeaderCellDef> Comments </th>
     <td mat-cell *matCellDef="let element">
       <div class="comment-cell">
-        <button type="button" class="" data-toggle="modal" data-target="#commentsModal">
+        <button type="button" class="" data-toggle="modal" data-target="#commentsModal" (click)="bookData = element">
           <img src="../../../../assets/icons/manage-books/comments-icon.svg" />
         </button>
       </div>
@@ -56,12 +56,15 @@
     <td mat-cell *matCellDef="let element">
       <div class="action-cell">
         <div class="revoke-icon">
-          <button type="button" class="" data-toggle="modal" data-target="#revokeBookModal">
+          <button type="button" class="revoke-modal-button" data-toggle="modal" data-target="#revokeBookModal" (click)="bookData = element" [disabled]="isBookIssued(element)==false">
             <img src="../../../../assets/icons/manage-books/revoke-enabled.svg" />
           </button>
         </div>
         <div class="archive-icon">
-          <button type="button" class="" data-toggle="modal" data-target="#archiveModal" (click)="bookData = element">
+          <button *ngIf="element.status.toLowerCase() != 'archive'" type="button" class="archive-modal-button" data-toggle="modal" data-target="#archiveModal" (click)="bookData = element; isArchive = true" [disabled]="isBookIssued(element)">
+            <img src="../../../../assets/icons/manage-books/archive.svg" />
+          </button>
+          <button *ngIf="element.status.toLowerCase() == 'archive'" type="button" class="unarchive-button" data-toggle="modal" data-target="#archiveModal" (click)="bookData = element; isArchive = false" [disabled]="isBookIssued(element)">
             <img src="../../../../assets/icons/manage-books/archive.svg" />
           </button>
         </div>

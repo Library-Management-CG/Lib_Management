@@ -19,4 +19,12 @@ export class ManageBooksService {
     return this.http.post<any[]>(this.apiUrl + 'BookQrMapping/archive', inputData);
   }
 
+  getAllComments(inputData: any): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'Comment/getAllComments', inputData);
+  }
+
+  revokeBook(inputData: any): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'BookQrMapping/revoke', inputData);
+  }
+
 }

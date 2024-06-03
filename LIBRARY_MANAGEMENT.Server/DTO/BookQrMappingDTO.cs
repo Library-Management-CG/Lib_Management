@@ -10,7 +10,8 @@
         public Guid BookIssueId { get; set; }
         public Guid UpdatedBy { get; set; }
         public required string CommentDescription { get; set; }
-
+        public bool IsBookReceived { get; set; }
+        public bool? IsPerfect { get; set; }
 
     }
 }
