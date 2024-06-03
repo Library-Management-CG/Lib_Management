@@ -37,7 +37,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                                  join u in _context.Users on bi.IssueTo equals u.Id
                                                  join qr in _context.BookQrMappings on bi.BookQrMappingid equals qr.Id
                                                  join b in _context.Books on qr.BookId equals b.Id
-                                                 join s in _context.Statuses on qr.StatusId equals s.Id
+                                                 join s in _context.Statuses on bi.StatusId equals s.Id
                                                  where u.Id == user.userId
                                                  select new MyBooksDTO
                                                  {
@@ -115,6 +115,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     IssueDate = DateTime.UtcNow,
                     ReturnDate = DateTime.UtcNow.AddDays(15),
                     IssueTo = bookIssueDTO.IssueTo,
+                    StatusId = await GetStatusId("reading"),
                     CreatedAtUtc = DateTime.UtcNow,
                     UpdatedAtUtc = DateTime.UtcNow,
                     CreatedBy = bookIssueDTO.CreatedBy,
@@ -181,7 +182,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             try
             {
                 var entityToUpdate = _context.BookQrMappings.FirstOrDefault(d => d.Id == bookIssueDTO.BookQrMappingId);
-                var statusId = await GetStatusId("Not Avaliable");
+                var statusId = await GetStatusId("Not Available");
 
                 if (entityToUpdate == null)
                 {

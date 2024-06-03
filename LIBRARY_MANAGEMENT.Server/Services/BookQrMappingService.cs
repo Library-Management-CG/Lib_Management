@@ -128,7 +128,26 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         public async Task RevokeBook(RevokeBookInputDTO inputDTO)
         {
 
-            var statusName = "available";
+            var statusName = "";
+            var bookIssueStatus = "";
+
+            if(inputDTO.IsBookReceived == true && inputDTO.IsPerfect == true)
+            {
+                statusName = "available";
+                bookIssueStatus = "submitted";
+            }
+
+            else if(inputDTO.IsPerfect == true && inputDTO.IsPerfect == false)
+            {
+                statusName = "archive";
+                bookIssueStatus = "unassignable";
+            }
+
+            else
+            {
+                statusName = "archive";
+                bookIssueStatus = "lost";
+            }
 
             // Fetching the Guid Id from the Status table
             var statusId = await _context.Statuses
@@ -136,9 +155,19 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 .Select(s => s.Id)
                 .FirstOrDefaultAsync();
 
+            var bookIssueStatusId = await _context.Statuses
+                .Where(s => s.StatusName.ToLower() == bookIssueStatus)
+                .Select(s => s.Id)
+                .FirstOrDefaultAsync();
+
             if (statusId == Guid.Empty)
             {
                 throw new Exception($"{statusName} status name not found in the database.");
+            }
+
+            if (bookIssueStatusId == Guid.Empty)
+            {
+                throw new Exception($"{bookIssueStatus} status name not found in the database.");
             }
 
             var bookIssue = await _context.BookIssues.FindAsync(inputDTO.BookIssueId);
@@ -151,6 +180,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             bookIssue.ReceiveDate = DateTime.UtcNow;
             bookIssue.UpdatedBy = inputDTO.UpdatedBy;
             bookIssue.UpdatedAtUtc = DateTime.UtcNow;
+            bookIssue.StatusId = bookIssueStatusId;
 
             _context.Update(bookIssue);
 

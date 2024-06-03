@@ -4,7 +4,8 @@
     <ng-container matColumnDef="bookName" >
       <mat-header-cell *matHeaderCellDef class="mat-column-bookName">Book Name </mat-header-cell>
       <mat-cell *matCellDef="let element" class="mat-column-bookName">
-        <div class="book-thumbnail"></div>
+        <div class="book-thumbnail" [style.backgroundImage]="'url(' + element.image + ')'">
+        </div>
         <span class="book-name">{{element.bookName}}</span>
       </mat-cell>
     </ng-container>
@@ -46,7 +47,11 @@
 
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+      <mat-cell *matCellDef="let element">
+        <span [ngClass]="getStatusClass(element.status)">
+          {{element.status}}
+        </span>
+      </mat-cell>
     </ng-container>
 
 
@@ -58,7 +63,7 @@
   <mat-paginator appStylePaginator
                  [appCustomLength]="dataSource.data.length"
                  [length]="dataSource.data.length"
-                 [pageSize]="3"
+                 [pageSize]="1"
                  [pageSizeOptions]="[1, 2, 3, 5]"
                  [currentPageSize]="this.dataSource.paginator?.pageSize"
                  aria-label="Select page">

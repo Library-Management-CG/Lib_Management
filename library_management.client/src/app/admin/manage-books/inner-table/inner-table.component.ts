@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 declare var $: any;
 
 export interface BookData {
+  bookIssueId: any;
   bookQrMappingId: any;
   qrNumber: string;
   issuedTo: string;
@@ -18,7 +19,7 @@ export interface BookData {
 })
 export class InnerTableComponent implements OnChanges {
 
-
+  isArchive: boolean = true;
   @Input() bookDataArray2: BookData[] = [];
   @Input() bookName: string = ''; 
   bookData !: BookData;
@@ -29,10 +30,13 @@ export class InnerTableComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['bookDataArray2'] && changes['bookDataArray2'].currentValue) {
       this.dataSource.data = changes['bookDataArray2'].currentValue;
-      console.log(this.dataSource.data); // This should now log the actual array
+      console.log("data : ", this.dataSource.data); // This should now log the actual array
     }
   }
 
+  isBookIssued(book: any): boolean {
+    return book.status.toLowerCase() === 'not available';
+  }
   //ngOnInit() {
   //  $(document).ready(function () {
   //    $('#revokeBookModal').modal('show');
