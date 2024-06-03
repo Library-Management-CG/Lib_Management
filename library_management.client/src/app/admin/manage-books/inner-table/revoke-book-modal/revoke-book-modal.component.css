@@ -132,3 +132,45 @@
     line-height: normal;
     flex: 1 0 0;
   }
+
+.footer-component{
+    display:flex;
+    width: 100%;
+}
+
+.footer-component-buttons {
+    width:40%;
+}
+.footer-revoke {
+  border-radius: 1.9375rem;
+  background: var(--Adhoc-Red, #CC1A07);
+  display: flex;
+  height: 2.5rem;
+  padding: 0.75rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  color: #FFF;
+  font-family: Lato;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.footer-cancel {
+  border-radius: 1.625rem;
+  border: 1px solid #28519E;
+  display: flex;
+  height: 2.5rem;
+  padding: 0.75rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 0 0;
+  color: var(--Primary-Blue, #28519E);
+  font-family: Lato;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
