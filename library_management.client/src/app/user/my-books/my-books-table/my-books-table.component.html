@@ -1,0 +1,76 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" class="borderra">
+
+    <ng-container matColumnDef="bookName" >
+      <mat-header-cell *matHeaderCellDef class="mat-column-bookName">Book Name </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="mat-column-bookName">
+        <div class="book-thumbnail" [style.backgroundImage]="'url(' + element.image + ')'">
+        </div>
+        <span class="book-name">{{element.bookName}}</span>
+      </mat-cell>
+    </ng-container>
+
+
+    <!-- Author Column -->
+    <ng-container matColumnDef="author">
+      <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.author}} </mat-cell>
+    </ng-container>
+
+    <!-- Copies Column -->
+    <ng-container matColumnDef="qrNumber">
+      <mat-header-cell *matHeaderCellDef> QR Number </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.qrNumber}} </mat-cell>
+    </ng-container>
+
+    <!-- Copies Column -->
+    <ng-container matColumnDef="dateOfIssue">
+      <mat-header-cell *matHeaderCellDef> Date of Issue </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.dateOfIssue}} </mat-cell>
+    </ng-container>
+
+    <!-- Author Column -->
+    <ng-container matColumnDef="dateOfReturn">
+      <mat-header-cell *matHeaderCellDef> Date of Return </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.dateOfReturn}} </mat-cell>
+    </ng-container>
+
+    <!-- Author Column -->
+    <ng-container matColumnDef="rating">
+      <mat-header-cell *matHeaderCellDef> Rating </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span *ngFor="let star of getStars(element.rating)">
+          <img [src]="star ? '../../../../assets/icons/my-books/star-marked.svg' : '../../../../assets/icons/my-books/star-unmarked.svg'" alt="star">
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span [ngClass]="getStatusClass(element.status)">
+          {{element.status}}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <div *matRowDef="let row; columns: displayedColumns">
+      <mat-row></mat-row>
+    </div>
+  </mat-table>
+  <mat-paginator appStylePaginator
+                 [appCustomLength]="dataSource.data.length"
+                 [length]="dataSource.data.length"
+                 [pageSize]="1"
+                 [pageSizeOptions]="[1, 2, 3, 5]"
+                 [currentPageSize]="this.dataSource.paginator?.pageSize"
+                 aria-label="Select page">
+  </mat-paginator>
+  <!--<mat-paginator [length]="100"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 aria-label="Select page">
+  </mat-paginator>-->
+</div>

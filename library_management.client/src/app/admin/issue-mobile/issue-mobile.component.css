@@ -10,7 +10,15 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin:0rem;
 }
 p{
     margin-top:1rem;
+}
+.page-heading-img {
+  margin: 1.2rem 0.4rem 0.8rem 1rem;
+}
+.mobile-view-issue{
+    position:absolute;
+    top:3rem;
 }

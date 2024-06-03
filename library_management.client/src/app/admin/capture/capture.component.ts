@@ -98,7 +98,7 @@ export class CaptureComponent {
   }
   
   
-  showWebcam = true;
+  showWebcam = false;
   isCameraExist = true;
 
   errors: WebcamInitError[] = [];

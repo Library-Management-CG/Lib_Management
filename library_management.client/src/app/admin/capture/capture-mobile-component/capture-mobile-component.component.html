@@ -1,0 +1,69 @@
+    <div class="modal-content">
+      <div class="modal-body pad">
+
+        <webcam [trigger]="triggerObservable"
+                (imageCapture)="handleImage($event)"
+                *ngIf="showWebcam"
+                [switchCamera]="nextWebcamObservable"
+                [height]="1000" 
+                [width]="1000"
+                class="webcam_size"
+                ></webcam>
+
+        <div *ngIf="srcc!=''" class="cropper-container">
+
+          <image-cropper [imageURL]="srcc"
+                         [maintainAspectRatio]="true"
+                         [aspectRatio]="4/ 6"
+                         (imageLoaded)="imageLoaded($event)"
+                         (cropperReady)="cropperReady()"
+                         (imageCropped)="imageCropped($event)"
+                         (loadImageFailed)="loadImageFailed()"
+                        
+                         ></image-cropper>
+        </div>
+
+
+        <ng-template #noCameraExist> Camera device not available </ng-template>
+      </div>
+      <div class="modal-footer">
+
+        <div class="cancel-btn" (click)="close()" aria-label="Close">
+          <div class="cancel-text">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+
+
+
+
+        <div class="next-button" (click)="takeSnapshot()">
+          <div class="next-text">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+        </div>
+
+
+        <div class="next-button" (click)="changeWebCame(true)">
+          <div class="next-text">
+            <i class="fa-solid fa-camera-rotate"></i>
+          </div>
+        </div>
+
+
+        <div class="next-button" (click)="onOffWebCame()">
+          <div class="next-text">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+        </div>
+
+
+        <div class="next-button" (click)="save()">
+          <div class="next-text">
+            <i class="fa-solid fa-floppy-disk"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  

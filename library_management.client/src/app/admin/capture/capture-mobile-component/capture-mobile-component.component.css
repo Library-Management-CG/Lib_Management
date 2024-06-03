@@ -1,0 +1,80 @@
+.struct {
+  width: 100%;
+}
+
+.modal-content {
+  width: 100%;
+  height:95vh;
+  overflow-x:hidden;
+  margin-top:-2rem;
+}
+
+
+.pad{
+    padding:0rem;
+}
+
+.cancel-btn {
+  border-radius: 2rem;
+  border: 1px solid #28519E;
+  display: flex;
+  width: 5.75rem;
+  height: 2.5rem;
+  padding: 0.75rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cancel-text {
+  color: var(--Primary-Blue, #28519E);
+  font-family: Lato;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.next-button {
+  display: flex;
+  width: auto;
+  height: 2.5rem;
+  padding: 0.75rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 2rem;
+  background: var(--Primary-Blue, #28519E);
+  margin-left: 1rem;
+}
+
+.next-text {
+  color: #FFF;
+  font-family: Lato;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-evenly;
+}
+.webcam_size{
+margin-left:-20rem;
+
+}
+.cropper-container {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+image-cropper {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}

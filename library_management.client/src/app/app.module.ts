@@ -70,6 +70,9 @@ import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.compo
 
 
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
+import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-component/capture-mobile-component.component';
+import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-table.component';
+import { SingleCommentComponent } from './admin/manage-books/inner-table/comments-modal/single-comment/single-comment.component';
 
 
 
@@ -131,6 +134,9 @@ LOAD_WASM().subscribe();
     RevokePermissionModalComponent,
     MobileAccordianComponent,
     ScannerComponent,
+    CaptureMobileComponentComponent,
+    MyBooksTableComponent,
+    SingleCommentComponent,
 
   ],
   imports: [
@@ -153,6 +159,7 @@ LOAD_WASM().subscribe();
     LottieModule.forRoot({ player: playerFactory }),
     NgSelectModule,
     FormsModule,
+    ReactiveFormsModule,
     AvatarModule,
     WebcamModule,
     ImageCropperModule,
@@ -164,7 +171,8 @@ LOAD_WASM().subscribe();
   /*  AvatarModule*/
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  //exports: [StylePaginatorDirective]
 })
 export class AppModule { }
 

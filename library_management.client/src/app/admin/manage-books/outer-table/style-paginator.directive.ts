@@ -23,7 +23,7 @@ import { map, startWith, Subscription } from 'rxjs';
 })
 
 
-export class StylePaginatorDirective implements AfterViewInit {
+export class StylePaginatorDirective {
 
   @Output() pageIndexChangeEmitter = new EventEmitter<number>();
 
@@ -32,12 +32,16 @@ export class StylePaginatorDirective implements AfterViewInit {
   @Input() renderButtonsNumber = 2;
   @Input() appCustomLength = 0;
   @Input() hideDefaultArrows = false;
+  @Input() pageSizeOptions: number[] = [];
+  @Input() currentPageSize: number | undefined;
 
   private dotsEndRef!: HTMLElement;
   private dotsStartRef!: HTMLElement;
   private bubbleContainerRef!: HTMLElement;
   private subscription = new Subscription();
   private buttonsRef: HTMLElement[] = [];
+  private totalItems: any = this.matPag.length;
+
 
   constructor(
     @Host() @Self() @Optional() private readonly matPag: MatPaginator,
@@ -55,10 +59,18 @@ export class StylePaginatorDirective implements AfterViewInit {
    * react on parent component changing the appCustomLength - rerender bubbles
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes?.['appCustomLength']?.firstChange) {
+    console.log("print ", this.currentPageSize);
+
+    if ('appCustomLength' in changes && !changes?.['appCustomLength']?.firstChange) {
       // remove buttons before creating new ones
       this.removeButtons();
-      // switch back to page 0
+      this.switchPage(0);
+      this.renderButtons();
+    }
+
+    if ('currentPageSize' in changes && !changes['currentPageSize'].firstChange) {
+      this.removeButtons();
+      this.removeDotsElements();
       this.switchPage(0);
       this.renderButtons();
     }
@@ -156,7 +168,7 @@ export class StylePaginatorDirective implements AfterViewInit {
     );
 
     const pageDefaultLabel = nativeElement.querySelector(
-      '#mat-paginator-page-size-label-0'
+      '.mat-mdc-paginator-page-size-label'
     );
 
     this.ren.setStyle(pageDefaultLabel, 'color', '#706F73');
@@ -308,6 +320,9 @@ export class StylePaginatorDirective implements AfterViewInit {
     // set style none by default
     this.ren.setStyle(dotsEl, 'display', 'none');
 
+    this.dotsElements.push(dotsEl);
+
+
     return dotsEl;
   }
 
@@ -362,7 +377,30 @@ export class StylePaginatorDirective implements AfterViewInit {
     this.ren.appendChild(pageSelectIcon, newSvg);
 
 
+    const element = nativeElement.querySelector(
+      '.mat-mdc-paginator-outer-container'
+    );
+
+    const newDiv = this.ren.createElement('div')
+    const textSpan = this.ren.createElement('span')
+    const text = this.ren.createText(`Total Items: ${this.totalItems}`);
+    this.ren.appendChild(textSpan, text);
+    this.ren.appendChild(newDiv, textSpan);
+    this.ren.addClass(newDiv, 'total-items'); 
+
+    const firstChild = element.firstChild;
+
+
+    this.ren.insertBefore(element, newDiv, firstChild);
 
   }
 
+  private dotsElements: HTMLElement[] = [];
+
+  private removeDotsElements(): void {
+    this.dotsElements.forEach(dotsEl => {
+      this.ren.removeChild(this.bubbleContainerRef, dotsEl);
+    });
+    this.dotsElements = []; // Clear the array
+  }
 }

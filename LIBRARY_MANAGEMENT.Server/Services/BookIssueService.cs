@@ -37,7 +37,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                                  join u in _context.Users on bi.IssueTo equals u.Id
                                                  join qr in _context.BookQrMappings on bi.BookQrMappingid equals qr.Id
                                                  join b in _context.Books on qr.BookId equals b.Id
-                                                 join s in _context.Statuses on qr.StatusId equals s.Id
+                                                 join s in _context.Statuses on bi.StatusId equals s.Id
                                                  where u.Id == user.userId
                                                  select new MyBooksDTO
                                                  {
@@ -48,6 +48,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                                      issueDate = bi.IssueDate,
                                                      returnDate = bi.ReceiveDate,
                                                      status = s.StatusName,
+                                                     image=b.imageData
                                                  }).OrderByDescending(d => d.issueDate).ToListAsync();
 
                 foreach (var item in result)
@@ -79,16 +80,20 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             try
             {
                 var result = await (from b in _context.Books
+                                      .Include(b => b.AuthorBooks)
+                    .ThenInclude(ab => ab.Author)
                                     join m in _context.BookQrMappings on b.Id equals m.BookId
-                                    join ab in _context.AuthorBooks on b.Id equals ab.BookId
-                                    join a in _context.Authors on ab.AuthorId equals a.Id
+
+                                    //join ab in _context.AuthorBooks on b.Id equals ab.BookId
+                                    //join a in _context.Authors on ab.AuthorId equals a.Id
                                     where m.Qrnumber == qrNumber
                                     select new BookDetailsDTO
                                     {
                                         Id = b.Id,
                                         Title = b.Title,
-                                        AuthorName = a.AuthorName,
-                                        BookQrMappingId = m.Id
+                                        AuthorName = b.AuthorBooks.Select(ab => ab.Author.AuthorName).ToList(),
+                                        BookQrMappingId = m.Id,
+                                        image=b.imageData
                                     }).FirstOrDefaultAsync();
 
                 return result;
@@ -110,6 +115,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     IssueDate = DateTime.UtcNow,
                     ReturnDate = DateTime.UtcNow.AddDays(15),
                     IssueTo = bookIssueDTO.IssueTo,
+                    StatusId = await GetStatusId("reading"),
                     CreatedAtUtc = DateTime.UtcNow,
                     UpdatedAtUtc = DateTime.UtcNow,
                     CreatedBy = bookIssueDTO.CreatedBy,
@@ -176,7 +182,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             try
             {
                 var entityToUpdate = _context.BookQrMappings.FirstOrDefault(d => d.Id == bookIssueDTO.BookQrMappingId);
-                var statusId = await GetStatusId("Not Avaliable");
+                var statusId = await GetStatusId("Not Available");
 
                 if (entityToUpdate == null)
                 {

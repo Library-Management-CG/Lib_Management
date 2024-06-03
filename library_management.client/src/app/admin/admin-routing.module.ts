@@ -11,11 +11,20 @@ import { AssignPermissionSubPartComponent } from './assign-permission-modal/assi
 import { AddBookMobileComponent } from './add-book-mobile/add-book-mobile.component';
 import { IssueMobileComponent } from './issue-mobile/issue-mobile.component';
 import { ScannerComponent } from './issue-modal-body/scanner/scanner.component';
+import { CaptureComponent } from './capture/capture.component';
+import { CaptureMobileComponentComponent } from './capture/capture-mobile-component/capture-mobile-component.component';
 
 const routes: Routes = [
   {
     path: 'admin',
     component: AdminDashboardComponent,
+
+
+
+  },
+  {
+    path: 'admin/add-book-scanner',
+    component:CaptureMobileComponentComponent,
 
 
 

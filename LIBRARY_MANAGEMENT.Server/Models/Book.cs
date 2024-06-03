@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SharePoint.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,7 @@ public partial class Book
     public string? Description { get; set; }
 
     public DateTime CreatedAtUtc { get; set; }
+    public String imageData { get; set; }
 
     public Guid CreatedBy { get; set; }
 
@@ -22,6 +24,8 @@ public partial class Book
     public DateTime UpdatedAtUtc { get; set; }
 
     public string? Isbn { get; set; }
+
+    //public String? imageData { get; set; }
 
     public virtual ICollection<AuthorBook> AuthorBooks { get; set; } = new List<AuthorBook>();
 

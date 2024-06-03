@@ -27,6 +27,10 @@ public partial class BookIssue
 
     public DateTime? ReceiveDate { get; set; }
 
+    public Guid? StatusId { get; set; }
+
+    public virtual Status Status { get; set; } = null!;
+
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
     public virtual User CreatedByNavigation { get; set; } = null!;

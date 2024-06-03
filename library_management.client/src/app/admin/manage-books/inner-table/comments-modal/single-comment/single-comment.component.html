@@ -1,0 +1,42 @@
+<div class="comment-card">
+  <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy == null" class="icon icon-assigned">
+    <img class="recieved" src="../../../../assets/icons/comment-assigned.svg" />
+  </div>
+  <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy != null" class="icon icon-recieved">
+    <img class="recieved" src="../../../../assets/icons/comment-recieved.svg" />
+  </div>
+  <div *ngIf="commentDetails.assignedTo == null && commentDetails.receivedBy == null" class="icon icon-default">
+    <img class="recieved" src="../../../../assets/icons/comment-default.svg" />
+  </div>
+  <div class="comment-body">
+    <div class="admin-detail">
+      <div class="admin">
+        <ngx-avatars name="{{commentDetails.createdBy}}" [textSizeRatio]=2.7 bgColor=#b8dde1 fgColor=#264f9d [round]="true" size="31"></ngx-avatars>
+        <div class="admin-name">{{commentDetails.createdBy}}</div>
+      </div>
+      <div class="time">{{convertUtcToLocalTime(commentDetails.createdAtUtc) | date: 'h:mm a' }}</div>
+    </div>
+
+    <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy == null" class="comment-detail">
+      <div class="action">
+        Assigned To:
+      </div>
+      <div class="emp-name">
+        {{commentDetails.assignedTo}}
+      </div>
+    </div>
+
+    <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy != null" class="comment-detail">
+      <div class="action">
+        Recieved From:
+      </div>
+      <div class="emp-name">
+        {{commentDetails.assignedTo}}
+      </div>
+    </div>
+
+    <div class="comment-detail">
+      <div class="content action">{{commentDetails.description}}</div>
+    </div>
+  </div>
+</div>
