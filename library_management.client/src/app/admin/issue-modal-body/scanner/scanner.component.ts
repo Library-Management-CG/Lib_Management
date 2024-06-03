@@ -89,7 +89,19 @@ export class ScannerComponent implements AfterViewInit {
   handleButtonClick(): void {
     const isMobile = window.matchMedia('(max-width: 450px)').matches;
     if (isMobile) {
-      this.router.navigate(['/admin/issue-mobile']); // Use the router to navigate
+      if (this.page == "add") {
+        //const navigationExtras: NavigationExtras = {
+        //  state: {
+        //    page: "add",
+        //    idx: index,
+        //  }
+        //};
+
+
+        this.router.navigate(['/admin/add-book-mobile']);
+      } else {
+        this.router.navigate(['/admin/issue-mobile']);
+      }
     } else {
       console.log("add book modal",this.bookqrcode);
       this.closePage();

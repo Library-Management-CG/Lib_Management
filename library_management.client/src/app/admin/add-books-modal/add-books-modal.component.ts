@@ -4,7 +4,7 @@ import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 import { UserServiceService } from '../../shared/services/user-service.service';
-//declare var $: any;
+declare var $: any;
 declare var
   webkitSpeechRecognition:any
   ;
@@ -340,6 +340,10 @@ export class AddBooksModalComponent {
     this.exploreService.resetBook();
   }
 
+  openModal(): void {
+    $('#success').modal('show');
+  }
+
   addBookRequest() {
     console.log("add book post req", this.addBook);
 
@@ -358,8 +362,9 @@ export class AddBooksModalComponent {
 
     this.urserService.addNewBook(book).subscribe(
       (data: any[]) => {
-        console.error('Error posted');
+        console.log('new books added');
         this.Reset();
+       // this.openModal();
       },
       (error: any) => {
         console.error('Error posting:', error);
