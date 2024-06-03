@@ -74,6 +74,7 @@ import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-
 import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-table.component';
 import { SingleCommentComponent } from './admin/manage-books/inner-table/comments-modal/single-comment/single-comment.component';
 import { TurncatePipe } from './turncate.pipe';
+import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
 
 
 
@@ -139,6 +140,7 @@ LOAD_WASM().subscribe();
     MyBooksTableComponent,
     SingleCommentComponent,
     TurncatePipe,
+    SuccessMobileComponent,
 
   ],
   imports: [

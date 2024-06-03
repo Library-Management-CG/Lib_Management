@@ -42,11 +42,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         public async Task<Boolean> AddNewBooks(NewBooksDTO books)
         {
-            Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
-            if (check != null)
-            {
-                return true;
-            }
+            //Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
+            //if (check != null)
+            //{
+            //    return true;
+            //}
             try
             {
                 Book b = new Book
