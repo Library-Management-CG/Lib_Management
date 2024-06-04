@@ -18,9 +18,12 @@
   flex-shrink: 0form-field
 }
 
-.book-image{
-    display:flex;
-  
+.cross{
+  cursor: pointer;
+}
+
+.book-image {
+  display: flex;
 }
 
 .header-padding {
@@ -242,6 +245,7 @@
 }
 
 .cancel-btn {
+  cursor: pointer;
   border-radius: 2rem;
   border: 1px solid #28519E;
   display: flex;
@@ -263,6 +267,7 @@
 }
 
 .next-button {
+  cursor: pointer;
   display: flex;
   width: 5.75rem;
   height: 2.5rem;
@@ -272,7 +277,7 @@
   gap: 0.5rem;
   border-radius: 2rem;
   background: var(--Primary-Blue, #28519E);
-  margin-left:1rem;
+  margin-left: 1rem;
 }
 
 .next-text {

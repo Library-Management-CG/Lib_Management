@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
+import { ExploreBooksService } from '../services/ExploreBooksService';
 
 @Component({
   selector: 'app-success-mobile',
@@ -14,9 +15,10 @@ export class SuccessMobileComponent {
     path: '../../../assets/animation/Success.json',
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private exploreService: ExploreBooksService) { }
 
   reset() {
+    this.exploreService.resetQrCode();
     this.router.navigate(['admin']);
   }
 }
