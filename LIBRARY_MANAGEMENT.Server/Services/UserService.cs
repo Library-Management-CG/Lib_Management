@@ -35,25 +35,23 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         {
             try
             {
-                var topUsers = _context.BookIssues
-                   .GroupBy(issue => issue.IssueTo)
-                   .OrderByDescending(group => group.Count())
-                   .ThenBy(group => group.Key)
-                   .Take(7)
-                   .Select(group => group.Key)
-                   .ToList();
-
                 var users = _context.Users
-                    .Where(user => topUsers.Contains(user.Id))
-                    .Select(user => new UserBookDTO
-                    {   Id = user.Id,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        BookCount = _context.BookIssues
-                            .Count(mapping => mapping.IssueTo == user.Id)
-                    })
-                    .OrderByDescending(user => user.BookCount)
-                    .ToList();
+                   .Select(user => new
+                   {
+                       User = user,
+                       BookCount = _context.BookIssues.Count(issue => issue.IssueTo == user.Id)
+                   })
+                   .Select(u => new UserBookDTO
+                   {
+                       Id = u.User.Id,
+                       FirstName = u.User.FirstName,
+                       LastName = u.User.LastName,
+                       BookCount = u.BookCount
+                   })
+                   .Distinct()
+                   .OrderByDescending(u => u.BookCount)
+                   .Take(7)
+                   .ToList();
 
                 return users;
             }
