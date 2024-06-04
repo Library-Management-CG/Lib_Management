@@ -20,7 +20,7 @@ export class RevokeBookModalComponent {
 
   ngOnInit(): void {
     
-    this.updatedBy = 'EE9719E3-FBDA-4B98-AAF3-BD1123EDFE85';
+    this.updatedBy = '1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20';
 
   }
 
@@ -42,6 +42,10 @@ export class RevokeBookModalComponent {
       this.manageBooksService.revokeBook(formData).subscribe(
         response => {
           console.log('Book revoked successfully', response);
+          this.manageBooksService.notifyBookDataChanged();
+          this.commentDescription = '';
+          this.bookReceived = '';
+          this.condition = '';
         },
         error => {
           console.error('Error archiving book', error);

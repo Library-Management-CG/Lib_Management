@@ -104,3 +104,9 @@
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
   width: 75rem;
 }
+
+.spinner-loading{
+    display: flex;
+    justify-content: center;
+    transform: scale(0.4);
+}

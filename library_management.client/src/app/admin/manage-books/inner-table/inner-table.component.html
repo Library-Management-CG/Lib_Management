@@ -37,7 +37,17 @@
 
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef> Status </th>
-    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    <td mat-cell *matCellDef="let element">
+      <div *ngIf="element.status == 'Available'" class="book-status-available">
+        <span>AVAILABLE</span>
+      </div>
+      <div *ngIf="element.status == 'Archive'" class="book-status-archive">
+        <span>ARCHIVE</span>
+      </div>
+      <div *ngIf="element.status == 'Not Available'" class="book-status-reading">
+        <span>READING</span>
+      </div>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="comments">

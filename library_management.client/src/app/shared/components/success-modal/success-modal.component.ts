@@ -28,6 +28,7 @@ export class SuccessModalComponent {
 
   reset() {
     this.doneClicked.emit();
+    this.exploreService.resetQrCode();
   }
 
 }

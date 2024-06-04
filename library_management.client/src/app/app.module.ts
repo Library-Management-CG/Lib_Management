@@ -76,6 +76,7 @@ import { SingleCommentComponent } from './admin/manage-books/inner-table/comment
 import { TurncatePipe } from './turncate.pipe';
 import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
 import { RatingInnerContentComponent } from './user/rating-dropdown/rating-inner-content/rating-inner-content.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -172,7 +173,8 @@ LOAD_WASM().subscribe();
     MatListModule,
     ImageCropperModule,
     NgxScannerQrcodeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   /*  AvatarModule*/
   ],
   providers: [DatePipe],

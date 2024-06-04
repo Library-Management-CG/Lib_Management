@@ -15,7 +15,7 @@ public partial class Book
     public string? Description { get; set; }
 
     public DateTime CreatedAtUtc { get; set; }
-    public String imageData { get; set; }
+    public String? imageData { get; set; }
 
     public Guid CreatedBy { get; set; }
 

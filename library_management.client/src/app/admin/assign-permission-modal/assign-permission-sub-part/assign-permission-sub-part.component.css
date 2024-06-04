@@ -139,6 +139,30 @@
     display:none !important;
 }
 
+.user .ng-select {
+  display: flex;
+  width: 21.625rem;
+  height: auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-2, 1rem);
+  border-radius: 0.5rem;
+  background: #FFF;
+  box-shadow: 0px 4px 20px 0px rgba(40, 52, 73, 0.15);
+}
+
+.user .ng-select .ng-arrow-wrapper .ng-arrow {
+  border-color: none !important;
+  border-style: none !important;
+  border-width: 0 !important;
+}
+
+.user .ng-select .ng-arrow-wrapper {
+  background-repeat: no-repeat;
+  margin-top: 2px;
+  margin-right: 0.75rem;
+}
+
 @media screen and (max-width: 650px) {
   .assign-modal-content {
     height: 93.5vh;

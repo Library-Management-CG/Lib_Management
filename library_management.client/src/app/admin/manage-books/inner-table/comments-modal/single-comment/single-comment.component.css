@@ -103,3 +103,8 @@
   gap: 0.6875rem;
   align-self: stretch;
 }
+
+.unarchive-button{
+  transform-origin: center;
+  transform: rotate(180deg);
+}

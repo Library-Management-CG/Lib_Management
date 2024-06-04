@@ -270,13 +270,14 @@ select option {
   align-self: stretch;
 }
 
-::ng-deep .ng-select .ng-has-value .ng-placeholder {
+.user-search .ng-select .ng-has-value .ng-placeholder {
   display: none;
 }
 
-.user-search ng-select .custom {
+.user-search .ng-select {
   display: flex;
   width: 21.625rem;
+  height: auto;
   padding: var(--spacing-2, 1rem);
   flex-direction: column;
   align-items: flex-start;
@@ -285,13 +286,13 @@ select option {
   background: #FFF;
   box-shadow: 0px 4px 20px 0px rgba(40, 52, 73, 0.15);
 }
-.ng-select .ng-arrow-wrapper .ng-arrow {
+.user-search .ng-select .ng-arrow-wrapper .ng-arrow {
   border-color: none !important;
   border-style: none !important;
   border-width: 0 !important;
 }
 
-.ng-select .ng-arrow-wrapper {
+.user-search .ng-select .ng-arrow-wrapper {
   background-image: url('../../../assets/icons/issue-modal/expand-more.svg');
   background-repeat: no-repeat;
   margin-top: 2px;

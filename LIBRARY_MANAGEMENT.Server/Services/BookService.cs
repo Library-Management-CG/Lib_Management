@@ -69,9 +69,10 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
             catch (Exception ex)
             {
-                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("Adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 return false;
             }
+
         }
 
         public async Task<Boolean> AddNewAuthors(NewBooksDTO books)
@@ -148,7 +149,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             for (int i = 0; i < books.qr.Count(); i++)
             {
                 string qr = books.qr[i];
-                try
+                //BookQrMapping dbCheck = await _context.BookQrMappings.FindAsync(qr);
+                //if (dbCheck == null)
+                //{
+                //    continue;
+                //}
+                    try
                 {
                     BookQrMapping bqr = new BookQrMapping
                     {

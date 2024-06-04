@@ -59,3 +59,69 @@ button{
   cursor: not-allowed;
   opacity: 0.6;
 }
+
+.book-status-available {
+  display: flex;
+  width:fit-content;
+  height: 1.5rem;
+  padding: 0.4375rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.25rem;
+  background: #CEF0DC;
+}
+
+.book-status-available span {
+  color: #0D542A;
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.25rem; /* 142.857% */
+  text-transform: uppercase;
+}
+
+.book-status-archive {
+  display: flex;
+  width: fit-content;
+  height: 1.5rem;
+  padding: 0.4375rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.25rem;
+  background: #FFE8E8;
+}
+
+.book-status-archive span {
+  color: #CC1A07;
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.book-status-reading {
+  display: flex;
+  width: fit-content;
+  height: 1.5rem;
+  padding: 0.4375rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.25rem;
+  background: var(--Adhoc-Info-Blue, #E3F3FC);
+}
+
+.book-status-reading span {
+  color: var(--Primary-Royal-Blue, #002C3F);
+  font-family: Lato;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.25rem; /* 142.857% */
+  text-transform: uppercase;
+}
