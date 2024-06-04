@@ -84,6 +84,7 @@ export class AddBookMobileComponent {
         console.error('Error posted');
 
         this.Reset();
+        this.exploreService.resetQrCode();
         this.router.navigate(['/admin/success-mobile']);
       },
       (error: any) => {

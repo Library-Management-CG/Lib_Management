@@ -97,7 +97,9 @@ export class ExploreBooksService {
     this.qrCodesSource.next([...currentQrCodes]);
   }
 
-
+  resetQrCode() {
+    this.qrCodesSource.next([]);
+  }
 
 
 

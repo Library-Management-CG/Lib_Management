@@ -368,6 +368,7 @@ export class AddBooksModalComponent {
         console.error('Error posted');
         this.Reset();
         this.openModal();
+        this.exploreService.resetQrCode();
       },
       (error: any) => {
         console.error('Error posting:', error);
