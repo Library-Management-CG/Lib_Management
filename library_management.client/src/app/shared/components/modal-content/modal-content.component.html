@@ -15,7 +15,7 @@
           <div class="col-md-8">
             <div class="title-and-author">
               <div class="book-title-content">{{ books?.title }}</div>
-              <div class="name-of-author">{{ books?.authorName.join(' & ') }}</div>
+              <div class="name-of-author">{{ books?.authorName?.join(' & ') }}</div>
               <div class="rating-book">
 
                 <ng-container *ngIf="books?.points > 0; else noRatingYet">
@@ -43,12 +43,12 @@
                
               </div>
             </div>
-            <div class="book-content">
+            <div class="book-content ">
               {{books?.description}}
             </div>
           </div>
 
-          <div class="book-modal-image col-md-2  col-12 order-md-last order-md-first">
+          <div class="book-modal-image col-md-2  col-12">
             <img src={{books.image}} class="image-content" />
           </div>
         </div>

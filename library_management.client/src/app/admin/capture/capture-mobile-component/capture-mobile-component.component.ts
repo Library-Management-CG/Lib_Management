@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { ExploreBooksService } from '../../../shared/services/ExploreBooksService';
 declare var $: any;
 
 @Component({
@@ -15,7 +16,7 @@ export class CaptureMobileComponentComponent {
   croppedImage: any = '';
 
   @Output() getPicture = new EventEmitter<WebcamImage>();
-  constructor(private sanitizer: DomSanitizer, private router: Router) { }
+  constructor(private sanitizer: DomSanitizer, private router: Router,private exploreService: ExploreBooksService) { }
   check() {
     console.log("hello");
   }
@@ -25,7 +26,10 @@ export class CaptureMobileComponentComponent {
     if (this.updatedSRCC != "") {
       finalImg = this.updatedSRCC;
     }
-    this.getPicture.emit(finalImg);
+    //this.getPicture.emit(finalImg);
+
+    this.exploreService.setImg(finalImg);
+
     this.router.navigate(['admin/add-book-mobile']);
 
   }

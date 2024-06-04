@@ -13,6 +13,7 @@ import { IssueMobileComponent } from './issue-mobile/issue-mobile.component';
 import { ScannerComponent } from './issue-modal-body/scanner/scanner.component';
 import { CaptureComponent } from './capture/capture.component';
 import { CaptureMobileComponentComponent } from './capture/capture-mobile-component/capture-mobile-component.component';
+import { SuccessMobileComponent } from '../shared/success-mobile/success-mobile.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
    {
     path: 'admin/issue-mobile-scanner',
     component: ScannerComponent
+  },
+  {
+    path: 'admin/success-mobile',
+    component: SuccessMobileComponent
   }
 
 ]

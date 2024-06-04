@@ -82,6 +82,7 @@ export class AddBookCommonComponent {
 
     this.exploreService.qrCodes$.subscribe(qrCodes => {
       this.qrCodes = qrCodes;
+      this.counterValue = this.qrCodes.length;
     });
 
     this.exploreService.setQrCodes(this.qrCodes);
@@ -118,6 +119,7 @@ export class AddBookCommonComponent {
           description: book.description
         });
         this.selectedBook = book.bookName;
+        //---------------------------------------------------
       }
     });
 
@@ -128,6 +130,10 @@ export class AddBookCommonComponent {
       .then(response => response.json())
       .then(data => {
         console.log(data);
+        data.items = data.items.filter((book:any) =>
+          book.volumeInfo.industryIdentifiers &&
+          book.volumeInfo.industryIdentifiers.some((id:any) => id.type === "ISBN_13")
+        );
         this.listOfBooks = data.items;
 
       })
@@ -332,16 +338,19 @@ export class AddBookCommonComponent {
   }
 
   testing(event: any) {
-    console.log("hello", event.target);
+    //console.log("hello", event.target);
+    console.log("helloooo", this.listOfBooks);
+    console.log("helloooo", this.selectedBook);
     
 
     this.exploreService.setBook({
-      bookName: this.selectedBook.volumeInfo.title,
-      authorName: this.selectedBook.volumeInfo.authors,
-      img: this.selectedBook.volumeInfo.imageLinks.smallThumbnail,
-      description: this.selectedBook.volumeInfo.description,
-      ISBN: this.selectedBook.volumeInfo.industryIdentifiers.find((id:any) => id.type === "ISBN_13").identifier,
+      bookName: this.selectedBook.volumeInfo.title ?? null,
+      authorName: this.selectedBook.volumeInfo.authors ? this.selectedBook.volumeInfo.authors : null,
+      img: this.selectedBook.volumeInfo.imageLinks?.smallThumbnail ?? null,
+      description: this.selectedBook.volumeInfo.description ?? null,
+      ISBN: this.selectedBook.volumeInfo.industryIdentifiers?.find((id: any) => id.type === "ISBN_13")?.identifier ?? null,
     });
+
 
     if (this.selectedBook) {
       this.bookForm.patchValue({

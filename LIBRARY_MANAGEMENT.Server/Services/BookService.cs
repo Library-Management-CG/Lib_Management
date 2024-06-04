@@ -42,11 +42,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         public async Task<Boolean> AddNewBooks(NewBooksDTO books)
         {
-            Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
-            if (check != null)
-            {
-                return true;
-            }
+            //Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
+            //if (check != null)
+            //{
+            //    return true;
+            //}
             try
             {
                 Book b = new Book
@@ -161,7 +161,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         UpdatedBy = Guid.Parse(books.LoggedIn),
                     };
 
-                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not avaliable").Select(s => s.Id).FirstOrDefaultAsync();
+                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not available").Select(s => s.Id).FirstOrDefaultAsync();
                     if (statusOfBook != null)
                     {
                         bqr.StatusId = statusOfBook;
