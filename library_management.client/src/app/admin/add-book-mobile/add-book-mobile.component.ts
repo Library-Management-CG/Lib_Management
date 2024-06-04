@@ -79,7 +79,10 @@ export class AddBookMobileComponent {
 
     this.urserService.addNewBook(book).subscribe(
       (data: any[]) => {
+        this.exploreService.settotalbooks(data);
+
         console.error('Error posted');
+
         this.Reset();
         this.router.navigate(['/admin/success-mobile']);
       },

@@ -74,7 +74,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             try
             {
                 await _userService.AddAdminService(user);
-                return Ok("success");
+                return Ok(true);
             }catch (Exception ex)
             {
                 _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("post new admin failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");

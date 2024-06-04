@@ -18,7 +18,7 @@
         <span class="user-text ">User</span>
 
         <ng-select placeholder="Select User" [(ngModel)]="selectedUser" [searchable]="true" [clearable]="false">
-          <ng-option *ngFor="let value of adminList" [value]="value.id">
+          <ng-option *ngFor="let value of adminList" [value]="value">
             <div class="option">
               <ngx-avatars name="{{value.firstName}} {{value.lastName}}" [textSizeRatio]=2.7 bgColor=#b8dde1 fgColor=#264f9d [round]="true" size="33"></ngx-avatars>
               <div class="name-id">

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ExploreBooksService } from '../../services/ExploreBooksService';
 
 @Component({
   selector: 'app-revoke-permission-modal',
@@ -19,7 +20,7 @@ export class RevokePermissionModalComponent {
 
   @Output() revokeEvent = new EventEmitter<boolean>();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private exploreService: ExploreBooksService) { }
 
   handleModalClose() {
     this.modalClosed.emit(true);
@@ -27,7 +28,7 @@ export class RevokePermissionModalComponent {
 
 
   changeRole() {
-
+    
     //if (this.checkUser() == true) {
     //  //this.toastr.error("This action can't be taken");
     //  this.isToggleChecked = true;
