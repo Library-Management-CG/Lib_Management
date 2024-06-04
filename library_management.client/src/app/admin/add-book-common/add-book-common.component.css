@@ -192,6 +192,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  cursor:pointer;
 }
 
 .cap-text {
@@ -284,12 +285,13 @@
 
 .scan-qr {
   display: flex;
-  width: 12.03125rem;
+  width: auto;
   align-items: center;
   gap: 1rem;
 }
 
 .scan-qr-holder {
+  cursor: pointer;
   width: 3.5rem;
   height: 3.5rem;
   flex-shrink: 0;
@@ -343,6 +345,7 @@
 }
 
 .rescan {
+  cursor: pointer;
   display: flex;
   padding: 0.5rem;
   justify-content: center;
@@ -362,6 +365,7 @@
 }
 
 .delete {
+  cursor: pointer;
   display: flex;
   padding: 0.5rem;
   justify-content: center;
