@@ -1,4 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { RatingInnerContentComponent } from './rating-inner-content/rating-inner-content.component';
+import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+declare var $: any;
 
 @Component({
   selector: 'app-rating-dropdown',
@@ -6,51 +10,51 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./rating-dropdown.component.css']
 })
 export class RatingDropdownComponent {
-  c = false;
-  c1 = false;
-  c2 = false;
-  c3 = false;
-  c4 = false;
-  c5 = false;
-  @Output() selectedValuesChange = new EventEmitter<number[]>();
+  isMobile: boolean=false;
 
-  handleCheckboxChange(value: number, event: Event) {
-    const isChecked = (event.target as HTMLInputElement).checked;
-    console.log(`Checkbox with value ${value} is now ${isChecked ? 'checked' : 'unchecked'}`);
+  selectedRatings: any[] = [];
+  @Output() selectedValuesChange = new EventEmitter<any[]>();
+  //@Output() openModalEvent = new EventEmitter<any>();
+  constructor(private _bottomSheet: MatBottomSheet, private explore: ExploreBooksService) {
+ 
+    this.checkScreenSize();
+  }
+  ngOnInit(): void {
+    this.checkScreenSize();
+    this.explore.ratingArray$.subscribe(totalbooks => {
+      this.selectedratingsvalue(totalbooks);
 
-    this.updateSelectAllState();
 
-    this.logSelectedValues();
+    });
   }
 
-  updateSelectAllState() {
-    this.c = this.c1 && this.c2 && this.c3 && this.c4;
+  onSelectedValuesChange(selectedValues: any[]): void {
+    this.selectedRatings = selectedValues;
+    console.log(this.selectedRatings);
+    if (this.selectedRatings) {
+      this.selectedratingsvalue(this.selectedRatings);
+    }
   }
 
-  logSelectedValues() {
-    const selectedValues = [];
-    if (this.c1) selectedValues.push(1);
-    if (this.c2) selectedValues.push(2);
-    if (this.c3) selectedValues.push(3);
-    if (this.c4) selectedValues.push(4);
-    if (this.c5) selectedValues.push(5);
-
-
-    console.log('Currently selected values:', selectedValues);
+  selectedratingsvalue(selectedValues: any[]): void {
     this.selectedValuesChange.emit(selectedValues);
+  }
+  openBottomSheet(): void {
 
+    const bottomSheetRef = this._bottomSheet.open(RatingInnerContentComponent);
+    console.log(this.selectedRatings);
+
+    if (this.selectedRatings) {
+      console.log(this.selectedRatings);
+      this.selectedratingsvalue(this.selectedRatings);
+    }
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkScreenSize();
   }
 
-  toggleSelectAll() {
-    const newState = this.c;
-    this.c1 = newState;
-    this.c2 = newState;
-    this.c3 = newState;
-    this.c4 = newState;
-    this.c5 = newState;
-
-    console.log(`Select All is now ${newState ? 'checked' : 'unchecked'}`);
-
-    this.logSelectedValues();
+  checkScreenSize(): void {
+    this.isMobile = window.innerWidth < 768; // Set your mobile breakpoint here
   }
 }
