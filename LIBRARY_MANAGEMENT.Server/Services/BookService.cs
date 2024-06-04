@@ -42,19 +42,20 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         public async Task<Boolean> AddNewBooks(NewBooksDTO books)
         {
-            Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
-            if (check != null)
-            {
-                return true;
-            }
+            //Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
+            //if (check != null)
+            //{
+            //    return true;
+            //}
             try
             {
+                string secureImgUrl = books.img.StartsWith("http:") ? books.img.Replace("http:", "https:") : books.img;
                 Book b = new Book
                 {
                     //Id = Guid.NewGuid(),
                     Title = books.bookName,
                     Description = books.description,
-                    imageData = books.img, // Ensure this is the only place where imageData is assigned.
+                    imageData = secureImgUrl,
                     CreatedAtUtc = DateTime.UtcNow,
                     CreatedBy = Guid.Parse(books.LoggedIn),
                     UpdatedAtUtc = DateTime.UtcNow,
@@ -162,7 +163,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         UpdatedBy = Guid.Parse(books.LoggedIn),
                     };
 
-                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not available").Select(s => s.Id).FirstOrDefaultAsync();
+                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "available").Select(s => s.Id).FirstOrDefaultAsync();
                     if (statusOfBook != null)
                     {
                         bqr.StatusId = statusOfBook;

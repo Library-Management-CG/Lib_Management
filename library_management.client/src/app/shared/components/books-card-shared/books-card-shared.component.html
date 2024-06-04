@@ -11,10 +11,10 @@
     <div *ngIf="isAdmin()==false && books?.statusName == 'Not Available' " class="not-avaliable-tag">NOT AVAILABLE</div>
 
     <div class="book-title">
-      {{ books?.title }}
+      {{ books?.title |truncate:getTruncateLength()}}
     </div>
-    <!--<div class="author-name">{{ books?.authorName }}</div>-->
-    <div class="author-name">{{ books?.authorName.join(' & ') }}</div>
+    <!--<div class="author-name">{{ books?.authorName  }}</div>-->
+  <div class="author-name">{{ books?.authorName.join(' & ')|truncate:24 }}</div>
 
     <div class="rating ">
       <!--<img src="../../../../assets/icons/Admin-dashboard/Rating.svg" />-->

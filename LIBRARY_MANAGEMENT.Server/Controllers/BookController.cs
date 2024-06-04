@@ -3,6 +3,7 @@ using LIBRARY_MANAGEMENT.Server.Models;
 using LIBRARY_MANAGEMENT.Server.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LIBRARY_MANAGEMENT.Server.Controllers
@@ -20,6 +21,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             _bookService = bookService;
             _logger = logger;
+            _context = context;
         }
 
         [HttpPost("add-books")]
@@ -27,9 +29,13 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             try
             {
-                await _bookService.AddNewBooks(books);
-                await _bookService.AddNewAuthors(books);
-                await _bookService.AddAuthorBooks(books);
+                Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
+                if (check == null)
+                {
+                    await _bookService.AddNewBooks(books);
+                    await _bookService.AddNewAuthors(books);
+                    await _bookService.AddAuthorBooks(books);
+                }
                 await _bookService.AddBookQr(books);
                 return Ok();
             }
