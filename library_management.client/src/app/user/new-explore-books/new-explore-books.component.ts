@@ -45,6 +45,7 @@ export class NewExploreBooksComponent {
   }
   onSelectedValuesChange(selectedValues: number[]): void {
     this.selectedRatings = selectedValues;
+    console.log('where', this.selectedRatings);
     this.getFilteredBooks();
   }
   filterAvailableBooksOfRatingFilter(): void {

@@ -54,14 +54,14 @@ export class ExploreBooksService {
   private exploreBooksSource = new BehaviorSubject<any[]>([]);
   exploreBooks$ = this.exploreBooksSource.asObservable();
 
-
-  private mappedBookSource = new BehaviorSubject<any>(null);
-  mappedBook$ = this.mappedBookSource.asObservable();
-
   setExploreBooks(books: any[]) {
     this.exploreBooksSource.next(books);
   }
 
+  private mappedBookSource = new BehaviorSubject<any>(null);
+  mappedBook$ = this.mappedBookSource.asObservable();
+
+ 
 
   setMappedBook(mappedBook: any) {
     this.mappedBookSource.next(mappedBook);
@@ -145,4 +145,12 @@ export class ExploreBooksService {
     const currentBook = this.bookSource.value;
     this.bookSource.next({ ...currentBook, description });
   }
+
+  private ratingArraySource = new BehaviorSubject<any[]>([]);
+  ratingArray$ = this.ratingArraySource.asObservable();
+
+  setratingArray(books: any[]) {
+    this.ratingArraySource.next(books);
+  }
+
 }
