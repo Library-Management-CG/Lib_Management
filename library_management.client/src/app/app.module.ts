@@ -75,6 +75,7 @@ import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-t
 import { SingleCommentComponent } from './admin/manage-books/inner-table/comments-modal/single-comment/single-comment.component';
 import { TurncatePipe } from './turncate.pipe';
 import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
+import { RatingInnerContentComponent } from './user/rating-dropdown/rating-inner-content/rating-inner-content.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
@@ -142,7 +143,7 @@ LOAD_WASM().subscribe();
     SingleCommentComponent,
     TurncatePipe,
     SuccessMobileComponent,
-
+    RatingInnerContentComponent
   ],
   imports: [
     BrowserModule,
