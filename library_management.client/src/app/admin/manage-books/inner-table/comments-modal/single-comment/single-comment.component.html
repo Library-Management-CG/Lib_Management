@@ -1,12 +1,15 @@
 <div class="comment-card">
-  <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy == null" class="icon icon-assigned">
-    <img class="recieved" src="../../../../assets/icons/comment-assigned.svg" />
+  <div *ngIf="commentDetails.actionId == 'Issue'" class="icon icon-assigned">
+    <img class="recieved" src="../../../../../../assets/icons/manage-books/issue-comment-icon.svg" />
   </div>
-  <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy != null" class="icon icon-recieved">
-    <img class="recieved" src="../../../../assets/icons/comment-recieved.svg" />
+  <div *ngIf="commentDetails.actionId == 'Revoke'" class="icon icon-recieved">
+    <img class="recieved" src="../../../../../../assets/icons/manage-books/revoke-comment-icon.svg" />
   </div>
-  <div *ngIf="commentDetails.assignedTo == null && commentDetails.receivedBy == null" class="icon icon-default">
-    <img class="recieved" src="../../../../assets/icons/comment-default.svg" />
+  <div *ngIf="commentDetails.actionId == 'Archive'" class="icon icon-default">
+    <img class="recieved" src="../../../../../../assets/icons/manage-books/archive-comment-icon.svg" />
+  </div>
+  <div *ngIf="commentDetails.actionId == 'Retrieve'" class="icon icon-default">
+    <img class="recieved unarchive-button" src="../../../../../../assets/icons/manage-books/archive-comment-icon.svg" />
   </div>
   <div class="comment-body">
     <div class="admin-detail">
@@ -17,7 +20,7 @@
       <div class="time">{{convertUtcToLocalTime(commentDetails.createdAtUtc) | date: 'h:mm a' }}</div>
     </div>
 
-    <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy == null" class="comment-detail">
+    <div *ngIf="commentDetails.actionId == 'Issue'" class="comment-detail">
       <div class="action">
         Assigned To:
       </div>
@@ -26,7 +29,7 @@
       </div>
     </div>
 
-    <div *ngIf="commentDetails.assignedTo != null && commentDetails.receivedBy != null" class="comment-detail">
+    <div *ngIf="commentDetails.actionId == 'Revoke'" class="comment-detail">
       <div class="action">
         Recieved From:
       </div>

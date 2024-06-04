@@ -22,9 +22,10 @@ interface Element {
 export class MyBooksTableComponent {
   constructor(private userservice: UserServiceService) { }
 
-  /* @Input() filterValue: string = '';*/
   userId: any;
   stars: boolean[] = [];
+  @Input() filterValue: string = '';
+
 
   displayedColumns = ['bookName', 'author', 'qrNumber', 'dateOfIssue', 'dateOfReturn', 'rating', 'status'];
   dataSource = new MatTableDataSource<Element>([]);
@@ -47,12 +48,12 @@ export class MyBooksTableComponent {
     return Array(5).fill(false).map((_, i) => i < rating);
   }
 
-  //ngOnChanges(changes: SimpleChanges) {
-  //  if (changes['filterValue']) {
-  //    const filterValue = changes['filterValue'].currentValue || '';
-  //    this.dataSource.filter = filterValue.trim().toLowerCase();
-  //  }
-  //}
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['filterValue']) {
+      const filterValue = changes['filterValue'].currentValue || '';
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+  }
 
   fetchDataFromApi() {
     this.userservice.getMyBooksMobile(this.userId).subscribe(

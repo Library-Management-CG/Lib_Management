@@ -60,6 +60,7 @@ export class ArchiveModalComponent implements OnInit {
       this.manageBooksService.archiveBook(formData).subscribe(
         response => {
           console.log('Book archived successfully', response);
+          this.manageBooksService.notifyBookDataChanged();
           this.archiveForm.reset();
         },
         error => {

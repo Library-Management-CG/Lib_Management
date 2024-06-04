@@ -3,7 +3,7 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 .ng-select .ng-select-container {
-  width: 90% !important;
+  width: 92% !important;
   border: none !important;
   background-color: transparent;
 }

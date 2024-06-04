@@ -1,3 +1,4 @@
+<app-add-books-modal></app-add-books-modal>
 
 <div class="container-fluid manage-outer">
   <div class="row manage-heading">
@@ -9,8 +10,8 @@
       <input type="text" placeholder="Search By Book Name" (keyup)="applyNewFilter($event)" />
     </div>
     <div class="action-buttons">
-      <button class="add-book-button">
-        <img src="../../../assets/icons/manage-books/add-book.svg" />
+      <button class="add-book-button" data-toggle="modal" data-target="#exampleModalCenter">
+        <img src="../../../assets/icons/manage-books/add-book.svg"/>
         <span>Add New Book</span>
       </button>
       <button class="issue-book-button" (click)="handleButtonClick()">
@@ -20,6 +21,6 @@
     </div>
   </div>
   <div>
-  <app-outer-table [filterValue]="filterValue"></app-outer-table>
-
+    <app-outer-table [filterValue]="filterValue"></app-outer-table>
+  </div>
 </div>

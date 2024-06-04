@@ -377,21 +377,21 @@ export class StylePaginatorDirective {
     this.ren.appendChild(pageSelectIcon, newSvg);
 
 
-    const element = nativeElement.querySelector(
-      '.mat-mdc-paginator-outer-container'
-    );
+    //const element = nativeElement.querySelector(
+    //  '.mat-mdc-paginator-outer-container'
+    //);
 
-    const newDiv = this.ren.createElement('div')
-    const textSpan = this.ren.createElement('span')
-    const text = this.ren.createText(`Total Items: ${this.totalItems}`);
-    this.ren.appendChild(textSpan, text);
-    this.ren.appendChild(newDiv, textSpan);
-    this.ren.addClass(newDiv, 'total-items'); 
+    //const newDiv = this.ren.createElement('div')
+    //const textSpan = this.ren.createElement('span')
+    //const text = this.ren.createText(`Total Items: ${this.totalItems}`);
+    //this.ren.appendChild(textSpan, text);
+    //this.ren.appendChild(newDiv, textSpan);
+    //this.ren.addClass(newDiv, 'total-items'); 
 
-    const firstChild = element.firstChild;
+    //const firstChild = element.firstChild;
 
 
-    this.ren.insertBefore(element, newDiv, firstChild);
+    //this.ren.insertBefore(element, newDiv, firstChild);
 
   }
 
