@@ -3,6 +3,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ManageBooksService } from '../../../shared/services/manage-books.service';
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import { ExploreBooksService } from '../../../shared/services/ExploreBooksService';
 
 export interface Element {
   bookName: string;
@@ -31,7 +32,7 @@ export interface BookData {
 })
 export class OuterTableComponent {
 
-  constructor(private manageBooksService: ManageBooksService, private sanitizer: DomSanitizer) { }
+  constructor(private manageBooksService: ManageBooksService, private sanitizer: DomSanitizer, private explorebook: ExploreBooksService) { }
 
   loading: boolean = true;
 
@@ -52,6 +53,10 @@ export class OuterTableComponent {
   ngOnInit() {
     //this.fetchDataFromApi();
     this.manageBooksService.bookDataChanged$.subscribe(() => {
+      this.fetchDataFromApi();
+    });
+
+    this.explorebook.totalBook$.subscribe(() => {
       this.fetchDataFromApi();
     });
 

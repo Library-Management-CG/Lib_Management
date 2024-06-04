@@ -67,9 +67,9 @@ export class AdminDashboardComponent {
     this.explorebook.totalBook$.subscribe(totalbooks => {
       this.gettotalcount();
       this.getissuecount();
+      this.topChoicesBookData();
 
     });
-    this.topChoicesBookData();
    
   }
 
