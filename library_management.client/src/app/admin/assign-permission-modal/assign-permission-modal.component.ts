@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserServiceService } from '../../shared/services/user-service.service';
 
 @Component({
@@ -7,6 +7,5 @@ import { UserServiceService } from '../../shared/services/user-service.service';
   styleUrls: ['./assign-permission-modal.component.css']
 })
 export class AssignPermissionModalComponent {
- 
 
 }

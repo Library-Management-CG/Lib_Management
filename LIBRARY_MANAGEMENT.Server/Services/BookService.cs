@@ -49,12 +49,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             //}
             try
             {
+                string secureImgUrl = books.img.StartsWith("http:") ? books.img.Replace("http:", "https:") : books.img;
                 Book b = new Book
                 {
                     //Id = Guid.NewGuid(),
                     Title = books.bookName,
                     Description = books.description,
-                    imageData = books.img,
+                    imageData = secureImgUrl,
                     CreatedAtUtc = DateTime.UtcNow,
                     CreatedBy = Guid.Parse(books.LoggedIn),
                     UpdatedAtUtc = DateTime.UtcNow,
@@ -161,7 +162,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         UpdatedBy = Guid.Parse(books.LoggedIn),
                     };
 
-                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not available").Select(s => s.Id).FirstOrDefaultAsync();
+                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "available").Select(s => s.Id).FirstOrDefaultAsync();
                     if (statusOfBook != null)
                     {
                         bqr.StatusId = statusOfBook;
