@@ -134,6 +134,11 @@ public partial class LibraryManagementSystemContext : DbContext
             entity.Property(e => e.Isbn)
                 .HasMaxLength(50)
                 .HasColumnName("ISBN");
+
+            entity.Property(e => e.imageData)
+    .HasColumnType("nvarchar(max)")
+    .HasColumnName("imageData");
+
             entity.Property(e => e.Title).HasColumnName("title");
             entity.Property(e => e.UpdatedAtUtc)
                 .HasColumnType("datetime")

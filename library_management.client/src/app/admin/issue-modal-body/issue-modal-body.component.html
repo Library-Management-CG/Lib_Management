@@ -16,16 +16,6 @@
         <form [formGroup]="issueBookForm">
           <div class="form-group custom-form-group user-search">
             <label for="user">User <span class="asteric">*</span></label>
-            <!--<ng-select placeholder="Search User">
-      <div class="options-div">
-        <ng-option *ngFor="let value of users" [value]="value.id">
-
-          <div class="option">
-            <div class="name-id">
-              <span class="option-name">{{value.name}}</span>
-            </div>
-          </div>
-        </ng-option>-->
             <ng-select formControlName="issueTo" class="custom se" placeholder="Select User">
               <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
             </ng-select>

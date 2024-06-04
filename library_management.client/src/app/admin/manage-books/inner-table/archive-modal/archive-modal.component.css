@@ -182,3 +182,8 @@
   font-weight: 501;
   line-height: normal;
 }
+
+.retrieve-icon {
+  transform-origin: center;
+  transform: rotate(180deg);
+}

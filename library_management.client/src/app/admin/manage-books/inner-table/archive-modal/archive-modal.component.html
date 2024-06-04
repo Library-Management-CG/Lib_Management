@@ -19,7 +19,8 @@
         <div class="archive-modal-content">
           <div class="content-header">
             <div class="heading">
-              <img src="../../../../../assets/icons/manage-books/archive-icon.svg" />
+              <img *ngIf="isArchive == true" src="../../../../../assets/icons/manage-books/archive-icon.svg" />
+              <img *ngIf="isArchive == false" class="retrieve-icon" src="../../../../../assets/icons/manage-books/archive-icon.svg" />
               <span *ngIf="isArchive == true">Archive</span>
               <span *ngIf="isArchive == false">Retrieve</span>
             </div>

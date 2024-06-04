@@ -49,12 +49,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             //}
             try
             {
+                string secureImgUrl = books.img.StartsWith("http:") ? books.img.Replace("http:", "https:") : books.img;
                 Book b = new Book
                 {
                     //Id = Guid.NewGuid(),
                     Title = books.bookName,
                     Description = books.description,
-                    imageData = books.img,
+                    imageData = secureImgUrl,
                     CreatedAtUtc = DateTime.UtcNow,
                     CreatedBy = Guid.Parse(books.LoggedIn),
                     UpdatedAtUtc = DateTime.UtcNow,
@@ -68,9 +69,10 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
             catch (Exception ex)
             {
-                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("Adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 return false;
             }
+
         }
 
         public async Task<Boolean> AddNewAuthors(NewBooksDTO books)
@@ -147,7 +149,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             for (int i = 0; i < books.qr.Count(); i++)
             {
                 string qr = books.qr[i];
-                try
+                //BookQrMapping dbCheck = await _context.BookQrMappings.FindAsync(qr);
+                //if (dbCheck == null)
+                //{
+                //    continue;
+                //}
+                    try
                 {
                     BookQrMapping bqr = new BookQrMapping
                     {
@@ -161,7 +168,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         UpdatedBy = Guid.Parse(books.LoggedIn),
                     };
 
-                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "not available").Select(s => s.Id).FirstOrDefaultAsync();
+                    Guid statusOfBook = await _context.Statuses.Where(s => s.StatusName.ToLower() == "available").Select(s => s.Id).FirstOrDefaultAsync();
                     if (statusOfBook != null)
                     {
                         bqr.StatusId = statusOfBook;

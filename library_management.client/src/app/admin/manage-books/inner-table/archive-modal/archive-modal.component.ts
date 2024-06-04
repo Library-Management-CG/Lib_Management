@@ -36,7 +36,7 @@ export class ArchiveModalComponent implements OnInit {
       comment: ['', Validators.required]
     });
 
-    this.updatedBy = 'EE9719E3-FBDA-4B98-AAF3-BD1123EDFE85'
+    this.updatedBy = '1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20'
     //this.bookQrMappingId = 'D8A540D3-3516-4410-B472-019D7ED6A8A5'
   }
 
@@ -60,6 +60,7 @@ export class ArchiveModalComponent implements OnInit {
       this.manageBooksService.archiveBook(formData).subscribe(
         response => {
           console.log('Book archived successfully', response);
+          this.manageBooksService.notifyBookDataChanged();
           this.archiveForm.reset();
         },
         error => {

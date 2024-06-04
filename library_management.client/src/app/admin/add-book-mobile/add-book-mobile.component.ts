@@ -72,14 +72,17 @@ export class AddBookMobileComponent {
       ISBN: this.addBook.ISBN,
       qty: this.qrArr.length,
       qr: this.qrArr,
-      LoggedIn: '3A5B5AF8-5703-4872-A098-0EF31480DB57',
+      LoggedIn: '1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20',
     }
 
     console.log("before we post", book);
 
     this.urserService.addNewBook(book).subscribe(
       (data: any[]) => {
+        this.exploreService.settotalbooks(data);
+
         console.error('Error posted');
+
         this.Reset();
         this.router.navigate(['/admin/success-mobile']);
       },

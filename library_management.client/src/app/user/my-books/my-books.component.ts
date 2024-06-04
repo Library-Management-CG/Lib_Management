@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class MyBooksComponent {
 
+  filterValue: string = '';
+
+  applyNewFilter(event: Event) {
+    this.filterValue = (event.target as HTMLInputElement).value;
+  }
+
 }

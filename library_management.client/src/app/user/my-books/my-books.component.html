@@ -12,10 +12,10 @@
     <span>My Books</span>
     <div class="search-bar">
       <img src="../../../assets/icons/manage-books/search-icon.svg" />
-      <input type="text" placeholder="Search Your Book History" />
+      <input type="text" placeholder="Search Your Book History" (keyup)="applyNewFilter($event)" />
     </div>
   </div>
   <div class="row my-books-table">
-    <app-my-books-table></app-my-books-table>
+    <app-my-books-table [filterValue]="filterValue"></app-my-books-table>
   </div>
 </div>

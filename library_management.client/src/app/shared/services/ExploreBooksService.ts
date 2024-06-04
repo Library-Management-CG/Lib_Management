@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ConfigServiceService } from './config-service.service';
+import { UserServiceService } from './user-service.service';
 
 interface Book {
   bookName: string;
@@ -18,7 +19,7 @@ interface Book {
 export class ExploreBooksService {
 
   private apiUrl = this.config.apiUrl;
-  constructor(private http: HttpClient, private config: ConfigServiceService) { }
+  constructor(private http: HttpClient, private config: ConfigServiceService,private userService: UserServiceService) { }
 
 
   private filterValueSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -54,14 +55,14 @@ export class ExploreBooksService {
   private exploreBooksSource = new BehaviorSubject<any[]>([]);
   exploreBooks$ = this.exploreBooksSource.asObservable();
 
-
-  private mappedBookSource = new BehaviorSubject<any>(null);
-  mappedBook$ = this.mappedBookSource.asObservable();
-
   setExploreBooks(books: any[]) {
     this.exploreBooksSource.next(books);
   }
 
+  private mappedBookSource = new BehaviorSubject<any>(null);
+  mappedBook$ = this.mappedBookSource.asObservable();
+
+ 
 
   setMappedBook(mappedBook: any) {
     this.mappedBookSource.next(mappedBook);
@@ -96,7 +97,9 @@ export class ExploreBooksService {
     this.qrCodesSource.next([...currentQrCodes]);
   }
 
-
+  resetQrCode() {
+    this.qrCodesSource.next([]);
+  }
 
 
 
@@ -145,4 +148,56 @@ export class ExploreBooksService {
     const currentBook = this.bookSource.value;
     this.bookSource.next({ ...currentBook, description });
   }
+
+
+
+
+  private adminListSource = new BehaviorSubject<any[]>([]);
+  adminList$ = this.adminListSource.asObservable();
+
+
+  getAllAdmins(): void {
+    this.userService.getAllAdmins().subscribe(
+      (data: any[]) => {
+        this.adminListSource.next(data);
+      },
+      (error: any) => {
+        console.error('Error fetching admins:', error);
+      }
+    );
+  }
+
+  addAdmin(admin: any): void {
+    const currentList = this.adminListSource.value;
+    this.adminListSource.next([...currentList, admin]);
+  }
+
+  removeAdmin(adminId: string): void {
+    const currentList = this.adminListSource.value;
+    const updatedList = currentList.filter(admin => admin.id !== adminId);
+    this.adminListSource.next(updatedList);
+  }
+
+
+
+  private isToggleCheckedSource = new BehaviorSubject<boolean>(false);
+  isToggleChecked$ = this.isToggleCheckedSource.asObservable();
+
+
+  setToggleChecked(value: boolean): void {
+    this.isToggleCheckedSource.next(value);
+  }
+
+  toggle(): void {
+    const currentValue = this.isToggleCheckedSource.value;
+    this.isToggleCheckedSource.next(!currentValue);
+  }
+
+  private ratingArraySource = new BehaviorSubject<any[]>([]);
+  ratingArray$ = this.ratingArraySource.asObservable();
+
+  setratingArray(books: any[]) {
+    this.ratingArraySource.next(books);
+  }
+
 }

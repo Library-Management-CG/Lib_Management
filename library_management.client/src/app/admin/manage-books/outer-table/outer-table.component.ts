@@ -3,6 +3,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ManageBooksService } from '../../../shared/services/manage-books.service';
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import { ExploreBooksService } from '../../../shared/services/ExploreBooksService';
 
 export interface Element {
   bookName: string;
@@ -23,145 +24,6 @@ export interface BookData {
   status: string;
 }
 
-//const ELEMENT_DATA: Element[] = [
-//  {
-//    bookName: 'To Kill a Mocking bird',
-//    author: 'Harper Lee',
-//    copies: 2,
-//    expanded: true,
-//    bookData: [
-//      {
-//        qrNumber: 'QR1234',
-//        issuedTo: 'John Doe',
-//        issueDate: new Date(2023, 3, 1), // April 1, 2023
-//        returnDate: new Date(2023, 4, 1), // May 1, 2023
-//        status: 'Submitted'
-//      },
-//      {
-//        qrNumber: 'QR1235',
-//        issuedTo: 'Stephen Kyllo',
-//        issueDate: new Date(2023, 3, 1), // April 1, 2023
-//        returnDate: new Date(2023, 4, 1), // May 1, 2023
-//        status: 'Reading'
-//      }
-//    ]
-//  },
-//  {
-//    bookName: '1984',
-//    author: 'George Orwell',
-//    copies: 3,
-//    expanded: false,
-//    bookData: [
-//      {
-//        qrNumber: 'QR1235',
-//        issuedTo: 'Jane Smith',
-//        issueDate: new Date(2023, 3, 5), // April 5, 2023
-//        returnDate: new Date(2023, 4, 5), // May 5, 2023
-//        status: 'Returned'
-//      }
-//    ]
-//  },
-//  // Continue filling out other books similarly...
-//  {
-//    bookName: 'Pride and Prejudice',
-//    author: 'Jane Austen',
-//    copies: 4,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'The Great Gatsby',
-//    author: 'F. Scott Fitzgerald',
-//    copies: 2,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  },
-//  {
-//    bookName: 'Great Expectations',
-//    author: 'Charles Dickens',
-//    copies: 6,
-//    expanded: false,
-//    bookData: [] // Assume no records yet
-//  }
-//];
-
 
 @Component({
   selector: 'app-outer-table',
@@ -170,7 +32,9 @@ export interface BookData {
 })
 export class OuterTableComponent {
 
-  constructor(private manageBooksService: ManageBooksService, private sanitizer: DomSanitizer) { }
+  constructor(private manageBooksService: ManageBooksService, private sanitizer: DomSanitizer, private explorebook: ExploreBooksService) { }
+
+  loading: boolean = true;
 
   @Input() filterValue: string = '';
   console = console;
@@ -187,8 +51,17 @@ export class OuterTableComponent {
 
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    //this.fetchDataFromApi();
+    this.manageBooksService.bookDataChanged$.subscribe(() => {
+      this.fetchDataFromApi();
+    });
+
+    this.explorebook.totalBook$.subscribe(() => {
+      this.fetchDataFromApi();
+    });
+
     this.fetchDataFromApi();
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -197,6 +70,11 @@ export class OuterTableComponent {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
   }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
 
   allExpanded() {
     return this.dataSource.data.every(el => el.expanded);
@@ -215,22 +93,32 @@ export class OuterTableComponent {
   }
 
   fetchDataFromApi() {
+    this.loading = true;
+
+    const expandedState = this.dataSource.data.reduce((acc, book) => {
+      acc[book.bookName] = book.expanded;
+      return acc;
+    }, {} as { [key: string]: boolean });
+
+
     this.manageBooksService.getAllBooks().subscribe(data => {
       console.log(data);
-      const transformedData = this.transformData(data);
+      const transformedData = this.transformData(data, expandedState);
       this.dataSource.data = transformedData;
+      this.dataSource.paginator = this.paginator;
+      this.loading = false;
     }, error => {
       console.error('Error fetching data from API', error);
     });
   }
 
-  transformData(apiData: any[]): Element[] {
+  transformData(apiData: any[], expandedState: { [key: string]: boolean }): Element[] {
     return apiData.map(book => ({
       bookName: book.title,
       bookImage: book.imageLink,
       author: book.authorNames,
       copies: book.numberOfCopies,
-      expanded: false,
+      expanded: expandedState[book.title] || false, // Preserve the expanded state
       bookData: book.bookQrDetails.map((detail: any) => ({
         bookIssueId: detail.bookIssueId,
         bookQrMappingId: detail.bookQrMappingId,
