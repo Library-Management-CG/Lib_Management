@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
-import { FormBuilder, FormGroup,FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup,FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-issue-modal-body',
@@ -22,7 +22,7 @@ export class IssueModalBodyComponent {
   bookqr: any;
   mappedBook: any;
   issueBookForm!: FormGroup;
-
+  showErrorMessage = false;
 
   constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder) {
     // Initialize users array with dummy data (replace with actual data)
@@ -55,8 +55,8 @@ export class IssueModalBodyComponent {
     this.issueBookForm = this.fb.group({
 
       createdBy: [''],
-      issueTo: [''],
-      description: [''],
+      issueTo: ['', Validators.required],
+      description: ['', Validators.required],
       bookQrMappingId: ['']
 
     });
@@ -171,6 +171,29 @@ export class IssueModalBodyComponent {
   //mappedBook(arg0: string, mappedBook: any) {
   //    throw new Error('Method not implemented.');
   //}
+  hideErrorMessage() {
+    this.showErrorMessage = false;
+  }
+
+  nextValidation(): boolean {
+    var isUserName = this.issueBookForm.get('issueTo')?.value != null;
+    var isDescription = this.issueBookForm.get('description')?.value != '';
+
+    return isUserName && isDescription;
+  }
+
+  next() {
+
+    if (this.nextValidation() == true) {
+      this.hideErrorMessage();
+      this.showErrorMessage = false;
+
+    }
+    else {
+      this.showErrorMessage = true;
+    }
+
+  }
 
 
   onSubmit() {
@@ -179,19 +202,31 @@ export class IssueModalBodyComponent {
 
     console.log(this.issueBookForm.value);
 
-    this.AdminService.issueBook(this.issueBookForm.value).subscribe(
-          response => {
-        console.log('data posted successfully', response);
-        this.exploreBooksService.settotalbooks(response);
+    if (this.issueBookForm.valid && !this.showErrorMessage) {
+      //console.log(this.addDeviceForm.value);
+      console.log(this.issueBookForm.value);
 
-        //alert('Book Issued Successfully!');
-            
-          },
-          error => {
-            console.error('error posting data', error);
-            
-          }
-    );
+      this.AdminService.issueBook(this.issueBookForm.value).subscribe(
+        response => {
+          console.log('data posted successfully', response);
+          this.exploreBooksService.settotalbooks(response);
+
+          //alert('Book Issued Successfully!');
+
+        },
+        error => {
+          console.error('error posting data Harleen', error);
+
+        }
+      );
+    }
+    else {
+      this.showErrorMessage = true;
+      console.error("Harleen");
+
+    }
+
+
   }
      
       

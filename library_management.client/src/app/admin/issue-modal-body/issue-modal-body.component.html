@@ -11,15 +11,21 @@
         <img class="qrImage-modal" src="../../../assets/images/image 19529.jpg" />
       </div>
     </div>
+    <div *ngIf="showErrorMessage">
+      jbvjsdvhdua
+    </div>
     <div class="col-md-7 form-col">
       <div class="form-component">
         <form [formGroup]="issueBookForm">
           <div class="form-group custom-form-group user-search">
             <label for="user">User <span class="asteric">*</span></label>
-            <ng-select formControlName="issueTo" class="custom se" placeholder="Select User">
-              <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
-            </ng-select>
+            <div [class.error-alert-box1]="showErrorMessage && issueBookForm.get('issueTo')?.invalid">
+              <ng-select formControlName="issueTo"
+                         placeholder="Select User">
+                <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName }}</ng-option>
+              </ng-select>
 
+            </div>
           </div>
           <div class="date-container-form">
             <div class="form-group  custom-form-group ">
@@ -43,7 +49,11 @@
           </div>
           <div class="form-group  custom-form-group comments-div">
             <label for="comments">Comments <span class="asteric">*</span></label>
-            <textarea formControlName="description" class="form-control form-control-custom text-area" id="comments" rows="3" placeholder="Enter Comments"></textarea>
+            <textarea formControlName="description"
+                      [class.error-alert-box1]="showErrorMessage && issueBookForm.get('description')?.invalid"
+                      class="form-control form-control-custom text-area"
+                      id="comments" rows="3"
+                      placeholder="Enter Comments"></textarea>
           </div>
         </form>
         <div class="footer">
@@ -52,14 +62,14 @@
               <div class="cancel-btn" data-bs-dismiss="modal">Cancel</div>
             </div>
             <div class="col-buttons">
-              <div class="save-btn" (click)="onSubmit()" data-bs-dismiss="modal" >Issue</div>
+              <button class="save-btn" (click)="onSubmit(); next()">Issue</button>
             </div>
           </div>
         </div>
       </div>
  
     </div>
-      <div class="issue-button-mobile" (click)="onSubmit()">Issue</div> 
+      <button class="issue-button-mobile" (click)="onSubmit()" [disabled]="!nextValidation()">Issue</button> 
     </div>
 
 </div>
