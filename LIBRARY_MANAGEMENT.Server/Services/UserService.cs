@@ -39,7 +39,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                    .Select(user => new
                    {
                        User = user,
-                       BookCount = _context.BookIssues.Count(issue => issue.IssueTo == user.Id)
+                       BookCount = _context.BookIssues
+                        .Where(issue => issue.IssueTo == user.Id)
+                        .Select(issue => issue.BookQrMappingid)
+                        .Distinct()
+                        .Count()
                    })
                    .Select(u => new UserBookDTO
                    {
