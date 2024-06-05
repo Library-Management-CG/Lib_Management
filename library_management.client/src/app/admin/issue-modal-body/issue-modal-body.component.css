@@ -9,6 +9,28 @@
   line-height: normal;
   margin-left: 0px;
 }
+.c{
+    border:1px solid red;
+}
+.body {
+  height: 34rem!important;
+  position:relative;
+}
+.footer{
+    position:fixed;
+    bottom:1rem;
+}
+.validation-alert {
+  border-radius: var(--spacing-05, 0.25rem);
+  background: #FFE8E8;
+  color: red;
+  font-family: Lato;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem;
+  padding: 0.5rem;
+}
 .se {
   border: 2px solid red;
   padding: 0rem !important;
@@ -16,9 +38,14 @@
 .header {
   border-bottom: none !important;
 }
-.footer-buttons{
-    position: absolute;
-    right: 1.8rem;
+.footer-buttons {
+  position: absolute;
+  display: flex;
+  direction: row;
+  flex-direction: row;
+  width: 15rem;
+  top: -2.5rem;
+  left: 8.4rem;
 }
 .row-modal {
 }

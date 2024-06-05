@@ -1,4 +1,4 @@
-<div class="modal-body body">
+<div class="modal-body body ">
   <div class="row row-modal">
     <div class="col-md-5 issue-book-header">
       <div class="header-text">
@@ -11,9 +11,9 @@
         <img class="qrImage-modal" src="../../../assets/images/image 19529.jpg" />
       </div>
     </div>
-    <div *ngIf="showErrorMessage">
+    <!--<div *ngIf="showErrorMessage">
       jbvjsdvhdua
-    </div>
+    </div>-->
     <div class="col-md-7 form-col">
       <div class="form-component">
         <form [formGroup]="issueBookForm">
@@ -21,9 +21,14 @@
             <label for="user">User <span class="asteric">*</span></label>
             <div [class.error-alert-box1]="showErrorMessage && issueBookForm.get('issueTo')?.invalid">
               <ng-select formControlName="issueTo"
-                         placeholder="Select User">
+                         placeholder="Select User"
+                         class="custom se">
                 <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName }}</ng-option>
               </ng-select>
+
+              <!--<ng-select formControlName="issueTo" class="custom se" placeholder="Select User">
+                <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
+              </ng-select>-->
 
             </div>
           </div>
@@ -55,9 +60,11 @@
                       id="comments" rows="3"
                       placeholder="Enter Comments"></textarea>
           </div>
+
         </form>
-        <div class="footer">
-          <div class="row footer-buttons">
+        <div *ngIf="showErrorMessage" class="validation-alert">Highlighted Fields are mandatory</div>
+        <div class="footer ">
+          <div class="row footer-buttons ">
             <div class="col-buttons">
               <div class="cancel-btn" data-bs-dismiss="modal">Cancel</div>
             </div>
