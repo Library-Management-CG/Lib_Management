@@ -10,8 +10,16 @@
       <input type="text" placeholder="Search By Book Name" (keyup)="applyNewFilter($event)" />
     </div>
     <div class="action-buttons">
+      <!--<div class="rightSide">
+        <input type="checkbox" value="" id="archiveBook" [(ngModel)]="showArchivedBooks">
+        <label class="archive-label" for="archiveBook">
+          <img *ngIf="showArchivedBooks == false" src="../../../assets/icons/manage-books/checkbox-unchecked.svg" />
+          <img *ngIf="showArchivedBooks == true" src="../../../assets/icons/manage-books/checkbox-checked.svg" />
+          <span>Show Archive Assets Only</span>
+        </label>
+      </div>-->
       <button class="add-book-button" data-toggle="modal" data-target="#exampleModalCenter">
-        <img src="../../../assets/icons/manage-books/add-book.svg"/>
+        <img src="../../../assets/icons/manage-books/add-book.svg" />
         <span>Add New Book</span>
       </button>
       <button class="issue-book-button" (click)="handleButtonClick()">
@@ -21,6 +29,6 @@
     </div>
   </div>
   <div>
-    <app-outer-table [filterValue]="filterValue"></app-outer-table>
+    <app-outer-table [filterValue]="filterValue" [showArchivedBooks]="showArchivedBooks"></app-outer-table>
   </div>
 </div>

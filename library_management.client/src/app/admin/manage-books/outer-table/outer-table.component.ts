@@ -3,6 +3,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ManageBooksService } from '../../../shared/services/manage-books.service';
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import { ExploreBooksService } from '../../../shared/services/ExploreBooksService';
 
 export interface Element {
   bookName: string;
@@ -31,10 +32,10 @@ export interface BookData {
 })
 export class OuterTableComponent {
 
-  constructor(private manageBooksService: ManageBooksService, private sanitizer: DomSanitizer) { }
+  constructor(private manageBooksService: ManageBooksService, private sanitizer: DomSanitizer, private explorebook: ExploreBooksService) { }
 
   loading: boolean = true;
-
+  @Input() showArchivedBooks: boolean = false;
   @Input() filterValue: string = '';
   console = console;
   displayedColumns = ['bookName', 'author', 'copies'];
@@ -55,7 +56,13 @@ export class OuterTableComponent {
       this.fetchDataFromApi();
     });
 
+    this.explorebook.totalBook$.subscribe(() => {
+      this.fetchDataFromApi();
+    });
+
     this.fetchDataFromApi();
+    this.dataSource.paginator = this.paginator;
+
 
   }
 
@@ -63,6 +70,11 @@ export class OuterTableComponent {
     if (changes['filterValue']) {
       const filterValue = changes['filterValue'].currentValue || '';
       this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
+    if (changes['showArchivedBooks']) {
+      console.log("Archived : ", this.showArchivedBooks);
+      this.fetchDataFromApi();
     }
   }
 
@@ -95,8 +107,11 @@ export class OuterTableComponent {
       return acc;
     }, {} as { [key: string]: boolean });
 
+    const inputObject = {
+      IsArchived : this.showArchivedBooks
+    }
 
-    this.manageBooksService.getAllBooks().subscribe(data => {
+    this.manageBooksService.getAllBooks(inputObject).subscribe(data => {
       console.log(data);
       const transformedData = this.transformData(data, expandedState);
       this.dataSource.data = transformedData;
