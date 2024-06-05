@@ -84,11 +84,11 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         }
 
         [HttpPost("get-books")]
-        public async Task<ActionResult<IEnumerable<BooksDetailDTO>>> GetAllBooks()
+        public async Task<ActionResult<IEnumerable<BooksDetailDTO>>> GetAllBooks(GetBookInputDTO getBookInput)
         {
             try
             {
-                var books = await _bookService.GetAllBooks();
+                var books = await _bookService.GetAllBooks(getBookInput.IsArchived);
                 return Ok(books);
             }
             catch (Exception e)

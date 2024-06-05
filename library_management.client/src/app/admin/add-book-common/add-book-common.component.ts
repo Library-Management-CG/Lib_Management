@@ -295,8 +295,15 @@ export class AddBookCommonComponent {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        this.listOfBooks = data.items;
-
+        //this.listOfBooks = data.items;
+        //console.log("he;lloo",this.listOfBooks);
+        //this.listOfBooks = this.listOfBooks.volumeInfo.industryIdentifiers.some((id: any) => id.type === "ISBN_13")
+        this.listOfBooks = data.items.filter((book:any) => {
+          if (book.volumeInfo && book.volumeInfo.industryIdentifiers) {
+            return book.volumeInfo.industryIdentifiers.some((id:any) => id.type === "ISBN_13");
+          }
+          return false;
+        });
       })
       .catch(error => {
         console.error('Error fetching books:', error);

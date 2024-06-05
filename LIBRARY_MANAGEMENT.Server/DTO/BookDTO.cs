@@ -1,4 +1,6 @@
-﻿namespace LIBRARY_MANAGEMENT.Server.DTO
+﻿using Microsoft.SharePoint.Client;
+
+namespace LIBRARY_MANAGEMENT.Server.DTO
 {
     public class BookDTO
     {
@@ -70,6 +72,11 @@
 
 
 
+    }
+
+    public class GetBookInputDTO
+    {
+        public bool IsArchived { get; set; }
     }
 
 

@@ -18,8 +18,8 @@ export class ManageBooksService {
     this.bookDataSubject.next(null);
   }
 
-  getAllBooks(): Observable<any[]> {
-    return this.http.post<any[]>(this.apiUrl + 'Book/get-books', {});
+  getAllBooks(inputData : any): Observable<any[]> {
+    return this.http.post<any[]>(this.apiUrl + 'Book/get-books', inputData);
   }
 
   archiveBook(inputData : any): Observable<any[]> {

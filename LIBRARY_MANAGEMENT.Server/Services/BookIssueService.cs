@@ -46,7 +46,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                                      points = 0,
                                                      qrCode = qr.Qrnumber,
                                                      issueDate = bi.IssueDate,
-                                                     returnDate = bi.ReceiveDate,
+                                                     returnDate = bi.ReceiveDate == null? bi.ReturnDate : bi.ReceiveDate,
                                                      status = s.StatusName,
                                                      image=b.imageData
                                                  }).OrderByDescending(d => d.issueDate).ToListAsync();
