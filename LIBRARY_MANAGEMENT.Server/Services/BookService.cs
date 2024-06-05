@@ -12,8 +12,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<Boolean> AddNewAuthors(NewBooksDTO books);
         Task<Boolean> AddAuthorBooks(NewBooksDTO books);
         Task<Boolean> AddBookQr(NewBooksDTO books);
-        Task<IEnumerable<BooksDetailDTO>> GetAllBooks();
-        Task<List<BookQrDetailDTO>> GetBookInfo(Guid bookId);
+        Task<IEnumerable<BooksDetailDTO>> GetAllBooks(bool isArchived);
+        Task<List<BookQrDetailDTO>> GetBookInfo(Guid bookId, bool isArchived);
 
 
 
@@ -399,7 +399,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
 
 
-        public async Task<IEnumerable<BooksDetailDTO>> GetAllBooks()
+        public async Task<IEnumerable<BooksDetailDTO>> GetAllBooks(bool isArchived)
         {
             var books = await _context.Books
                 .Include(b => b.AuthorBooks)
@@ -411,7 +411,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             foreach (var book in books)
             {
                 var numberOfCopies = await _context.BookQrMappings.CountAsync(bqm => bqm.BookId == book.Id);
-                var bookQrDetails = await GetBookInfo(book.Id);
+                var bookQrDetails = await GetBookInfo(book.Id, isArchived);
+
+                if(bookQrDetails.Count() == 0)
+                {
+                    continue;
+                }
 
                 booksWithDetails.Add(new BooksDetailDTO
                 {
@@ -427,12 +432,17 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             return booksWithDetails;
         }
 
-        public async Task<List<BookQrDetailDTO>> GetBookInfo(Guid bookId)
+        public async Task<List<BookQrDetailDTO>> GetBookInfo(Guid bookId, bool isArchived)
         {
             var bookQrMappings = await _context.BookQrMappings
                 .Where(bqm => bqm.BookId == bookId)
                 .Include(bqm => bqm.Status)
                 .ToListAsync();
+
+            if (isArchived)
+            {
+                bookQrMappings = bookQrMappings.Where(bqm => bqm.Status.StatusName.ToLower() == "archive").ToList();
+            }
 
             var bookQrDetails = new List<BookQrDetailDTO>();
 

@@ -11,6 +11,8 @@ export class ManageBooksComponent {
   constructor(private router: Router) { }
 
   filterValue: string = '';
+  showArchivedBooks: boolean = false;
+
 
   applyNewFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value;
