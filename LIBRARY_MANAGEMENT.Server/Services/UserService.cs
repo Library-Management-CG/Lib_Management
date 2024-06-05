@@ -40,10 +40,15 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                    {
                        User = user,
                        BookCount = _context.BookIssues
-                        .Where(issue => issue.IssueTo == user.Id)
-                        .Select(issue => issue.BookQrMappingid)
-                        .Distinct()
-                        .Count()
+                            .Where(issue => issue.IssueTo == user.Id)
+                            .Join(
+                                _context.BookQrMappings,
+                                issue => issue.BookQrMappingid,
+                                mapping => mapping.Id,
+                                (issue, mapping) => mapping.BookId
+                            )
+                            .Distinct()
+                            .Count()
                    })
                    .Select(u => new UserBookDTO
                    {
