@@ -83,6 +83,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                       .Include(b => b.AuthorBooks)
                     .ThenInclude(ab => ab.Author)
                                     join m in _context.BookQrMappings on b.Id equals m.BookId
+                                    join bi in _context.BookIssues on m.Id equals bi.BookQrMappingid
+                                    join u in _context.Users on bi.IssueTo equals u.Id
+                                    join c in _context.Comments on bi.Id equals c.bookIssueId
 
                                     //join ab in _context.AuthorBooks on b.Id equals ab.BookId
                                     //join a in _context.Authors on ab.AuthorId equals a.Id
@@ -93,7 +96,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                         Title = b.Title,
                                         AuthorName = b.AuthorBooks.Select(ab => ab.Author.AuthorName).ToList(),
                                         BookQrMappingId = m.Id,
-                                        image=b.imageData
+                                        image = b.imageData,
+                                        IssueTo = u.FirstName + ' ' + u.LastName,
+                                        IssueDate = bi.IssueDate,
+                                        ReturnDate = bi.ReturnDate,
+                                        Comment = c.Description,
+                                        BookIssueId = bi.Id
+
                                     }).FirstOrDefaultAsync();
 
                 return result;

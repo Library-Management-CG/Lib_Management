@@ -1,7 +1,12 @@
 import { ChangeDetectorRef, Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
-import { FormBuilder, FormGroup,FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+
+declare var $: any;
+
 
 @Component({
   selector: 'app-issue-modal-body',
@@ -24,7 +29,7 @@ export class IssueModalBodyComponent {
   issueBookForm!: FormGroup;
   showErrorMessage = false;
 
-  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder) {
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder,private router:Router) {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
 
@@ -35,12 +40,7 @@ export class IssueModalBodyComponent {
     this.issueDateInputValue = this.formatDate(currentDate);
 
 
-    this.users = [
-      { id: 1, name: 'Brooklyn Simmons' },
-      { id: 2, name: 'Courtney Henry' },
-      { id: 3, name: 'Annette Black' }
-      // Add more users as needed
-    ];
+    
     //const currentDate = new Date();
     //this.issueDateInput = currentDate.toISOString().split('T')[0];
 
@@ -61,6 +61,8 @@ export class IssueModalBodyComponent {
 
     });
   }
+
+  
 
 
 
@@ -194,6 +196,10 @@ export class IssueModalBodyComponent {
     }
 
   }
+
+
+
+
 
 
   onSubmit() {
