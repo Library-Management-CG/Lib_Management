@@ -35,7 +35,7 @@ export class OuterTableComponent {
   constructor(private manageBooksService: ManageBooksService, private sanitizer: DomSanitizer, private explorebook: ExploreBooksService) { }
 
   loading: boolean = true;
-
+  @Input() showArchivedBooks: boolean = false;
   @Input() filterValue: string = '';
   console = console;
   displayedColumns = ['bookName', 'author', 'copies'];
@@ -61,6 +61,8 @@ export class OuterTableComponent {
     });
 
     this.fetchDataFromApi();
+    this.dataSource.paginator = this.paginator;
+
 
   }
 
@@ -68,6 +70,11 @@ export class OuterTableComponent {
     if (changes['filterValue']) {
       const filterValue = changes['filterValue'].currentValue || '';
       this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
+    if (changes['showArchivedBooks']) {
+      console.log("Archived : ", this.showArchivedBooks);
+      this.fetchDataFromApi();
     }
   }
 
@@ -100,8 +107,11 @@ export class OuterTableComponent {
       return acc;
     }, {} as { [key: string]: boolean });
 
+    const inputObject = {
+      IsArchived : this.showArchivedBooks
+    }
 
-    this.manageBooksService.getAllBooks().subscribe(data => {
+    this.manageBooksService.getAllBooks(inputObject).subscribe(data => {
       console.log(data);
       const transformedData = this.transformData(data, expandedState);
       this.dataSource.data = transformedData;
