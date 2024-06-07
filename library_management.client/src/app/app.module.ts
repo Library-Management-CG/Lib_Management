@@ -46,7 +46,6 @@ import { InnerTableComponent } from './admin/manage-books/inner-table/inner-tabl
 import { CommonModule, DatePipe } from '@angular/common';
 import { CommentsModalComponent } from './admin/manage-books/inner-table/comments-modal/comments-modal.component';
 import { ArchiveModalComponent } from './admin/manage-books/inner-table/archive-modal/archive-modal.component';
-import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
 import { WebcamModule } from 'ngx-webcam';
 import { AddBookMobileComponent } from './admin/add-book-mobile/add-book-mobile.component';
 import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.component';
@@ -66,8 +65,7 @@ import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angula
 import { MatListModule } from '@angular/material/list';
 import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
 import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.component';
-
-
+import { RevokeBookModalComponent } from './shared/components/revoke-book-modal/revoke-book-modal.component';
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-component/capture-mobile-component.component';
 import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-table.component';
@@ -108,11 +106,9 @@ LOAD_WASM().subscribe();
     InnerTableComponent,
     CommentsModalComponent,
     ArchiveModalComponent,
-    RevokeBookModalComponent,
     BooksCardSharedComponent,
     AddBookMobileComponent,
     AddBookCommonComponent,
-    RevokeBookModalComponent,
     MobileAccordianComponent,
     AssignPermissionSubPartComponent,
     TimeRemainingModalComponent,
@@ -141,7 +137,9 @@ LOAD_WASM().subscribe();
     SingleCommentComponent,
     TurncatePipe,
     SuccessMobileComponent,
-    RatingInnerContentComponent
+    RatingInnerContentComponent,
+    RevokeBookModalComponent
+    
   ],
   imports: [
     BrowserModule,

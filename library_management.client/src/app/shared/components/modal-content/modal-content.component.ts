@@ -12,7 +12,7 @@ export class ModalContentComponent {
   constructor(private router: Router) {
   }
   ngOnChanges(){
-    console.log('kfjv', this.books);
+    //console.log('kfjv', this.books);
 
   }
   isTagsContainerVisible() {

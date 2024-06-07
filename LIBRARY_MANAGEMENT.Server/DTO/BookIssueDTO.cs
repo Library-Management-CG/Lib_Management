@@ -40,11 +40,11 @@ namespace LIBRARY_MANAGEMENT.Server.DTO
         public List<string> AuthorName { get; set; } = null!;
         public Guid BookQrMappingId { get; set; }
         public String image { get; set; }
-        public String IssueTo { get; set; }
+        public String? IssueTo { get; set; }
         public DateTime? IssueDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         public string Comment { get; set; }
-        public Guid BookIssueId { get; set; }
+        public Guid? BookIssueId { get; set; }
 
 
     }
