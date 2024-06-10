@@ -110,7 +110,7 @@
             <app-revoke-book-modal [bookIssueId]="mappedBook?.bookIssueId"></app-revoke-book-modal>
 
             <div class="col-buttons">
-              <button class="save-btn-issued " data-toggle="modal" data-target="#revokeBookModal" *ngIf="mappedBook?.issueTo !== null"  >Revoke</button>
+              <button class="save-btn-issued " data-toggle="modal"  data-bs-dismiss="modal" *ngIf="mappedBook?.issueTo !== null" (click)="Revoke()"  >Revoke</button>
             </div>
           </div>
         </form>

@@ -341,7 +341,7 @@ export class AddBooksModalComponent {
   }
 
   openModal(): void {
-    $('#success').modal('show');
+    $('#successadd').modal('show');
   }
 
   addBookRequest() {
@@ -356,7 +356,7 @@ export class AddBooksModalComponent {
       ISBN: this.addBook.ISBN,
       qty: this.qrArr.length,
       qr: this.qrArr,
-      LoggedIn:'3A5B5AF8-5703-4872-A098-0EF31480DB57',
+      LoggedIn:'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A',
     }
 
     console.log("before we post", book);

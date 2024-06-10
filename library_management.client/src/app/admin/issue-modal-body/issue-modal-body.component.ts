@@ -197,8 +197,9 @@ export class IssueModalBodyComponent {
 
   }
 
-
-
+  Revoke(): void {
+    $('#success').modal('show');
+  }
 
 
 
