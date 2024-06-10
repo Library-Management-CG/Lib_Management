@@ -5,6 +5,8 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ManageBooksService } from '../../services/manage-books.service';
+import { ExploreBooksService } from '../../services/ExploreBooksService';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-success-modal',
@@ -33,19 +35,38 @@ export class SuccessModalComponent {
   //  this.exploreService.resetQrCode();
   //}
 
+  mappedBook: any;
+  private mappedBookSubscription: Subscription | undefined;
 
   bookReceived: string = '';
-  @Input() bookIssueId: any;
+  bookIssueId: any;
   condition: string = '';
   commentDescription: string = '';
   updatedBy: any;
-  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService) { }
+  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private exploreBooksService: ExploreBooksService) { }
 
   ngOnInit(): void {
 
     this.updatedBy = '3A5B5AF8-5703-4872-A098-0EF31480DB57';
 
+    this.mappedBookSubscription = this.exploreBooksService.mappedBook$.subscribe(
+      mappedBook => {
+        this.mappedBook = mappedBook;
+        if (this.mappedBook && this.mappedBook.bookIssueId) {
+          this.bookIssueId = this.mappedBook.bookIssueId;
+        }
+        console.log('Mapped book:', this.mappedBook);
+      },
+      error => {
+        console.error('Error fetching mapped book:', error);
+      }
+    );
+
+    
   }
+
+
+
 
   onSubmit(): void {
     if (this.bookIssueId != null && this.commentDescription != '' && this.bookReceived != '' && this.condition != '') {
