@@ -77,6 +77,8 @@ import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revok
 
 
 
+
+
 LOAD_WASM().subscribe();
 @NgModule({
   declarations: [
