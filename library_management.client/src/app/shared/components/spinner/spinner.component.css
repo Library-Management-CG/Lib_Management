@@ -1,0 +1,35 @@
+
+
+@keyframes dash {
+  12.5% {
+    stroke-dasharray: 34.038692, 242.776657;
+    stroke-dashoffset: -26.705432;
+  }
+
+  43.75% {
+    stroke-dasharray: 84.971829, 242.776657;
+    stroke-dashoffset: -84.971829;
+  }
+
+  100% {
+    stroke-dasharray: 2.427767, 242.776657;
+    stroke-dashoffset: -240.348890;
+  }
+}
+
+.animated-path {
+  stroke-dasharray: 2.427767, 242.776657;
+  stroke-dashoffset: 0;
+  animation: dash 1.6s linear infinite;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  position: absolute;
+  top: 0;
+  left: 0;
+}

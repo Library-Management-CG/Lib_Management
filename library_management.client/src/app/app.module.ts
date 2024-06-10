@@ -75,6 +75,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
 import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 import { SuccessAddBookComponent } from './admin/success-add-book/success-add-book.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 
 
@@ -139,7 +140,8 @@ LOAD_WASM().subscribe();
     RatingInnerContentComponent,
     RevokeBookModalComponent,
     RevokePermissionModalComponent,
-    SuccessAddBookComponent
+    SuccessAddBookComponent,
+    SpinnerComponent
     
   ],
   imports: [
