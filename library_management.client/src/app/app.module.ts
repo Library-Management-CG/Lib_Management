@@ -65,7 +65,6 @@ import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angula
 import { MatListModule } from '@angular/material/list';
 import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
 import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.component';
-import { RevokeBookModalComponent } from './shared/components/revoke-book-modal/revoke-book-modal.component';
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-component/capture-mobile-component.component';
 import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-table.component';
@@ -74,6 +73,7 @@ import { TurncatePipe } from './turncate.pipe';
 import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
 import { RatingInnerContentComponent } from './user/rating-dropdown/rating-inner-content/rating-inner-content.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
 
 
 
