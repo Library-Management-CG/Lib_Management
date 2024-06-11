@@ -111,6 +111,8 @@ export class IssueModalBodyComponent {
     });
     this.createForm();
 
+    this.setupFormValueChanges();
+
   }
 
 
@@ -201,43 +203,40 @@ export class IssueModalBodyComponent {
     $('#success').modal('show');
   }
 
+  closeModal():void {
+    $('#exampleModalIssue').modal('hide');
+  }
 
-
+  
   onSubmit() {
-    this.issueBookForm.get('createdBy')?.setValue('1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20');
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
 
-    console.log(this.issueBookForm.value);
-
-    if (this.issueBookForm.valid && !this.showErrorMessage) {
-      //console.log(this.addDeviceForm.value);
-      console.log(this.issueBookForm.value);
-
+    if (this.nextValidation()) {
       this.AdminService.issueBook(this.issueBookForm.value).subscribe(
         response => {
           console.log('data posted successfully', response);
+          this.closeModal();
           this.exploreBooksService.settotalbooks(response);
-
-          //alert('Book Issued Successfully!');
-
         },
         error => {
-          console.error('error posting data Harleen', error);
-
+          console.error('error posting data', error);
         }
       );
-    }
-    else {
+    } else {
       this.showErrorMessage = true;
-      console.error("Harleen");
-
     }
-
-
   }
-     
+
+  setupFormValueChanges() {
+    this.issueBookForm.valueChanges.subscribe(() => {
+      if (this.nextValidation()) {
+        this.hideErrorMessage();
+      }
+    });
+  }
       
-    }
+}
 
   
 
