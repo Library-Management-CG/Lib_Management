@@ -87,6 +87,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                     from bi in biGroup.DefaultIfEmpty()
                                     join u in _context.Users on bi.IssueTo equals u.Id into uGroup
                                     from u in uGroup.DefaultIfEmpty()
+                                    join c in _context.Comments on bi.Id equals c.bookIssueId into cGroup
+                                    from c in cGroup.DefaultIfEmpty()
                                     where m.Qrnumber == qrNumber
                                     select new BookDetailsDTO
                                     {
@@ -98,9 +100,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                         IssueTo = bi != null ? u.FirstName + " " + u.LastName : null,
                                         IssueDate = bi.IssueDate,
                                         ReturnDate = bi.ReturnDate,
-                                        BookIssueId = bi.Id
-
-
+                                        BookIssueId = bi.Id,
+                                        Comment = c != null ? c.Description : null  // Assuming `CommentText` is the field in `Comments` table
                                     }).FirstOrDefaultAsync();
 
                 return result;
@@ -111,7 +112,6 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 return null;
             }
         }
-
 
 
         public async Task UpdateBookIssue(BookIssueDTO bookIssueDTO)
