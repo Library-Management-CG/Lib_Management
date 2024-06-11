@@ -90,7 +90,7 @@ export class AddBooksModalComponent {
 
     this.exploreService.book$.subscribe(arr => {
       this.addBook = arr;
-      console.log("qwertyuiopoiuytrewq",arr);
+    //  console.log("qwertyuiopoiuytrewq",arr);
     })
 
     this.exploreService.qrCodes$.subscribe(arr => {
@@ -183,7 +183,7 @@ export class AddBooksModalComponent {
     //this.addDeviceForm.patchValue({
     //  qty: this.counterValue
     //});
-    console.log(this.bookForm);
+  //  console.log(this.bookForm);
   }
 
   decrement() {
@@ -194,7 +194,7 @@ export class AddBooksModalComponent {
       });
       const qrArray = this.bookForm.get('qr') as FormArray;
       qrArray.removeAt(this.counterValue);
-      console.log(this.bookForm);
+    //  console.log(this.bookForm);
     }
   }
 
@@ -227,13 +227,13 @@ export class AddBooksModalComponent {
   stepperIncrement() {
     this.stepperIndex++;
     this.exploreService.setaddBookPage(this.stepperIndex);
-    console.log(this.stepperIndex);
+  //  console.log(this.stepperIndex);
   }
 
   stepperDecrement() {
     this.stepperIndex--;
     this.exploreService.setaddBookPage(this.stepperIndex);
-    console.log(this.stepperIndex);
+  //  console.log(this.stepperIndex);
   }
 
   getBooks(event: any, type: string) {
@@ -250,7 +250,7 @@ export class AddBooksModalComponent {
       fetch(api)
         .then(response => response.json())
         .then(data => {
-          console.log(data);
+          //console.log(data);
           this.listOfBooks = data.items;
           
         })
@@ -274,7 +274,7 @@ export class AddBooksModalComponent {
       vSearch.lang = 'en-US';
       vSearch.start();
       vSearch.onresult = (e:any) => {
-        console.log(e);
+        //console.log(e);
         // voiceHandler.value = e?.results[0][0]?.transcript;
         this.results = e.results[0][0].transcript;
         this.getResult();
@@ -287,12 +287,12 @@ export class AddBooksModalComponent {
   }
 
   getResult() {
-    console.log(this.results);
+    //console.log(this.results);
     this.getBooks(this.results,"mic")
   }
 
   testing(event: any) {
-    console.log("hello", event.target);
+    //console.log("hello", event.target);
     if (this.selectedBook) {
       this.bookForm.patchValue({
         bookName: this.selectedBook.volumeInfo.title,
@@ -301,12 +301,12 @@ export class AddBooksModalComponent {
         description: this.selectedBook.volumeInfo.description,
       });
     }
-    console.log(this.bookForm);
+    //console.log(this.bookForm);
     return;
   }
 
   changeQty() {
-    console.log(this.counterValue);
+    //console.log(this.counterValue);
     
    
     if (this.counterValue === this.bookForm.get('qty')?.value) {
@@ -333,7 +333,7 @@ export class AddBooksModalComponent {
       qty: this.counterValue,
     });
 
-    console.log(this.bookForm);
+  //  console.log(this.bookForm);
   }
 
   Reset() {
@@ -345,7 +345,7 @@ export class AddBooksModalComponent {
   }
 
   addBookRequest() {
-    console.log("add book post req", this.addBook);
+    //console.log("add book post req", this.addBook);
     
 
     var book = {
@@ -359,7 +359,7 @@ export class AddBooksModalComponent {
       LoggedIn:'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A',
     }
 
-    console.log("before we post", book);
+    //console.log("before we post", book);
 
     this.urserService.addNewBook(book).subscribe(
       (data: any[]) => {

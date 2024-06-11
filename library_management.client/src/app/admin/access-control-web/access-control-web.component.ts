@@ -19,7 +19,7 @@ export class AccessControlWebComponent {
   }
 
   onAdminSelectedFromList(admin: any) {
-    console.log('Selected admin:from main', admin);
+    //console.log('Selected admin:from main', admin);
     this.selectedAdmin = admin;
   }
 }

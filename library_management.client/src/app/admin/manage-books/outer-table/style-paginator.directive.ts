@@ -59,7 +59,7 @@ export class StylePaginatorDirective {
    * react on parent component changing the appCustomLength - rerender bubbles
    */
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("print ", this.currentPageSize);
+    //console.log("print ", this.currentPageSize);
 
     if ('appCustomLength' in changes && !changes?.['appCustomLength']?.firstChange) {
       // remove buttons before creating new ones

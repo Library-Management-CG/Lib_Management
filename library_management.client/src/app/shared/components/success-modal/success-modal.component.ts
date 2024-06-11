@@ -47,7 +47,7 @@ export class SuccessModalComponent {
 
   ngOnInit(): void {
 
-    this.updatedBy = '3A5B5AF8-5703-4872-A098-0EF31480DB57';
+    this.updatedBy = 'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A';
 
     this.mappedBookSubscription = this.exploreBooksService.mappedBook$.subscribe(
       mappedBook => {
@@ -55,7 +55,7 @@ export class SuccessModalComponent {
         if (this.mappedBook && this.mappedBook.bookIssueId) {
           this.bookIssueId = this.mappedBook.bookIssueId;
         }
-        console.log('Mapped book:', this.mappedBook);
+      //  console.log('Mapped book:', this.mappedBook);
       },
       error => {
         console.error('Error fetching mapped book:', error);

@@ -40,7 +40,7 @@ export class MyBooksTableComponent {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    this.userId = '2AC8C146-3276-46FB-8298-40B7A82723F3';
+    this.userId = 'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A';
     this.fetchDataFromApi();
   }
 
@@ -58,7 +58,7 @@ export class MyBooksTableComponent {
   fetchDataFromApi() {
     this.userservice.getMyBooksMobile(this.userId).subscribe(
       (data) => {
-        console.log('hello : ', data);
+        //console.log('hello : ', data);
         const transformedData = data.map((item: any) => ({
           bookName: item.bookName,
           author: item.author.join(', '), // Joining array of authors

@@ -67,7 +67,7 @@
           </div>
           <div class="dropdown_chevon" *ngIf="this.isDropdownOpen">
             <div>
-              <img src="../../../../assets/icons/user.svg" class="user-icon" />
+              <img src="../../../../assets/icons/user_icon.svg" class="user-icon" />
               <span class="user-name"> {{roleName}}</span>
             </div>
             <div *ngIf="isAdmin()==false && this.role=='Admin'" class="user-name" (click)="toggletoAdmin('Dashboard')">
@@ -100,7 +100,7 @@
           </div>
           <div class="dropdown_chevon" *ngIf="isDropdownOpenadmin">
             <div>
-              <img src="../../../../assets/icons/user.svg" class="user-icon" />
+              <img src="../../../../assets/icons/user_icon.svg" class="user-icon" />
               <span class="user-name"> {{roleName}}</span>
 
               <div class="admin-text">Admin</div>

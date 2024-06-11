@@ -69,7 +69,7 @@ export class IssueModalBodyComponent {
   // Function to handle selection of an option
   onSelectOption(event: any) {
     // Access the selected option using event.target.value
-    console.log('Selected option:', event.target.value);
+    //console.log('Selected option:', event.target.value);
     // Update the placeholder to empty string when an option is selected
     this.placeholder = '';
     // You can perform additional actions here, such as updating other variables or making API calls
@@ -144,13 +144,13 @@ export class IssueModalBodyComponent {
   ngOnChanges() {
     this.bookqr = this.qrvalue;
     if (this.bookqr) {
-      console.log('cbjsbjbsdjbj  : ', this.qrvalue);
+      //console.log('cbjsbjbsdjbj  : ', this.qrvalue);
 
       this.value(this.qrvalue);
     }
   }
   value(bookqr: any) {
-    console.log('thisis my modalbidy:', bookqr);
+    //console.log('thisis my modalbidy:', bookqr);
 
     const revokeParams = {
       qrNumber: bookqr,
@@ -162,7 +162,7 @@ export class IssueModalBodyComponent {
 
         this.cdr.detectChanges();
 
-        console.log('mapped', this.mappedBook);
+        //console.log('mapped', this.mappedBook);
 
       },
       (error: any) => {
@@ -204,18 +204,18 @@ export class IssueModalBodyComponent {
 
 
   onSubmit() {
-    this.issueBookForm.get('createdBy')?.setValue('1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20');
+    this.issueBookForm.get('createdBy')?.setValue('D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
 
-    console.log(this.issueBookForm.value);
+    //console.log(this.issueBookForm.value);
 
     if (this.issueBookForm.valid && !this.showErrorMessage) {
       //console.log(this.addDeviceForm.value);
-      console.log(this.issueBookForm.value);
+      //console.log(this.issueBookForm.value);
 
       this.AdminService.issueBook(this.issueBookForm.value).subscribe(
         response => {
-          console.log('data posted successfully', response);
+          //console.log('data posted successfully', response);
           this.exploreBooksService.settotalbooks(response);
 
           //alert('Book Issued Successfully!');

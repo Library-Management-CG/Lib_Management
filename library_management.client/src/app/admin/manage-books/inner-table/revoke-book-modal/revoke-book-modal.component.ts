@@ -20,7 +20,7 @@ export class RevokeBookModalComponent {
 
   ngOnInit(): void {
     
-    this.updatedBy = '3A5B5AF8-5703-4872-A098-0EF31480DB57';
+    this.updatedBy = 'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A';
 
   }
 

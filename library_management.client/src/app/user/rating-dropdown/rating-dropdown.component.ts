@@ -30,7 +30,7 @@ export class RatingDropdownComponent {
 
   onSelectedValuesChange(selectedValues: any[]): void {
     this.selectedRatings = selectedValues;
-    console.log(this.selectedRatings);
+    //console.log(this.selectedRatings);
     if (this.selectedRatings) {
       this.selectedratingsvalue(this.selectedRatings);
     }
