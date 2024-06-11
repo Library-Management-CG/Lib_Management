@@ -31,7 +31,7 @@ export class ScannerComponent implements AfterViewInit {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state) {
       this.page = navigation.extras.state['page'];
-      console.log("page type",this.page);
+    //  console.log("page type",this.page);
     }
 
 
@@ -53,9 +53,9 @@ export class ScannerComponent implements AfterViewInit {
     if (this.action) {
       this.action.start();
       this.action.data.subscribe((data: any) => {
-        console.log('Scanned data:', data);
+        //console.log('Scanned data:', data);
         this.bookqrcode = data[0].value;
-        console.log('barcodeqr', this.bookqrcode);
+        //console.log('barcodeqr', this.bookqrcode);
         if (data.length > 0) {
           this.handleButtonClick();
         }
@@ -96,11 +96,11 @@ export class ScannerComponent implements AfterViewInit {
         this.router.navigate(['/admin/issue-mobile']);
       }
     } else {
-      console.log("add book modal",this.bookqrcode);
+      //console.log("add book modal",this.bookqrcode);
       this.closePage();
       if (this.page == "add") {
         this.exploreService.setQrCodeAtIndex(this.idx, this.bookqrcode);
-        console.log(this.qrCodes);
+        //console.log(this.qrCodes);
 
         setTimeout(() => {
           this.openModalAdd();

@@ -13,7 +13,7 @@
       <div class="search-box ">
         <img src="../../../assets/icons/My-books-mobile/search.svg" />
         <input type="text" class="search-text" placeholder="" [(ngModel)]="filterValue"
-           (input)="applyBookFilter($event)"/>
+               (input)="applyBookFilter($event)" />
       </div>
     </div>
 
@@ -35,24 +35,26 @@
 
   </div>
 
+  <app-spinner *ngIf="!dataLoaded"></app-spinner>
 
+  <div *ngIf="dataLoaded">
+    <div class="inner" *ngIf="selectedRatings.length<=0">
+      <div class="column" *ngFor="let book of  isChecked ? availablebooks : exploreBooks">
+        <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+        <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+      </div>
 
-  <div class="inner" *ngIf="selectedRatings.length<=0">
-    <div class="column" *ngFor="let book of  isChecked ? availablebooks : exploreBooks">
-      <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
-      <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+    </div>
+    <div class="inner" *ngIf="selectedRatings.length>0">
+      <div class="column" *ngFor="let book of (isChecked ? availableBooksOfRatingFilter : ratingFilteredBook)">
+        <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+        <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+      </div>
+
     </div>
 
   </div>
-  <div class="inner" *ngIf="selectedRatings.length>0">
-  <div class="column" *ngFor="let book of (isChecked ? availableBooksOfRatingFilter : ratingFilteredBook)">
-      <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
-      <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
-    </div>
 
-  </div>
+
 
 </div>
-
-
-

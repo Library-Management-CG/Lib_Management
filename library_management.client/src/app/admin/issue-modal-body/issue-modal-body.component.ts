@@ -69,7 +69,7 @@ export class IssueModalBodyComponent {
   // Function to handle selection of an option
   onSelectOption(event: any) {
     // Access the selected option using event.target.value
-    console.log('Selected option:', event.target.value);
+    //console.log('Selected option:', event.target.value);
     // Update the placeholder to empty string when an option is selected
     this.placeholder = '';
     // You can perform additional actions here, such as updating other variables or making API calls
@@ -146,13 +146,13 @@ export class IssueModalBodyComponent {
   ngOnChanges() {
     this.bookqr = this.qrvalue;
     if (this.bookqr) {
-      console.log('cbjsbjbsdjbj  : ', this.qrvalue);
+      //console.log('cbjsbjbsdjbj  : ', this.qrvalue);
 
       this.value(this.qrvalue);
     }
   }
   value(bookqr: any) {
-    console.log('thisis my modalbidy:', bookqr);
+    //console.log('thisis my modalbidy:', bookqr);
 
     const revokeParams = {
       qrNumber: bookqr,
@@ -164,7 +164,7 @@ export class IssueModalBodyComponent {
 
         this.cdr.detectChanges();
 
-        console.log('mapped', this.mappedBook);
+        //console.log('mapped', this.mappedBook);
 
       },
       (error: any) => {

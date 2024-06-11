@@ -119,7 +119,6 @@ export class AddBookCommonComponent {
           description: book.description
         });
         this.selectedBook = book.bookName;
-        //---------------------------------------------------
       }
     });
 
@@ -129,7 +128,7 @@ export class AddBookCommonComponent {
     fetch(api)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
         data.items = data.items.filter((book:any) =>
           book.volumeInfo.industryIdentifiers &&
           book.volumeInfo.industryIdentifiers.some((id:any) => id.type === "ISBN_13")
@@ -247,7 +246,7 @@ export class AddBookCommonComponent {
 
 
     this.exploreService.addQrCode({ value: '' });
-    console.log("array size", this.qrCodes);
+  //  console.log("array size", this.qrCodes);
   }
 
   decrement(index: number) {
@@ -259,14 +258,14 @@ export class AddBookCommonComponent {
         });
         const qrArray = this.bookForm.get('qr') as FormArray;
         qrArray.removeAt(this.counterValue);
-        console.log(this.bookForm);
+      //  console.log(this.bookForm);
       }
 
 
 
       this.exploreService.removeQrCode(index);
     }
-    console.log("array size", this.qrCodes);
+  //  console.log("array size", this.qrCodes);
   }
 
  
@@ -294,7 +293,7 @@ export class AddBookCommonComponent {
     fetch(api)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
         //this.listOfBooks = data.items;
         //console.log("he;lloo",this.listOfBooks);
         //this.listOfBooks = this.listOfBooks.volumeInfo.industryIdentifiers.some((id: any) => id.type === "ISBN_13")
@@ -325,7 +324,7 @@ export class AddBookCommonComponent {
       vSearch.lang = 'en-US';
       vSearch.start();
       vSearch.onresult = (e: any) => {
-        console.log(e);
+        //console.log(e);
         this.selectedBook = e;
         // voiceHandler.value = e?.results[0][0]?.transcript;
         this.results = e.results[0][0].transcript;
@@ -340,14 +339,14 @@ export class AddBookCommonComponent {
   }
 
   getResult() {
-    console.log(this.results);
+    //console.log(this.results);
     this.getBooks(this.results, "mic")
   }
 
   testing(event: any) {
     //console.log("hello", event.target);
-    console.log("helloooo", this.listOfBooks);
-    console.log("helloooo", this.selectedBook);
+    //console.log("helloooo", this.listOfBooks);
+    //console.log("helloooo", this.selectedBook);
     
 
     this.exploreService.setBook({

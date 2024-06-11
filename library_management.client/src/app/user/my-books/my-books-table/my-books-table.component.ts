@@ -58,7 +58,7 @@ export class MyBooksTableComponent {
   fetchDataFromApi() {
     this.userservice.getMyBooksMobile(this.userId).subscribe(
       (data) => {
-        console.log('hello : ', data);
+        //console.log('hello : ', data);
         const transformedData = data.map((item: any) => ({
           bookName: item.bookName,
           author: item.author.join(', '), // Joining array of authors

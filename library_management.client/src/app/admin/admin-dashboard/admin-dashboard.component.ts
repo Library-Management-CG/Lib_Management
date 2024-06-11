@@ -14,6 +14,7 @@ declare var $: any;
 export class AdminDashboardComponent {
 
   selectedBook: any;
+  dataLoaded = false;
 
   totalbooks: any;
   issuebooks: any;
@@ -76,7 +77,9 @@ export class AdminDashboardComponent {
   gettotalcount() {
     this.AdminService.getTotalBooks().subscribe(
       (data) => {
-        this.totalbooks = data;   
+        this.totalbooks = data;
+        this.checkDataLoaded();
+
       },
       (error) => {
         console.error('Error:', error);
@@ -89,6 +92,8 @@ export class AdminDashboardComponent {
     this.AdminService.getissueBooks().subscribe(
       (data) => {
         this.issuebooks = data;
+        this.checkDataLoaded();
+
 
       },
       (error) => {
@@ -101,6 +106,8 @@ export class AdminDashboardComponent {
     this.AdminService.topChoicesBook().subscribe(
       (data) => {
         this.mostPopularBooks = data;
+        this.checkDataLoaded();
+
 
         //console.log(data);
 
@@ -134,9 +141,9 @@ export class AdminDashboardComponent {
   handleImage(webcamImage: WebcamImage) {
     this.getPicture.emit(webcamImage);
     this.showWebcam = false;
-    console.log(webcamImage);
+    //console.log(webcamImage);
     const arr = webcamImage.imageAsDataUrl.split(",");
-    console.log(arr);
+    //console.log(arr);
     //const mime = arr[0].match(/:(.*?);/)[1];
     const bstr = atob(arr[1]);
     let n = bstr.length;
@@ -163,6 +170,12 @@ export class AdminDashboardComponent {
     $('#exampleModalIssue').modal('show');
   }
 
+
+  checkDataLoaded() {
+    if (this.totalbooks && this.issuebooks && this.mostPopularBooks.length > 0) {
+      this.dataLoaded = true;
+    }
+  }
  
 
   get nextWebcamObservable(): Observable<boolean | string> {

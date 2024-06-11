@@ -258,6 +258,7 @@ row-2-outer {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor: pointer;
 }
 
 .footer-cancel {
@@ -276,4 +277,5 @@ row-2-outer {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor:pointer;
 }
