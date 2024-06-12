@@ -21,24 +21,24 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         }
 
         [HttpPost("top")]
-        public IActionResult GetTopBookReaders()
+        public async Task<IActionResult> GetTopBookReaders()
         {
-            var topUsers =  _userService.GetTopBookReaders();
+            var topUsers = await _userService.GetTopBookReadersAsync();
             return Ok(topUsers);
         }
 
         [HttpPost("recent")]
-        public IActionResult GetRecentBooks()
+        public async Task<IActionResult> GetRecentBooks()
         {
-            var recentBooks = _userService.GetRecentBooks();
+            var recentBooks = await _userService.GetRecentBooksAsync();
             return Ok(recentBooks);
         }
 
         [HttpPost("mostPopular")]
-        public IActionResult GetMostPopularBooks()
+        public async Task<IActionResult> GetMostPopularBooks()
         {
-            var recentBooks = _userService.GetMostPopularBooks();
-            return Ok(recentBooks);
+            var popularBooks = await _userService.GetMostPopularBooksAsync();
+            return Ok(popularBooks);
         }
 
         [HttpPost("allAdmins")]

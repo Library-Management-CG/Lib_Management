@@ -552,7 +552,7 @@ app-books-card-shared{
 
   .card:hover,
   .card:focus-within {
-    transform: translateY(-0.75rem);
+    transform: translateY(-0.01rem);
   }
 
     .card:hover ~ .card,
