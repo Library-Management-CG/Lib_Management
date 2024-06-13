@@ -356,7 +356,7 @@ export class AddBooksModalComponent {
       ISBN: this.addBook.ISBN,
       qty: this.qrArr.length,
       qr: this.qrArr,
-      LoggedIn:'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A',
+      LoggedIn:'4EE28B71-DFAE-4BC9-8FE8-1579970A9560',
     }
 
     //console.log("before we post", book);
@@ -368,6 +368,7 @@ export class AddBooksModalComponent {
         console.error('Error posted');
         this.Reset();
         this.openModal();
+        this.exploreService.successIssue = false;
    
       },
       (error: any) => {

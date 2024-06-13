@@ -141,8 +141,7 @@ LOAD_WASM().subscribe();
     RevokeBookModalComponent,
     RevokePermissionModalComponent,
     SuccessAddBookComponent,
-    SpinnerComponent
-    
+    SpinnerComponent    
   ],
   imports: [
     BrowserModule,

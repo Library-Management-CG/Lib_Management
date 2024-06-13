@@ -21,6 +21,8 @@ export class ExploreBooksService {
   private apiUrl = this.config.apiUrl;
   constructor(private http: HttpClient, private config: ConfigServiceService,private userService: UserServiceService) { }
 
+  public successIssue: boolean = true;
+
 
   private filterValueSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public filterValue$: Observable<string> = this.filterValueSubject.asObservable();

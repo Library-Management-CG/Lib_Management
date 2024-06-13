@@ -73,6 +73,7 @@ row-2-outer {
   border-radius: 2rem;
   background: var(--Primary-Blue, #28519E);
   margin-left: 1rem;
+  cursor:pointer;
 }
 
 .next-text {
@@ -91,11 +92,6 @@ row-2-outer {
   padding-bottom: 3rem;
 }
 
-.animation{
-
+.close-modal-top{
+    cursor:pointer;
 }
-
-
-
-
-

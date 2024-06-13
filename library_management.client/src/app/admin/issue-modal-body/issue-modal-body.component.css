@@ -20,7 +20,7 @@
 }
 
 .issue-body {
-  height: 25rem !important;
+  height: 34rem !important;
   position: relative;
 }
 
@@ -35,7 +35,8 @@
   direction: row;
   flex-direction: row;
   width: 15rem;
-  left: 8.4rem;
+  left: 9.5rem;
+  top: 30rem;
 }
 
 .validation-alert {
@@ -102,7 +103,7 @@
 }
 
 .comment-container {
-  height: 9.25281rem;
+  height: 15rem;
   overflow-y: scroll;
 }
 
@@ -256,7 +257,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin:
+  cursor:pointer;
 }
 
 .save-btn {
@@ -275,6 +276,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  border:none;
 }
 
 .save-btn-issued {
@@ -294,6 +296,7 @@
   font-weight: 400;
   line-height: normal;
   border: none;
+  cursor:pointer;
 }
 
 .save-btn:focus {

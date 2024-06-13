@@ -11,29 +11,24 @@
         <img class="qrImage-modal" src="../../../assets/images/image 19529.jpg" />
       </div>
     </div>-->
-    <!--<div *ngIf="showErrorMessage">
-      jbvjsdvhdua
-    </div>-->
-    <!--<div class="col-md-7 form-col">
-      <div class="form-component">
-        <form [formGroup]="issueBookForm">
-          <div *ngIf="mappedBook?.issueTo == null" class="form-group custom-form-group user-search">
-            <label for="user">User <span class="asteric">*</span></label>
-            <div [class.error-alert-box1]="showErrorMessage && issueBookForm.get('issueTo')?.invalid">
-              <ng-select formControlName="issueTo"
-                         placeholder="Select User"
-                         class="custom se">
-                <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName }}</ng-option>
-              </ng-select>-->
-
-              <!--<ng-select formControlName="issueTo" class="custom se" placeholder="Select User">
-                <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
-              </ng-select>-->
-              
-
-              
-
-            <!--</div>
+<!--<div *ngIf="showErrorMessage">
+  jbvjsdvhdua
+</div>-->
+<!--<div class="col-md-7 form-col">
+  <div class="form-component">
+    <form [formGroup]="issueBookForm">
+      <div *ngIf="mappedBook?.issueTo == null" class="form-group custom-form-group user-search">
+        <label for="user">User <span class="asteric">*</span></label>
+        <div [class.error-alert-box1]="showErrorMessage && issueBookForm.get('issueTo')?.invalid">
+          <ng-select formControlName="issueTo"
+                     placeholder="Select User"
+                     class="custom se">
+            <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName }}</ng-option>
+          </ng-select>-->
+<!--<ng-select formControlName="issueTo" class="custom se" placeholder="Select User">
+  <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
+</ng-select>-->
+<!--</div>
           </div>
           <div *ngIf="mappedBook?.issueTo !== null">
             <div class="issued-to-heading">Issued To</div>
@@ -133,8 +128,7 @@
   </div>
 
 </div>-->
-
-
+<app-success-add-book></app-success-add-book>
 <div [ngClass]="{'issue-body': mappedBook?.issueTo !== null}" class="modal-body body">
   <div class="row row-modal">
     <div class="col-md-5 issue-book-header">
