@@ -429,10 +429,18 @@ export class IssueModalBodyComponent {
     return isUserName && isDescription;
   }
 
-  
-
   Revoke(): void {
     $('#success').modal('show');
+  }
+
+  handleButton() {
+    if (window.innerWidth <= 767) {
+
+      this.router.navigate(['/shared/revoke-mobile']);
+    } else {
+
+      this.Revoke();
+    }
   }
 
   closeModal(): void {
@@ -476,7 +484,27 @@ export class IssueModalBodyComponent {
       this.showErrorMessage = true;
     }
   }
+  onSubmitMobile() {
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
+    this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
+    this.exploreBooksService.successIssue = true;
 
+    if (this.nextValidation()) {
+      this.AdminService.issueBook(this.issueBookForm.value).subscribe(
+        response => {
+          console.log('data posted successfully', response);
+          this.exploreBooksService.settotalbooks(response);
+          this.router.navigate(['/admin/success-mobile']);
+        },
+        error => {
+          console.error('error posting data', error);
+        }
+      );
+    } else {
+      this.issueBookForm.markAllAsTouched();
+      this.showErrorMessage = true;
+    }
+  }
 
   setupFormValueChanges() {
     this.issueBookForm.valueChanges.subscribe(() => {

@@ -76,6 +76,7 @@ import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revok
 import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 import { SuccessAddBookComponent } from './admin/success-add-book/success-add-book.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { RevokeMobileComponent } from './shared/revoke-mobile/revoke-mobile.component';
 
 
 
@@ -141,7 +142,8 @@ LOAD_WASM().subscribe();
     RevokeBookModalComponent,
     RevokePermissionModalComponent,
     SuccessAddBookComponent,
-    SpinnerComponent    
+    SpinnerComponent,
+    RevokeMobileComponent    
   ],
   imports: [
     BrowserModule,

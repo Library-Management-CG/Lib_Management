@@ -525,6 +525,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-right: 1rem;
   }
 
+  .footer-buttons-issued {
+    
+    left: 6.38rem;
+    top:34.5rem;
+  }
+
+  .cust {
+    display:inline;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+
+
   .issue-button-mobile {
     display: flex;
     height: 2.75rem;
@@ -542,12 +556,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 600;
     line-height: normal;
   }
-
+  .form-component{
+      margin-top: 4rem;
+  }
   .date-container-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
+  
 
   .body-subhead {
     margin-bottom: 0.5rem;
@@ -584,7 +601,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
     width: auto;
     border-radius: 0.58475rem;
-    position: absolute;
+    /*position: absolute;*/
     right: 0.1rem;
   }
 
