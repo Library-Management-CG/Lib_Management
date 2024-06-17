@@ -1,39 +1,17 @@
-//import { Component, EventEmitter, Output } from '@angular/core';
-//import { AnimationItem } from 'lottie-web';
-//import { AnimationOptions } from 'ngx-lottie';
-//import { ExploreBooksService } from '../../services/ExploreBooksService';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ManageBooksService } from '../../services/manage-books.service';
-import { ExploreBooksService } from '../../services/ExploreBooksService';
 import { Subscription } from 'rxjs';
+import { ManageBooksService } from '../services/manage-books.service';
+import { ExploreBooksService } from '../services/ExploreBooksService';
+
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-success-modal',
-  templateUrl: './success-modal.component.html',
-  styleUrls: ['./success-modal.component.css']
+  selector: 'app-revoke-mobile',
+  templateUrl: './revoke-mobile.component.html',
+  styleUrls: ['./revoke-mobile.component.css']
 })
-export class SuccessModalComponent {
-
-  //qrArr: any;
-  //constructor(private exploreService: ExploreBooksService) { }
-
-  //options: AnimationOptions = {
-  //  path: '../../../assets/animation/Success.json',
-  //};
-
-  //ngOnInit() {
-  //  this.exploreService.qrCodes$.subscribe(arr => {
-  //    this.qrArr = arr;
-  //  })
-  //}
-
-  //@Output() doneClicked: any = new EventEmitter<any>();
-
-  //reset() {
-  //  this.doneClicked.emit();
-  //  this.exploreService.resetQrCode();
-  //}
+export class RevokeMobileComponent {
 
   mappedBook: any;
   private mappedBookSubscription: Subscription | undefined;
@@ -43,11 +21,11 @@ export class SuccessModalComponent {
   condition: string = '';
   commentDescription: string = '';
   updatedBy: any;
-  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private exploreBooksService: ExploreBooksService) { }
+  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private exploreBooksService: ExploreBooksService, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.updatedBy = 'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A';
+    this.updatedBy = '4EE28B71-DFAE-4BC9-8FE8-1579970A9560';
 
     this.mappedBookSubscription = this.exploreBooksService.mappedBook$.subscribe(
       mappedBook => {
@@ -55,14 +33,14 @@ export class SuccessModalComponent {
         if (this.mappedBook && this.mappedBook.bookIssueId) {
           this.bookIssueId = this.mappedBook.bookIssueId;
         }
-      //  console.log('Mapped book:', this.mappedBook);
+        //  console.log('Mapped book:', this.mappedBook);
       },
       error => {
         console.error('Error fetching mapped book:', error);
       }
     );
 
-    
+
   }
 
 
@@ -90,6 +68,7 @@ export class SuccessModalComponent {
           this.commentDescription = '';
           this.bookReceived = '';
           this.condition = '';
+          this.router.navigate(['/admin']);
         },
         error => {
           console.error('Error archiving book', error);
@@ -97,6 +76,7 @@ export class SuccessModalComponent {
       );
     }
   }
+
 
 
 }

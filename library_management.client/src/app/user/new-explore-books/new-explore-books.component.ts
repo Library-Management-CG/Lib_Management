@@ -13,6 +13,7 @@ export class NewExploreBooksComponent {
 
   filteredexploreBooks: any[]
 
+  dataLoaded = false;
 
   exploreBooks: any[] = [];
   selectedBook: any;
@@ -45,7 +46,7 @@ export class NewExploreBooksComponent {
   }
   onSelectedValuesChange(selectedValues: number[]): void {
     this.selectedRatings = selectedValues;
-    console.log('where', this.selectedRatings);
+    //console.log('where', this.selectedRatings);
     this.getFilteredBooks();
   }
   filterAvailableBooksOfRatingFilter(): void {
@@ -77,6 +78,8 @@ export class NewExploreBooksComponent {
       (data) => {
         this.exploreBooks = data;
         this.filteredexploreBooks = this.exploreBooks;
+        this.checkDataLoaded();
+
         //console.log(data);
 
       },
@@ -91,6 +94,7 @@ export class NewExploreBooksComponent {
     this.user.availableExplore().subscribe(
       (data) => {
         this.availablebooks = data;
+
         //console.log(data);
 
       },
@@ -104,6 +108,7 @@ export class NewExploreBooksComponent {
     this.user.getRatingFilteredBooks(this.selectedRatings).subscribe(
       data => {
         this.ratingFilteredBook = data;
+
       //  console.log('Filtered books:', this.ratingFilteredBook);
       },
       error => {
@@ -123,6 +128,12 @@ export class NewExploreBooksComponent {
     this.filterValue = (event.target as HTMLInputElement).value;
     this.exploreBooksService.setFilterValue(this.filterValue);
    
+  }
+
+  checkDataLoaded() {
+    if (this.exploreBooks.length > 0) {
+      this.dataLoaded = true;
+    }
   }
 
 

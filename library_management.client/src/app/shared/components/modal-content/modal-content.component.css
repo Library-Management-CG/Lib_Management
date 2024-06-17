@@ -127,7 +127,23 @@
   height: 10.125rem;
   overflow-y: auto;
   text-align: justify;
+  
 }
+
+.book-content {
+  padding-right: 10px; /* Adjust as needed to create the desired gap */
+}
+
+  /* Specific style for .book-content to show scrollbar */
+  .book-content::-webkit-scrollbar {
+    display: block;
+    width: 5px; /* Adjust as needed */
+  }
+
+  .book-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Adjust as needed */
+    border-radius: 10px; /* Make ends rounded */
+  }
 
 .image-content {
   width: 8.8125rem;

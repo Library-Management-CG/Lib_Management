@@ -19,7 +19,7 @@ export class RatingInnerContentComponent {
 
   handleCheckboxChange(value: number, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
-    console.log(`Checkbox with value ${value} is now ${isChecked ? 'checked' : 'unchecked'}`);
+    //console.log(`Checkbox with value ${value} is now ${isChecked ? 'checked' : 'unchecked'}`);
 
     this.updateSelectAllState();
 
@@ -39,7 +39,7 @@ export class RatingInnerContentComponent {
     if (this.c5) selectedValues.push(5);
 
 
-    console.log('Currently selected values:', selectedValues);
+    //console.log('Currently selected values:', selectedValues);
     this.exploreService.setratingArray(selectedValues);
 
     this.selectedValuesChange.emit(selectedValues);

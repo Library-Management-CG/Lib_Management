@@ -73,7 +73,7 @@ export class OuterTableComponent {
     }
 
     if (changes['showArchivedBooks']) {
-      console.log("Archived : ", this.showArchivedBooks);
+      //console.log("Archived : ", this.showArchivedBooks);
       this.fetchDataFromApi();
     }
   }
@@ -112,7 +112,7 @@ export class OuterTableComponent {
     }
 
     this.manageBooksService.getAllBooks(inputObject).subscribe(data => {
-      console.log(data);
+      //console.log(data);
       const transformedData = this.transformData(data, expandedState);
       this.dataSource.data = transformedData;
       this.dataSource.paginator = this.paginator;

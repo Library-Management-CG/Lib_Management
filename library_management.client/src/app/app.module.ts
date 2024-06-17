@@ -46,7 +46,6 @@ import { InnerTableComponent } from './admin/manage-books/inner-table/inner-tabl
 import { CommonModule, DatePipe } from '@angular/common';
 import { CommentsModalComponent } from './admin/manage-books/inner-table/comments-modal/comments-modal.component';
 import { ArchiveModalComponent } from './admin/manage-books/inner-table/archive-modal/archive-modal.component';
-import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
 import { WebcamModule } from 'ngx-webcam';
 import { AddBookMobileComponent } from './admin/add-book-mobile/add-book-mobile.component';
 import { AddBookCommonComponent } from './admin/add-book-common/add-book-common.component';
@@ -59,15 +58,12 @@ import { MyBooksCardMobileComponent } from './shared/components/my-books-card-mo
 import { AdminNameCardComponent } from './admin/access-control-web/admin-name-card/admin-name-card.component';
 import { CaptureComponent } from './admin/capture/capture.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 import { NewExploreBooksComponent } from './user/new-explore-books/new-explore-books.component';
 import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.component';
 import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list';
 import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
 import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.component';
-
-
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-component/capture-mobile-component.component';
 import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-table.component';
@@ -76,6 +72,11 @@ import { TurncatePipe } from './turncate.pipe';
 import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
 import { RatingInnerContentComponent } from './user/rating-dropdown/rating-inner-content/rating-inner-content.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
+import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
+import { SuccessAddBookComponent } from './admin/success-add-book/success-add-book.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { RevokeMobileComponent } from './shared/revoke-mobile/revoke-mobile.component';
 
 
 
@@ -108,11 +109,9 @@ LOAD_WASM().subscribe();
     InnerTableComponent,
     CommentsModalComponent,
     ArchiveModalComponent,
-    RevokeBookModalComponent,
     BooksCardSharedComponent,
     AddBookMobileComponent,
     AddBookCommonComponent,
-    RevokeBookModalComponent,
     MobileAccordianComponent,
     AssignPermissionSubPartComponent,
     TimeRemainingModalComponent,
@@ -130,10 +129,8 @@ LOAD_WASM().subscribe();
     AddBookCommonComponent,
     CaptureComponent,
     MyBooksCardMobileComponent,
-    RevokePermissionModalComponent,
     CaptureComponent,
     ModalContentComponent,
-    RevokePermissionModalComponent,
     MobileAccordianComponent,
     ScannerComponent,
     CaptureMobileComponentComponent,
@@ -141,7 +138,12 @@ LOAD_WASM().subscribe();
     SingleCommentComponent,
     TurncatePipe,
     SuccessMobileComponent,
-    RatingInnerContentComponent
+    RatingInnerContentComponent,
+    RevokeBookModalComponent,
+    RevokePermissionModalComponent,
+    SuccessAddBookComponent,
+    SpinnerComponent,
+    RevokeMobileComponent    
   ],
   imports: [
     BrowserModule,

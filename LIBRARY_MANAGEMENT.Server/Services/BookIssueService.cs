@@ -80,12 +80,15 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             try
             {
                 var result = await (from b in _context.Books
-                                      .Include(b => b.AuthorBooks)
-                    .ThenInclude(ab => ab.Author)
+                                     .Include(b => b.AuthorBooks)
+                                        .ThenInclude(ab => ab.Author)
                                     join m in _context.BookQrMappings on b.Id equals m.BookId
-
-                                    //join ab in _context.AuthorBooks on b.Id equals ab.BookId
-                                    //join a in _context.Authors on ab.AuthorId equals a.Id
+                                    join bi in _context.BookIssues on m.Id equals bi.BookQrMappingid into biGroup
+                                    from bi in biGroup.DefaultIfEmpty()
+                                    join u in _context.Users on bi.IssueTo equals u.Id into uGroup
+                                    from u in uGroup.DefaultIfEmpty()
+                                    join c in _context.Comments on bi.Id equals c.bookIssueId into cGroup
+                                    from c in cGroup.DefaultIfEmpty()
                                     where m.Qrnumber == qrNumber
                                     select new BookDetailsDTO
                                     {
@@ -93,7 +96,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                         Title = b.Title,
                                         AuthorName = b.AuthorBooks.Select(ab => ab.Author.AuthorName).ToList(),
                                         BookQrMappingId = m.Id,
-                                        image=b.imageData
+                                        image = b.imageData,
+                                        IssueTo = bi != null ? u.FirstName + " " + u.LastName : null,
+                                        IssueDate = bi.IssueDate,
+                                        ReturnDate = bi.ReturnDate,
+                                        BookIssueId = bi.Id,
+                                        Comment = c != null ? c.Description : null  // Assuming `CommentText` is the field in `Comments` table
                                     }).FirstOrDefaultAsync();
 
                 return result;
@@ -104,6 +112,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 return null;
             }
         }
+
 
         public async Task UpdateBookIssue(BookIssueDTO bookIssueDTO)
         {

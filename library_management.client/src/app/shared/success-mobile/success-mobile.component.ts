@@ -11,11 +11,18 @@ import { ExploreBooksService } from '../services/ExploreBooksService';
 
 
 export class SuccessMobileComponent {
+  globalValue: any;
+
   options: AnimationOptions = {
     path: '../../../assets/animation/Success.json',
   };
 
   constructor(private router: Router, private exploreService: ExploreBooksService) { }
+
+  ngOnInit() {
+    this.globalValue = this.exploreService.successIssue;
+
+  }
 
   reset() {
     this.exploreService.resetQrCode();
