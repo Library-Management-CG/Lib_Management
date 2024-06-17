@@ -80,6 +80,9 @@ namespace LIBRARY_MANAGEMENT.Server.DTO
     }
 
 
-
-
+    public class pageDetailsDTO
+    {
+        public int pageNumber { get; set; }
+        public int pageSize { get; set; }
+    }
 }
