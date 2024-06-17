@@ -60,7 +60,7 @@ import { CaptureComponent } from './admin/capture/capture.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NewExploreBooksComponent } from './user/new-explore-books/new-explore-books.component';
 import { RatingDropdownComponent } from './user/rating-dropdown/rating-dropdown.component';
-import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef,MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list';
 import { ModalContentComponent } from './shared/components/modal-content/modal-content.component';
 import { ScannerComponent } from './admin/issue-modal-body/scanner/scanner.component';
@@ -176,7 +176,8 @@ LOAD_WASM().subscribe();
     MatProgressSpinnerModule
   /*  AvatarModule*/
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, { provide: MatBottomSheetRef, useValue: {} },
+    { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }],
   bootstrap: [AppComponent],
   //exports: [StylePaginatorDirective]
 })
