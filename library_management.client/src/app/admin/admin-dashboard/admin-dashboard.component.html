@@ -12,8 +12,11 @@
     </div>
     <div class="row welcome-outer-div ">
 
-      <div class="col-lg-8 col-md-6 pl-0 media-outer welcome-outer-card ">
-        <div class="" *ngIf="!dataLoaded">
+      <div class="col-lg-8 col-12 col-md-6 pl-0 media-outer welcome-outer-card ">
+        <div *ngIf="!dataLoaded && !isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '258px' }"></ngx-skeleton-loader>
+        </div>
+        <div *ngIf="!dataLoaded && isMobile">
           <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '258px' }"></ngx-skeleton-loader>
         </div>
         <div class="welcome-div" *ngIf="dataLoaded">
@@ -44,9 +47,12 @@
 
 
 
-      <div class="col-lg-2 col-md-3 pl-0 media-outer  padding-outer">
-        <div *ngIf="!dataLoaded">
+      <div class="col-lg-2 col-md-3 col-12 pl-0 media-outer  padding-outer">
+        <div *ngIf="!dataLoaded && !isMobile">
           <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '258px' }"></ngx-skeleton-loader>
+        </div>
+        <div *ngIf="!dataLoaded && isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '176px' }"></ngx-skeleton-loader>
         </div>
         <div class="total-books-outer " *ngIf="dataLoaded">
           <div class="outer-total">
@@ -78,9 +84,12 @@
         <ngx-skeleton-loader></ngx-skeleton-loader>
       </div>
       <app-issue-book-modal></app-issue-book-modal>
-      <div class="col-lg-2 col-md-3 pl-0 media-outer pr-0 padding-outer-rightCard">
-        <div *ngIf="!dataLoaded">
+      <div class="col-lg-2 col-md-3 col-12 pl-0 media-outer pr-0 padding-outer-rightCard">
+        <div *ngIf="!dataLoaded && !isMobile">
           <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '258px' }"></ngx-skeleton-loader>
+        </div>
+        <div *ngIf="!dataLoaded && isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '176px' }"></ngx-skeleton-loader>
         </div>
         <div class="issue-books-outer" *ngIf="dataLoaded">
           <div class="outer-issue">
@@ -110,10 +119,17 @@
     <div class="row top-choice-div ">
       <div class="top-choices ">Top Choice Books</div>
     </div>
-    <div *ngIf="!dataLoaded">
+    <div *ngIf="!dataLoaded && !isMobile">
       <div class="row card-row" style="margin-top:3rem">
         <div *ngFor="let _ of placeholderArray" class="col-5 col-sm-6 col-md-2 gapp m-0 p-0">
           <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '270px', width:'225px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!dataLoaded && isMobile">
+      <div class="row card-row" style="margin-top:3rem;">
+        <div *ngFor="let _ of placeholderArray" class="col-5">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '230px', width:'165.5px' }"></ngx-skeleton-loader>
         </div>
       </div>
     </div>
