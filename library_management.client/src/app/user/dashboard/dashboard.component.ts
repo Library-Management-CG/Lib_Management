@@ -13,6 +13,7 @@ export class DashboardComponent {
   dataLoaded = false;
   topUserplaceholderArray = new Array(7);
   placeholderArray = new Array(3);
+  isMobile = false;
 
   showMoreClickedRecentlyAdded: boolean = false;
   showMoreClickedMostPopular: boolean = false;
@@ -36,6 +37,7 @@ export class DashboardComponent {
     this.getMostPopularBooks();
     this.updateDisplayedBooks();
     this.getTopReaders();
+    this.handlesize();
   }
 
   selectedBook: any;
@@ -154,6 +156,11 @@ export class DashboardComponent {
   checkDataLoaded() {
     if (this.topUsers && this.topUsers.length > 0 && this.mostPopularBooks.length > 0 && this.recentlyAddedBooks.length > 0) {
      this.dataLoaded = true;
+    }
+  }
+  handlesize() {
+    if (window.innerWidth <= 500) {
+      this.isMobile = true;
     }
   }
 
