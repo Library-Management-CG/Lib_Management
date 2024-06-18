@@ -11,29 +11,24 @@
         <img class="qrImage-modal" src="../../../assets/images/image 19529.jpg" />
       </div>
     </div>-->
-    <!--<div *ngIf="showErrorMessage">
-      jbvjsdvhdua
-    </div>-->
-    <!--<div class="col-md-7 form-col">
-      <div class="form-component">
-        <form [formGroup]="issueBookForm">
-          <div *ngIf="mappedBook?.issueTo == null" class="form-group custom-form-group user-search">
-            <label for="user">User <span class="asteric">*</span></label>
-            <div [class.error-alert-box1]="showErrorMessage && issueBookForm.get('issueTo')?.invalid">
-              <ng-select formControlName="issueTo"
-                         placeholder="Select User"
-                         class="custom se">
-                <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName }}</ng-option>
-              </ng-select>-->
-
-              <!--<ng-select formControlName="issueTo" class="custom se" placeholder="Select User">
-                <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
-              </ng-select>-->
-              
-
-              
-
-            <!--</div>
+<!--<div *ngIf="showErrorMessage">
+  jbvjsdvhdua
+</div>-->
+<!--<div class="col-md-7 form-col">
+  <div class="form-component">
+    <form [formGroup]="issueBookForm">
+      <div *ngIf="mappedBook?.issueTo == null" class="form-group custom-form-group user-search">
+        <label for="user">User <span class="asteric">*</span></label>
+        <div [class.error-alert-box1]="showErrorMessage && issueBookForm.get('issueTo')?.invalid">
+          <ng-select formControlName="issueTo"
+                     placeholder="Select User"
+                     class="custom se">
+            <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName }}</ng-option>
+          </ng-select>-->
+<!--<ng-select formControlName="issueTo" class="custom se" placeholder="Select User">
+  <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
+</ng-select>-->
+<!--</div>
           </div>
           <div *ngIf="mappedBook?.issueTo !== null">
             <div class="issued-to-heading">Issued To</div>
@@ -133,8 +128,7 @@
   </div>
 
 </div>-->
-
-
+<app-success-add-book></app-success-add-book>
 <div [ngClass]="{'issue-body': mappedBook?.issueTo !== null}" class="modal-body body">
   <div class="row row-modal">
     <div class="col-md-5 issue-book-header">
@@ -152,7 +146,7 @@
       jbvjsdvhdua
     </div>-->
     <div class="col-md-7 form-col">
-      <div class="form-component">
+      <div class="form-component ">
         <form [formGroup]="issueBookForm">
           <div *ngIf="mappedBook?.issueTo == null" class="form-group custom-form-group user-search">
             <label for="user">User <span class="asteric">*</span></label>
@@ -181,7 +175,7 @@
           <div class="date-container-form" *ngIf="mappedBook?.issueTo == null">
             <div class="form-group  custom-form-group ">
               <label for="issueDate">Date of Issue <span class="asteric">*</span></label>
-              <div class="custom-date-input date-container">
+              <div class="custom-date-input date-container date-container-issued">
                 <input type="date" class="form-control form-control-custom issue-input-tab" id="issueDateInput" #issueDateInput disabled [value]="issueDateInputValue">
                 <img src="../../../assets/icons/issue-modal/calendar.svg" alt="Calendar Icon" class="calendar-icon" (click)="openDatePicker(issueDateInput)">
               </div>
@@ -248,7 +242,7 @@
             <app-success-modal></app-success-modal>
 
             <div class="col-buttons">
-              <button class="save-btn-issued " data-toggle="modal" data-bs-dismiss="modal" *ngIf="mappedBook?.issueTo !== null" (click)="Revoke()">Revoke</button>
+              <button class="save-btn-issued " data-toggle="modal" data-bs-dismiss="modal" *ngIf="mappedBook?.issueTo !== null" (click)="handleButton()">Revoke</button>
             </div>
           </div>
         </form>
@@ -266,7 +260,7 @@
       </div>
 
     </div>
-    <button class="issue-button-mobile" (click)="onSubmit()" [disabled]="!nextValidation()">Issue</button>
+    <button class="issue-button-mobile" (click)="onSubmitMobile(); next()" *ngIf="mappedBook?.issueTo == null">Issue</button>
   </div>
 
 </div>

@@ -423,27 +423,24 @@ export class IssueModalBodyComponent {
   }
 
   nextValidation(): boolean {
-    var isUserName = this.issueBookForm.get('issueTo')?.value != null;
+    var isUserName = this.issueBookForm.get('issueTo')?.value != '';
     var isDescription = this.issueBookForm.get('description')?.value != '';
 
     return isUserName && isDescription;
   }
 
-  next() {
-
-    if (this.nextValidation() == true) {
-      this.hideErrorMessage();
-      this.showErrorMessage = false;
-
-    }
-    else {
-      this.showErrorMessage = true;
-    }
-
-  }
-
   Revoke(): void {
     $('#success').modal('show');
+  }
+
+  handleButton() {
+    if (window.innerWidth <= 767) {
+
+      this.router.navigate(['/shared/revoke-mobile']);
+    } else {
+
+      this.Revoke();
+    }
   }
 
   closeModal(): void {
@@ -451,9 +448,24 @@ export class IssueModalBodyComponent {
   }
 
 
+  openModal(): void {
+    $('#successadd').modal('show');
+  }
+
+  next() {
+    if (this.nextValidation()) {
+      this.hideErrorMessage();
+      this.showErrorMessage = false;
+    } else {
+      this.issueBookForm.markAllAsTouched();
+      this.showErrorMessage = true;
+    }
+  }
+
   onSubmit() {
-    this.issueBookForm.get('createdBy')?.setValue('D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A');
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
+    this.exploreBooksService.successIssue = true;
 
     if (this.nextValidation()) {
       this.AdminService.issueBook(this.issueBookForm.value).subscribe(
@@ -461,12 +473,35 @@ export class IssueModalBodyComponent {
           console.log('data posted successfully', response);
           this.closeModal();
           this.exploreBooksService.settotalbooks(response);
+          this.openModal();
         },
         error => {
           console.error('error posting data', error);
         }
       );
     } else {
+      this.issueBookForm.markAllAsTouched();
+      this.showErrorMessage = true;
+    }
+  }
+  onSubmitMobile() {
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
+    this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
+    this.exploreBooksService.successIssue = true;
+
+    if (this.nextValidation()) {
+      this.AdminService.issueBook(this.issueBookForm.value).subscribe(
+        response => {
+          console.log('data posted successfully', response);
+          this.exploreBooksService.settotalbooks(response);
+          this.router.navigate(['/admin/success-mobile']);
+        },
+        error => {
+          console.error('error posting data', error);
+        }
+      );
+    } else {
+      this.issueBookForm.markAllAsTouched();
       this.showErrorMessage = true;
     }
   }

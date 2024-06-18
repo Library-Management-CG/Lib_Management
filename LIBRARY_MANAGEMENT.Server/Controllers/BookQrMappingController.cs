@@ -75,5 +75,23 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
             }
         }
 
+
+        [HttpPost("qrList")]
+        public async Task<ActionResult> qrList()
+        {
+            try
+            {
+
+                List<string> returnList = await _bookQrMappingService.qrListService();
+                return Ok(returnList);
+
+            }
+
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error processing BookQrMapping operation.");
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

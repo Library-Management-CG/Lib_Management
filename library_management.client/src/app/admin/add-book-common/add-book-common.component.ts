@@ -2,8 +2,9 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+import { UserServiceService } from '../../shared/services/user-service.service';
 
 declare var $: any;
 declare var
@@ -16,6 +17,7 @@ declare var
   styleUrls: ['./add-book-common.component.css']
 })
 export class AddBookCommonComponent {
+
   book$ = this.exploreService.book$;
 
   /*@ViewChild('exampleModalCenter') modal: any;*/
@@ -23,6 +25,10 @@ export class AddBookCommonComponent {
 
   qrCodes: any[] = [];
 
+  @Input() qrList: any[] = [];
+
+  qrExist: boolean = false;
+  qrSame: boolean = false; 
 
   //stepperIndex: number = 0;
   counterValue: number = 0;
@@ -47,7 +53,7 @@ export class AddBookCommonComponent {
     console.log("hello",this.capturedImage);
   }
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private exploreService: ExploreBooksService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private exploreService: ExploreBooksService, private urserService: UserServiceService) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
       authorName: ['', Validators.required],
@@ -74,6 +80,7 @@ export class AddBookCommonComponent {
   onDoneClicked() {
     this.stepperIndex = 0;
   }
+  
 
   ngOnInit(): void {
     this.exploreService.addBookPage$.subscribe(idx => {
@@ -130,7 +137,7 @@ export class AddBookCommonComponent {
       .then(data => {
         //console.log(data);
         data.items = data.items.filter((book:any) =>
-          book.volumeInfo.industryIdentifiers &&
+          book.volumeInfo.industryIdentifiers && 
           book.volumeInfo.industryIdentifiers.some((id:any) => id.type === "ISBN_13")
         );
         this.listOfBooks = data.items;
@@ -139,6 +146,11 @@ export class AddBookCommonComponent {
       .catch(error => {
         console.error('Error fetching books:', error);
       });
+
+    //this.exploreService.qrExist$.subscribe(arr => {
+    //  this.qrExist = arr;
+    //})
+    
   }
 
   openWebcam() {
@@ -150,10 +162,52 @@ export class AddBookCommonComponent {
       this.openModal();
     //}
   }
+
+
+  //showError(qr: string, index: number): boolean {
+  //  // Check if the current QR code exists in the list
+  //  this.qrExist = this.qrCodes.includes(qr);
+  //  console.log(this.qrCodes);
+
+  //  // Check for duplicates
+  //  const qrSet = new Set();
+  //  const hasDuplicates = this.qrCodes.some((code: string, i: number) => {
+  //    if (qrSet.has(code)) {
+  //      // Check if the duplicate is at the same index
+  //      return i !== index;
+  //    }
+  //    qrSet.add(code); // Add code to the set
+  //    return false;
+  //  });
+
+  //  this.qrSame = hasDuplicates;
+
+  //  return this.qrExist || this.qrSame;
+  //}
+
+
+  showError(qr: string): boolean {
+    this.qrExist = this.qrList.includes(qr);
+    console.log(this.qrCodes);
+
+    //const qrSet = new Set();
+    //const hasDuplicates = this.qrCodes.some((code: string) => {
+    //  if (qrSet.has(code)) {
+    //    return true; // Found a duplicate
+    //  }
+    //  qrSet.add(code); // Add code to the set
+    //  return false;
+    //});
+
+
+    //this.qrSame = hasDuplicates;
+
+    return this.qrExist
+   // || this.qrSame;
+  }
+
   openModal(): void {
-    // Assuming you're using Bootstrap modal
-    // You need to include Bootstrap JS in your project
-    // You can use jQuery to trigger the modal
+
     $('#webcam').modal('show');
   }
 
@@ -165,7 +219,6 @@ export class AddBookCommonComponent {
 
   errors: WebcamInitError[] = [];
 
-  // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   private nextWebcam: Subject<boolean | string> = new Subject<
     boolean | string
@@ -425,8 +478,8 @@ export class AddBookCommonComponent {
 
       }
   }
- 
 
+ 
 }
 
 

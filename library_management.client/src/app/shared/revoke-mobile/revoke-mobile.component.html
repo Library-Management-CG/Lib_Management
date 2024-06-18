@@ -1,0 +1,79 @@
+
+<div class="modal-header">
+  <div class="modal-title" id="exampleModalLongTitle">
+    <div class="revoke-heading">
+      <div class="revoke-icon">
+        <img src="../../../../../assets/icons/manage-books/revoke-icon.svg" />
+      </div>
+      <span>Revoke Book</span>
+    </div>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="revoke-form">
+    <div class="revoke-check">
+      <div class="check-label">
+        Book Received <span class="required">*</span>
+      </div>
+      <div class="check-input">
+        <div class="yes-input">
+          <input type="radio" id="yes" value="yes" [(ngModel)]="bookReceived" />
+          <label for="yes">
+            <img class="radio-input" *ngIf="bookReceived != 'yes'" src="../../../../../assets/icons/manage-books/radio-unchecked.svg" />
+            <img class="radio-input" *ngIf="bookReceived == 'yes'" src="../../../../../assets/icons/manage-books/radio-checked.svg" />
+            <span>Yes</span>
+          </label>
+        </div>
+        <div class="no-input">
+          <input type="radio" id="no" value="no" [(ngModel)]="bookReceived" />
+          <label for="no">
+            <img class="radio-input" *ngIf="bookReceived != 'no'" src="../../../../../assets/icons/manage-books/radio-unchecked.svg" />
+            <img class="radio-input" *ngIf="bookReceived == 'no'" src="../../../../../assets/icons/manage-books/radio-checked.svg" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="revoke-check" *ngIf="bookReceived != ''">
+      <div class="check-label">
+        Condition <span class="required">*</span>
+      </div>
+      <div class="check-input" *ngIf="bookReceived == 'yes'">
+        <div class="yes-input">
+          <input type="radio" id="perfect" value="perfect" [(ngModel)]="condition" />
+          <label for="perfect">
+            <img class="radio-input" *ngIf="condition != 'perfect'" src="../../../../../assets/icons/manage-books/radio-unchecked.svg" />
+            <img class="radio-input" *ngIf="condition == 'perfect'" src="../../../../../assets/icons/manage-books/radio-checked.svg" />
+            <span>Perfect</span>
+          </label>
+        </div>
+        <div class="no-input">
+          <input type="radio" id="unassignable" value="unassignable" [(ngModel)]="condition" />
+          <label for="unassignable">
+            <img class="radio-input" *ngIf="condition != 'unassignable'" src="../../../../../assets/icons/manage-books/radio-unchecked.svg" />
+            <img class="radio-input" *ngIf="condition == 'unassignable'" src="../../../../../assets/icons/manage-books/radio-checked.svg" />
+            <span>Unassignable</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="check-input" *ngIf="bookReceived == 'no'">
+      <div class="yes-input">
+        <input type="radio" id="lost" value="lost" [(ngModel)]="condition" />
+        <label for="lost">
+          <img class="radio-input" *ngIf="condition != 'lost'" src="../../../../../assets/icons/manage-books/radio-unchecked.svg" />
+          <img class="radio-input" *ngIf="condition == 'lost'" src="../../../../../assets/icons/manage-books/radio-checked.svg" />
+          <span>Lost</span>
+        </label>
+      </div>
+    </div>
+    <div class="content-comment">
+      <span class="comment-heading">Comment <span class="required">*</span></span>
+      <textarea placeholder="Add Comment" [(ngModel)]="commentDescription"></textarea>
+    </div>
+  </div>
+</div>
+<div class="modal-footer footer-component">
+  <div class="footer-component-buttons footer-cancel" data-bs-dismiss="modal">No, Cancel</div>
+  <div class="footer-component-buttons footer-revoke" (click)="onSubmit()" data-bs-dismiss="modal">Yes, Revoke</div>
+</div>

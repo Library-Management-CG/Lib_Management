@@ -23,13 +23,14 @@
   animation: dash 1.6s linear infinite;
 }
 
-.loader-container {
+/*.loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  position: absolute;
+  height: 100vh;*/ /* Full viewport height */
+  /*width: 100vw;*/ /* Full viewport width */
+  /*position: absolute;
   top: 0;
-  left: 0;
-}
+  left: 0;*/
+  /*margin-top:55vh;*/
+/*}*/

@@ -32,7 +32,7 @@
             </div>
           </div>
 
-          <app-add-book-common [stepperIndex]="stepperIndex"></app-add-book-common>
+          <app-add-book-common [stepperIndex]="stepperIndex" [qrList]="qrList"></app-add-book-common>
         </div>
         <!--</form>-->
       </div>
@@ -58,13 +58,15 @@
           </div>
 
           <div *ngIf="stepperIndex==0" class="next-button" (click)="stepperIncrement()"
-               [ngClass]="{'empty-qrCodes': qrArr.length == 0}"
+               [ngClass]="{'empty-qrCodes': qrArr.length == 0 || addBook.bookName === ''}" 
                >
             <div class="next-text">
               Next
             </div>
           </div>
-          <div *ngIf="stepperIndex==1" class="next-button" data-bs-dismiss="modal" data-toggle="modal" (click)="addBookRequest()">
+          <div *ngIf="stepperIndex==1" class="next-button" data-bs-dismiss="modal" data-toggle="modal" (click)="addBookRequest()"
+               [ngClass]="{'empty-qrCodes': isAnyQrValueEmpty()}"
+               >
             <div class="next-text">
               Add
             </div>

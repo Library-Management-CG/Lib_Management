@@ -10,6 +10,7 @@ import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 export class SuccessAddBookComponent {
 
   qrArr: any;
+  globalValue: any;
   constructor(private exploreService: ExploreBooksService) { }
 
   options: AnimationOptions = {
@@ -19,6 +20,8 @@ export class SuccessAddBookComponent {
   ngOnInit() {
     this.exploreService.qrCodes$.subscribe(arr => {
       this.qrArr = arr;
+      this.globalValue = this.exploreService.successIssue;
+      console.log("globalvalue", this.globalValue);
     })
   }
 
