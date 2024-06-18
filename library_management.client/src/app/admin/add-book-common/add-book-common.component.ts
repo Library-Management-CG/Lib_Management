@@ -130,7 +130,7 @@ export class AddBookCommonComponent {
       .then(data => {
         //console.log(data);
         data.items = data.items.filter((book:any) =>
-          book.volumeInfo.industryIdentifiers &&
+          book.volumeInfo.industryIdentifiers && 
           book.volumeInfo.industryIdentifiers.some((id:any) => id.type === "ISBN_13")
         );
         this.listOfBooks = data.items;

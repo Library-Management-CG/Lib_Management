@@ -37,6 +37,10 @@ export class AddBookMobileComponent {
     })
   }
 
+  isAnyQrValueEmpty(): boolean {
+    return this.qrArr.some((qr: any) => qr.value === '');
+  }
+
   stepperIndex: number = 0;
   Next() {
     this.stepperIndex = 1;

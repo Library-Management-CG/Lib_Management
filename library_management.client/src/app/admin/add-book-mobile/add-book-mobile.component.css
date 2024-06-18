@@ -4,6 +4,10 @@
   gap: 12px;
   align-self: stretch;
 }
+.empty-qrCodes {
+  pointer-events: none;
+  opacity: 0.5;
+}
 
 .add-book-title-mobile-text {
   color: var(--Primary-Grey, #343435);
@@ -37,6 +41,7 @@
   background: #FFF;
   /* Drop Shadow */
   box-shadow: 0px 4px 10px 0px rgba(66, 76, 97, 0.15);
+  width: 103%;
 }
 
 .stepper-elements{
@@ -137,7 +142,7 @@
   cursor: pointer;
   display: flex;
   display: flex;
-  width: 23.4375rem;
+  width: 100%;
   padding: 1rem;
   justify-content: flex-end;
   align-items: flex-start;

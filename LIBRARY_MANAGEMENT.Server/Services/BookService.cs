@@ -149,8 +149,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             for (int i = 0; i < books.qr.Count(); i++)
             {
                 string qr = books.qr[i];
-                BookQrMapping dbCheck = await _context.BookQrMappings.FindAsync(qr);
-                if (dbCheck == null)
+                var dbCheck = await _context.BookQrMappings
+                              .FirstOrDefaultAsync(bqr => bqr.Qrnumber == qr);
+                if (dbCheck != null)
                 {
                     continue;
                 }
