@@ -15,6 +15,7 @@ export class AdminDashboardComponent {
 
   selectedBook: any;
   dataLoaded = false;
+  placeholderArray = new Array(10);
 
   totalbooks: any;
   issuebooks: any;

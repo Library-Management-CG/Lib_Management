@@ -7,12 +7,17 @@
       <ng-container matColumnDef="bookName">
         <mat-header-cell *matHeaderCellDef>Book Name </mat-header-cell>
         <mat-cell *matCellDef="let element" colspan="2">
-          <div class="book-name-cell" (click)="element.expanded = !element.expanded">
-            <img *ngIf="element.expanded == false" src="../../../../assets/icons/manage-books/expand-icon.svg" />
-            <img *ngIf="element.expanded == true" src="../../../../assets/icons/manage-books/collapse-icon.svg" />
-            <div class="book-thumbnail" [style.backgroundImage]="'url(' + element.bookImage + ')'">
+          <div *ngIf="loading ==true">
+            <ngx-skeleton-loader [theme]="{ height: '10px', width: '250px', 'margin-top':'12px'}"></ngx-skeleton-loader>
+          </div>
+          <div *ngIf="loading == false">
+            <div class="book-name-cell" (click)="element.expanded = !element.expanded">
+              <img *ngIf="!element.expanded" src="../../../../assets/icons/manage-books/expand-icon.svg" />
+              <img *ngIf="element.expanded" src="../../../../assets/icons/manage-books/collapse-icon.svg" />
+              <div class="book-thumbnail" [style.backgroundImage]="'url(' + element.bookImage + ')'">
+              </div>
+              <span class="book-name">{{element.bookName}}</span>
             </div>
-            <span class="book-name">{{element.bookName}}</span>
           </div>
         </mat-cell>
       </ng-container>
@@ -20,13 +25,27 @@
       <!-- Author Column -->
       <ng-container matColumnDef="author">
         <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="element.expanded = !element.expanded"> {{element.author}} </mat-cell>
+        <mat-cell *matCellDef="let element" (click)="element.expanded = !element.expanded">
+          <div *ngIf="loading ==true">
+            <ngx-skeleton-loader [theme]="{ height: '10px', width: '250px', 'margin-top':'12px'}"></ngx-skeleton-loader>
+          </div>
+          <div *ngIf="loading == false">
+            {{element.author}}
+          </div>
+        </mat-cell>
       </ng-container>
 
       <!-- Copies Column -->
       <ng-container matColumnDef="copies">
         <mat-header-cell *matHeaderCellDef> #Copies </mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="element.expanded = !element.expanded"> {{element.copies}} </mat-cell>
+        <mat-cell *matCellDef="let element" (click)="element.expanded = !element.expanded">
+          <div *ngIf="loading ==true">
+            <ngx-skeleton-loader [theme]="{ height: '10px', width: '250px', 'margin-top':'12px'}"></ngx-skeleton-loader>
+          </div>
+          <div *ngIf="loading == false">
+            {{element.copies}}
+          </div>
+        </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
@@ -62,7 +81,7 @@
     <mat-paginator appStylePaginator
                    [appCustomLength]="dataSource.data.length"
                    [length]="dataSource.data.length"
-                   [pageSize]="3"
+                   [pageSize]="5"
                    [pageSizeOptions]="[1, 2, 3, 5]"
                    [currentPageSize]="this.dataSource.paginator?.pageSize"
                    aria-label="Select page">

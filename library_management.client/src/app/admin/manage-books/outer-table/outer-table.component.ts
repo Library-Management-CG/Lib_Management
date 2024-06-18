@@ -39,7 +39,7 @@ export class OuterTableComponent {
   @Input() filterValue: string = '';
   console = console;
   displayedColumns = ['bookName', 'author', 'copies'];
-  dataSource = new MatTableDataSource<Element>([]);
+  dataSource = new MatTableDataSource<Element>(this.getInitialData());
   isNormalRow(index : any, row: any) { console.log(row); return !row.expanded; }
   isExpandedRow(index: any, row: any) { return row.expanded; }
   pageEvent !: PageEvent;
@@ -145,4 +145,15 @@ export class OuterTableComponent {
   //  console.log(event);
   //  this.currentPageSize = event?.pageSize != null ? event?.pageSize : this.currentPageSize;
   //}
+
+  getInitialData(): Element[] {
+    return Array.from({ length: 10 }, (_, i) => ({
+      bookName: 'Loading...',
+      bookImage: '',
+      author: 'Loading...',
+      copies: 0,
+      expanded: false,
+      bookData: []
+    }));
+  }
 }

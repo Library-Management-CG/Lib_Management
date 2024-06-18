@@ -253,6 +253,13 @@
   padding-left: 1rem;
 }
 
+.loader-boxes{
+ display: flex;
+ gap: 1rem;
+ width: 100vw;
+
+}
+
 @media only screen and (max-width: 500px) {
   .outer-margin {
     margin-left: 0rem !important;

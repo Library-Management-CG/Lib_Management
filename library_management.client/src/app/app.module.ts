@@ -77,7 +77,7 @@ import { RevokePermissionModalComponent } from './shared/components/revoke-permi
 import { SuccessAddBookComponent } from './admin/success-add-book/success-add-book.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { RevokeMobileComponent } from './shared/revoke-mobile/revoke-mobile.component';
-
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 LOAD_WASM().subscribe();
@@ -174,7 +174,8 @@ LOAD_WASM().subscribe();
     ImageCropperModule,
     NgxScannerQrcodeModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxSkeletonLoaderModule,
   /*  AvatarModule*/
   ],
   providers: [DatePipe],
