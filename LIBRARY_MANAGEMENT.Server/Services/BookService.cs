@@ -25,9 +25,6 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<List<ExploreBookDTO>> availableBook();
         Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters);
 
-
-
-
     }
     public class BookService : IBookService
     {
@@ -503,6 +500,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
             return bookIssue != null ? bookIssue.ReturnDate : null;
         }
+
+
+        
 
     }
 }

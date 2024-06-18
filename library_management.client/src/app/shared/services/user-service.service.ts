@@ -65,4 +65,7 @@ export class UserServiceService {
     this.adminListSubject.next(null);
   }
 
+  getQrList(): Observable<any[]> {
+    return this.http.post<any[]>(`${this.apiUrl}BookQrMapping/qrList`,{});
+  }
 }

@@ -664,6 +664,14 @@ textarea {
   background: #E9ECEB;
 }
 
+.error-message {
+  display: block;
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
 
 @media screen and (max-width: 767px) {
   .author {
@@ -718,10 +726,12 @@ textarea {
   .content {
     max-height: none;
     margin-bottom: 4rem;
+    margin-top: 9rem !important;
   }
   .content-2 {
-  max-height: none;
-   }
+    max-height: none;
+    margin-top: 9rem !important;
+  }
 }
 @media screen and (max-width: 375px){
   .line-break {

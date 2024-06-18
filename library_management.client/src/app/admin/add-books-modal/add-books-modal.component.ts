@@ -38,6 +38,8 @@ export class AddBooksModalComponent {
 
   qrArr: any;
 
+  qrList: any[] = [];
+
   constructor(private formBuilder: FormBuilder, private exploreService: ExploreBooksService, private urserService: UserServiceService) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
@@ -67,19 +69,33 @@ export class AddBooksModalComponent {
   }
 
   isAnyQrValueEmpty(): boolean {
-    return this.qrArr.some((qr:any) => qr.value === '');
+    const hasEmptyValue = this.qrArr.some((qr: any) => qr.value === '');
+    if (hasEmptyValue) {
+      return true;
+    }
+
+    const qrSet = new Set();
+    const hasDuplicates = this.qrArr.some((qr: any) => {
+      if (qrSet.has(qr)) {
+        return true; 
+      }
+      qrSet.add(qr); 
+      return false;
+    });
+    if (hasDuplicates) {
+      return true;
+    }
+
+    const hasMatch = this.qrArr.some((qr: any) => this.qrList.includes(qr));
+    if (hasMatch) {
+      return true;
+    }
+
+    return false;
   }
 
-  ngOnInit(): void {
-    //this.isCaptured = false;
-    //this.video = document.getElementById('video');
-    //this.canvas = document.getElementById('canvas');
-    //navigator.mediaDevices.getUserMedia({ video: true })
-    //  .then(stream => {
-    //    this.video.srcObject = stream;
-    //  })
-    //  .catch(err => console.error('Error accessing camera: ', err));
 
+  ngOnInit(): void {
     this.exploreService.addBookPage$.subscribe(idx => {
       this.stepperIndex = idx;
     });
@@ -95,11 +111,13 @@ export class AddBooksModalComponent {
     this.exploreService.book$.subscribe(arr => {
       this.addBook = arr;
     })
-
+    
     this.exploreService.qrCodes$.subscribe(arr => {
       this.qrArr = arr;
       console.log("qwertyuiopoiuytrewq", arr);
     })
+    
+    this.getQrList();
   }
 
 
@@ -351,6 +369,19 @@ export class AddBooksModalComponent {
         this.openModal();
         this.exploreService.successIssue = false;
    
+      },
+      (error: any) => {
+        console.error('Error posting:', error);
+
+      }
+    );
+  }
+
+  getQrList() {
+    this.urserService.getQrList().subscribe(
+      (data: any[]) => {
+        this.qrList = data;
+        //console.log("qrlistttttttttt",data);
       },
       (error: any) => {
         console.error('Error posting:', error);

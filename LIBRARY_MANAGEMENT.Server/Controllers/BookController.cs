@@ -30,7 +30,17 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             try
             {
-                Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
+                for (int i = 0; i < books.qr.Count(); i++)
+                {
+                    string qr = books.qr[i];
+                    var dbCheck = await _context.BookQrMappings
+                                  .FirstOrDefaultAsync(bqr => bqr.Qrnumber == qr);
+                    if (dbCheck != null)
+                    {
+                        return BadRequest();
+                    }
+                }
+                    Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
                 if (check == null)
                 {
                     await _bookService.AddNewBooks(books);
