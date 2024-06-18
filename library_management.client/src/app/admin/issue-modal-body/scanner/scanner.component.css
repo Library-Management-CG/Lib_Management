@@ -74,7 +74,9 @@
   line-height: normal;
   margin-top:35%;
 }
-
+.selected_box {
+  display: none;
+}
 
 .scan-button {
   border-radius: 2rem;
@@ -138,9 +140,23 @@ ngx-scanner-qrcode {
     transform: scaleX(0.9) scaleY(0.6);
   }
   ngx-scanner-qrcode {
-   
-    transform: scale(0.7) !important;
+   width:100%;
+   transform:none;
+/*    transform: scale(0.7) !important;
+*/  }
+  .selected_box {
+      display:block;
+      width:100%;
   }
+  .select_value {
+    width: 100%;
+    padding:0.4rem;
+    margin-top:1rem;
+    border-radius:0.5rem;
+  }
+    .select_value:active, .select_value:focus {
+      outline: none;
+    }
   .align-text {
     font-size: 1rem;
   }
@@ -151,7 +167,7 @@ ngx-scanner-qrcode {
     width: 100%;
   }
 }
-@media only screen and (max-width: 330px) {
+/*@media only screen and (max-width: 330px) {
   #scanner-border {
     transform: scaleX(0.6) scaleY(0.4);
   }
@@ -160,5 +176,5 @@ ngx-scanner-qrcode {
     transform: scale(0.6) !important;
   }
 }
-
+*/
 
