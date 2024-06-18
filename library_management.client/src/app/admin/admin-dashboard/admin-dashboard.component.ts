@@ -174,7 +174,7 @@ export class AdminDashboardComponent {
 
   checkDataLoaded() {
     if (this.totalbooks && this.issuebooks && this.mostPopularBooks.length > 0) {
-      //this.dataLoaded = true;
+      this.dataLoaded = true;
     }
   }
  

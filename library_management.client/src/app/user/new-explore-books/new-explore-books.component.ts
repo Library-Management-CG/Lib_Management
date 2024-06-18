@@ -169,7 +169,7 @@ export class NewExploreBooksComponent {
 
   checkDataLoaded() {
     if (this.exploreBooks.length > 0) {
-      this.dataLoaded = true;
+      //this.dataLoaded = true;
     }
   }
 
