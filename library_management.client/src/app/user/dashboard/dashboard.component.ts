@@ -153,7 +153,7 @@ export class DashboardComponent {
 
   checkDataLoaded() {
     if (this.topUsers && this.topUsers.length > 0 && this.mostPopularBooks.length > 0 && this.recentlyAddedBooks.length > 0) {
-      this.dataLoaded = true;
+     this.dataLoaded = true;
     }
   }
 
