@@ -4,6 +4,7 @@ using LIBRARY_MANAGEMENT.Server.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ProjectServer.Client;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LIBRARY_MANAGEMENT.Server.Controllers
@@ -64,10 +65,10 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             return await _bookService.topChoices();
         }
-        [HttpGet("exploreBook")]
-        public async Task<List<ExploreBookDTO>> exploreBook()
+        [HttpPost("exploreBook")]
+        public async Task<List<ExploreBookDTO>> exploreBook([FromBody] pageDetailsDTO pageDetails)
         {
-            return await _bookService.exploreBook();
+            return await _bookService.exploreBook(pageDetails.pageNumber, pageDetails.pageSize);
         }
 
 

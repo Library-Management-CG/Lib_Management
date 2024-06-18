@@ -46,8 +46,8 @@ export class UserServiceService {
   }
 
 
-  explorebooks(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + 'Book/exploreBook');
+  explorebooks(pageDetails:any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'Book/exploreBook', pageDetails);
   }
 
 
