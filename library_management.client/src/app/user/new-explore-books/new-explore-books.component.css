@@ -72,6 +72,17 @@
     display:none;
 }
 
+.loader-skeleton {
+  padding-top: 2rem;
+  padding-left: 2.7rem;
+  padding-right: 2rem;
+  gap: 2rem;
+}
+
+.loader-skeleton-inner {
+  text-align: center;
+}
+
 @media screen and (min-width: 1500px) {
   .explore-outer {
     width: 85rem;
@@ -280,3 +291,5 @@
   flex-direction: row;
   width: 100%;
 }
+
+

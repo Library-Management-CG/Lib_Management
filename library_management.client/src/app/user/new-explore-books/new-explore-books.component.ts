@@ -13,6 +13,7 @@ export class NewExploreBooksComponent {
   filterValue: string = '';
   infinite: boolean = false;
   filteredexploreBooks: any[] = [];
+  placeholderArray = new Array(10);
 
   dataLoaded = false;
 
