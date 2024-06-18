@@ -12,6 +12,7 @@ import { ExploreBooksService } from '../services/ExploreBooksService';
 
 export class SuccessMobileComponent {
   globalValue: any;
+  qrArr: any;
 
   options: AnimationOptions = {
     path: '../../../assets/animation/Success.json',
@@ -21,7 +22,11 @@ export class SuccessMobileComponent {
 
   ngOnInit() {
     this.globalValue = this.exploreService.successIssue;
-
+    this.exploreService.qrCodes$.subscribe(arr => {
+      this.qrArr = arr;
+      this.globalValue = this.exploreService.successIssue;
+      console.log("globalvalue", this.globalValue);
+    })
   }
 
   reset() {

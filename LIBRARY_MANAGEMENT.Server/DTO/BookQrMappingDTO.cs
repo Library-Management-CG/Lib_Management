@@ -14,4 +14,9 @@
         public bool? IsPerfect { get; set; }
 
     }
+
+    public class QrListDTO
+    {
+        public List<string> qrList { get; set; }
+    }
 }

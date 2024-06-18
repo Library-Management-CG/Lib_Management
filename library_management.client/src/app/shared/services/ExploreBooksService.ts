@@ -202,4 +202,19 @@ export class ExploreBooksService {
     this.ratingArraySource.next(books);
   }
 
+
+  
+
+  //private qrExistSource = new BehaviorSubject<boolean>(false);
+  //qrExist$ = this.qrExistSource.asObservable();
+
+
+  //setqrExist(value: boolean): void {
+  //  this.isToggleCheckedSource.next(value);
+  //}
+
+  //toggleQr(): void {
+  //  const currentValue = this.isToggleCheckedSource.value;
+  //  this.isToggleCheckedSource.next(!currentValue);
+  //}
 }

@@ -38,6 +38,8 @@ export class AddBooksModalComponent {
 
   qrArr: any;
 
+  qrList: any[] = [];
+
   constructor(private formBuilder: FormBuilder, private exploreService: ExploreBooksService, private urserService: UserServiceService) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
@@ -66,16 +68,34 @@ export class AddBooksModalComponent {
     this.stepperIndex = 0;
   }
 
-  ngOnInit(): void {
-    //this.isCaptured = false;
-    //this.video = document.getElementById('video');
-    //this.canvas = document.getElementById('canvas');
-    //navigator.mediaDevices.getUserMedia({ video: true })
-    //  .then(stream => {
-    //    this.video.srcObject = stream;
-    //  })
-    //  .catch(err => console.error('Error accessing camera: ', err));
+  isAnyQrValueEmpty(): boolean {
+    const hasEmptyValue = this.qrArr.some((qr: any) => qr.value === '');
+    if (hasEmptyValue) {
+      return true;
+    }
 
+    const qrSet = new Set();
+    const hasDuplicates = this.qrArr.some((qr: any) => {
+      if (qrSet.has(qr)) {
+        return true; 
+      }
+      qrSet.add(qr); 
+      return false;
+    });
+    if (hasDuplicates) {
+      return true;
+    }
+
+    const hasMatch = this.qrArr.some((qr: any) => this.qrList.includes(qr));
+    if (hasMatch) {
+      return true;
+    }
+
+    return false;
+  }
+
+
+  ngOnInit(): void {
     this.exploreService.addBookPage$.subscribe(idx => {
       this.stepperIndex = idx;
     });
@@ -90,13 +110,16 @@ export class AddBooksModalComponent {
 
     this.exploreService.book$.subscribe(arr => {
       this.addBook = arr;
-    //  console.log("qwertyuiopoiuytrewq",arr);
     })
-
+    
     this.exploreService.qrCodes$.subscribe(arr => {
       this.qrArr = arr;
+      console.log("qwertyuiopoiuytrewq", arr);
     })
+    
+    this.getQrList();
   }
+
 
   //showWebcam = true;
   isCaptured: boolean = false;
@@ -172,55 +195,31 @@ export class AddBooksModalComponent {
     this.stepperIndex = 0;
   }
 
-  increment() {
-    this.counterValue++;
-    this.bookForm.patchValue({
-      qty: this.counterValue,
-    });
-    const qrArray = this.bookForm.get('qr') as FormArray;
-    qrArray.push(this.formBuilder.control(''));
-    //this.pushValueIntoDeviceId('CGI-MOU-' + (this.laststoredcgi + ele));
-    //this.addDeviceForm.patchValue({
-    //  qty: this.counterValue
-    //});
-  //  console.log(this.bookForm);
-  }
+  //increment() {
+  //  console.log("qwertyuiopoiuytrewq", this.addBook);
 
-  decrement() {
-    if (this.counterValue > 1) {
-      this.counterValue--;
-      this.bookForm.patchValue({
-        qty: this.counterValue,
-      });
-      const qrArray = this.bookForm.get('qr') as FormArray;
-      qrArray.removeAt(this.counterValue);
-    //  console.log(this.bookForm);
-    }
-  }
+  //  this.counterValue++;
+  //  this.bookForm.patchValue({
+  //    qty: this.counterValue,
+  //  });
+  //  const qrArray = this.bookForm.get('qr') as FormArray;
+  //  qrArray.push(this.formBuilder.control(''));
+  //  //this.pushValueIntoDeviceId('CGI-MOU-' + (this.laststoredcgi + ele));
+  //  //this.addDeviceForm.patchValue({
+  //  //  qty: this.counterValue
+  //  //});
+  ////  console.log(this.bookForm);
+  //}
 
-  //updateQuantityValue(event: any) {
-  //  const newValue = parseInt(event.target.value, 10);
-  //  const deviceIdArray = this.addDeviceForm.get('deviceId') as FormArray;
-
-  //  if (!isNaN(newValue)) {
-  //    const currentValue = deviceIdArray.length;
-
-  //    if (newValue > currentValue) {
-  //      const elementsToAdd = newValue - currentValue;
-  //      for (let i = 1; i <= elementsToAdd; i++) {
-  //        this.pushValueIntoDeviceId('CGI-MOU-' + (this.laststoredcgi + i));
-  //      }
-  //    }
-
-  //    else if (newValue < currentValue) {
-  //      const elementsToRemove = currentValue - newValue;
-  //      for (let i = 0; i < elementsToRemove; i++) {
-  //        deviceIdArray.removeAt(deviceIdArray.length - 1);
-  //      }
-  //    }
-
-  //    this.counterValue = newValue;
-  //    this.addDeviceForm.get('qty')?.setValue(newValue);
+  //decrement() {
+  //  if (this.counterValue > 1) {
+  //    this.counterValue--;
+  //    this.bookForm.patchValue({
+  //      qty: this.counterValue,
+  //    });
+  //    const qrArray = this.bookForm.get('qr') as FormArray;
+  //    qrArray.removeAt(this.counterValue);
+  //  //  console.log(this.bookForm);
   //  }
   //}
 
@@ -356,7 +355,7 @@ export class AddBooksModalComponent {
       ISBN: this.addBook.ISBN,
       qty: this.qrArr.length,
       qr: this.qrArr,
-      LoggedIn:'4EE28B71-DFAE-4BC9-8FE8-1579970A9560',
+      LoggedIn:'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A',
     }
 
     //console.log("before we post", book);
@@ -370,6 +369,19 @@ export class AddBooksModalComponent {
         this.openModal();
         this.exploreService.successIssue = false;
    
+      },
+      (error: any) => {
+        console.error('Error posting:', error);
+
+      }
+    );
+  }
+
+  getQrList() {
+    this.urserService.getQrList().subscribe(
+      (data: any[]) => {
+        this.qrList = data;
+        //console.log("qrlistttttttttt",data);
       },
       (error: any) => {
         console.error('Error posting:', error);

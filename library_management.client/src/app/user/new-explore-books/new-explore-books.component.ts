@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../../shared/services/user-service.service';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+declare var $: any;
 
 @Component({
   selector: 'app-new-explore-books',
@@ -10,8 +11,8 @@ import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 })
 export class NewExploreBooksComponent {
   filterValue: string = '';
-
-  filteredexploreBooks: any[]
+  infinite: boolean = false;
+  filteredexploreBooks: any[] = [];
 
   dataLoaded = false;
 
@@ -22,6 +23,8 @@ export class NewExploreBooksComponent {
   selectedRatings: number[] = [];
   availableBooksOfRatingFilter: any[] = [];
 
+  pageNumber: number = 1;
+
   constructor(private router: Router, private user: UserServiceService, private exploreBooksService: ExploreBooksService) {
     this.filteredexploreBooks = this.exploreBooks;
 
@@ -30,8 +33,8 @@ export class NewExploreBooksComponent {
 
 
   ngOnInit(): void {
-
-    this.exploreBookData();
+    this.pageNumber = 1;
+    //this.exploreBookData();
     this.exploreBooksService.getFilterValue().subscribe(filterValue => {
       //console.log('Filter Value:', filterValue);
       if (filterValue) {
@@ -44,6 +47,28 @@ export class NewExploreBooksComponent {
 
    
   }
+
+
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    if (this.shouldLoadData()) {
+      this.infinite = true;
+      this.pageNumber++;
+      //console.log(this.pageNumber);
+       this.exploreBookData();
+    }
+  }
+
+  private shouldLoadData(): boolean {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    return scrollPosition + windowHeight >= documentHeight;
+  }
+
+
   onSelectedValuesChange(selectedValues: number[]): void {
     this.selectedRatings = selectedValues;
     //console.log('where', this.selectedRatings);
@@ -73,15 +98,24 @@ export class NewExploreBooksComponent {
     this.selectedBook = book;
   }
 
+  //------------------------------------------------------------------------------------------------
+
   exploreBookData() {
-    this.user.explorebooks().subscribe(
+
+    const pageDetails = {
+      pageNumber: this.pageNumber,
+      pageSize: parseInt('10', 10)
+    }
+
+    this.user.explorebooks(pageDetails).subscribe(
       (data) => {
-        this.exploreBooks = data;
-        this.filteredexploreBooks = this.exploreBooks;
+        this.infinite = false;
+
+        this.exploreBooks = this.exploreBooks.concat(data);
+        this.filteredexploreBooks = this.filteredexploreBooks.concat(this.exploreBooks);
         this.checkDataLoaded();
 
         //console.log(data);
-
       },
       (error) => {
         console.error('Error:', error);
@@ -89,6 +123,8 @@ export class NewExploreBooksComponent {
     );
 
   }
+
+  //------------------------------------------------------------------------------------------------
 
   availableBookData() {
     this.user.availableExplore().subscribe(

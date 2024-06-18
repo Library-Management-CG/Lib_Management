@@ -12,6 +12,10 @@
   flex-direction: row;
 }
 
+.infinite {
+  margin-left:45vw;
+}
+
 .rating {
   margin-right: 0rem;
 }

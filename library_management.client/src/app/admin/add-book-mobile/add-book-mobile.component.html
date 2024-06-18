@@ -21,7 +21,9 @@
     <app-add-book-common [stepperIndex]="stepperIndex"></app-add-book-common>
   </div>
   <div class="footer-mobile">
-    <div *ngIf="stepperIndex==0" class="next-button-mobile" (click)="Next()">
+    <div *ngIf="stepperIndex==0" class="next-button-mobile" (click)="Next()"
+          [ngClass]="{'empty-qrCodes': qrArr.length == 0 || addBook.bookName === ''}" 
+         >
       <div class="next-button-mobile-text">
         Next
       </div>
@@ -30,7 +32,9 @@
       <div class="previous-button-mobile-text" (click)="Previous()">
         Previous
       </div>
-      <div class="add-button-mobile-text" (click)="Add()">
+      <div class="add-button-mobile-text" (click)="Add()"
+           [ngClass]="{'empty-qrCodes': isAnyQrValueEmpty()}"
+           >
         Add
       </div>
     </div>

@@ -2,11 +2,15 @@
   width: 100%;
 }
 
+.infinite{
+    margin-top: 94vh; 
+}
+
 .modal-content {
   width: 100%;
-  height:95vh;
-  overflow-x:hidden;
-  margin-top:-2rem;
+  height: 95vh;
+  overflow-x: hidden;
+  margin-top: -2rem;
 }
 
 
