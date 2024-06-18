@@ -20,9 +20,11 @@ export class SuccessAddBookComponent {
   ngOnInit() {
     this.exploreService.qrCodes$.subscribe(arr => {
       this.qrArr = arr;
-      this.globalValue = this.exploreService.successIssue;
-      console.log("globalvalue", this.globalValue);
     })
+    this.exploreService.successIssue$.subscribe(value => {
+      this.globalValue = value;
+      console.log("globalValue", this.globalValue);
+    });
   }
 
   @Output() doneClicked: any = new EventEmitter<any>();

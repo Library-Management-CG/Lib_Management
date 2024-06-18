@@ -367,7 +367,7 @@ export class AddBooksModalComponent {
         console.error('Error posted');
         this.Reset();
         this.openModal();
-        this.exploreService.successIssue = false;
+        this.exploreService.setSuccessIssue(true);
    
       },
       (error: any) => {
