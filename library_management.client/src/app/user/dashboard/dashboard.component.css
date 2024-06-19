@@ -92,7 +92,7 @@ app-books-card-shared{
 }
 
 .all-lib-books {
-  height: 403px;
+  height: 470px;
   margin-top: 20px;
   margin-left: 27px;
   display: flex;
@@ -104,9 +104,18 @@ app-books-card-shared{
   overflow-x: hidden;
 }
 
-  .all-lib-books::-webkit-scrollbar {
-    display: none;
+  /* Specific style for .book-content to show scrollbar */
+  /*.all-lib-books::-webkit-scrollbar {
+    display: block;
+    width: 5px;*/ /* Adjust as needed */
+    /*height:2rem !important;
   }
+
+  .all-lib-books::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);*/ /* Adjust as needed */
+    /*border-radius: 10px;*/ /* Make ends rounded */
+    /*height: 2rem !important;
+  }*/
 
 
 .recently-added {

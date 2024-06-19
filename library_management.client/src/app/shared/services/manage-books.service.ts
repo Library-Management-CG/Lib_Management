@@ -34,4 +34,14 @@ export class ManageBooksService {
     return this.http.post<any[]>(this.apiUrl + 'BookQrMapping/revoke', inputData);
   }
 
+  private totalItem$ = new BehaviorSubject<number>(0);
+
+  public getTotalItemFromStore() {
+    return this.totalItem$.asObservable();
+  }
+
+  public setTotalItemFromStore(totalItems: number) {
+    return this.totalItem$.next(totalItems);
+  }
+
 }

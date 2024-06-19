@@ -1,8 +1,8 @@
-
 <app-add-books-modal></app-add-books-modal>
-<!--<app-spinner *ngIf="!dataLoaded"></app-spinner>-->
-<div >
-
+<!--<div class="loader-boxes" *ngIf="!dataLoaded">
+  <ngx-skeleton-loader></ngx-skeleton-loader>
+</div>-->
+<div>
   <div class="container-fluid outer-margin">
     <div class="row dashboard-heading">
       <div class="dashboard-text">Dashboard</div>
@@ -10,8 +10,15 @@
     </div>
     <div class="row welcome-outer-div ">
 
-      <div class="col-lg-8 col-md-6 pl-0 media-outer welcome-outer-card ">
-        <div class="welcome-div  ">
+      <div class="col-lg-8 col-12 col-md-6 pl-0 media-outer welcome-outer-card ">
+        <div *ngIf="!dataLoaded && !isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '258px' }"></ngx-skeleton-loader>
+        </div>
+        <div *ngIf="!dataLoaded && isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '258px' }"></ngx-skeleton-loader>
+        </div>
+        <div class="welcome-div" *ngIf="dataLoaded">
+
           <div class="row welcome-text-outer ">
             <div class="col-md-7 p-0 ">
               <div class="wave-image ">
@@ -36,8 +43,15 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-3 pl-0 media-outer  padding-outer">
-        <div class="total-books-outer ">
+
+      <div class="col-lg-2 col-md-3 col-12 pl-0 media-outer  padding-outer">
+        <div *ngIf="!dataLoaded && !isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '258px' }"></ngx-skeleton-loader>
+        </div>
+        <div *ngIf="!dataLoaded && isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '176px' }"></ngx-skeleton-loader>
+        </div>
+        <div class="total-books-outer " *ngIf="dataLoaded">
           <div class="outer-total">
             <img src="../../../assets/icons/Admin-dashboard/Ellipse.svg" class="ellipse" />
             <img src="../../../assets/icons/Admin-dashboard/Books.svg" class="books" />
@@ -63,10 +77,18 @@
         </div>
       </div>
 
-
+      <div *ngIf="!dataLoaded">
+        <ngx-skeleton-loader></ngx-skeleton-loader>
+      </div>
       <app-issue-book-modal></app-issue-book-modal>
-      <div class="col-lg-2 col-md-3 pl-0 media-outer pr-0 padding-outer-rightCard">
-        <div class="issue-books-outer">
+      <div class="col-lg-2 col-md-3 col-12 pl-0 media-outer pr-0 padding-outer-rightCard">
+        <div *ngIf="!dataLoaded && !isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '258px' }"></ngx-skeleton-loader>
+        </div>
+        <div *ngIf="!dataLoaded && isMobile">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '176px' }"></ngx-skeleton-loader>
+        </div>
+        <div class="issue-books-outer" *ngIf="dataLoaded">
           <div class="outer-issue">
             <img src="../../../assets/icons/Admin-dashboard/Ellipse.svg" class="ellipse" />
             <img src="../../../assets/icons/Admin-dashboard/User.svg" class="user" />
@@ -75,8 +97,6 @@
                 <span class="Total-books-text ">Issued Books</span>
                 <span class="number ">{{issuebooks}}</span>
               </div>
-
-
             </div>
 
           </div>
@@ -96,8 +116,22 @@
     <div class="row top-choice-div ">
       <div class="top-choices ">Top Choice Books</div>
     </div>
-    <div class="row card-row " style="margin-top:3rem">
-      <div *ngFor="let book of mostPopularBooks" class="col-5 col-sm-6 col-md-2 gapp  m-0 p-0">
+    <div *ngIf="!dataLoaded && !isMobile">
+      <div class="row card-row" style="margin-top:3rem">
+        <div *ngFor="let _ of placeholderArray" class="col-5 col-sm-6 col-md-2 gapp m-0 p-0">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '270px', width:'225px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!dataLoaded && isMobile">
+      <div class="row card-row" style="margin-top:3rem;">
+        <div *ngFor="let _ of placeholderArray" class="col-5">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '230px', width:'165.5px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="dataLoaded" class="row card-row" style="margin-top:3rem">
+      <div *ngFor="let book of mostPopularBooks" class="col-5 col-sm-6 col-md-2 gapp m-0 p-0">
         <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
         <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
       </div>
@@ -111,37 +145,4 @@
 </div>
 
 
-<!--<p>admin-dashboard works!</p>
 
-
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>-->
-<!--<div *ngIf="isCameraExist; else noCameraExist">
-  <div style="text-align:center">
-    <div class="btn-group">
-      <button class="button" (click)="takeSnapshot()">Take Picture</button>
-      <button class="button" (click)="changeWebCame(true)">
-        Toggle Camera
-      </button>
-      <button class="button" (click)="onOffWebCame()">Switch camera</button>
-    </div>
-    <br />
-    <webcam [height]="500"
-            [width]="1000"
-            [trigger]="triggerObservable"
-            (imageCapture)="handleImage($event)"
-            *ngIf="showWebcam"
-            [switchCamera]="nextWebcamObservable"></webcam>
-  </div>
-
-  <div *ngIf="errors.length > 0">
-    <h4>Error Messages:</h4>
-    <ul *ngFor="let error of errors">
-      <li>{{ error | json }}</li>
-    </ul>
-  </div>
-</div>
-
-<ng-template #noCameraExist> Camera device not available </ng-template>-->

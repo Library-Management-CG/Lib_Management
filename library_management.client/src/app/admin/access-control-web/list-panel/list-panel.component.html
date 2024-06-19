@@ -11,7 +11,14 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>-->
-  <div class="admin-list ">
-    <app-admin-name-card *ngFor= "let admin of filteredAdmin ? filteredAdmin : adminList" [admin]="admin" (adminSelected)="onAdminSelected($event)" [isSelected]="admin === selectedAdmin"></app-admin-name-card>
+  <div class="admin-list">
+    <div *ngIf="!dataLoaded">
+        <div *ngFor="let _ of placeholderArray">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '4px', height: '48px', width:'295px' }"></ngx-skeleton-loader>
+        </div>
+     </div>
+    <div *ngIf="dataLoaded" class="name-card-outer">
+      <app-admin-name-card *ngFor="let admin of filteredAdmin ? filteredAdmin : adminList" [admin]="admin" (adminSelected)="onAdminSelected($event)" [isSelected]="admin === selectedAdmin"></app-admin-name-card>
+    </div>
   </div>
 </div>

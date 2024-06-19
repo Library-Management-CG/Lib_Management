@@ -72,6 +72,27 @@
     display:none;
 }
 
+.loader-skeleton {
+  padding-top: 2rem;
+  padding-left: 2.7rem;
+  padding-right: 2rem;
+  gap: 2rem;
+}
+.mobile_loader {
+  /* display: flex !important;
+  width: 100%;
+  border: 1px solid black;
+  justify-content: space-between !important;*/
+  padding-top: 2rem;
+  margin-left:0.2rem;
+  width:100vw;
+  justify-content:space-between;
+}
+
+.loader-skeleton-inner {
+  text-align: center;
+}
+
 @media screen and (min-width: 1500px) {
   .explore-outer {
     width: 85rem;
@@ -280,3 +301,5 @@
   flex-direction: row;
   width: 100%;
 }
+
+

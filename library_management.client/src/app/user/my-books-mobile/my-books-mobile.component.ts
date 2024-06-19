@@ -10,6 +10,7 @@ import { UserServiceService } from '../../shared/services/user-service.service';
 export class MyBooksMobileComponent {
   filteredBooks: any[]
   filterValue: string = '';
+  dataLoaded = false;
 
   myBooks: any = [];
   userId: any;
@@ -40,6 +41,7 @@ export class MyBooksMobileComponent {
       (data) => {
         this.myBooks = data;
         this.filteredBooks = this.myBooks;
+        this.checkDataLoaded();
 
         //console.log(this.myBooks);
         
@@ -60,6 +62,11 @@ export class MyBooksMobileComponent {
     return books.some((book: { returnDate: null; }) => book.returnDate == null);
   }
 
+  checkDataLoaded() {
+    if (this.filteredBooks.length>0) {
+      this.dataLoaded = true;
+    }
+  }
 
 
  

@@ -35,7 +35,21 @@
 
   </div>
 
-  <app-spinner *ngIf="!dataLoaded"></app-spinner>
+  <div *ngIf="!dataLoaded && !isMobile">
+    <div class="row loader-skeleton">
+      <div *ngFor="let _ of placeholderArray" class="col-md-2 col-5 loader-skeleton-inner">
+        <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '300px', width:'235px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!dataLoaded && isMobile">
+    <div class="row mobile_loader">
+      <div *ngFor="let _ of placeholderArray" class="col-5 loader-skeleton-inner">
+        <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '300px', width:'160px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
 
   <div *ngIf="dataLoaded">
     <div class="inner" *ngIf="selectedRatings.length<=0">

@@ -63,15 +63,20 @@
   gap: 0.534rem;
   flex: 1 0 0;
   align-self: stretch;
+  height: 90%;
+  overflow-y: scroll;
 }
 
 
 .st{
     border: 1px solid black;
-    width:100%;
+    width: 100%;
 }
-app-admin-name-card{
-    width:100%;
+.name-card-outer{
+    width: 100%;
+}
+app-admin-name-card {
+  width: 100%;
 }
 
 .spinner-loading {

@@ -68,3 +68,11 @@
 .st{
     border: 1px solid black;
 }
+@media screen and (min-width: 1500px) {
+  .my-books-container {
+    width: 85rem;
+    margin: auto;
+  }
+
+
+}

@@ -30,17 +30,24 @@ export class InnerTableComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['bookDataArray2'] && changes['bookDataArray2'].currentValue) {
       this.dataSource.data = changes['bookDataArray2'].currentValue;
-      console.log("data : ", this.dataSource.data); // This should now log the actual array
+      console.log("data : ", this.dataSource.data);
     }
   }
 
   isBookIssued(book: any): boolean {
     return book.status.toLowerCase() === 'not available';
   }
-  //ngOnInit() {
-  //  $(document).ready(function () {
-  //    $('#revokeBookModal').modal('show');
-  //  });
+
+  //getInitialData(): BookData[] {
+  //  return Array.from({ length: 2 }, (_, i) => ({
+  //    bookIssueId: null,
+  //    bookQrMappingId: null,
+  //    qrNumber: 'Loading...',
+  //    issuedTo: 'Loading...',
+  //    issueDate: new Date,
+  //    returnDate: new Date,
+  //    status: 'Loading...'
+  //  }));
   //}
 
 

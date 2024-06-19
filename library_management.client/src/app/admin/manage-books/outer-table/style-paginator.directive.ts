@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { map, startWith, Subscription } from 'rxjs';
+import { ManageBooksService } from '../../../shared/services/manage-books.service';
 
 
 
@@ -40,24 +41,34 @@ export class StylePaginatorDirective {
   private bubbleContainerRef!: HTMLElement;
   private subscription = new Subscription();
   private buttonsRef: HTMLElement[] = [];
-  private totalItems: any = this.matPag.length;
-
+  private totalItems: any;
+  private totalItemsDiv: HTMLElement | null = null;
 
   constructor(
     @Host() @Self() @Optional() private readonly matPag: MatPaginator,
     private elementRef: ElementRef,
-    private ren: Renderer2
-  ) { }
+    private ren: Renderer2,
+    private manageBooksService: ManageBooksService
+  ) {
+    
+    //this.totalItems = this.matPag?.length;
+  }
 
+  ngOnInit() {
+    this.manageBooksService.getTotalItemFromStore().subscribe(val => {
+      this.totalItems = val;
+      console.log('TOTAL ITEM : ', val);
+      this.updateTotalItemsDiv();
+    });
+  }
   ngAfterViewInit(): void {
     this.styleDefaultPagination();
     this.createBubbleDivRef();
     this.renderButtons();
+    
   }
 
-  /**
-   * react on parent component changing the appCustomLength - rerender bubbles
-   */
+  
   ngOnChanges(changes: SimpleChanges): void {
     //console.log("print ", this.currentPageSize);
 
@@ -69,7 +80,8 @@ export class StylePaginatorDirective {
     }
 
     if ('currentPageSize' in changes && !changes['currentPageSize'].firstChange) {
-      this.removeButtons();
+      console.log('dndbd : ' , this.currentPageSize);
+        this.removeButtons();
       this.removeDotsElements();
       this.switchPage(0);
       this.renderButtons();
@@ -96,22 +108,29 @@ export class StylePaginatorDirective {
    * change the active button style to the current one and display/hide additional buttons
    * based on the navigated index
    */
+
   private changeActiveButtonStyles(previousIndex: number, newIndex: number) {
-    const previouslyActive = this.buttonsRef[previousIndex];
-    const currentActive = this.buttonsRef[newIndex];
+    // Ensure the previousIndex and newIndex are within bounds
+    if (previousIndex >= 0 && previousIndex < this.buttonsRef.length) {
+      const previouslyActive = this.buttonsRef[previousIndex];
+      if (previouslyActive) {
+        this.ren.removeClass(previouslyActive, 'g-bubble__active');
+      }
+    }
 
-    // remove active style from previously active button
-    this.ren.removeClass(previouslyActive, 'g-bubble__active');
+    if (newIndex >= 0 && newIndex < this.buttonsRef.length) {
+      const currentActive = this.buttonsRef[newIndex];
+      if (currentActive) {
+        this.ren.addClass(currentActive, 'g-bubble__active');
+      }
+    }
 
-    // add active style to new active button
-    this.ren.addClass(currentActive, 'g-bubble__active');
+    this.buttonsRef.forEach((button) => {
+      if (button) {
+        this.ren.setStyle(button, 'display', 'none');
+      }
+    });
 
-    // hide all buttons
-    this.buttonsRef.forEach((button) =>
-      this.ren.setStyle(button, 'display', 'none')
-    );
-
-    // show N previous buttons and X next buttons
     const renderElements = this.renderButtonsNumber;
     const endDots = newIndex < this.buttonsRef.length - renderElements - 1;
     const startDots = newIndex - renderElements > 0;
@@ -119,33 +138,32 @@ export class StylePaginatorDirective {
     const firstButton = this.buttonsRef[0];
     const lastButton = this.buttonsRef[this.buttonsRef.length - 1];
 
-    // last bubble and dots
     if (this.showLastButton) {
-      this.ren.setStyle(this.dotsEndRef, 'display', endDots ? 'block' : 'none');
-      this.ren.setStyle(lastButton, 'display', endDots ? 'flex' : 'none');
+      if (this.dotsEndRef) {
+        this.ren.setStyle(this.dotsEndRef, 'display', endDots ? 'block' : 'none');
+      }
+      if (lastButton) {
+        this.ren.setStyle(lastButton, 'display', endDots ? 'flex' : 'none');
+      }
     }
 
-    // first bubble and dots
     if (this.showFirstButton) {
-      this.ren.setStyle(
-        this.dotsStartRef,
-        'display',
-        startDots ? 'block' : 'none'
-      );
-      this.ren.setStyle(firstButton, 'display', startDots ? 'flex' : 'none');
+      if (this.dotsStartRef) {
+        this.ren.setStyle(this.dotsStartRef, 'display', startDots ? 'block' : 'none');
+      }
+      if (firstButton) {
+        this.ren.setStyle(firstButton, 'display', startDots ? 'flex' : 'none');
+      }
     }
 
-    // resolve starting and ending index to show buttons
     const startingIndex = startDots ? newIndex - renderElements : 0;
+    const endingIndex = endDots ? newIndex + renderElements : this.buttonsRef.length - 1;
 
-    const endingIndex = endDots
-      ? newIndex + renderElements
-      : this.buttonsRef.length - 1;
-
-    // display starting buttons
     for (let i = startingIndex; i <= endingIndex; i++) {
       const button = this.buttonsRef[i];
-      this.ren.setStyle(button, 'display', 'flex');
+      if (button) {
+        this.ren.setStyle(button, 'display', 'flex');
+      }
     }
   }
 
@@ -234,7 +252,6 @@ export class StylePaginatorDirective {
 
     // if there is only one page, do not render buttons
     if (neededButtons === 1) {
-      this.ren.setStyle(this.elementRef.nativeElement, 'display', 'none');
       return;
     }
 
@@ -376,22 +393,24 @@ export class StylePaginatorDirective {
     // Append the new SVG to the container
     this.ren.appendChild(pageSelectIcon, newSvg);
 
+    //this.setTotalItem();
+    const element = nativeElement.querySelector(
+      '.mat-mdc-paginator-outer-container'
+    );
 
-    //const element = nativeElement.querySelector(
-    //  '.mat-mdc-paginator-outer-container'
-    //);
+    const newDiv = this.ren.createElement('div')
+    const textSpan = this.ren.createElement('span')
+    this.totalItemsDiv = textSpan;
+    const text = this.ren.createText(``);
+    this.ren.appendChild(textSpan, text);
+    this.ren.appendChild(newDiv, textSpan);
+    this.ren.addClass(newDiv, 'total-items');
 
-    //const newDiv = this.ren.createElement('div')
-    //const textSpan = this.ren.createElement('span')
-    //const text = this.ren.createText(`Total Items: ${this.totalItems}`);
-    //this.ren.appendChild(textSpan, text);
-    //this.ren.appendChild(newDiv, textSpan);
-    //this.ren.addClass(newDiv, 'total-items'); 
-
-    //const firstChild = element.firstChild;
+    const firstChild = element.firstChild;
 
 
-    //this.ren.insertBefore(element, newDiv, firstChild);
+    this.ren.insertBefore(element, newDiv, firstChild);
+    
 
   }
 
@@ -402,5 +421,12 @@ export class StylePaginatorDirective {
       this.ren.removeChild(this.bubbleContainerRef, dotsEl);
     });
     this.dotsElements = []; // Clear the array
+  }
+
+
+  private updateTotalItemsDiv(): void {
+    if (this.totalItemsDiv) {
+      this.ren.setProperty(this.totalItemsDiv, 'textContent', `Total Items: ${this.totalItems}`);
+    }
   }
 }

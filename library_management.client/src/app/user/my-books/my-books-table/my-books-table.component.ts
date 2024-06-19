@@ -2,6 +2,7 @@ import { Component, ViewChild, AfterViewInit, Input, SimpleChanges, ElementRef }
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserServiceService } from '../../../shared/services/user-service.service';
+import { ManageBooksService } from '../../../shared/services/manage-books.service';
 
 interface Element {
   bookName: string;
@@ -20,7 +21,10 @@ interface Element {
   styleUrls: ['./my-books-table.component.css']
 })
 export class MyBooksTableComponent {
-  constructor(private userservice: UserServiceService) { }
+
+  loading: boolean = true;
+
+  constructor(private userservice: UserServiceService, private manageBooksService: ManageBooksService) { }
 
   userId: any;
   stars: boolean[] = [];
@@ -28,7 +32,7 @@ export class MyBooksTableComponent {
 
 
   displayedColumns = ['bookName', 'author', 'qrNumber', 'dateOfIssue', 'dateOfReturn', 'rating', 'status'];
-  dataSource = new MatTableDataSource<Element>([]);
+  dataSource = new MatTableDataSource<Element>(this.getInitialData());
   
   pageEvent !: PageEvent;
   currentPageSize: number = this.dataSource.paginator?.pageSize == null ? 0 : this.dataSource.paginator?.pageSize;
@@ -40,7 +44,7 @@ export class MyBooksTableComponent {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    this.userId = 'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A';
+    this.userId = '2AC8C146-3276-46FB-8298-40B7A82723F3';
     this.fetchDataFromApi();
   }
 
@@ -56,6 +60,8 @@ export class MyBooksTableComponent {
   }
 
   fetchDataFromApi() {
+    this.loading = true;
+
     this.userservice.getMyBooksMobile(this.userId).subscribe(
       (data) => {
         //console.log('hello : ', data);
@@ -71,6 +77,9 @@ export class MyBooksTableComponent {
         }));
 
         this.dataSource.data = transformedData;
+        this.manageBooksService.setTotalItemFromStore(this.dataSource.data.length);
+        this.loading = false;
+
       },
       (error) => {
         console.error('Error:', error);
@@ -88,5 +97,18 @@ export class MyBooksTableComponent {
       default:
         return '';
     }
+  }
+
+  getInitialData(): Element[] {
+    return Array.from({ length: 10 }, (_, i) => ({
+      bookName: 'Loading...',
+      author: 'Loading...',
+      qrNumber: 'Loading...',
+      dateOfIssue: 'Loading...',
+      dateOfReturn: 'Loading...',
+      rating: 0,
+      status: 'Loading...',
+      image:''
+    }));
   }
 }

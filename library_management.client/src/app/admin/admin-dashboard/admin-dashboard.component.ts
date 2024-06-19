@@ -15,7 +15,8 @@ export class AdminDashboardComponent {
 
   selectedBook: any;
   dataLoaded = false;
-
+  placeholderArray = new Array(10);
+  isMobile = false;
   totalbooks: any;
   issuebooks: any;
   constructor(private router: Router, private AdminService: AdminServiceService, private explorebook: ExploreBooksService) { }
@@ -27,6 +28,11 @@ export class AdminDashboardComponent {
     } else {
 
       this.openModalAdd();
+    }
+  }
+  handlesize() {
+    if (window.innerWidth <= 500) {
+      this.isMobile = true;
     }
   }
 
@@ -71,7 +77,8 @@ export class AdminDashboardComponent {
       this.topChoicesBookData();
 
     });
-   
+    
+    this.handlesize();
   }
 
   gettotalcount() {
@@ -172,7 +179,7 @@ export class AdminDashboardComponent {
 
 
   checkDataLoaded() {
-    if (this.totalbooks && this.issuebooks && this.mostPopularBooks.length > 0) {
+    if (this.totalbooks >=0 && this.issuebooks >= 0 && this.mostPopularBooks.length > 0) {
       this.dataLoaded = true;
     }
   }
@@ -181,5 +188,10 @@ export class AdminDashboardComponent {
   get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
+  openModalissue(): void {
+
+    $('#success').modal('show');
+  }
+
 }
 

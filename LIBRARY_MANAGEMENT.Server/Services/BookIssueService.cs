@@ -89,7 +89,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                     from u in uGroup.DefaultIfEmpty()
                                     join c in _context.Comments on bi.Id equals c.bookIssueId into cGroup
                                     from c in cGroup.DefaultIfEmpty()
-                                    where m.Qrnumber == qrNumber
+                                    where m.Qrnumber == qrNumber && bi.ReceiveDate == null
                                     select new BookDetailsDTO
                                     {
                                         Id = b.Id,
@@ -97,12 +97,29 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                                         AuthorName = b.AuthorBooks.Select(ab => ab.Author.AuthorName).ToList(),
                                         BookQrMappingId = m.Id,
                                         image = b.imageData,
-                                        IssueTo = bi != null ? u.FirstName + " " + u.LastName : null,
+                                        IssueTo = u.FirstName + " " + u.LastName,
                                         IssueDate = bi.IssueDate,
                                         ReturnDate = bi.ReturnDate,
                                         BookIssueId = bi.Id,
-                                        Comment = c != null ? c.Description : null  // Assuming `CommentText` is the field in `Comments` table
+                                        Comment = c != null ? c.Description : null
                                     }).FirstOrDefaultAsync();
+
+                if(result == null)
+                {
+                    result = await (from b in _context.Books
+                                     .Include(b => b.AuthorBooks)
+                                        .ThenInclude(ab => ab.Author)
+                                    join m in _context.BookQrMappings on b.Id equals m.BookId
+                                    where m.Qrnumber == qrNumber
+                                    select new BookDetailsDTO
+                                    {
+                                        Id = b.Id,
+                                        Title = b.Title,
+                                        AuthorName = b.AuthorBooks.Select(ab => ab.Author.AuthorName).ToList(),
+                                        BookQrMappingId = m.Id,
+                                        image = b.imageData
+                                    }).FirstOrDefaultAsync();
+                }
 
                 return result;
             }
@@ -213,7 +230,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             try
             {
                 var bookIssueId = await _context.BookIssues
-                    .Where(a => a.BookQrMappingid == bookIssueDTO.BookQrMappingId)
+                    .Where(a => a.BookQrMappingid == bookIssueDTO.BookQrMappingId && a.ReceiveDate == null)
                     .Select(a => a.Id)
                     .FirstOrDefaultAsync();
 

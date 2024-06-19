@@ -2,17 +2,23 @@
 
 <div class="permissions-panel-container">
   <div class="permissions-panel-header">
+    <div *ngIf="!selectedAdmin" class="admin-name" >
+      <ngx-skeleton-loader count="1" appearance="circle" />
+      <div class="admin-name-id">
+        <ngx-skeleton-loader [theme]="{'height' : '20px', 'width':'100px', 'margin-top': '5px'}" />
+      </div>
+    </div>
     <div class="admin-name" *ngIf="selectedAdmin">
-      <ngx-avatars  name="{{selectedAdmin.firstName}} {{selectedAdmin.lastName}}" [textSizeRatio]=2.7 bgColor=#b8dde1 fgColor=#264f9d [round]="true" size="35" [style.fontWeight]="'501'" [style.fontSize]="'0.0.875rem'" [style.color]="'#002C3F'"></ngx-avatars>
+      <ngx-avatars name="{{selectedAdmin.firstName}} {{selectedAdmin.lastName}}" [textSizeRatio]=2.7 bgColor=#b8dde1 fgColor=#264f9d [round]="true" size="35" [style.fontWeight]="'501'" [style.fontSize]="'0.0.875rem'" [style.color]="'#002C3F'"></ngx-avatars>
 
       <div class="admin-name-id">
         <span *ngIf="selectedAdmin" class="name">{{selectedAdmin.firstName}} {{selectedAdmin.lastName}}</span>
       </div>
     </div>
-   
+
     <div class="status-toggle">
       <span>Status</span>
-     
+
       <label class="switch">
         <input type="checkbox" [(ngModel)]="isToggleChecked" data-toggle="modal" data-target="#revokeRoleModal">
         <span class="slider round"></span>
