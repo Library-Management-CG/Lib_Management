@@ -76,6 +76,7 @@ export class AddBookMobileComponent {
   }
 
   Back() {
+    this.Reset();
     this.router.navigate(['/admin']);
   }
 
@@ -87,7 +88,7 @@ export class AddBookMobileComponent {
 
   Reset() {
     this.exploreService.resetBook();
-
+    this.exploreService.resetQrCode();
   }
 
   Add() {
@@ -114,12 +115,13 @@ export class AddBookMobileComponent {
 
         console.error('Error posted');
 
-        this.Reset();
+        this.Reset();        
         this.exploreService.successIssue = false;
         this.stepperIndex = 0;
         this.router.navigate(['/admin/success-mobile']);
       },
       (error: any) => {
+        this.Reset();
         console.error('Error posting:', error);
       }
     );
