@@ -1,4 +1,4 @@
-<div *ngIf="globalValue" class="modal fade" id="successadd" tabindex="-1" role="dialog" aria-labelledby="success" aria-hidden="true" data-bs-dismiss="modal">
+<div *ngIf="!globalValue" class="modal fade" id="successadd" tabindex="-1" role="dialog" aria-labelledby="success" aria-hidden="true" data-bs-dismiss="modal">
   <div class="modal-dialog modal-dialog-centered outer" role="document">
     <div class="modal-content outer">
       <div class="modal-header success-modal-header">
@@ -64,7 +64,7 @@
 
 
 
-<div *ngIf="!globalValue" class="modal fade" id="successadd" tabindex="-1" role="dialog" aria-labelledby="success" aria-hidden="true" data-bs-dismiss="modal">
+<div *ngIf="globalValue" class="modal fade" id="successadd" tabindex="-1" role="dialog" aria-labelledby="success" aria-hidden="true" data-bs-dismiss="modal">
   <div class="modal-dialog modal-dialog-centered outer" role="document">
     <div class="modal-content outer">
       <div class="modal-header success-modal-header">
