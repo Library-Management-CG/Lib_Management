@@ -188,5 +188,10 @@ export class AdminDashboardComponent {
   get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
+  openModalissue(): void {
+
+    $('#success').modal('show');
+  }
+
 }
 

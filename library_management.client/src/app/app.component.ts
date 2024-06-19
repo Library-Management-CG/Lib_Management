@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     const user = {
       firstName: 'John',
       lastName: 'Doe',
-      role: 'User'
+      role: 'Admin'
     };
 
     localStorage.setItem('user', JSON.stringify(user));
