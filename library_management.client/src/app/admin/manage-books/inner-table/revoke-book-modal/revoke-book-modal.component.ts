@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { ManageBooksService } from '../../../../shared/services/manage-books.service';
 
 
@@ -16,12 +16,18 @@ export class RevokeBookModalComponent {
   condition: string = '';
   commentDescription: string = '';
   updatedBy: any;
-  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService) { }
+  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService) {
+    this.bookReceived != '';
+  }
 
   ngOnInit(): void {
     
     this.updatedBy = 'D3326D5F-8DA8-4F59-A7D7-0474B2B3BC8A';
 
+  }
+
+  hello() {
+    console.log(this.bookReceived);
   }
 
   onSubmit(): void {
