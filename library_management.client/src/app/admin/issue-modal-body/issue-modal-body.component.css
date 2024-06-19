@@ -537,7 +537,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     gap: 1.5rem;
   }
 
-
+  .header-text{
+      width: 14rem;
+  }
 
   .issue-button-mobile {
     display: flex;
@@ -555,6 +557,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    border: none;
+    cursor: pointer;
   }
   .form-component{
       margin-top: 4rem;
@@ -598,11 +602,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   .bookImage {
-    height: 100%;
+    /*height: 100%;
+    width: auto;
+    border-radius: 0.58475rem;*/
+    /*position: absolute;*/
+    /*right: 0.1rem;*/
     width: auto;
     border-radius: 0.58475rem;
-    /*position: absolute;*/
     right: 0.1rem;
+    display: flex;
+    position: absolute;
   }
 
   .body {
