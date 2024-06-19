@@ -179,7 +179,7 @@ export class AdminDashboardComponent {
 
 
   checkDataLoaded() {
-    if (this.totalbooks && this.issuebooks && this.mostPopularBooks.length > 0) {
+    if (this.totalbooks >=0 && this.issuebooks >= 0 && this.mostPopularBooks.length > 0) {
       this.dataLoaded = true;
     }
   }

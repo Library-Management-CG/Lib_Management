@@ -87,6 +87,8 @@ export class SuccessModalComponent {
         response => {
           console.log('Book revoked successfully', response);
           this.manageBooksService.notifyBookDataChanged();
+          this.exploreBooksService.settotalbooks(response);
+
           this.commentDescription = '';
           this.bookReceived = '';
           this.condition = '';

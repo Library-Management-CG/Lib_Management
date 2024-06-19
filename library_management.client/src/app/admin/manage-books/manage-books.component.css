@@ -95,6 +95,7 @@
   border: 1px solid #28519E;
   outline: none;
   cursor: pointer;
+  background-color: #ffff;
 }
 
 .issue-book-button span {

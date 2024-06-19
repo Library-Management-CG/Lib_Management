@@ -2,6 +2,7 @@ import { Component, ViewChild, AfterViewInit, Input, SimpleChanges, ElementRef }
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserServiceService } from '../../../shared/services/user-service.service';
+import { ManageBooksService } from '../../../shared/services/manage-books.service';
 
 interface Element {
   bookName: string;
@@ -23,7 +24,7 @@ export class MyBooksTableComponent {
 
   loading: boolean = true;
 
-  constructor(private userservice: UserServiceService) { }
+  constructor(private userservice: UserServiceService, private manageBooksService: ManageBooksService) { }
 
   userId: any;
   stars: boolean[] = [];
@@ -76,6 +77,7 @@ export class MyBooksTableComponent {
         }));
 
         this.dataSource.data = transformedData;
+        this.manageBooksService.setTotalItemFromStore(this.dataSource.data.length);
         this.loading = false;
 
       },

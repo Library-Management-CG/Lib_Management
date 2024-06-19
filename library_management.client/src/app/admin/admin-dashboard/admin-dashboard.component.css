@@ -131,6 +131,8 @@
   margin-top: 1rem;
   margin-left: 0.7rem;
   width: 90%;
+  border: none;
+  outline: none;
 }
 
 .issue-button {
@@ -146,6 +148,8 @@
   margin-top: 1rem;
   margin-left: 0.7rem;
   width: 90%;
+  border: none;
+  outline: none;
 }
 
 .add-button img, .issue-button img {
