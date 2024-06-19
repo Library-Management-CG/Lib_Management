@@ -463,9 +463,9 @@ export class IssueModalBodyComponent {
   }
 
   onSubmit() {
+    this.exploreBooksService.setSuccessIssue(false);
     this.issueBookForm.get('createdBy')?.setValue('1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
-    this.exploreBooksService.successIssue = true;
 
     if (this.nextValidation()) {
       this.AdminService.issueBook(this.issueBookForm.value).subscribe(
@@ -485,9 +485,9 @@ export class IssueModalBodyComponent {
     }
   }
   onSubmitMobile() {
+    this.exploreBooksService.setSuccessIssue(false);
     this.issueBookForm.get('createdBy')?.setValue('1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
-    this.exploreBooksService.successIssue = true;
 
     if (this.nextValidation()) {
       this.AdminService.issueBook(this.issueBookForm.value).subscribe(

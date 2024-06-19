@@ -1,6 +1,7 @@
-<app-revoke-book-modal [bookIssueId]="bookData?.bookIssueId"></app-revoke-book-modal>
-<app-comments-modal [bookQrMappingId]="bookData?.bookQrMappingId"></app-comments-modal>
-<app-archive-modal [bookName]="bookName" [bookData] ="bookData" [isArchive] ="isArchive"></app-archive-modal>
+<!--<app-revoke-book-modal [bookIssueId]="bookData?.bookIssueId"></app-revoke-book-modal>-->
+<app-success-modal [bookIssue]="bookData?.bookIssueId"></app-success-modal>
+  <app-comments-modal [bookQrMappingId]="bookData?.bookQrMappingId"></app-comments-modal>
+  <app-archive-modal [bookName]="bookName" [bookData]="bookData" [isArchive]="isArchive"></app-archive-modal>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -66,7 +67,7 @@
     <td mat-cell *matCellDef="let element">
       <div class="action-cell">
         <div class="revoke-icon">
-          <button type="button" class="revoke-modal-button" data-toggle="modal" data-target="#revokeBookModal" (click)="bookData = element" [disabled]="isBookIssued(element)==false">
+          <button type="button" class="revoke-modal-button" data-toggle="modal" data-target="#success" (click)="bookData = element" [disabled]="isBookIssued(element)==false">
             <img src="../../../../assets/icons/manage-books/revoke-enabled.svg" />
           </button>
         </div>

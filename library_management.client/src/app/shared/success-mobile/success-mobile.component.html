@@ -1,4 +1,4 @@
-<div *ngIf="!globalValue" class="content">
+<div *ngIf="globalValue" class="content">
   <div class="animation">
 
     <ng-lottie [options]="options"></ng-lottie>
@@ -31,7 +31,7 @@
 
 
 
-<div *ngIf="globalValue" class="content">
+<div *ngIf="!globalValue" class="content">
   <div class="animation">
 
     <ng-lottie [options]="options"></ng-lottie>
@@ -39,11 +39,11 @@
   </div>
   <div class="add-book-message">
     <div class="add-book-message-text">
-      <div class="row-1">
+      <div class="row-1-issue">
         Book Issued!
       </div>
-      <div class="row-2-outer">
-        <div class="row-2">
+      <div class="row-2-outer-issue">
+        <div class="row-2-issue">
           Relax! Now you can read the book anywhere.
         </div>
       </div>

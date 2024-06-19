@@ -224,7 +224,7 @@
 .cust {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
   .custom-form-group input {
@@ -499,7 +499,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .date-container {
-  width: 9.8rem !important;
+  width: 10rem !important;
 }
 
 .issue-button-mobile {
@@ -532,12 +532,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   .cust {
-    display:inline;
+    display: flex;
     flex-direction: row;
-    gap: 1.5rem;
+    gap: 1rem;
   }
-
-
 
   .issue-button-mobile {
     display: flex;
@@ -555,6 +553,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    border: none;
+    cursor: pointer;
   }
   .form-component{
       margin-top: 4rem;
@@ -598,11 +598,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   .bookImage {
-    height: 100%;
+    /*height: 100%;
+    width: auto;
+    border-radius: 0.58475rem;*/
+    /*position: absolute;*/
+    /*right: 0.1rem;*/
     width: auto;
     border-radius: 0.58475rem;
-    /*position: absolute;*/
     right: 0.1rem;
+    display: flex;
+    position: absolute;
   }
 
   .body {
@@ -615,5 +620,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   .date-container {
     width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .footer-buttons[_ngcontent-ng-c319162617] {
+    position: absolute;
+    display: flex;
+    direction: row;
+    flex-direction: row;
+    width: 15rem;
+    top: -13.5rem;
+    left: 8.4rem;
+  }
+}
+@media only screen and (min-width: 1439px) {
+  .footer-buttons[_ngcontent-ng-c319162617][_ngcontent-ng-c319162617] {
+    position: absolute;
+    display: flex;
+    direction: row;
+    flex-direction: row;
+    width: 15rem;
+    top: -16.5rem;
+    left: 8.4rem;
   }
 }

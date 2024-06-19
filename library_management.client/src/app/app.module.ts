@@ -69,7 +69,6 @@ import { CaptureMobileComponentComponent } from './admin/capture/capture-mobile-
 import { MyBooksTableComponent } from './user/my-books/my-books-table/my-books-table.component';
 import { SingleCommentComponent } from './admin/manage-books/inner-table/comments-modal/single-comment/single-comment.component';
 import { TurncatePipe } from './turncate.pipe';
-import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
 import { RatingInnerContentComponent } from './user/rating-dropdown/rating-inner-content/rating-inner-content.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
@@ -77,6 +76,7 @@ import { RevokePermissionModalComponent } from './shared/components/revoke-permi
 import { SuccessAddBookComponent } from './admin/success-add-book/success-add-book.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { RevokeMobileComponent } from './shared/revoke-mobile/revoke-mobile.component';
+import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 

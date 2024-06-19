@@ -115,7 +115,7 @@ export class AddBookMobileComponent {
         console.error('Error posted');
 
         this.Reset();
-        this.exploreService.successIssue = false;
+        this.exploreService.setSuccessIssue(true);
         this.stepperIndex = 0;
         this.router.navigate(['/admin/success-mobile']);
       },
