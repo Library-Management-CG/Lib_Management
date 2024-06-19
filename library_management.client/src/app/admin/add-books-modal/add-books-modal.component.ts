@@ -191,9 +191,9 @@ export class AddBooksModalComponent {
   }
 
   
-  reset() {
-    this.stepperIndex = 0;
-  }
+  //reset() {
+  //  this.stepperIndex = 0;
+  //}
 
   //increment() {
   //  console.log("qwertyuiopoiuytrewq", this.addBook);
@@ -337,6 +337,8 @@ export class AddBooksModalComponent {
 
   Reset() {
     this.exploreService.resetBook();
+    this.exploreService.resetQrCode();
+    this.stepperIndex = 0;
   }
 
   openModal(): void {
