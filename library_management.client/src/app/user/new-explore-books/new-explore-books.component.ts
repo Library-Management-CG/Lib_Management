@@ -55,12 +55,12 @@ export class NewExploreBooksComponent {
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
     if (this.shouldLoadData() && !this.loading && this.stopInfinite) {
-      setTimeout(() => {
+      //setTimeout(() => {
         this.infinite = true;
-      }, 1000)
-      setTimeout(() => {
-        this.infinite = false;
-      },2000)
+      //}, 1000)
+      //setTimeout(() => {
+      //  this.infinite = false;
+      //},2000)
       
       this.pageNumber++;
       this.loading = true;
@@ -73,10 +73,10 @@ export class NewExploreBooksComponent {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-    if (this.infinite) {
-      return scrollPosition + windowHeight >= documentHeight+200;
-    }
-    return scrollPosition + windowHeight >= documentHeight;
+    //if (this.infinite) {
+    //  return scrollPosition + windowHeight >= documentHeight+200;
+    //}
+    return scrollPosition + windowHeight >= documentHeight-10;
   }
 
   exploreBookData() {
@@ -89,6 +89,7 @@ export class NewExploreBooksComponent {
     this.user.explorebooks(pageDetails).subscribe(
       (data) => {
         if (data.length == 0) {
+          console.log(data);
           this.stopInfinite = false;
         }
         this.infinite = false;

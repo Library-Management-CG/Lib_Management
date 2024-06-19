@@ -15,18 +15,19 @@
 }
 
 .body {
-  height: 34rem !important;
-  position: relative;
-}
+  height: auto;
+/*  position: relative;
+*/}
 
 .issue-body {
-  height: 34rem !important;
-  position: relative;
-}
+  height: auto;
+/*  position: relative;
+*/}
 
 .footer {
-  position: fixed;
-  bottom: 1rem;
+ /* position: fixed;
+  bottom: 1rem;*/
+float:right;
 }
 
 .footer-buttons-issued {
@@ -61,13 +62,15 @@
 }
 
 .footer-buttons {
-  position: absolute;
-  display: flex;
-  direction: row;
+/*  position: absolute;
+*/  display: flex;
   flex-direction: row;
-  width: 15rem;
+  margin-top:2rem;
+/*  align-content:flex-end;
+*/  /*margin-left:60%;*/
+/*  width: 15rem;
   top: -2.5rem;
-  left: 8.4rem;
+  left: 8.4rem;*/
 }
 
 .row-modal {

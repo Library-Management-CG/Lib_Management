@@ -158,8 +158,8 @@
               </ng-select>
 
               <!--<ng-select formControlName="issueTo" class="custom se" placeholder="Select User">
-                <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
-              </ng-select>-->
+          <ng-option *ngFor="let user of totalusers" [value]="user.id">{{ user.fullName}}</ng-option>
+        </ng-select>-->
 
 
 
@@ -247,6 +247,7 @@
           </div>
         </form>
         <div *ngIf="showErrorMessage && mappedBook?.issueTo == null" class="validation-alert">Highlighted Fields are mandatory</div>
+
         <div class="footer ">
           <div class="row footer-buttons ">
             <div class="col-buttons">
