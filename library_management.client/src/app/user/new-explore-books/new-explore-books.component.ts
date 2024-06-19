@@ -14,7 +14,7 @@ export class NewExploreBooksComponent {
   infinite: boolean = false;
   filteredexploreBooks: any[] = [];
   placeholderArray = new Array(10);
-
+  isMobile = false;
   dataLoaded = false;
 
   exploreBooks: any[] = [];
@@ -45,7 +45,7 @@ export class NewExploreBooksComponent {
         this.exploreBookData(); // For example, reload all explore books
       }
     });
-
+    this.handlesize();
    
   }
 
@@ -172,7 +172,11 @@ export class NewExploreBooksComponent {
       this.dataLoaded = true;
     }
   }
-
+  handlesize() {
+    if (window.innerWidth <= 500) {
+      this.isMobile = true;
+    }
+  }
 
 
 }

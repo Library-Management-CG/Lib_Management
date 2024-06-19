@@ -14,8 +14,12 @@
 
 
   <div class="recently-issue" *ngIf="hasBookWithReturn()">Recently Issued</div>
+  
   <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
-    <div *ngIf="book. returnDate==null">
+    <div *ngIf="!dataLoaded  && book. returnDate==null">
+      <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '220px' }"></ngx-skeleton-loader>
+    </div>
+    <div *ngIf="book. returnDate==null && dataLoaded">
       <app-my-books-card-mobile [books]="book"></app-my-books-card-mobile>
     </div>
   </div>
@@ -23,9 +27,12 @@
     <p class="no-books-tag">No Books Found</p>
   </div>
   <div class="recently-issue" *ngIf="hasBooksWithReturnDate()">Previously Issued</div>
-
+ 
   <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
-    <div *ngIf="book. returnDate!=null">
+    <div *ngIf="!dataLoaded && book. returnDate!=null">
+      <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '220px' }"></ngx-skeleton-loader>
+    </div>
+    <div *ngIf="book. returnDate!=null && dataLoaded">
       <app-my-books-card-mobile [books]="book"></app-my-books-card-mobile>
     </div>
   </div>

@@ -78,6 +78,16 @@
   padding-right: 2rem;
   gap: 2rem;
 }
+.mobile_loader {
+  /* display: flex !important;
+  width: 100%;
+  border: 1px solid black;
+  justify-content: space-between !important;*/
+  padding-top: 2rem;
+  margin-left:0.2rem;
+  width:100vw;
+  justify-content:space-between;
+}
 
 .loader-skeleton-inner {
   text-align: center;
