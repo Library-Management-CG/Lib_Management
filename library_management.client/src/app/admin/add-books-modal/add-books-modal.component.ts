@@ -336,9 +336,19 @@ export class AddBooksModalComponent {
   }
 
   Reset() {
+    $('#exampleModalCenter').modal('hide');
     this.exploreService.resetBook();
     this.exploreService.resetQrCode();
-    this.stepperIndex = 0;
+    //this.stepperIndex = 0;
+    this.exploreService.setaddBookPage(0);
+    
+  }
+
+  Cancel() {
+    $('#exampleModalCenter').modal('hide');
+    this.exploreService.resetBook();
+    this.exploreService.resetQrCode();
+    this.exploreService.setaddBookPage(0);
   }
 
   openModal(): void {

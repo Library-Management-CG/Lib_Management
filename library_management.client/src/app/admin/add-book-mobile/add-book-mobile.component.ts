@@ -89,6 +89,7 @@ export class AddBookMobileComponent {
   Reset() {
     this.exploreService.resetBook();
     this.exploreService.resetQrCode();
+    this.exploreService.setaddBookPage(0);
   }
 
   Add() {

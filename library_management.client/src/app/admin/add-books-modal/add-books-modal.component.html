@@ -13,7 +13,7 @@
           </div>
         </div>
         <div (click)="Reset()" class="cross">
-          <img src="../../../assets/icons/add-books-modal/X.svg" data-bs-dismiss="modal" />
+          <img src="../../../assets/icons/add-books-modal/X.svg" data-dismiss="modal" />
         </div>
 
 
@@ -38,7 +38,7 @@
       </div>
       <div class="modal-footer add-book-footer">
         <div class="right-button">
-          <div *ngIf="stepperIndex==0" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close" (click)="Reset()">
+          <div *ngIf="stepperIndex==0" class="cancel-btn" data-dismiss="modal" aria-label="Close" (click)="Reset()">
             <div class="cancel-text">
               Cancel
             </div>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="right-button-left">
-          <div *ngIf="stepperIndex==1" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close" (click)="Reset()">
+          <div *ngIf="stepperIndex==1" class="cancel-btn" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close" (click)="Cancel()">
             <div class="cancel-text">
               Cancel
             </div>
@@ -64,7 +64,7 @@
               Next
             </div>
           </div>
-          <div *ngIf="stepperIndex==1" class="next-button" data-bs-dismiss="modal" data-toggle="modal" (click)="addBookRequest()"
+          <div *ngIf="stepperIndex==1" class="next-button" data-dismiss="modal" data-toggle="modal" (click)="addBookRequest()"
                [ngClass]="{'empty-qrCodes': isAnyQrValueEmpty()}"
                >
             <div class="next-text">

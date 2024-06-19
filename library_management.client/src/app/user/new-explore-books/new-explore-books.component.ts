@@ -76,7 +76,7 @@ export class NewExploreBooksComponent {
     //if (this.infinite) {
     //  return scrollPosition + windowHeight >= documentHeight+200;
     //}
-    return scrollPosition + windowHeight >= documentHeight;
+    return scrollPosition + windowHeight >= documentHeight-10;
   }
 
   exploreBookData() {
