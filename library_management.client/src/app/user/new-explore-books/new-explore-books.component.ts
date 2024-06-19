@@ -60,12 +60,15 @@ export class NewExploreBooksComponent {
       //}, 1000)
       //setTimeout(() => {
       //  this.infinite = false;
-      //},2000)
+      //},000)
       
       this.pageNumber++;
       this.loading = true;
       //console.log(this.pageNumber);
-       this.exploreBookData();
+      setTimeout(() => {
+        this.exploreBookData();
+      },500)
+       
     }
   }
 
@@ -76,7 +79,7 @@ export class NewExploreBooksComponent {
     //if (this.infinite) {
     //  return scrollPosition + windowHeight >= documentHeight+200;
     //}
-    return scrollPosition + windowHeight >= documentHeight;
+    return scrollPosition + windowHeight >= documentHeight-20;
   }
 
   exploreBookData() {
