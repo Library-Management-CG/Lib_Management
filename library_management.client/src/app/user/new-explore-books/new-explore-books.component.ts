@@ -43,8 +43,7 @@ export class NewExploreBooksComponent {
       if (filterValue) {
         this.filterExploreBooks(filterValue);
       } else {
-        // Reset the filter or apply a default filter logic
-        this.exploreBookData(); // For example, reload all explore books
+        this.exploreBookData(); 
       }
     });
 
@@ -65,7 +64,7 @@ export class NewExploreBooksComponent {
       
       this.pageNumber++;
       this.loading = true;
-      console.log(this.pageNumber);
+      //console.log(this.pageNumber);
        this.exploreBookData();
     }
   }

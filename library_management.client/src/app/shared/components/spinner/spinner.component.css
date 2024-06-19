@@ -23,6 +23,16 @@
   animation: dash 1.6s linear infinite;
 }
 
+.loader-container {
+  display: flex;
+  position: absolute;
+  margin-top: 116vh;
+  justify-content: center;
+  align-items: center;
+  margin-left: 45%;
+}
+
+
 /*.loader-container {
   display: flex;
   justify-content: center;
