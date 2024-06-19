@@ -94,7 +94,8 @@
                           <span class="card-name-span">{{ user.firstName }} {{ user.lastName }}</span>
                           <div class="card-book">
                             <img src="../../../assets/icons/card-book.svg" />
-                            <span class="card-book-span">{{user.bookCount !=0?user.bookCount.toString().padStart(2, '0'):0 }} Books</span>                          </div>
+                            <span class="card-book-span">{{user.bookCount !=0?user.bookCount.toString().padStart(2, '0'):0 }} Books</span>
+                          </div>
                         </div>
                       </div>
                       <img *ngIf="i < 3" src="../../../assets/icons/trophy 1.svg" class="trophy" />
@@ -121,7 +122,7 @@
 
   </div>
 </div>
-
+</div>
 
 
 

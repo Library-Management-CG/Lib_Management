@@ -21,8 +21,12 @@ export class ExploreBooksService {
   private apiUrl = this.config.apiUrl;
   constructor(private http: HttpClient, private config: ConfigServiceService,private userService: UserServiceService) { }
 
-  public successIssue: boolean = true;
+  private successIssueSubject = new BehaviorSubject<boolean>(true);
+  successIssue$ = this.successIssueSubject.asObservable();
 
+  setSuccessIssue(value: boolean): void {
+    this.successIssueSubject.next(value);
+  }
 
   private filterValueSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public filterValue$: Observable<string> = this.filterValueSubject.asObservable();
@@ -202,4 +206,19 @@ export class ExploreBooksService {
     this.ratingArraySource.next(books);
   }
 
+
+  
+
+  //private qrExistSource = new BehaviorSubject<boolean>(false);
+  //qrExist$ = this.qrExistSource.asObservable();
+
+
+  //setqrExist(value: boolean): void {
+  //  this.isToggleCheckedSource.next(value);
+  //}
+
+  //toggleQr(): void {
+  //  const currentValue = this.isToggleCheckedSource.value;
+  //  this.isToggleCheckedSource.next(!currentValue);
+  //}
 }

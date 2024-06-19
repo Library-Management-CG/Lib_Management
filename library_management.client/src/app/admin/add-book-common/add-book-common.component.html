@@ -138,9 +138,10 @@
             <div class="scan-book-text">
               {{ 'Book ' + (i+1) }}
             </div>
-            <div  *ngIf="car.value != ''" class="scan-book-text-subheading">
+            <div *ngIf="car.value != ''" class="scan-book-text-subheading">
               {{car}}
             </div>
+            <span class="error-message" *ngIf="showError(car)">Error: Your error message here</span>
           </div>
 
         </div>

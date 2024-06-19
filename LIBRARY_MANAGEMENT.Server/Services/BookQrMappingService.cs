@@ -12,6 +12,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         Task ArchiveBookQrMapping(ArchiveBookQrMappingInputDTO inputDTO);
         Task RevokeBook(RevokeBookInputDTO inputDTO);
+
+        Task<List<string>> qrListService();
     }
 
     public class BookQrMappingService: IBookQrMappingService
@@ -214,5 +216,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         }
 
+
+        public async Task<List<string>> qrListService()
+        {
+            List<string> qrList = await _context.BookQrMappings.Select(book => book.Qrnumber).ToListAsync();
+            return qrList;
+        }
     }
 }

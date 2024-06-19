@@ -4,6 +4,7 @@ using LIBRARY_MANAGEMENT.Server.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ProjectServer.Client;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LIBRARY_MANAGEMENT.Server.Controllers
@@ -29,7 +30,17 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             try
             {
-                Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
+                for (int i = 0; i < books.qr.Count(); i++)
+                {
+                    string qr = books.qr[i];
+                    var dbCheck = await _context.BookQrMappings
+                                  .FirstOrDefaultAsync(bqr => bqr.Qrnumber == qr);
+                    if (dbCheck != null)
+                    {
+                        return BadRequest();
+                    }
+                }
+                    Book check = await _context.Books.Where(b => b.Isbn == books.ISBN).FirstOrDefaultAsync();
                 if (check == null)
                 {
                     await _bookService.AddNewBooks(books);
@@ -64,10 +75,10 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         {
             return await _bookService.topChoices();
         }
-        [HttpGet("exploreBook")]
-        public async Task<List<ExploreBookDTO>> exploreBook()
+        [HttpPost("exploreBook")]
+        public async Task<List<ExploreBookDTO>> exploreBook([FromBody] pageDetailsDTO pageDetails)
         {
-            return await _bookService.exploreBook();
+            return await _bookService.exploreBook(pageDetails.pageNumber, pageDetails.pageSize);
         }
 
 

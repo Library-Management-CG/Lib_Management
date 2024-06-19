@@ -3,13 +3,21 @@
 <div class="container-fluid background">
   <div class="header">
     <span class="scan-book-text">Scan Book</span>
+
     <img class="close" src="../../../../assets/icons/scanner/Close.svg" (click)=" closePage()" />
+  </div>
+  <div class="selected_box">
+    <select #select1 (change)="action.playDevice(select1.value)" class="form-select form-select-md select_value">
+      <option [value]="null" selected>Select device</option>
+      <option *ngFor="let c of action.devices.value; let i = index" [value]="c.deviceId" [selected]="i == action.deviceIndexActive">{{c.label}}</option>
+    </select>
   </div>
   <div class="border-scan ">
     <ngx-scanner-qrcode #action="scanner"></ngx-scanner-qrcode>
-    <img src="../../../../assets/icons/scanner/border-scan.svg" id="scanner-border" />
+
+    <!--<img src="../../../../assets/icons/scanner/border-scan.svg" id="scanner-border" />-->
   </div>
- 
+
   <!--<div class="footer">
     <span class="text">Align to the QR code to fill inside the frame</span>
     <button (click)="toggleScanner()" type="button" class="btn btn-primary scan-button">
