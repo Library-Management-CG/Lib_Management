@@ -14,6 +14,8 @@ export class NewExploreBooksComponent {
   infinite: boolean = false;
   filteredexploreBooks: any[] = [];
 
+  stopInfinite: boolean = true;
+
   dataLoaded = false;
 
   exploreBooks: any[] = [];
@@ -29,6 +31,7 @@ export class NewExploreBooksComponent {
     this.filteredexploreBooks = this.exploreBooks;
 
   };
+  loading: boolean = false;
   isChecked: boolean = false;
 
 
@@ -52,10 +55,17 @@ export class NewExploreBooksComponent {
 
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
-    if (this.shouldLoadData()) {
-      this.infinite = true;
+    if (this.shouldLoadData() && !this.loading && this.stopInfinite) {
+      setTimeout(() => {
+        this.infinite = true;
+      }, 1000)
+      setTimeout(() => {
+        this.infinite = false;
+      },2000)
+      
       this.pageNumber++;
-      //console.log(this.pageNumber);
+      this.loading = true;
+      console.log(this.pageNumber);
        this.exploreBookData();
     }
   }
@@ -64,8 +74,37 @@ export class NewExploreBooksComponent {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-
+    if (this.infinite) {
+      return scrollPosition + windowHeight >= documentHeight+200;
+    }
     return scrollPosition + windowHeight >= documentHeight;
+  }
+
+  exploreBookData() {
+
+    const pageDetails = {
+      pageNumber: this.pageNumber,
+      pageSize: parseInt('10', 10)
+    }
+
+    this.user.explorebooks(pageDetails).subscribe(
+      (data) => {
+        if (data.length == 0) {
+          this.stopInfinite = false;
+        }
+        this.infinite = false;
+        this.exploreBooks = this.exploreBooks.concat(data);
+        this.filteredexploreBooks = this.filteredexploreBooks.concat(this.exploreBooks);
+        this.checkDataLoaded();
+        this.loading = false;
+        //console.log(data);
+      },
+      (error) => {
+        this.loading = false;
+        console.error('Error:', error);
+      }
+    );
+
   }
 
 
@@ -97,35 +136,7 @@ export class NewExploreBooksComponent {
   openModaldesc(book: any) {
     this.selectedBook = book;
   }
-
-  //------------------------------------------------------------------------------------------------
-
-  exploreBookData() {
-
-    const pageDetails = {
-      pageNumber: this.pageNumber,
-      pageSize: parseInt('10', 10)
-    }
-
-    this.user.explorebooks(pageDetails).subscribe(
-      (data) => {
-        this.infinite = false;
-
-        this.exploreBooks = this.exploreBooks.concat(data);
-        this.filteredexploreBooks = this.filteredexploreBooks.concat(this.exploreBooks);
-        this.checkDataLoaded();
-
-        //console.log(data);
-      },
-      (error) => {
-        console.error('Error:', error);
-      }
-    );
-
-  }
-
-  //------------------------------------------------------------------------------------------------
-
+  
   availableBookData() {
     this.user.availableExplore().subscribe(
       (data) => {
