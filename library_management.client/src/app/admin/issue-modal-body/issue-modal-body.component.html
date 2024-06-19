@@ -239,7 +239,7 @@
               <div class="cancel-btn" data-bs-dismiss="modal" *ngIf="mappedBook?.issueTo !== null">Cancel</div>
             </div>
             <app-revoke-book-modal [bookIssueId]="mappedBook?.bookIssueId"></app-revoke-book-modal>
-            <app-success-modal></app-success-modal>
+            <app-success-modal ></app-success-modal>
 
             <div class="col-buttons">
               <button class="save-btn-issued " data-toggle="modal" data-bs-dismiss="modal" *ngIf="mappedBook?.issueTo !== null" (click)="handleButton()">Revoke</button>
