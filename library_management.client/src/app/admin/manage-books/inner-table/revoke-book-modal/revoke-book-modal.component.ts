@@ -21,11 +21,9 @@ export class RevokeBookModalComponent {
   }
 
   ngOnInit(): void {
-    
+
     this.updatedBy = '1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20';
 
-  hello() {
-    console.log(this.bookReceived);
   }
 
   onSubmit(): void {

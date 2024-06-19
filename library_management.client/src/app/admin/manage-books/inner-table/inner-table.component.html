@@ -67,7 +67,7 @@
     <td mat-cell *matCellDef="let element">
       <div class="action-cell">
         <div class="revoke-icon">
-          <button type="button" class="revoke-modal-button" data-toggle="modal" data-target="#success" (click)="bookData = element" [disabled]="isBookIssued(element)==false">
+          <button type="button" class="revoke-modal-button" data-toggle="modal" data-target="#success" (click)="setBookIssueId(element)" [disabled]="isBookIssued(element)==false">
             <img src="../../../../assets/icons/manage-books/revoke-enabled.svg" />
           </button>
         </div>

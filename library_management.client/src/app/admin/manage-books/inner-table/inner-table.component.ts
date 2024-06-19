@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ExploreBooksService } from '../../../shared/services/ExploreBooksService';
 declare var $: any;
 
 export interface BookData {
@@ -19,6 +20,8 @@ export interface BookData {
 })
 export class InnerTableComponent implements OnChanges {
 
+  constructor(private exploreBooksService: ExploreBooksService) { }
+
   isArchive: boolean = true;
   @Input() bookDataArray2: BookData[] = [];
   @Input() bookName: string = ''; 
@@ -36,6 +39,10 @@ export class InnerTableComponent implements OnChanges {
 
   isBookIssued(book: any): boolean {
     return book.status.toLowerCase() === 'not available';
+  }
+
+  setBookIssueId(bookDetails : any) {
+    this.exploreBooksService.setMappedBook(bookDetails);
   }
 
   //getInitialData(): BookData[] {

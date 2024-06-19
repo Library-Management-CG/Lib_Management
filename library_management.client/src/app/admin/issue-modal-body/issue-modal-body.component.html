@@ -129,7 +129,7 @@
 
 </div>-->
 <app-success-add-book></app-success-add-book>
-<div [ngClass]="{'issue-body': mappedBook?.issueTo !== null}" class="modal-body body">
+<div [ngClass]="{'issue-body': mappedBook?.bookIssueId !== null}" class="modal-body body">
   <div class="row row-modal">
     <div class="col-md-5 issue-book-header">
       <div class="header-text">
@@ -148,7 +148,7 @@
     <div class="col-md-7 form-col">
       <div class="form-component ">
         <form [formGroup]="issueBookForm">
-          <div *ngIf="mappedBook?.issueTo == null" class="form-group custom-form-group user-search">
+          <div *ngIf="mappedBook?.bookIssueId == null" class="form-group custom-form-group user-search">
             <label for="user">User <span class="asteric">*</span></label>
             <div [class.error-alert-box1]="showErrorMessage && issueBookForm.get('issueTo')?.invalid">
               <ng-select formControlName="issueTo"
@@ -166,13 +166,13 @@
 
             </div>
           </div>
-          <div *ngIf="mappedBook?.issueTo !== null">
+          <div *ngIf="mappedBook?.bookIssueId !== null">
             <div class="issued-to-heading">Issued To</div>
             <div class="issued-to-container">
               {{mappedBook.issueTo}}
             </div>
           </div>
-          <div class="date-container-form" *ngIf="mappedBook?.issueTo == null">
+          <div class="date-container-form" *ngIf="mappedBook?.bookIssueId == null">
             <div class="form-group  custom-form-group ">
               <label for="issueDate">Date of Issue <span class="asteric">*</span></label>
               <div class="custom-date-input date-container date-container-issued">
@@ -189,7 +189,7 @@
             </div>
           </div>
 
-          <div class="date-container-form date-container-inner-form" *ngIf="mappedBook?.issueTo !== null">
+          <div class="date-container-form date-container-inner-form" *ngIf="mappedBook?.bookIssueId !== null">
             <div class="custom-form-group cust ">
               <div class="custom-inner">
                 <label for="issueDate">Date of Issue </label>
@@ -215,11 +215,11 @@
             </div>
 
           </div>
-          <div class="form-alert alert-container" *ngIf="mappedBook?.issueTo == null">
+          <div class="form-alert alert-container" *ngIf="mappedBook?.bookIssueId == null">
             <img src="../../../assets/icons/alert.svg" />
             <p class="alert-text">The returned window is 15 days</p>
           </div>
-          <div class="form-group  custom-form-group comments-div " *ngIf="mappedBook?.issueTo == null">
+          <div class="form-group  custom-form-group comments-div " *ngIf="mappedBook?.bookIssueId == null">
             <label for="comments">Comments <span class="asteric">*</span></label>
             <textarea formControlName="description"
                       [class.error-alert-box1]="showErrorMessage && issueBookForm.get('description')?.invalid"
@@ -227,40 +227,40 @@
                       id="comments" rows="3"
                       placeholder="Enter Comments"></textarea>
           </div>
-          <div class="form-group comments-div issued-to-heading" *ngIf="mappedBook?.issueTo !== null">
+          <div class="form-group comments-div issued-to-heading" *ngIf="mappedBook?.bookIssueId !== null">
             <label for="comments">Comments <span class="asteric">*</span></label>
-            <div *ngIf="mappedBook?.issueTo !== null" class="issued-to-container comment-container">
+            <div *ngIf="mappedBook?.bookIssueId !== null" class="issued-to-container comment-container">
               {{mappedBook.comment}}
             </div>
           </div>
 
           <div class="row footer-buttons-issued">
             <div class="col-buttons">
-              <div class="cancel-btn" data-bs-dismiss="modal" *ngIf="mappedBook?.issueTo !== null">Cancel</div>
+              <div class="cancel-btn" data-bs-dismiss="modal" *ngIf="mappedBook?.bookIssueId !== null">Cancel</div>
             </div>
             <app-revoke-book-modal [bookIssueId]="mappedBook?.bookIssueId"></app-revoke-book-modal>
             <app-success-modal ></app-success-modal>
 
             <div class="col-buttons">
-              <button class="save-btn-issued " data-toggle="modal" data-bs-dismiss="modal" *ngIf="mappedBook?.issueTo !== null" (click)="handleButton()">Revoke</button>
+              <button class="save-btn-issued " data-toggle="modal" data-bs-dismiss="modal" *ngIf="mappedBook?.bookIssueId !== null" (click)="handleButton()">Revoke</button>
             </div>
           </div>
         </form>
-        <div *ngIf="showErrorMessage && mappedBook?.issueTo == null" class="validation-alert">Highlighted Fields are mandatory</div>
+        <div *ngIf="showErrorMessage && mappedBook?.bookIssueId == null" class="validation-alert">Highlighted Fields are mandatory</div>
         <div class="footer ">
           <div class="row footer-buttons ">
             <div class="col-buttons">
-              <div class="cancel-btn" data-bs-dismiss="modal" *ngIf="mappedBook?.issueTo == null">Cancel</div>
+              <div class="cancel-btn" data-bs-dismiss="modal" *ngIf="mappedBook?.bookIssueId == null">Cancel</div>
             </div>
             <div class="col-buttons">
-              <button class="save-btn" (click)="onSubmit(); next()" *ngIf="mappedBook?.issueTo == null">Issue</button>
+              <button class="save-btn" (click)="onSubmit(); next()" *ngIf="mappedBook?.bookIssueId == null">Issue</button>
             </div>
           </div>
         </div>
       </div>
 
     </div>
-    <button class="issue-button-mobile" (click)="onSubmitMobile(); next()" *ngIf="mappedBook?.issueTo == null">Issue</button>
+    <button class="issue-button-mobile" (click)="onSubmitMobile(); next()" *ngIf="mappedBook?.bookIssueId == null">Issue</button>
   </div>
 
 </div>
