@@ -110,8 +110,24 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         }
 
 
-
+        [HttpGet("explore")]
+        public async Task<IActionResult> ExploreBooks([FromQuery] string filterValue)
+        {
+            try
+            {
+                var books = await _bookService.ExploreBook(filterValue);
+                return Ok(books);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while exploring books.");
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 
 
+
 }
+
+

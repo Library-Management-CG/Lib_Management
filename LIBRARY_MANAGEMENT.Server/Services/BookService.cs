@@ -22,6 +22,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<int> issuebooks();
         Task<List<TopChoicesBookDTO>> topChoices();
         Task<List<ExploreBookDTO>> exploreBook(int pageNumber, int pageSize);
+
+        Task<List<ExploreBookDTO>> ExploreBook(string filterValue);
+
         Task<List<ExploreBookDTO>> availableBook();
         Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters);
 
@@ -502,7 +505,42 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         }
 
 
-        
+        public async Task<List<ExploreBookDTO>> ExploreBook(string filterValue = "")
+        {
+            try
+            {
+                List<ExploreBookDTO> exploreBook = await _context.Books
+                    .Include(r => r.Ratings)
+                    .Include(book => book.AuthorBooks)
+                        .ThenInclude(authorBook => authorBook.Author)
+                    .Include(qr => qr.BookQrMappings)
+                        .ThenInclude(status => status.Status)
+                    .Where(book => string.IsNullOrEmpty(filterValue) || book.Title.Contains(filterValue)) // Filtering by title
+                    .Select(book => new ExploreBookDTO
+                    {
+                        title = book.Title,
+                        description = book.Description,
+                        authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                        points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+                        numberOfPeopleReviewed = book.Ratings.Count(),
+                        CreatedAtUtc = book.CreatedAtUtc,
+                        StatusName = book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available",
+                        image = book.imageData
+                    })
+                    .OrderByDescending(book => book.CreatedAtUtc)
+                    .ToListAsync();
+
+                return exploreBook;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while exploring books.");
+                throw;
+            }
+        }
+
+
+
 
     }
 }
