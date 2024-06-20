@@ -72,12 +72,12 @@ import { TurncatePipe } from './turncate.pipe';
 import { RatingInnerContentComponent } from './user/rating-dropdown/rating-inner-content/rating-inner-content.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RevokeBookModalComponent } from './admin/manage-books/inner-table/revoke-book-modal/revoke-book-modal.component';
-import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { RevokeMobileComponent } from './shared/revoke-mobile/revoke-mobile.component';
 import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SuccessAddBookComponent } from './admin/success-add-book/success-add-book.component';
+import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
 
 
 LOAD_WASM().subscribe();
