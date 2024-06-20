@@ -452,17 +452,27 @@ export class AddBookCommonComponent {
     console.log(this.bookForm);
   }
 
+
   Scanner(index: any) {
     $('#exampleModalCenter').modal('hide');
-    const navigationExtras: NavigationExtras = {
-      state: {
-        page: "add",
-        idx:index,
-      }
-    };
 
-    this.router.navigate(['/admin/issue-mobile-scanner'], navigationExtras);
+    setTimeout(() => {
+      $('.modal-backdrop').remove();
+
+      const navigationExtras: NavigationExtras = {
+        state: {
+          page: "add",
+          idx: index,
+          previousUrl: this.router.url
+        }
+      };
+
+      this.router.navigate(['/admin/issue-mobile-scanner'], navigationExtras);
+    }, 100);
   }
+
+
+
   routeBasedOnScreenSize() {
       if (window.innerWidth <= 765) {
         this.router.navigate(['admin/add-book-scanner']);

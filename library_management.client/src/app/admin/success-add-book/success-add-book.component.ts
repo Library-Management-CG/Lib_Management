@@ -2,6 +2,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-success-add-book',
   templateUrl: './success-add-book.component.html',
@@ -11,7 +14,7 @@ export class SuccessAddBookComponent {
 
   qrArr: any;
   globalValue: any;
-  constructor(private exploreService: ExploreBooksService) { }
+  constructor(private exploreService: ExploreBooksService, private router: Router) { }
 
   options: AnimationOptions = {
     path: '../../../assets/animation/Success.json',
@@ -32,6 +35,8 @@ export class SuccessAddBookComponent {
   reset() {
     this.doneClicked.emit();
     this.exploreService.resetQrCode();
+
+    //this.router.navigateByUrl(this.router.url);
   }
 
 }
