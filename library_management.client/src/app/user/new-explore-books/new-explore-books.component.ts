@@ -44,8 +44,9 @@ export class NewExploreBooksComponent {
     this.exploreBooksService.getFilterValue().subscribe(filterValue => {
       //console.log('Filter Value:', filterValue);
       if (filterValue) {
+        
         this.filterExploreBooks(filterValue);
-        this.fetchFilteredBooks(); // Fetch books with the updated filter
+        this.fetchFilteredBooks(filterValue); // Fetch books with the updated filter
 
       } else {
         this.exploreBookData(); 
@@ -196,8 +197,8 @@ export class NewExploreBooksComponent {
     }
   }
 
-  fetchFilteredBooks(): void {
-    this.user.getFilteredBooks(this.filterValue).subscribe(
+  fetchFilteredBooks(fil:string): void {
+    this.user.getFilteredBooks(fil).subscribe(
       (data) => {
         this.Searchedbooks = data;
       },

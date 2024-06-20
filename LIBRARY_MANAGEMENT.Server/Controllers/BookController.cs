@@ -111,11 +111,11 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
 
 
         [HttpPost("explore")]
-        public async Task<IActionResult> ExploreBooks([FromQuery] string filterValue)
+        public async Task<IActionResult> ExploreBooks([FromBody] SearchDTO filterValue)
         {
             try
             {
-                var books = await _bookService.ExploreBook(filterValue);
+                var books = await _bookService.ExploreBook(filterValue.fil);
                 return Ok(books);
             }
             catch (Exception ex)

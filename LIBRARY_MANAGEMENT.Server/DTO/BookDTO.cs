@@ -85,4 +85,11 @@ namespace LIBRARY_MANAGEMENT.Server.DTO
         public int pageNumber { get; set; }
         public int pageSize { get; set; }
     }
+
+    public class SearchDTO
+    {
+        public string fil { get; set; }
+
+    }
 }
+
