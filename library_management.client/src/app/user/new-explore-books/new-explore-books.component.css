@@ -13,7 +13,10 @@
 }
 
 .infinite {
-  margin-left:45vw;
+    /*display:flex;
+    align-items:center;*/
+    margin-left: 50% !important;
+
 }
 
 .rating {

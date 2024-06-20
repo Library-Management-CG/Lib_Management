@@ -163,48 +163,41 @@ export class AddBookCommonComponent {
     //}
   }
 
-
-  //showError(qr: string, index: number): boolean {
-  //  // Check if the current QR code exists in the list
-  //  this.qrExist = this.qrCodes.includes(qr);
+  //showError(qr: string): boolean {
+  //  this.qrExist = this.qrList.includes(qr);
   //  console.log(this.qrCodes);
 
-  //  // Check for duplicates
   //  const qrSet = new Set();
-  //  const hasDuplicates = this.qrCodes.some((code: string, i: number) => {
+  //  const hasDuplicates = this.qrCodes.some((code: string) => {
   //    if (qrSet.has(code)) {
-  //      // Check if the duplicate is at the same index
-  //      return i !== index;
+  //      return true;
   //    }
-  //    qrSet.add(code); // Add code to the set
+  //    qrSet.add(code);
   //    return false;
   //  });
+
 
   //  this.qrSame = hasDuplicates;
 
   //  return this.qrExist || this.qrSame;
   //}
 
+  showError(index: number): boolean {
+    const qr = this.qrCodes[index];
+    const qrExist = this.qrList.includes(qr);
 
-  showError(qr: string): boolean {
-    this.qrExist = this.qrList.includes(qr);
-    console.log(this.qrCodes);
+    let hasDuplicates = false;
+    for (let i = 0; i < this.qrCodes.length; i++) {
+      if (i !== index && this.qrCodes[i] === qr) {
+        hasDuplicates = true;
+        break;
+      }
+    }
 
-    //const qrSet = new Set();
-    //const hasDuplicates = this.qrCodes.some((code: string) => {
-    //  if (qrSet.has(code)) {
-    //    return true; // Found a duplicate
-    //  }
-    //  qrSet.add(code); // Add code to the set
-    //  return false;
-    //});
-
-
-    //this.qrSame = hasDuplicates;
-
-    return this.qrExist
-   // || this.qrSame;
+    return qrExist || hasDuplicates;
   }
+
+
 
   openModal(): void {
 
