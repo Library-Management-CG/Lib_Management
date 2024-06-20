@@ -62,13 +62,13 @@ float:right;
 }
 
 .footer-buttons {
-/*  position: absolute;
-*/  display: flex;
+  /*  position: absolute;
+*/ display: flex;
   flex-direction: row;
-  margin-top:2rem;
-/*  align-content:flex-end;
-*/  /*margin-left:60%;*/
-/*  width: 15rem;
+  margin-top: 2rem;
+  /*  align-content:flex-end;
+*/ /*margin-left:60%;*/
+  /*  width: 15rem;
   top: -2.5rem;
   left: 8.4rem;*/
 }
