@@ -52,7 +52,10 @@ margin-right:0.2rem;
   font-weight: 400;
   line-height: 1rem;
   padding: 0.5rem;
+  white-space: nowrap;
+  margin-bottom: 1rem;
 }
+
 
 .se {
   border: 2px solid red;
@@ -67,7 +70,7 @@ margin-right:0.2rem;
   /*  position: absolute;
 */ display: flex;
   flex-direction: row;
-  margin-top: 2rem;
+  margin-top: 3rem;
   /*  align-content:flex-end;
 */ /*margin-left:60%;*/
   /*  width: 15rem;
@@ -528,6 +531,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 700;
     line-height: normal;
     margin-right: 1rem;
+    width: 12rem!important;
   }
 
   .footer-buttons-issued {
@@ -535,13 +539,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     left: 6.38rem;
     top:34.5rem;
   }
+  .cancel-btn{
+      display:none;
+  }
 
   .cust {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1rem;
   }
-
+  .save-btn-issued{
+      width:100%;
+  }
+  .col-buttons{
+      width:100%;
+  }
+  .footer-buttons-issued{
+      width:100%;
+  }
   .issue-button-mobile {
     display: flex;
     height: 2.75rem;
@@ -560,7 +575,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: normal;
     border: none;
     cursor: pointer;
-    width:100%;
+    width: 100%;
   }
   .form-component{
       margin-top: 4rem;
