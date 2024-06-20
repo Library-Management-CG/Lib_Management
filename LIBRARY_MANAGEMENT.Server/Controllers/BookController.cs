@@ -110,7 +110,7 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         }
 
 
-        [HttpGet("explore")]
+        [HttpPost("explore")]
         public async Task<IActionResult> ExploreBooks([FromQuery] string filterValue)
         {
             try
