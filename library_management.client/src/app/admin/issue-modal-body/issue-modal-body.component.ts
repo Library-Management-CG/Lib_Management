@@ -464,7 +464,7 @@ export class IssueModalBodyComponent {
 
   onSubmit() {
     this.exploreBooksService.setSuccessIssue(false);
-    this.issueBookForm.get('createdBy')?.setValue('1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20');
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
 
     if (this.nextValidation()) {
@@ -486,7 +486,7 @@ export class IssueModalBodyComponent {
   }
   onSubmitMobile() {
     this.exploreBooksService.setSuccessIssue(false);
-    this.issueBookForm.get('createdBy')?.setValue('1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20');
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
 
     if (this.nextValidation()) {
