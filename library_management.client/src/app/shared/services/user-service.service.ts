@@ -51,8 +51,8 @@ export class UserServiceService {
   }
 
 
-  availableExplore(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + 'Book/availableBook');
+  availableExplore(pageDetails:any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'Book/availableBook', pageDetails);
   }
   getRatingFilteredBooks(ratingFilters: number[]): Observable<any[]> {
     return this.http.post<any[]>(this.apiUrl + 'Book/RatingFilter', ratingFilters);

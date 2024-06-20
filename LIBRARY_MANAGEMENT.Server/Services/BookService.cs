@@ -2,6 +2,7 @@
 using LIBRARY_MANAGEMENT.Server.DTO;
 using LIBRARY_MANAGEMENT.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.ProjectServer.Client;
 using System.Net;
 
 namespace LIBRARY_MANAGEMENT.Server.Services
@@ -22,8 +23,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<int> issuebooks();
         Task<List<TopChoicesBookDTO>> topChoices();
         Task<List<ExploreBookDTO>> exploreBook(int pageNumber, int pageSize);
-        Task<List<ExploreBookDTO>> availableBook();
-        Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters);
+        Task<List<ExploreBookDTO>> availableBook(availableDTO pageDetails);
+        //Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters);
 
     }
     public class BookService : IBookService
@@ -305,60 +306,62 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         }
 
 
-
-        public async Task<List<ExploreBookDTO>> availableBook()
-        {
-
-
-            try
-            {
-                List<ExploreBookDTO> exploreBook = await _context.Books
-         .Include(r => r.Ratings)
-         .Include(book => book.AuthorBooks)
-          .ThenInclude(authorBook => authorBook.Author)
-          .Include(qr => qr.BookQrMappings)
-          .ThenInclude(status => status.Status).Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available"))
-
-          .Select(book => new ExploreBookDTO
-          {
-              title = book.Title,
-              description = book.Description,
-              authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
-              points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
-              numberOfPeopleReviewed = book.Ratings.Count(),
-              CreatedAtUtc = book.CreatedAtUtc,
-              image = book.imageData
-
-
-          }).OrderByDescending(book => book.CreatedAtUtc)
-           .ToListAsync();
-
-                return exploreBook;
-
-            }
-
-            catch (Exception ex)
-            {
-                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
-                throw ex;
-            }
-
-
-          
-
-        }
-
-        public async Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters)
+        public async Task<List<ExploreBookDTO>> availableBook(availableDTO pageDetails)
         {
             try
             {
-                // Get all books with related data
+                //string status = pageDetails.isChecked ? "available" : "not available";
+
+                //var booksQuery = _context.Books
+                //    .Include(r => r.Ratings)
+                //    .Include(book => book.AuthorBooks)
+                //        .ThenInclude(authorBook => authorBook.Author)
+                //    .Include(qr => qr.BookQrMappings)
+                //        .ThenInclude(status => status.Status)
+                //    .Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status))
+                //    .Select(book => new
+                //    {
+                //        Book = book,
+                //        AverageRating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0
+                //    });
+
+                //if (pageDetails.selectedRatings != null && pageDetails.selectedRatings.Any())
+                //{
+                //    booksQuery = booksQuery.Where(b => pageDetails.selectedRatings.Contains(b.AverageRating));
+                //}
+
+                //var exploreBooks = await booksQuery
+                //    .Select(b => new ExploreBookDTO
+                //    {
+                //        title = b.Book.Title,
+                //        description = b.Book.Description,
+                //        authorName = b.Book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                //        points = b.AverageRating,
+                //        numberOfPeopleReviewed = b.Book.Ratings.Count(),
+                //        CreatedAtUtc = b.Book.CreatedAtUtc,
+                //        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "available") ? "Available" : "Not Available",
+                //        image = b.Book.imageData
+                //    })
+                //    .OrderByDescending(book => book.CreatedAtUtc)
+                //.ToListAsync();
+
+                //exploreBooks = exploreBooks.Skip((pageDetails.pageNumber - 1) * pageDetails.pageSize)
+                //               .Take(pageDetails.pageSize).ToList();
+
+                //return exploreBooks;
+
+
+
+                string status = pageDetails.isChecked ? "available" : "not available";
+
+                // Fetch books with related entities and calculate average rating
                 var booksQuery = _context.Books
                     .Include(r => r.Ratings)
                     .Include(book => book.AuthorBooks)
                         .ThenInclude(authorBook => authorBook.Author)
                     .Include(qr => qr.BookQrMappings)
-                        .ThenInclude(status => status.Status)
+                        .ThenInclude(bqr => bqr.Status)
+                    .Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status))
                     .Select(book => new
                     {
                         Book = book,
@@ -366,13 +369,14 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     });
 
                 // Filter books based on the provided ratings
-                if (ratingFilters != null && ratingFilters.Any())
+                if (pageDetails.selectedRatings != null && pageDetails.selectedRatings.Any())
                 {
-                    booksQuery = booksQuery.Where(b => ratingFilters.Contains(b.AverageRating));
+                    booksQuery = booksQuery.Where(b => pageDetails.selectedRatings.Contains(b.AverageRating));
                 }
 
-                // Project the filtered books to the DTO
-                var exploreBook = await booksQuery
+                // Apply sorting by creation date before pagination
+                var exploreBooks = await booksQuery
+                    .OrderByDescending(b => b.Book.CreatedAtUtc)
                     .Select(b => new ExploreBookDTO
                     {
                         title = b.Book.Title,
@@ -381,25 +385,120 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         points = b.AverageRating,
                         numberOfPeopleReviewed = b.Book.Ratings.Count(),
                         CreatedAtUtc = b.Book.CreatedAtUtc,
-                        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available",
+                        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == "available") ? "Available" : "Not Available",
                         image = b.Book.imageData
-
                     })
-                    .OrderByDescending(book => book.points)
+                    .Skip((pageDetails.pageNumber - 1) * pageDetails.pageSize)
+                    .Take(pageDetails.pageSize)
                     .ToListAsync();
 
-                return exploreBook;
+                return exploreBooks;
             }
             catch (Exception ex)
             {
-                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("Adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("Fetching books failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 throw ex;
             }
         }
 
 
 
-        public async Task<IEnumerable<BooksDetailDTO>> GetAllBooks(bool isArchived)
+
+        //public async Task<List<ExploreBookDTO>> availableBook(pageDetailsDTO pageDetails)
+        //{
+        //    string status = pageDetails.isChecked ? "available" : "not available";
+
+        //    try
+        //    {
+        //        List<ExploreBookDTO> exploreBook = await _context.Books
+        // .Include(r => r.Ratings)
+        // .Include(book => book.AuthorBooks)
+        //  .ThenInclude(authorBook => authorBook.Author)
+        //  .Include(qr => qr.BookQrMappings)
+        //  .ThenInclude(status => status.Status).Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status))
+
+        //  .Select(book => new ExploreBookDTO
+        //  {
+        //      title = book.Title,
+        //      description = book.Description,
+        //      authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+        //      points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+        //      numberOfPeopleReviewed = book.Ratings.Count(),
+        //      CreatedAtUtc = book.CreatedAtUtc,
+        //      image = book.imageData
+
+
+        //  }).OrderByDescending(book => book.CreatedAtUtc)
+        //   .ToListAsync();
+
+        //        return exploreBook;
+
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+        //        throw ex;
+        //    }
+
+
+
+
+        //}
+
+        //public async Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters)
+        //{
+        //    try
+        //    {
+        //        // Get all books with related data
+    //    var booksQuery = _context.Books
+    //        .Include(r => r.Ratings)
+    //        .Include(book => book.AuthorBooks)
+    //            .ThenInclude(authorBook => authorBook.Author)
+    //        .Include(qr => qr.BookQrMappings)
+    //            .ThenInclude(status => status.Status)
+    //.Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status))
+    //        .Select(book => new
+    //        {
+    //            Book = book,
+    //            AverageRating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0
+    //        });
+
+    //            // Filter books based on the provided ratings
+    //            if (ratingFilters != null && ratingFilters.Any())
+    //            {
+    //                booksQuery = booksQuery.Where(b => ratingFilters.Contains(b.AverageRating));
+    //            }
+
+    //// Project the filtered books to the DTO
+    //var exploreBook = await booksQuery
+    //    .Select(b => new ExploreBookDTO
+    //    {
+    //        title = b.Book.Title,
+    //        description = b.Book.Description,
+    //        authorName = b.Book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+    //        points = b.AverageRating,
+    //        numberOfPeopleReviewed = b.Book.Ratings.Count(),
+    //        CreatedAtUtc = b.Book.CreatedAtUtc,
+    //        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available",
+    //        image = b.Book.imageData
+
+    //    })
+    //    .OrderByDescending(book => book.points)
+    //    .ToListAsync();
+
+    //        return exploreBook;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("Adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+    //        throw ex;
+    //    }
+    //}
+
+
+
+    public async Task<IEnumerable<BooksDetailDTO>> GetAllBooks(bool isArchived)
         {
             var books = await _context.Books
                 .Include(b => b.AuthorBooks)
