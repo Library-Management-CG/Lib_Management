@@ -89,6 +89,7 @@ namespace LIBRARY_MANAGEMENT.Server.DTO
     public class SearchDTO
     {
         public string fil { get; set; }
+
     }
 }
 
