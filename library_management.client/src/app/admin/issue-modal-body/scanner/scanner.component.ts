@@ -26,6 +26,7 @@ export class ScannerComponent implements AfterViewInit {
 
   page: string = "issue";
   idx: any;
+  previousUrl: any;
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
@@ -48,6 +49,7 @@ export class ScannerComponent implements AfterViewInit {
     // Fallback for scenarios where the above method doesn't capture the state
     this.page = navigationState ? navigationState['page'] : window.history.state.page;
     this.idx = navigationState ? navigationState['idx'] : window.history.state.idx;
+    this.previousUrl = navigationState ? navigationState['previousUrl'] : window.history.state.previousUrl;
     //console.log(this.page);
 
     if (this.action) {
@@ -128,8 +130,11 @@ export class ScannerComponent implements AfterViewInit {
 
       this.action.stop();
     }
-    this.router.navigate(['/admin']);
+    //this.router.navigate(['/admin']);
+    //this.router.navigate(['/admin/manage-books']);
 
-      }
+    this.router.navigateByUrl(this.previousUrl);
+
+  }
 
 }
