@@ -5,6 +5,7 @@ import { ManageBooksService } from '../services/manage-books.service';
 import { ExploreBooksService } from '../services/ExploreBooksService';
 
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-revoke-mobile',
@@ -21,7 +22,7 @@ export class RevokeMobileComponent {
   condition: string = '';
   commentDescription: string = '';
   updatedBy: any;
-  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private exploreBooksService: ExploreBooksService, private router: Router) { }
+  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private exploreBooksService: ExploreBooksService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -65,12 +66,14 @@ export class RevokeMobileComponent {
         response => {
           console.log('Book revoked successfully', response);
           this.manageBooksService.notifyBookDataChanged();
+          this.toastr.success('Book Returned Successfully');
           this.commentDescription = '';
           this.bookReceived = '';
           this.condition = '';
           this.router.navigate(['/admin']);
         },
         error => {
+          this.toastr.error('Book can not be returned');
           console.error('Error archiving book', error);
         }
       );

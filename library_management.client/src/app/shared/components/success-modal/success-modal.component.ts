@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ManageBooksService } from '../../services/manage-books.service';
 import { ExploreBooksService } from '../../services/ExploreBooksService';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-success-modal',
@@ -43,7 +44,7 @@ export class SuccessModalComponent {
   condition: string = '';
   commentDescription: string = '';
   updatedBy: any;
-  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private exploreBooksService: ExploreBooksService) { }
+  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private exploreBooksService: ExploreBooksService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -88,12 +89,14 @@ export class SuccessModalComponent {
           console.log('Book revoked successfully', response);
           this.manageBooksService.notifyBookDataChanged();
           this.exploreBooksService.settotalbooks(response);
-
           this.commentDescription = '';
           this.bookReceived = '';
           this.condition = '';
+          this.toastr.success('Book Returned Successfully');
+
         },
         error => {
+          this.toastr.error('Book can not be returned');
           console.error('Error archiving book', error);
         }
       );

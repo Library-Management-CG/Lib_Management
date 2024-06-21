@@ -11,7 +11,8 @@ export class MyBooksMobileComponent {
   filteredBooks: any[]
   filterValue: string = '';
   dataLoaded = false;
-
+  filteredBooks_skeleton: any[]=[1];
+  filteredBooks_skeleton_2: any[]=[1,2];
   myBooks: any = [];
   userId: any;
   constructor(private router: Router, private userservice: UserServiceService) {
