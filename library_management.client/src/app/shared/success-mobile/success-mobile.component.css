@@ -44,6 +44,15 @@
   line-height: normal;
 }
 
+.row-1-issue {
+  color: var(--Primary-Royal-Blue, #002C3F);
+  font-family: Lato;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
 .row-2 {
   color: var(--Primary-Royal-Blue, #002C3F);
   text-align: center;
@@ -62,7 +71,15 @@ row-2-outer {
   gap: 0.625rem;
 }
 
-
+.row-2-issue {
+  color: var(--Primary-Royal-Blue, #002C3F);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .next-button {
   display: flex;
   width: 5.75rem;

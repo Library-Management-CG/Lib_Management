@@ -1,0 +1,122 @@
+<div *ngIf="globalValue" class="modal fade" id="successadd" tabindex="-1" role="dialog" aria-labelledby="success" aria-hidden="true" data-bs-dismiss="modal">
+  <div class="modal-dialog modal-dialog-centered outer" role="document">
+    <div class="modal-content outer">
+      <div class="modal-header success-modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+        <div class="close-modal-top">
+          <img src="../../../assets/icons/add-books-modal/X.svg" data-bs-dismiss="modal" />
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+          <div class="animation">
+            <!--<lottie-player src="../../../assets/animation/Success.json" background="transparent" speed="1" loop autoplay>
+            </lottie-player>-->
+            <ng-lottie [options]="options"></ng-lottie>
+
+            <!--<script>
+                var animation = bodymovin.loadAnimation({
+                  container: document.getElementById('animation-container'),
+                  path: '../../../assets/animation/Success.json',
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  name: "Demo Animation",
+                });
+            </script>-->
+          </div>
+          <div class="add-book-message">
+            <div class="add-book-message-text">
+              <div class="row-1">
+                Book Added!
+              </div>
+              <div class="row-2-outer">
+                <div class="row-2">
+                  {{qrArr.length}} books have been successfully
+                  <br>
+                  added to the inventory.
+                  <br />
+                  Let the reading adventure begins!
+                </div>
+              </div>
+            </div>
+            <div class="ok-button">
+              <div class="next-button" data-bs-dismiss="modal" data-toggle="modal" (click)="reset()">
+                <div class="next-text">
+                  Done
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+      </div>-->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div *ngIf="!globalValue" class="modal fade" id="successadd" tabindex="-1" role="dialog" aria-labelledby="success" aria-hidden="true" data-bs-dismiss="modal">
+  <div class="modal-dialog modal-dialog-centered outer" role="document">
+    <div class="modal-content outer">
+      <div class="modal-header success-modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+        <div class="close-modal-top">
+          <img src="../../../assets/icons/add-books-modal/X.svg" data-bs-dismiss="modal" />
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+          <div class="animation">
+            <!--<lottie-player src="../../../assets/animation/Success.json" background="transparent" speed="1" loop autoplay>
+            </lottie-player>-->
+            <ng-lottie [options]="options"></ng-lottie>
+
+            <!--<script>
+                var animation = bodymovin.loadAnimation({
+                  container: document.getElementById('animation-container'),
+                  path: '../../../assets/animation/Success.json',
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  name: "Demo Animation",
+                });
+            </script>-->
+          </div>
+          <div class="add-book-message">
+            <div class="add-book-message-text">
+              <div class="row-1">
+                Book Issued!  
+              </div>
+              <div class="row-2-outer">
+                <div class="row-2">
+                  Relax! Now you can read the book anywhere.              
+                </div>
+              </div>
+            </div>
+            <div class="ok-button">
+              <div class="next-button" data-bs-dismiss="modal" data-dismiss="modal" data-toggle="modal" (click)="reset()">
+                <div class="next-text">
+                  Done
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+      </div>-->
+    </div>
+  </div>
+</div>
+

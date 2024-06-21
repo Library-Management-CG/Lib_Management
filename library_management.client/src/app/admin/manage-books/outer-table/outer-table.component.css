@@ -2,13 +2,24 @@
   display: flex;
   flex-direction: column;
   min-width: 300px;
- 
+ margin-left: -15px;
 }
 
 .mat-table {
   overflow: auto;
 }
 
+/*.mat-column-bookName {
+  display: flex;
+  height: max-content;
+  flex: 0 0 20%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+  box-sizing: border-box;*/ /* Ensure padding and border are included in the width */
+/*}*/
 
 .mat-mdc-header-row {
   background: var(--Primary-Royal-Blue, #002C3F) !important;
@@ -24,8 +35,9 @@
 
 
 .book-name-cell {
+  height: max-content;
   display: flex;
-  width: 29.375rem;
+  flex: 0 0 20%;
   padding: 0.625rem 1rem;
   align-items: center;
   gap: 0.625rem;

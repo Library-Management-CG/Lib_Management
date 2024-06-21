@@ -39,7 +39,7 @@ export class OuterTableComponent {
   @Input() filterValue: string = '';
   console = console;
   displayedColumns = ['bookName', 'author', 'copies'];
-  dataSource = new MatTableDataSource<Element>([]);
+  dataSource = new MatTableDataSource<Element>(this.getInitialData());
   isNormalRow(index : any, row: any) { console.log(row); return !row.expanded; }
   isExpandedRow(index: any, row: any) { return row.expanded; }
   pageEvent !: PageEvent;
@@ -73,7 +73,7 @@ export class OuterTableComponent {
     }
 
     if (changes['showArchivedBooks']) {
-      console.log("Archived : ", this.showArchivedBooks);
+      //console.log("Archived : ", this.showArchivedBooks);
       this.fetchDataFromApi();
     }
   }
@@ -112,10 +112,10 @@ export class OuterTableComponent {
     }
 
     this.manageBooksService.getAllBooks(inputObject).subscribe(data => {
-      console.log(data);
       const transformedData = this.transformData(data, expandedState);
       this.dataSource.data = transformedData;
-      this.dataSource.paginator = this.paginator;
+      this.manageBooksService.setTotalItemFromStore(this.dataSource.data.length);
+      this.resetPaginator();
       this.loading = false;
     }, error => {
       console.error('Error fetching data from API', error);
@@ -145,4 +145,23 @@ export class OuterTableComponent {
   //  console.log(event);
   //  this.currentPageSize = event?.pageSize != null ? event?.pageSize : this.currentPageSize;
   //}
+
+  resetPaginator() {
+    if (this.paginator) {
+      this.paginator.firstPage();
+      this.paginator.length = this.dataSource.data.length;
+      this.dataSource.paginator = this.paginator;
+    }
+  }   
+
+  getInitialData(): Element[] {
+    return Array.from({ length: 10 }, (_, i) => ({
+      bookName: 'Loading...',
+      bookImage: '',
+      author: 'Loading...',
+      copies: 0,
+      expanded: false,
+      bookData: []
+    }));
+  }
 }

@@ -11,9 +11,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 {
     public interface IUserService
     {
-        List<UserBookDTO> GetTopBookReaders();
-        List<BooksDetails> GetRecentBooks();
-        List<BooksDetails> GetMostPopularBooks();
+        Task<List<UserBookDTO>> GetTopBookReadersAsync();
+        Task<List<BooksDetails>> GetRecentBooksAsync();
+        Task<List<BooksDetails>> GetMostPopularBooksAsync();
         Task<List<allAdminsDTO>> getAllAdminsService();
         Task<Boolean> AddAdminService(updateUserDTO user);
         Task<List<allAdminsDTO>> getAllUsersService();
@@ -31,15 +31,15 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             _logger = logger;
         }
 
-        public List<UserBookDTO> GetTopBookReaders()
+        public async Task<List<UserBookDTO>> GetTopBookReadersAsync()
         {
             try
             {
-                var users = _context.Users
-                   .Select(user => new
-                   {
-                       User = user,
-                       BookCount = _context.BookIssues
+                var users = await _context.Users
+                    .Select(user => new
+                    {
+                        User = user,
+                        BookCount = _context.BookIssues
                             .Where(issue => issue.IssueTo == user.Id)
                             .Join(
                                 _context.BookQrMappings,
@@ -49,35 +49,34 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                             )
                             .Distinct()
                             .Count()
-                   })
-                   .Select(u => new UserBookDTO
-                   {
-                       Id = u.User.Id,
-                       FirstName = u.User.FirstName,
-                       LastName = u.User.LastName,
-                       BookCount = u.BookCount
-                   })
-                   .Distinct()
-                   .OrderByDescending(u => u.BookCount)
-                   .Take(7)
-                   .ToList();
+                    })
+                    .Select(u => new UserBookDTO
+                    {
+                        Id = u.User.Id,
+                        FirstName = u.User.FirstName,
+                        LastName = u.User.LastName,
+                        BookCount = u.BookCount
+                    })
+                    .Distinct()
+                    .OrderByDescending(u => u.BookCount)
+                    .Take(7)
+                    .ToListAsync();
 
                 return users;
             }
-
             catch (Exception ex)
             {
-                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "001", new Exception("Adding a new Book failed"), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
                 throw ex;
             }
         }
 
 
-        public List<BooksDetails> GetRecentBooks()
+        public async Task<List<BooksDetails>> GetRecentBooksAsync()
         {
             try
             {
-                var recentBooks = _context.BookQrMappings
+                var recentBooks = await _context.BookQrMappings
                     .Include(bqm => bqm.Book.Ratings)
                     .Select(bqm => new
                     {
@@ -88,7 +87,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         bqm.CreatedAtUtc
                     })
                     .OrderByDescending(bqm => bqm.CreatedAtUtc)
-                    .ToList();
+                    .ToListAsync(); // Use ToListAsync() for async LINQ operations
 
                 var booksDetails = recentBooks
                     .Select(rb => new BooksDetails
@@ -105,9 +104,9 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         Points = rb.Book.Ratings.Any() ? Math.Floor(rb.Book.Ratings.Average(r => r.Points)) : 0,
                         StatusName = "Not Available",
                         numberOfPeopleReviewed = rb.Book.Ratings.Count,
-                        image=rb.Book.imageData
+                        image = rb.Book.imageData
                     })
-                    .ToList();
+                     .ToList();
 
                 foreach (var bookDetail in booksDetails)
                 {
@@ -123,11 +122,11 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     bookDetail.StatusName = anyAvailable ? "Available" : "Not Available";
                 }
 
-                var latestbook = booksDetails.
-                       GroupBy(bqm => bqm.BookId)
-                      .Select(group => group.OrderByDescending(bqm => bqm.CreatedAtUtc).FirstOrDefault())
-                      .Take(9)
-                      .ToList();
+                var latestbook = booksDetails
+                    .GroupBy(bqm => bqm.BookId)
+                    .Select(group => group.OrderByDescending(bqm => bqm.CreatedAtUtc).FirstOrDefault())
+                    .Take(9)
+                     .ToList();
 
                 return latestbook;
 
@@ -142,12 +141,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
        
 
-        public List<BooksDetails> GetMostPopularBooks()
+        public async Task<List<BooksDetails>> GetMostPopularBooksAsync()
         {
             try
             {
-                var popularBooks = _context.Books
-                     .Include(book => book.Ratings)
+                var popularBooks = await _context.Books
+                    .Include(book => book.Ratings)
                     .Include(book => book.AuthorBooks)
                         .ThenInclude(ab => ab.Author)
                     .Include(book => book.BookQrMappings)
@@ -155,24 +154,24 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     .OrderByDescending(book => book.Ratings.Count)
                     .ThenByDescending(book => book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0)
                     .Take(9)
-                    .ToList();
+                    .ToListAsync();
 
                 var booksDetails = popularBooks.Select(book =>
                 {
-                    string statusName = "Not Available"; 
+                    string statusName = "Not Available";
 
                     foreach (var bqm in book.BookQrMappings)
                     {
                         if (bqm.Status.StatusName == "Available")
                         {
                             statusName = "Available";
-                            break; 
+                            break;
                         }
                     }
 
                     return new BooksDetails
                     {
-                        BookQRMappingId = book.BookQrMappings.FirstOrDefault()?.Id ?? Guid.Empty, 
+                        BookQRMappingId = book.BookQrMappings.FirstOrDefault()?.Id ?? Guid.Empty,
                         BookId = book.Id,
                         Title = book.Title,
                         AuthorName = _context.AuthorBooks
@@ -184,7 +183,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         Points = Math.Floor(book.Ratings.Any() ? book.Ratings.Average(r => r.Points) : 0),
                         StatusName = statusName,
                         numberOfPeopleReviewed = book.Ratings.Count,
-                        image=book.imageData
+                        image = book.imageData
                     };
                 }).ToList();
 

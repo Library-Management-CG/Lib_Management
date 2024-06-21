@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
   topUsers: any[] | undefined;
   isWebView: boolean = window.innerWidth > 758; // Assuming the cutoff for web view is 768 pixels
+  dataLoaded = false;
+  topUserplaceholderArray = new Array(7);
+  placeholderArray = new Array(3);
+  isMobile = false;
 
   showMoreClickedRecentlyAdded: boolean = false;
   showMoreClickedMostPopular: boolean = false;
@@ -33,6 +37,7 @@ export class DashboardComponent {
     this.getMostPopularBooks();
     this.updateDisplayedBooks();
     this.getTopReaders();
+    this.handlesize();
   }
 
   selectedBook: any;
@@ -46,6 +51,8 @@ export class DashboardComponent {
       .subscribe(
         (data: any) => {
           this.recentlyAddedBooks = data;
+          this.checkDataLoaded();
+
         },
         (error) => {
           console.log('Error: ', error);
@@ -58,6 +65,8 @@ export class DashboardComponent {
       .subscribe(
         (data: any) => {
           this.mostPopularBooks = data;
+          this.checkDataLoaded();
+
         },
         (error) => {
           console.log('Error: ', error);
@@ -70,6 +79,8 @@ export class DashboardComponent {
       .subscribe(
         (data: any) => {
           this.topUsers = data;
+          this.checkDataLoaded();
+
         },
         (error) => {
           console.log('Error: ', error);
@@ -140,4 +151,17 @@ export class DashboardComponent {
   exploreBooks() {
     this.router.navigate(['new-explore-books']);
   }
+
+
+  checkDataLoaded() {
+    if (this.topUsers && this.topUsers.length > 0 && this.mostPopularBooks.length > 0 && this.recentlyAddedBooks.length > 0) {
+     this.dataLoaded = true;
+    }
+  }
+  handlesize() {
+    if (window.innerWidth <= 500) {
+      this.isMobile = true;
+    }
+  }
+
 }

@@ -13,7 +13,7 @@
       <div class="search-box ">
         <img src="../../../assets/icons/My-books-mobile/search.svg" />
         <input type="text" class="search-text" placeholder="" [(ngModel)]="filterValue"
-           (input)="applyBookFilter($event)"/>
+               (input)="applyBookFilter($event)" />
       </div>
     </div>
 
@@ -35,24 +35,42 @@
 
   </div>
 
-
-
-  <div class="inner" *ngIf="selectedRatings.length<=0">
-    <div class="column" *ngFor="let book of  isChecked ? availablebooks : exploreBooks">
-      <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
-      <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+  <div *ngIf="!dataLoaded && !isMobile">
+    <div class="row loader-skeleton">
+      <div *ngFor="let _ of placeholderArray" class="col-md-2 col-5 loader-skeleton-inner">
+        <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '300px', width:'235px' }"></ngx-skeleton-loader>
+      </div>
     </div>
+  </div>
+
+  <div *ngIf="!dataLoaded && isMobile">
+    <div class="row mobile_loader">
+      <div *ngFor="let _ of placeholderArray" class="col-5 loader-skeleton-inner">
+        <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '300px', width:'160px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="dataLoaded">
+    <div class="inner" *ngIf="selectedRatings.length<=0">
+      <div class="column" *ngFor="let book of  isChecked ? availablebooks : exploreBooks">
+        <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+        <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+      </div>
+
+    </div>
+    <div class="inner" *ngIf="selectedRatings.length>0">
+      <div class="column" *ngFor="let book of (isChecked ? availableBooksOfRatingFilter : ratingFilteredBook)">
+        <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+        <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+      </div>
+
+    </div>
+
 
   </div>
-  <div class="inner" *ngIf="selectedRatings.length>0">
-  <div class="column" *ngFor="let book of (isChecked ? availableBooksOfRatingFilter : ratingFilteredBook)">
-      <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
-      <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
-    </div>
-
+  <div >
+    <app-spinner *ngIf="infinite==true" class="infinite"></app-spinner>
   </div>
 
 </div>
-
-
-

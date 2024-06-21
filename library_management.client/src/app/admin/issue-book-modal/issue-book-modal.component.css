@@ -18,21 +18,24 @@
   margin: 0rem 0.5rem 0.8rem 0rem;
 }
 
-
-
-.top-heading{
-    margin-left:0.4rem;
+.issue-modal-close{
+    cursor: pointer;
 }
+
+
+
+.top-heading {
+  margin-left: 0.4rem;
+}
+
 @media (min-width: 576px) {
   .modal-outer-boundary {
     max-width: 40.625rem !important;
-    max-height: 34.25rem !important;
   }
-  .outer-container {
-    height: 34.25rem !important;
-  }
+
   .close-modal-button {
     margin-right: 1rem;
+    
   }
 
 

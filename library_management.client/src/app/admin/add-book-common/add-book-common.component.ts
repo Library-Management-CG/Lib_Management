@@ -2,8 +2,9 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+import { UserServiceService } from '../../shared/services/user-service.service';
 
 declare var $: any;
 declare var
@@ -16,6 +17,7 @@ declare var
   styleUrls: ['./add-book-common.component.css']
 })
 export class AddBookCommonComponent {
+
   book$ = this.exploreService.book$;
 
   /*@ViewChild('exampleModalCenter') modal: any;*/
@@ -23,6 +25,11 @@ export class AddBookCommonComponent {
 
   qrCodes: any[] = [];
 
+  @Input() qrList: any[] = [];
+
+  qrExist: boolean = false;
+  qrSame: boolean = false;
+  isMobile: boolean = false;
 
   //stepperIndex: number = 0;
   counterValue: number = 0;
@@ -47,7 +54,7 @@ export class AddBookCommonComponent {
     console.log("hello",this.capturedImage);
   }
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private exploreService: ExploreBooksService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private exploreService: ExploreBooksService, private urserService: UserServiceService) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
       authorName: ['', Validators.required],
@@ -74,8 +81,10 @@ export class AddBookCommonComponent {
   onDoneClicked() {
     this.stepperIndex = 0;
   }
+  
 
   ngOnInit(): void {
+    this.isMobile = false;
     this.exploreService.addBookPage$.subscribe(idx => {
       this.stepperIndex = idx;
     });
@@ -119,7 +128,6 @@ export class AddBookCommonComponent {
           description: book.description
         });
         this.selectedBook = book.bookName;
-        //---------------------------------------------------
       }
     });
 
@@ -129,9 +137,9 @@ export class AddBookCommonComponent {
     fetch(api)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
         data.items = data.items.filter((book:any) =>
-          book.volumeInfo.industryIdentifiers &&
+          book.volumeInfo.industryIdentifiers && 
           book.volumeInfo.industryIdentifiers.some((id:any) => id.type === "ISBN_13")
         );
         this.listOfBooks = data.items;
@@ -140,6 +148,11 @@ export class AddBookCommonComponent {
       .catch(error => {
         console.error('Error fetching books:', error);
       });
+
+    //this.exploreService.qrExist$.subscribe(arr => {
+    //  this.qrExist = arr;
+    //})
+    
   }
 
   openWebcam() {
@@ -151,10 +164,45 @@ export class AddBookCommonComponent {
       this.openModal();
     //}
   }
+
+  //showError(qr: string): boolean {
+  //  this.qrExist = this.qrList.includes(qr);
+  //  console.log(this.qrCodes);
+
+  //  const qrSet = new Set();
+  //  const hasDuplicates = this.qrCodes.some((code: string) => {
+  //    if (qrSet.has(code)) {
+  //      return true;
+  //    }
+  //    qrSet.add(code);
+  //    return false;
+  //  });
+
+
+  //  this.qrSame = hasDuplicates;
+
+  //  return this.qrExist || this.qrSame;
+  //}
+
+  showError(index: number): boolean {
+    const qr = this.qrCodes[index];
+    const qrExist = this.qrList.includes(qr);
+
+    let hasDuplicates = false;
+    for (let i = 0; i < this.qrCodes.length; i++) {
+      if (i !== index && this.qrCodes[i] === qr) {
+        hasDuplicates = true;
+        break;
+      }
+    }
+
+    return qrExist || hasDuplicates;
+  }
+
+
+
   openModal(): void {
-    // Assuming you're using Bootstrap modal
-    // You need to include Bootstrap JS in your project
-    // You can use jQuery to trigger the modal
+
     $('#webcam').modal('show');
   }
 
@@ -166,7 +214,6 @@ export class AddBookCommonComponent {
 
   errors: WebcamInitError[] = [];
 
-  // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   private nextWebcam: Subject<boolean | string> = new Subject<
     boolean | string
@@ -247,7 +294,7 @@ export class AddBookCommonComponent {
 
 
     this.exploreService.addQrCode({ value: '' });
-    console.log("array size", this.qrCodes);
+  //  console.log("array size", this.qrCodes);
   }
 
   decrement(index: number) {
@@ -259,14 +306,14 @@ export class AddBookCommonComponent {
         });
         const qrArray = this.bookForm.get('qr') as FormArray;
         qrArray.removeAt(this.counterValue);
-        console.log(this.bookForm);
+      //  console.log(this.bookForm);
       }
 
 
 
       this.exploreService.removeQrCode(index);
     }
-    console.log("array size", this.qrCodes);
+  //  console.log("array size", this.qrCodes);
   }
 
  
@@ -294,7 +341,7 @@ export class AddBookCommonComponent {
     fetch(api)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
         //this.listOfBooks = data.items;
         //console.log("he;lloo",this.listOfBooks);
         //this.listOfBooks = this.listOfBooks.volumeInfo.industryIdentifiers.some((id: any) => id.type === "ISBN_13")
@@ -325,7 +372,7 @@ export class AddBookCommonComponent {
       vSearch.lang = 'en-US';
       vSearch.start();
       vSearch.onresult = (e: any) => {
-        console.log(e);
+        //console.log(e);
         this.selectedBook = e;
         // voiceHandler.value = e?.results[0][0]?.transcript;
         this.results = e.results[0][0].transcript;
@@ -340,14 +387,14 @@ export class AddBookCommonComponent {
   }
 
   getResult() {
-    console.log(this.results);
+    //console.log(this.results);
     this.getBooks(this.results, "mic")
   }
 
   testing(event: any) {
     //console.log("hello", event.target);
-    console.log("helloooo", this.listOfBooks);
-    console.log("helloooo", this.selectedBook);
+    //console.log("helloooo", this.listOfBooks);
+    //console.log("helloooo", this.selectedBook);
     
 
     this.exploreService.setBook({
@@ -407,17 +454,27 @@ export class AddBookCommonComponent {
     console.log(this.bookForm);
   }
 
+
   Scanner(index: any) {
     $('#exampleModalCenter').modal('hide');
-    const navigationExtras: NavigationExtras = {
-      state: {
-        page: "add",
-        idx:index,
-      }
-    };
 
-    this.router.navigate(['/admin/issue-mobile-scanner'], navigationExtras);
+    setTimeout(() => {
+      $('.modal-backdrop').remove();
+
+      const navigationExtras: NavigationExtras = {
+        state: {
+          page: "add",
+          idx: index,
+          previousUrl: this.router.url
+        }
+      };
+
+      this.router.navigate(['/admin/issue-mobile-scanner'], navigationExtras);
+    }, 100);
   }
+
+
+
   routeBasedOnScreenSize() {
       if (window.innerWidth <= 765) {
         this.router.navigate(['admin/add-book-scanner']);
@@ -426,8 +483,20 @@ export class AddBookCommonComponent {
 
       }
   }
- 
 
+
+  handleSize():boolean {
+    if (window.innerWidth <= 767) {
+
+      this.isMobile = true;
+    } else {
+
+      this.isMobile = false;
+    }
+
+    return this.isMobile;
+  }
+ 
 }
 
 

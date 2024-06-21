@@ -131,6 +131,8 @@
   margin-top: 1rem;
   margin-left: 0.7rem;
   width: 90%;
+  border: none;
+  outline: none;
 }
 
 .issue-button {
@@ -146,6 +148,8 @@
   margin-top: 1rem;
   margin-left: 0.7rem;
   width: 90%;
+  border: none;
+  outline: none;
 }
 
 .add-button img, .issue-button img {
@@ -251,6 +255,13 @@
   font-weight: 400;
   line-height: normal;
   padding-left: 1rem;
+}
+
+.loader-boxes{
+ display: flex;
+ gap: 1rem;
+ width: 100vw;
+
 }
 
 @media only screen and (max-width: 500px) {

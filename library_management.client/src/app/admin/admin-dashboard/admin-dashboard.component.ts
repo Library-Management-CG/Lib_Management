@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
@@ -14,7 +14,9 @@ declare var $: any;
 export class AdminDashboardComponent {
 
   selectedBook: any;
-
+  dataLoaded = false;
+  placeholderArray = new Array(10);
+  isMobile = false;
   totalbooks: any;
   issuebooks: any;
   constructor(private router: Router, private AdminService: AdminServiceService, private explorebook: ExploreBooksService) { }
@@ -26,6 +28,11 @@ export class AdminDashboardComponent {
     } else {
 
       this.openModalAdd();
+    }
+  }
+  handlesize() {
+    if (window.innerWidth <= 500) {
+      this.isMobile = true;
     }
   }
 
@@ -70,13 +77,16 @@ export class AdminDashboardComponent {
       this.topChoicesBookData();
 
     });
-   
+    
+    this.handlesize();
   }
 
   gettotalcount() {
     this.AdminService.getTotalBooks().subscribe(
       (data) => {
-        this.totalbooks = data;   
+        this.totalbooks = data;
+        this.checkDataLoaded();
+
       },
       (error) => {
         console.error('Error:', error);
@@ -89,6 +99,8 @@ export class AdminDashboardComponent {
     this.AdminService.getissueBooks().subscribe(
       (data) => {
         this.issuebooks = data;
+        this.checkDataLoaded();
+
 
       },
       (error) => {
@@ -101,6 +113,8 @@ export class AdminDashboardComponent {
     this.AdminService.topChoicesBook().subscribe(
       (data) => {
         this.mostPopularBooks = data;
+        this.checkDataLoaded();
+
 
         //console.log(data);
 
@@ -134,9 +148,9 @@ export class AdminDashboardComponent {
   handleImage(webcamImage: WebcamImage) {
     this.getPicture.emit(webcamImage);
     this.showWebcam = false;
-    console.log(webcamImage);
+    //console.log(webcamImage);
     const arr = webcamImage.imageAsDataUrl.split(",");
-    console.log(arr);
+    //console.log(arr);
     //const mime = arr[0].match(/:(.*?);/)[1];
     const bstr = atob(arr[1]);
     let n = bstr.length;
@@ -154,7 +168,13 @@ export class AdminDashboardComponent {
 
   handleButtonClick(): void {
    
-      this.router.navigate(['admin/issue-mobile-scanner']); 
+    const navigationExtras: NavigationExtras = {
+
+      state: { previousUrl: this.router.url, page: 'issue' }
+
+    };
+
+    this.router.navigate(['admin/issue-mobile-scanner'], navigationExtras);
    
   }
 
@@ -163,10 +183,21 @@ export class AdminDashboardComponent {
     $('#exampleModalIssue').modal('show');
   }
 
+
+  checkDataLoaded() {
+    if (this.totalbooks >=0 && this.issuebooks >= 0 && this.mostPopularBooks.length > 0) {
+      this.dataLoaded = true;
+    }
+  }
  
 
   get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
+  openModalissue(): void {
+
+    $('#success').modal('show');
+  }
+
 }
 

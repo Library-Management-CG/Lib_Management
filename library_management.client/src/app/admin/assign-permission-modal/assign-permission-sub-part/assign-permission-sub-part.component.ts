@@ -27,7 +27,7 @@ export class AssignPermissionSubPartComponent {
   getAllAdmins() {
     this.userService.getAllUsers().subscribe(
       (data: any) => {
-        console.log(data);
+        //console.log(data);
         this.adminList = data;
         if (this.adminList) {
           //this.onAdminSelected(this.adminList[0]);

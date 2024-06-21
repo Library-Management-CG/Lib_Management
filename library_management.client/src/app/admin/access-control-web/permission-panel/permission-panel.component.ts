@@ -14,7 +14,7 @@ export class PermissionPanelComponent {
 
   onModalClose(event: boolean) {
     this.isToggleChecked = event;
-    console.log(event);
+  //  console.log(event);
   }
 
   constructor(private userService: UserServiceService, private exploreService: ExploreBooksService) {

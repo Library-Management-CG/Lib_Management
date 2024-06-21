@@ -1,5 +1,5 @@
 <app-success-modal (doneClicked)="onDoneClicked()"></app-success-modal>
-
+<app-success-add-book  (doneClicked)="onDoneClicked()"></app-success-add-book>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-custom outer-width" role="document">
     <div class="modal-content modal-height">
@@ -12,11 +12,11 @@
             <h5 class="modal-title add-book-title" id="exampleModalLongTitle">Add New Book</h5>
           </div>
         </div>
-        <div (click)="Reset()" class="cross">
-          <img src="../../../assets/icons/add-books-modal/X.svg" data-bs-dismiss="modal" />
+        <div data-bs-dismiss="modal" data-dismiss="modal" (click)="Close()" class="cross">
+          <img src="../../../assets/icons/add-books-modal/X.svg" data-dismiss="modal" />
         </div>
 
-       
+
       </div>
       <div class="modal-body ">
         <!--<form [formGroup]="bookForm">-->
@@ -31,14 +31,14 @@
               <img *ngIf="stepperIndex==1" src="../../../assets/icons/add-books-modal/ScanBook-Blue.svg" />
             </div>
           </div>
-      
-          <app-add-book-common [stepperIndex]="stepperIndex"></app-add-book-common>
+
+          <app-add-book-common [stepperIndex]="stepperIndex" [qrList]="qrList"></app-add-book-common>
         </div>
         <!--</form>-->
       </div>
       <div class="modal-footer add-book-footer">
         <div class="right-button">
-          <div *ngIf="stepperIndex==0" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close" (click)="Reset()">
+          <div *ngIf="stepperIndex==0" class="cancel-btn" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close" (click)="Close()">
             <div class="cancel-text">
               Cancel
             </div>
@@ -51,26 +51,28 @@
           </div>
         </div>
         <div class="right-button-left">
-          <div *ngIf="stepperIndex==1" class="cancel-btn" data-bs-dismiss="modal" aria-label="Close" (click)="Reset()">
+          <div *ngIf="stepperIndex==1" class="cancel-btn" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close" (click)="Close()">
             <div class="cancel-text">
               Cancel
             </div>
           </div>
 
           <div *ngIf="stepperIndex==0" class="next-button" (click)="stepperIncrement()"
-               [ngClass]="{'empty-qrCodes': qrArr.length == 0}"
+               [ngClass]="{'empty-qrCodes': qrArr.length == 0 || addBook.bookName === ''}" 
                >
             <div class="next-text">
               Next
             </div>
           </div>
-          <div *ngIf="stepperIndex==1" class="next-button" data-bs-dismiss="modal" data-toggle="modal" (click)="addBookRequest()">
+          <div *ngIf="stepperIndex==1" class="next-button" data-bs-dismiss="modal" data-dismiss="modal" data-toggle="modal" (click)="addBookRequest()"
+               [ngClass]="{'empty-qrCodes': isAnyQrValueEmpty()}"
+               >
             <div class="next-text">
               Add
             </div>
           </div>
         </div>
-      
+
 
 
       </div>

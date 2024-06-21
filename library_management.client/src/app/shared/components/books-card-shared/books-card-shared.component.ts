@@ -70,7 +70,7 @@ export class BooksCardSharedComponent {
   }
   getTruncateLength(): number {
     if (window.innerWidth > 758) {
-      return this.books?.statusName ? 20 : 50;
+      return this.books?.statusName ? 20 : 45;
     }
     else {
       return this.books?.statusName ? 20 : 40;

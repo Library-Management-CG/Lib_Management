@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../../shared/services/user-service.service';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+declare var $: any;
 
 @Component({
   selector: 'app-new-explore-books',
@@ -10,9 +11,14 @@ import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 })
 export class NewExploreBooksComponent {
   filterValue: string = '';
+  infinite: boolean = false;
+  filteredexploreBooks: any[] = [];
 
-  filteredexploreBooks: any[]
+  stopInfinite: boolean = true;
 
+  placeholderArray = new Array(10);
+  isMobile = false;
+  dataLoaded = false;
 
   exploreBooks: any[] = [];
   selectedBook: any;
@@ -20,32 +26,100 @@ export class NewExploreBooksComponent {
   ratingFilteredBook: any[] = [];
   selectedRatings: number[] = [];
   availableBooksOfRatingFilter: any[] = [];
+  Searchedbooks: any[] = [];
+
+  pageNumber: number = 1;
 
   constructor(private router: Router, private user: UserServiceService, private exploreBooksService: ExploreBooksService) {
     this.filteredexploreBooks = this.exploreBooks;
 
   };
+  loading: boolean = false;
   isChecked: boolean = false;
 
 
   ngOnInit(): void {
-
-    this.exploreBookData();
+    this.pageNumber = 1;
+    //this.exploreBookData();
     this.exploreBooksService.getFilterValue().subscribe(filterValue => {
       //console.log('Filter Value:', filterValue);
       if (filterValue) {
+        
         this.filterExploreBooks(filterValue);
+        this.fetchFilteredBooks(filterValue); // Fetch books with the updated filter
+
       } else {
-        // Reset the filter or apply a default filter logic
-        this.exploreBookData(); // For example, reload all explore books
+        this.exploreBookData(); 
       }
     });
-
+    this.handlesize();
    
   }
+
+
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    if (this.shouldLoadData() && !this.loading && this.stopInfinite) {
+      //setTimeout(() => {
+        this.infinite = true;
+      //}, 1000)
+      //setTimeout(() => {
+      //  this.infinite = false;
+      //},000)
+      
+      this.pageNumber++;
+      this.loading = true;
+      //console.log(this.pageNumber);
+      setTimeout(() => {
+        this.exploreBookData();
+      },500)
+       
+    }
+  }
+
+  private shouldLoadData(): boolean {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    //if (this.infinite) {
+    //  return scrollPosition + windowHeight >= documentHeight+200;
+    //}
+    return scrollPosition + windowHeight >= documentHeight-20;
+  }
+
+  exploreBookData() {
+
+    const pageDetails = {
+      pageNumber: this.pageNumber,
+      pageSize: parseInt('10', 10)
+    }
+
+    this.user.explorebooks(pageDetails).subscribe(
+      (data) => {
+        if (data.length == 0) {
+          console.log(data);
+          this.stopInfinite = false;
+        }
+        this.infinite = false;
+        this.exploreBooks = this.exploreBooks.concat(data);
+        this.filteredexploreBooks = this.filteredexploreBooks.concat(this.exploreBooks);
+        this.checkDataLoaded();
+        this.loading = false;
+        //console.log(data);
+      },
+      (error) => {
+        this.loading = false;
+        console.error('Error:', error);
+      }
+    );
+
+  }
+
+
   onSelectedValuesChange(selectedValues: number[]): void {
     this.selectedRatings = selectedValues;
-    console.log('where', this.selectedRatings);
+    //console.log('where', this.selectedRatings);
     this.getFilteredBooks();
   }
   filterAvailableBooksOfRatingFilter(): void {
@@ -71,26 +145,12 @@ export class NewExploreBooksComponent {
   openModaldesc(book: any) {
     this.selectedBook = book;
   }
-
-  exploreBookData() {
-    this.user.explorebooks().subscribe(
-      (data) => {
-        this.exploreBooks = data;
-        this.filteredexploreBooks = this.exploreBooks;
-        //console.log(data);
-
-      },
-      (error) => {
-        console.error('Error:', error);
-      }
-    );
-
-  }
-
+  
   availableBookData() {
     this.user.availableExplore().subscribe(
       (data) => {
         this.availablebooks = data;
+
         //console.log(data);
 
       },
@@ -104,6 +164,7 @@ export class NewExploreBooksComponent {
     this.user.getRatingFilteredBooks(this.selectedRatings).subscribe(
       data => {
         this.ratingFilteredBook = data;
+
       //  console.log('Filtered books:', this.ratingFilteredBook);
       },
       error => {
@@ -125,6 +186,26 @@ export class NewExploreBooksComponent {
    
   }
 
+  checkDataLoaded() {
+    if (this.exploreBooks.length > 0) {
+      this.dataLoaded = true;
+    }
+  }
+  handlesize() {
+    if (window.innerWidth <= 500) {
+      this.isMobile = true;
+    }
+  }
 
+  fetchFilteredBooks(fil:string): void {
+    this.user.getFilteredBooks(fil).subscribe(
+      (data) => {
+        this.Searchedbooks = data;
+      },
+      (error) => {
+        console.error('Error fetching books:', error);
+      }
+    );
+  }
 
 }

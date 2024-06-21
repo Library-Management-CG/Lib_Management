@@ -20,15 +20,22 @@
 
 .mat-column-bookName {
   display: flex;
-  height: 3.5rem;
+  height: max-content;
   flex: 0 0 20%;
-  padding: 0rem var(--spacing-2, 1rem);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   align-items: center;
   gap: 0.5rem;
   align-self: stretch;
   box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
+.book-name-image{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
 
 .book-thumbnail {
   display: flex;
@@ -114,6 +121,14 @@
 }
 
 .status-lost {
+  background-color: #FFE8E8;
+  color: #CC1A07;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.status-unassignable {
   background-color: #e2e3e5;
   color: #383d41;
   padding: 5px 10px;

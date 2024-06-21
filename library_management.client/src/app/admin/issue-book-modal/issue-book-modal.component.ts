@@ -21,7 +21,7 @@ export class IssueBookModalComponent {
     mappedBook: any;
   ngOnChanges() {
     this.bookqr = this.bookqrcode;
-    console.log('Got  : ', this.bookqr);
+    //console.log('Got  : ', this.bookqr);
     this.value(this.bookqr);
   }
 
@@ -43,7 +43,7 @@ export class IssueBookModalComponent {
   }
 
   value(bookqr:any) {
-    console.log('qrrrrr:', bookqr);
+    //console.log('qrrrrr:', bookqr);
     this.qr = bookqr;
     if (this.qr) {
       this.qrPresent = true;
@@ -75,7 +75,7 @@ export class IssueBookModalComponent {
   // Function to handle selection of an option
   onSelectOption(event: any) {
     // Access the selected option using event.target.value
-    console.log('Selected option:', event.target.value);
+    //console.log('Selected option:', event.target.value);
 
     // Update the placeholder to empty string when an option is selected
     this.placeholder = '';

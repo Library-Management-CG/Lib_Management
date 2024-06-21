@@ -60,6 +60,7 @@
   position: absolute;
   bottom: 4.25rem;
   transition: transform 0.3s ease;
+  border-radius:0.5rem;
 }
   .image-size:hover {
     transform: translateY(-1.3rem);
@@ -176,6 +177,7 @@
     width: 6.83175rem;
     height: 10.59388rem !important;
     bottom: 4.8rem;
+    
   }
 
 

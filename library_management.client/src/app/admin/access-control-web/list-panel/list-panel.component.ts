@@ -10,6 +10,9 @@ import { ExploreBooksService } from '../../../shared/services/ExploreBooksServic
 export class ListPanelComponent {
   filterValue: string = '';
   filteredAdmin: any[];
+  placeholderArray = new Array(10);
+  dataLoaded = false;
+
 
   adminList: any = [];
   @Output() adminSelectedFromList: EventEmitter<any> = new EventEmitter<any>();
@@ -27,6 +30,7 @@ export class ListPanelComponent {
     this.exploreService.adminList$.subscribe(admins => {
       this.adminList = admins;
       this.filteredAdmin = admins;
+      this.dataLoaded = true;
       if (this.adminList.length > 0) {
         this.onAdminSelected(this.adminList[0]);
         this.selectedAdmin = this.adminList[0];

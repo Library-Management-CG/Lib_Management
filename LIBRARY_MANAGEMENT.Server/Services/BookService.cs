@@ -21,12 +21,12 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         Task<int> issuebooks();
         Task<List<TopChoicesBookDTO>> topChoices();
-        Task<List<ExploreBookDTO>> exploreBook();
+        Task<List<ExploreBookDTO>> exploreBook(int pageNumber, int pageSize);
+
+        Task<List<ExploreBookDTO>> ExploreBook(string filterValue);
+
         Task<List<ExploreBookDTO>> availableBook();
         Task<List<ExploreBookDTO>> ratingFilteredBook(List<int> ratingFilters);
-
-
-
 
     }
     public class BookService : IBookService
@@ -149,12 +149,13 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             for (int i = 0; i < books.qr.Count(); i++)
             {
                 string qr = books.qr[i];
-                //BookQrMapping dbCheck = await _context.BookQrMappings.FindAsync(qr);
-                //if (dbCheck == null)
-                //{
-                //    continue;
-                //}
-                    try
+                var dbCheck = await _context.BookQrMappings
+                              .FirstOrDefaultAsync(bqr => bqr.Qrnumber == qr);
+                if (dbCheck != null)
+                {
+                    continue;
+                }
+                try
                 {
                     BookQrMapping bqr = new BookQrMapping
                     {
@@ -267,7 +268,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
         }
 
-        public async Task<List<ExploreBookDTO>> exploreBook()
+        public async Task<List<ExploreBookDTO>> exploreBook(int pageNumber,int pageSize)
         {
 
             try
@@ -290,6 +291,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
               image=book.imageData
 
           }).OrderByDescending(book => book.CreatedAtUtc)
+           .Skip((pageNumber-1)*pageSize)
+           .Take(pageSize)
            .ToListAsync();
 
                 return exploreBook;
@@ -500,6 +503,44 @@ namespace LIBRARY_MANAGEMENT.Server.Services
 
             return bookIssue != null ? bookIssue.ReturnDate : null;
         }
+
+
+        public async Task<List<ExploreBookDTO>> ExploreBook(string filterValue = "")
+        {
+            try
+            {
+                List<ExploreBookDTO> exploreBook = await _context.Books
+                    .Include(r => r.Ratings)
+                    .Include(book => book.AuthorBooks)
+                        .ThenInclude(authorBook => authorBook.Author)
+                    .Include(qr => qr.BookQrMappings)
+                        .ThenInclude(status => status.Status)
+                    .Where(book => string.IsNullOrEmpty(filterValue) || book.Title.Contains(filterValue)) // Filtering by title
+                    .Select(book => new ExploreBookDTO
+                    {
+                        title = book.Title,
+                        description = book.Description,
+                        authorName = book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                        points = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0,
+                        numberOfPeopleReviewed = book.Ratings.Count(),
+                        CreatedAtUtc = book.CreatedAtUtc,
+                        StatusName = book.BookQrMappings.Any(qr => qr.Status.StatusName == "Available") ? "Available" : "Not Available",
+                        image = book.imageData
+                    })
+                    .OrderByDescending(book => book.CreatedAtUtc)
+                    .ToListAsync();
+
+                return exploreBook;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while exploring books.");
+                throw;
+            }
+        }
+
+
+
 
     }
 }

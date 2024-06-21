@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ExploreBooksService } from '../../../shared/services/ExploreBooksService';
 declare var $: any;
 
 export interface BookData {
@@ -19,6 +20,8 @@ export interface BookData {
 })
 export class InnerTableComponent implements OnChanges {
 
+  constructor(private exploreBooksService: ExploreBooksService) { }
+
   isArchive: boolean = true;
   @Input() bookDataArray2: BookData[] = [];
   @Input() bookName: string = ''; 
@@ -30,17 +33,32 @@ export class InnerTableComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['bookDataArray2'] && changes['bookDataArray2'].currentValue) {
       this.dataSource.data = changes['bookDataArray2'].currentValue;
-      console.log("data : ", this.dataSource.data); // This should now log the actual array
+      console.log("data : ", this.dataSource.data);
     }
   }
 
   isBookIssued(book: any): boolean {
     return book.status.toLowerCase() === 'not available';
   }
-  //ngOnInit() {
-  //  $(document).ready(function () {
-  //    $('#revokeBookModal').modal('show');
-  //  });
+
+  setBookIssueId(bookDetails : any) {
+    this.exploreBooksService.setMappedBook(bookDetails);
+  }
+
+  openRevokeBookModal() {
+    $('#revokeBookModal').modal('show');
+  }
+
+  //getInitialData(): BookData[] {
+  //  return Array.from({ length: 2 }, (_, i) => ({
+  //    bookIssueId: null,
+  //    bookQrMappingId: null,
+  //    qrNumber: 'Loading...',
+  //    issuedTo: 'Loading...',
+  //    issueDate: new Date,
+  //    returnDate: new Date,
+  //    status: 'Loading...'
+  //  }));
   //}
 
 

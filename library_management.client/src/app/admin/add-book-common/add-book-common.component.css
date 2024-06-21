@@ -280,7 +280,7 @@
   border: 1px solid var(--secondary-Light-Grey, #E9ECEB);
   background: var(--Primary-Pure-White, #FFF);
   /* Shadow */
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 11px 0px rgba(0, 0, 0, 0.15);
 }
 
 .scan-qr {
@@ -658,20 +658,36 @@ textarea {
   border: 1px solid var(--Secondary-Light-Gray, #E9ECEB);
   background: var(--Primary-White, #FFF);
   margin-left: 0rem;
-  width: 36.5rem;
+  width: 33.5rem;
   /*21.7rem*/
   height: 0.0625rem;
   background: #E9ECEB;
 }
 
+.error-message {
+  display: block;
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
 
 @media screen and (max-width: 767px) {
+  .delete{
+      background:none;
+  }
+
+  .rescan {
+    background: none;
+    border:none;
+  }
   .author {
     flex-direction: column-reverse !important;
   }
 
   .line-break {
-    width: 21.7rem;
+    width: 25.1rem;
   }
 
   .qr-card {
@@ -716,14 +732,20 @@ textarea {
     width: 25rem !important;
   }
   .content {
-   max-height: none;
-
+    max-height: none;
+    margin-bottom: 4rem;
+    margin-top: 9rem !important;
   }
   .content-2 {
-  max-height: none;
-   }
+    max-height: none;
+    margin-top: 9rem !important;
+  }
 }
 @media screen and (max-width: 375px){
+  .line-break {
+    width: 21.7rem;
+  }
+
   .input-group .ng-select .ng-select-container, .input-group .ng-select.ng-select-single .ng-select-container {
     width: 18rem !important;
   }
@@ -733,6 +755,9 @@ textarea {
   }
 }
 @media screen and (max-width: 320px) {
+  .line-break {
+    width: 18.4rem;
+  }
   .input-group .ng-select .ng-select-container, .input-group .ng-select.ng-select-single .ng-select-container {
     width: 15rem !important;
   }

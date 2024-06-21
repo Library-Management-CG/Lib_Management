@@ -38,6 +38,8 @@ export class AddBooksModalComponent {
 
   qrArr: any;
 
+  qrList: any[] = [];
+
   constructor(private formBuilder: FormBuilder, private exploreService: ExploreBooksService, private urserService: UserServiceService) {
     this.bookForm = this.formBuilder.group({
       bookName: ['', Validators.required],
@@ -66,16 +68,34 @@ export class AddBooksModalComponent {
     this.stepperIndex = 0;
   }
 
-  ngOnInit(): void {
-    //this.isCaptured = false;
-    //this.video = document.getElementById('video');
-    //this.canvas = document.getElementById('canvas');
-    //navigator.mediaDevices.getUserMedia({ video: true })
-    //  .then(stream => {
-    //    this.video.srcObject = stream;
-    //  })
-    //  .catch(err => console.error('Error accessing camera: ', err));
+  isAnyQrValueEmpty(): boolean {
+    const hasEmptyValue = this.qrArr.some((qr: any) => qr.value === '');
+    if (hasEmptyValue) {
+      return true;
+    }
 
+    const qrSet = new Set();
+    const hasDuplicates = this.qrArr.some((qr: any) => {
+      if (qrSet.has(qr)) {
+        return true; 
+      }
+      qrSet.add(qr); 
+      return false;
+    });
+    if (hasDuplicates) {
+      return true;
+    }
+
+    const hasMatch = this.qrArr.some((qr: any) => this.qrList.includes(qr));
+    if (hasMatch) {
+      return true;
+    }
+
+    return false;
+  }
+
+
+  ngOnInit(): void {
     this.exploreService.addBookPage$.subscribe(idx => {
       this.stepperIndex = idx;
     });
@@ -90,13 +110,16 @@ export class AddBooksModalComponent {
 
     this.exploreService.book$.subscribe(arr => {
       this.addBook = arr;
-      console.log("qwertyuiopoiuytrewq",arr);
     })
-
+    
     this.exploreService.qrCodes$.subscribe(arr => {
       this.qrArr = arr;
+      console.log("qwertyuiopoiuytrewq", arr);
     })
+    
+    this.getQrList();
   }
+
 
   //showWebcam = true;
   isCaptured: boolean = false;
@@ -168,72 +191,48 @@ export class AddBooksModalComponent {
   }
 
   
-  reset() {
-    this.stepperIndex = 0;
-  }
+  //reset() {
+  //  this.stepperIndex = 0;
+  //}
 
-  increment() {
-    this.counterValue++;
-    this.bookForm.patchValue({
-      qty: this.counterValue,
-    });
-    const qrArray = this.bookForm.get('qr') as FormArray;
-    qrArray.push(this.formBuilder.control(''));
-    //this.pushValueIntoDeviceId('CGI-MOU-' + (this.laststoredcgi + ele));
-    //this.addDeviceForm.patchValue({
-    //  qty: this.counterValue
-    //});
-    console.log(this.bookForm);
-  }
+  //increment() {
+  //  console.log("qwertyuiopoiuytrewq", this.addBook);
 
-  decrement() {
-    if (this.counterValue > 1) {
-      this.counterValue--;
-      this.bookForm.patchValue({
-        qty: this.counterValue,
-      });
-      const qrArray = this.bookForm.get('qr') as FormArray;
-      qrArray.removeAt(this.counterValue);
-      console.log(this.bookForm);
-    }
-  }
+  //  this.counterValue++;
+  //  this.bookForm.patchValue({
+  //    qty: this.counterValue,
+  //  });
+  //  const qrArray = this.bookForm.get('qr') as FormArray;
+  //  qrArray.push(this.formBuilder.control(''));
+  //  //this.pushValueIntoDeviceId('CGI-MOU-' + (this.laststoredcgi + ele));
+  //  //this.addDeviceForm.patchValue({
+  //  //  qty: this.counterValue
+  //  //});
+  ////  console.log(this.bookForm);
+  //}
 
-  //updateQuantityValue(event: any) {
-  //  const newValue = parseInt(event.target.value, 10);
-  //  const deviceIdArray = this.addDeviceForm.get('deviceId') as FormArray;
-
-  //  if (!isNaN(newValue)) {
-  //    const currentValue = deviceIdArray.length;
-
-  //    if (newValue > currentValue) {
-  //      const elementsToAdd = newValue - currentValue;
-  //      for (let i = 1; i <= elementsToAdd; i++) {
-  //        this.pushValueIntoDeviceId('CGI-MOU-' + (this.laststoredcgi + i));
-  //      }
-  //    }
-
-  //    else if (newValue < currentValue) {
-  //      const elementsToRemove = currentValue - newValue;
-  //      for (let i = 0; i < elementsToRemove; i++) {
-  //        deviceIdArray.removeAt(deviceIdArray.length - 1);
-  //      }
-  //    }
-
-  //    this.counterValue = newValue;
-  //    this.addDeviceForm.get('qty')?.setValue(newValue);
+  //decrement() {
+  //  if (this.counterValue > 1) {
+  //    this.counterValue--;
+  //    this.bookForm.patchValue({
+  //      qty: this.counterValue,
+  //    });
+  //    const qrArray = this.bookForm.get('qr') as FormArray;
+  //    qrArray.removeAt(this.counterValue);
+  //  //  console.log(this.bookForm);
   //  }
   //}
 
   stepperIncrement() {
     this.stepperIndex++;
     this.exploreService.setaddBookPage(this.stepperIndex);
-    console.log(this.stepperIndex);
+  //  console.log(this.stepperIndex);
   }
 
   stepperDecrement() {
     this.stepperIndex--;
     this.exploreService.setaddBookPage(this.stepperIndex);
-    console.log(this.stepperIndex);
+  //  console.log(this.stepperIndex);
   }
 
   getBooks(event: any, type: string) {
@@ -250,7 +249,7 @@ export class AddBooksModalComponent {
       fetch(api)
         .then(response => response.json())
         .then(data => {
-          console.log(data);
+          //console.log(data);
           this.listOfBooks = data.items;
           
         })
@@ -274,7 +273,7 @@ export class AddBooksModalComponent {
       vSearch.lang = 'en-US';
       vSearch.start();
       vSearch.onresult = (e:any) => {
-        console.log(e);
+        //console.log(e);
         // voiceHandler.value = e?.results[0][0]?.transcript;
         this.results = e.results[0][0].transcript;
         this.getResult();
@@ -287,12 +286,12 @@ export class AddBooksModalComponent {
   }
 
   getResult() {
-    console.log(this.results);
+    //console.log(this.results);
     this.getBooks(this.results,"mic")
   }
 
   testing(event: any) {
-    console.log("hello", event.target);
+    //console.log("hello", event.target);
     if (this.selectedBook) {
       this.bookForm.patchValue({
         bookName: this.selectedBook.volumeInfo.title,
@@ -301,12 +300,12 @@ export class AddBooksModalComponent {
         description: this.selectedBook.volumeInfo.description,
       });
     }
-    console.log(this.bookForm);
+    //console.log(this.bookForm);
     return;
   }
 
   changeQty() {
-    console.log(this.counterValue);
+    //console.log(this.counterValue);
     
    
     if (this.counterValue === this.bookForm.get('qty')?.value) {
@@ -333,19 +332,31 @@ export class AddBooksModalComponent {
       qty: this.counterValue,
     });
 
-    console.log(this.bookForm);
+  //  console.log(this.bookForm);
   }
 
   Reset() {
+    $('#exampleModalCenter').modal('hide');
     this.exploreService.resetBook();
+    //this.exploreService.resetQrCode();
+    //this.stepperIndex = 0;
+    this.exploreService.setaddBookPage(0);
+    
+  }
+
+  Cancel() {
+    $('#exampleModalCenter').modal('hide');
+    this.exploreService.resetBook();
+    //this.exploreService.resetQrCode();
+    this.exploreService.setaddBookPage(0);
   }
 
   openModal(): void {
-    $('#success').modal('show');
+    $('#successadd').modal('show');
   }
 
   addBookRequest() {
-    console.log("add book post req", this.addBook);
+    //console.log("add book post req", this.addBook);
     
 
     var book = {
@@ -359,7 +370,7 @@ export class AddBooksModalComponent {
       LoggedIn:'1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20',
     }
 
-    console.log("before we post", book);
+    //console.log("before we post", book);
 
     this.urserService.addNewBook(book).subscribe(
       (data: any[]) => {
@@ -368,7 +379,29 @@ export class AddBooksModalComponent {
         console.error('Error posted');
         this.Reset();
         this.openModal();
+        this.exploreService.setSuccessIssue(true);
    
+      },
+      (error: any) => {
+        this.exploreService.resetQrCode();
+        this.Reset();
+        console.error('Error posting:', error);
+
+      }
+    );
+  }
+
+  Close() {
+    this.exploreService.resetBook();
+    this.exploreService.resetQrCode();
+    this.exploreService.setaddBookPage(0);
+  }
+
+  getQrList() {
+    this.urserService.getQrList().subscribe(
+      (data: any[]) => {
+        this.qrList = data;
+        //console.log("qrlistttttttttt",data);
       },
       (error: any) => {
         console.error('Error posting:', error);
