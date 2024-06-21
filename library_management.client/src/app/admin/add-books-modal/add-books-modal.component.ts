@@ -338,7 +338,7 @@ export class AddBooksModalComponent {
   Reset() {
     $('#exampleModalCenter').modal('hide');
     this.exploreService.resetBook();
-    this.exploreService.resetQrCode();
+    //this.exploreService.resetQrCode();
     //this.stepperIndex = 0;
     this.exploreService.setaddBookPage(0);
     
@@ -347,7 +347,7 @@ export class AddBooksModalComponent {
   Cancel() {
     $('#exampleModalCenter').modal('hide');
     this.exploreService.resetBook();
-    this.exploreService.resetQrCode();
+    //this.exploreService.resetQrCode();
     this.exploreService.setaddBookPage(0);
   }
 
@@ -383,10 +383,18 @@ export class AddBooksModalComponent {
    
       },
       (error: any) => {
+        this.exploreService.resetQrCode();
+        this.Reset();
         console.error('Error posting:', error);
 
       }
     );
+  }
+
+  Close() {
+    this.exploreService.resetBook();
+    this.exploreService.resetQrCode();
+    this.exploreService.setaddBookPage(0);
   }
 
   getQrList() {

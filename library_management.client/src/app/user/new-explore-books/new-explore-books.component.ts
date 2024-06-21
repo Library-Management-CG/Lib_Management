@@ -26,6 +26,7 @@ export class NewExploreBooksComponent {
   ratingFilteredBook: any[] = [];
   selectedRatings: number[] = [];
   availableBooksOfRatingFilter: any[] = [];
+  Searchedbooks: any[] = [];
 
   pageNumber: number = 1;
 
@@ -45,7 +46,10 @@ export class NewExploreBooksComponent {
     this.exploreBooksService.getFilterValue().subscribe(filterValue => {
       //console.log('Filter Value:', filterValue);
       if (filterValue) {
+        
         this.filterExploreBooks(filterValue);
+        this.fetchFilteredBooks(filterValue); // Fetch books with the updated filter
+
       } else {
         this.exploreBookData(); 
       }
@@ -251,5 +255,15 @@ export class NewExploreBooksComponent {
     }
   }
 
+  fetchFilteredBooks(fil:string): void {
+    this.user.getFilteredBooks(fil).subscribe(
+      (data) => {
+        this.Searchedbooks = data;
+      },
+      (error) => {
+        console.error('Error fetching books:', error);
+      }
+    );
+  }
 
 }

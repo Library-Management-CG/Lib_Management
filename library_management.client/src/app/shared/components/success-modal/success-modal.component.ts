@@ -37,7 +37,7 @@ export class SuccessModalComponent {
 
   mappedBook: any;
   private mappedBookSubscription: Subscription | undefined;
-  @Input() bookIssue: any;
+  //@Input() bookIssue: any;
   bookReceived: string = '';
   bookIssueId: any;
   condition: string = '';

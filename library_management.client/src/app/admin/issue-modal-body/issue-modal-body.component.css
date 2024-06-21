@@ -31,13 +31,15 @@ float:right;
 }
 
 .footer-buttons-issued {
-  position: absolute;
-  display: flex;
-  direction: row;
-  flex-direction: row;
-  width: 15rem;
+/*  position: absolute;
+*/  display: flex;
+/*  direction: row;
+*/  flex-direction: row;
+/*  width: 15rem;
   left: 9.5rem;
-  top: 30rem;
+  top: 30rem;*/
+float:right;
+margin-right:0.2rem;
 }
 
 .validation-alert {
@@ -62,13 +64,13 @@ float:right;
 }
 
 .footer-buttons {
-/*  position: absolute;
-*/  display: flex;
+  /*  position: absolute;
+*/ display: flex;
   flex-direction: row;
-  margin-top:2rem;
-/*  align-content:flex-end;
-*/  /*margin-left:60%;*/
-/*  width: 15rem;
+  margin-top: 2rem;
+  /*  align-content:flex-end;
+*/ /*margin-left:60%;*/
+  /*  width: 15rem;
   top: -2.5rem;
   left: 8.4rem;*/
 }
@@ -280,6 +282,7 @@ float:right;
   font-weight: 400;
   line-height: normal;
   border:none;
+  cursor:pointer;
 }
 
 .save-btn-issued {
@@ -558,6 +561,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: normal;
     border: none;
     cursor: pointer;
+    width:100%;
   }
   .form-component{
       margin-top: 4rem;
@@ -636,6 +640,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     top: -13.5rem;
     left: 8.4rem;
   }
+
 }
 @media only screen and (min-width: 1439px) {
   .footer-buttons[_ngcontent-ng-c319162617][_ngcontent-ng-c319162617] {

@@ -1,3 +1,4 @@
+
 .revoke-heading {
   display: flex;
   align-items: center;
@@ -17,11 +18,11 @@
 }
 
 
-.close-revoke{
-    background: none;
-    outline: none;
-    border: none;
-    cursor: pointer;
+.close-revoke {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 .revoke-form {
@@ -84,14 +85,14 @@
   flex: 1 0 0;
 }
 
-.yes-input label span, .no-input label span {
-  color: var(--Primary-Gray, #343435);
-  font-family: Lato;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
+  .yes-input label span, .no-input label span {
+    color: var(--Primary-Gray, #343435);
+    font-family: Lato;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 
 .content-comment {
   display: flex;
@@ -102,45 +103,46 @@
   align-self: stretch;
 }
 
-.content-comment span {
-  color: var(--Primary-Gray, #343435);
-  font-family: Lato;
-  font-size: 0.8125rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.content-comment textarea {
-  display: flex;
-  padding: 0.5rem 0.75rem;
-  align-items: flex-start;
-  gap: 6.625rem;
-  flex: 1 0 0;
-  align-self: stretch;
-  border-radius: 0.25rem;
-  border: 1px solid var(--Secondary-Gray, #B2B2B3);
-  background: var(--Primary-White, #FFF);
-}
-
-  .content-comment textarea[placeholder] {
+  .content-comment span {
     color: var(--Primary-Gray, #343435);
     font-family: Lato;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    flex: 1 0 0;
   }
 
-.footer-component{
-    display:flex;
-    width: 100%;
+  .content-comment textarea {
+    display: flex;
+    padding: 0.5rem 0.75rem;
+    align-items: flex-start;
+    gap: 6.625rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 0.25rem;
+    border: 1px solid var(--Secondary-Gray, #B2B2B3);
+    background: var(--Primary-White, #FFF);
+  }
+
+    .content-comment textarea[placeholder] {
+      color: var(--Primary-Gray, #343435);
+      font-family: Lato;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      flex: 1 0 0;
+    }
+
+.footer-component {
+  display: flex;
+  width: 100%;
 }
 
 .footer-component-buttons {
-    width:40%;
+  width: 40%;
 }
+
 .footer-revoke {
   border-radius: 1.9375rem;
   background: var(--Adhoc-Red, #CC1A07);
@@ -156,7 +158,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor: pointer;
 }
+
 .footer-cancel {
   border-radius: 1.625rem;
   border: 1px solid #28519E;
@@ -173,4 +177,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor: pointer;
+}
+
+.header-line {
+  border: none;
 }

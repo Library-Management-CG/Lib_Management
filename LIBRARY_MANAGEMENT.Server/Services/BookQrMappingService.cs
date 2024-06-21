@@ -139,7 +139,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                 bookIssueStatus = "submitted";
             }
 
-            else if(inputDTO.IsPerfect == true && inputDTO.IsPerfect == false)
+            else if(inputDTO.IsBookReceived == true && inputDTO.IsPerfect == false)
             {
                 statusName = "archive";
                 bookIssueStatus = "unassignable";

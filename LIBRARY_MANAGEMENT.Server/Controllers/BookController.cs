@@ -111,8 +111,24 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         }
 
 
-
+        [HttpPost("explore")]
+        public async Task<IActionResult> ExploreBooks([FromBody] SearchDTO filterValue)
+        {
+            try
+            {
+                var books = await _bookService.ExploreBook(filterValue.fil);
+                return Ok(books);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while exploring books.");
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 
 
+
 }
+
+

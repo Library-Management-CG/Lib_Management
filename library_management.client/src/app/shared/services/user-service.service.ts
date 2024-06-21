@@ -50,6 +50,13 @@ export class UserServiceService {
     return this.http.post<any>(this.apiUrl + 'Book/exploreBook', pageDetails);
   }
 
+  getFilteredBooks(fil: string): Observable<any[]> {
+    const search = {
+      fil: fil
+    }
+    return this.http.post<any[]>(this.apiUrl + 'Book/explore', search);
+  }
+
 
   availableExplore(pageDetails:any): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'Book/availableBook', pageDetails);

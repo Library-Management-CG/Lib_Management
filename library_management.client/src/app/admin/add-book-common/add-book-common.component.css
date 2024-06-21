@@ -674,6 +674,14 @@ textarea {
 
 
 @media screen and (max-width: 767px) {
+  .delete{
+      background:none;
+  }
+
+  .rescan {
+    background: none;
+    border:none;
+  }
   .author {
     flex-direction: column-reverse !important;
   }

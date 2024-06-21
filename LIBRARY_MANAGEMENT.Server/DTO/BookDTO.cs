@@ -93,4 +93,11 @@ namespace LIBRARY_MANAGEMENT.Server.DTO
         public bool isChecked { get; set; }
         public List<int> selectedRatings { get; set; }
     }
+
+    public class SearchDTO
+    {
+        public string fil { get; set; }
+
+    }
 }
+

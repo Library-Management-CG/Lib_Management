@@ -206,7 +206,12 @@ export class ExploreBooksService {
     this.ratingArraySource.next(books);
   }
 
+  //private navbarToggleSubject = new BehaviorSubject<any>(null);
+  //navbarToggleChanged$ = this.navbarToggleSubject.asObservable();
 
+  //notifynavbarToggleChanged() {
+  //  this.navbarToggleSubject.next(null);
+  //}
   
 
   //private qrExistSource = new BehaviorSubject<boolean>(false);
