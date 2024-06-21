@@ -14,11 +14,15 @@
 
 
   <div class="recently-issue" *ngIf="hasBookWithReturn()">Recently Issued</div>
-  
-  <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
-    <div *ngIf="!dataLoaded  && book. returnDate==null">
+  <div *ngFor="let book of  filteredBooks_skeleton" style="margin-top:5px">
+    <div *ngIf="!dataLoaded ">
       <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '220px' }"></ngx-skeleton-loader>
     </div>
+  </div>
+  <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
+    <!--<div *ngIf="!dataLoaded  && book. returnDate==null">
+      <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '220px' }"></ngx-skeleton-loader>
+    </div>-->
     <div *ngIf="book. returnDate==null && dataLoaded">
       <app-my-books-card-mobile [books]="book"></app-my-books-card-mobile>
     </div>
@@ -27,11 +31,15 @@
     <p class="no-books-tag">No Books Found</p>
   </div>
   <div class="recently-issue" *ngIf="hasBooksWithReturnDate()">Previously Issued</div>
- 
-  <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
-    <div *ngIf="!dataLoaded && book. returnDate!=null">
+  <div *ngFor="let book of  filteredBooks_skeleton_2">
+    <div *ngIf="!dataLoaded" >
       <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '220px' }"></ngx-skeleton-loader>
     </div>
+  </div>
+  <div *ngFor="let book of filteredBooks ? filteredBooks : myBooks">
+    <!--<div *ngIf="!dataLoaded && book. returnDate!=null">
+      <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '220px' }"></ngx-skeleton-loader>
+    </div>-->
     <div *ngIf="book. returnDate!=null && dataLoaded">
       <app-my-books-card-mobile [books]="book"></app-my-books-card-mobile>
     </div>

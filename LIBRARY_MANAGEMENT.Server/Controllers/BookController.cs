@@ -78,21 +78,22 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         [HttpPost("exploreBook")]
         public async Task<List<ExploreBookDTO>> exploreBook([FromBody] pageDetailsDTO pageDetails)
         {
-            return await _bookService.exploreBook(pageDetails.pageNumber, pageDetails.pageSize);
+               return await _bookService.exploreBook(pageDetails.pageNumber, pageDetails.pageSize);
         }
 
 
-        [HttpGet("availableBook")]
-        public async Task<List<ExploreBookDTO>> availableBook()
+        [HttpPost("availableBook")]
+        public async Task<List<ExploreBookDTO>> availableBook(availableDTO pageDetails)
         {
-            return await _bookService.availableBook();
+            return await _bookService.availableBook(pageDetails);
+            
         }
 
-        [HttpPost("RatingFilter")]
-        public async Task<List<ExploreBookDTO>> ratingFilteredBook([FromBody] List<int> ratingFilters)
-        {
-            return await _bookService.ratingFilteredBook(ratingFilters);
-        }
+        //[HttpPost("RatingFilter")]
+        //public async Task<List<ExploreBookDTO>> ratingFilteredBook([FromBody] List<int> ratingFilters)
+        //{
+        //    return await _bookService.ratingFilteredBook(ratingFilters);
+        //}
 
         [HttpPost("get-books")]
         public async Task<ActionResult<IEnumerable<BooksDetailDTO>>> GetAllBooks(GetBookInputDTO getBookInput)
