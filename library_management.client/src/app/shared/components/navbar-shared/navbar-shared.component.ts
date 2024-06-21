@@ -195,9 +195,9 @@ export class NavbarSharedComponent {
 
   applyAccessoryFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value;
-    //console.log('exploresearch:', this.filterValue);
+    console.log('exploresearch:', this.filterValue);
     this.exploreBooksService.setFilterValue(this.filterValue);
-
+    console.log("heloooooooooooooooooooo",this.exploreBooksService.filterValue$);
 
   }
 

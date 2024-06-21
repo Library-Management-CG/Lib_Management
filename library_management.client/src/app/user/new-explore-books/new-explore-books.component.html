@@ -52,20 +52,31 @@
   </div>
 
   <div *ngIf="dataLoaded">
-    <div class="inner" *ngIf="selectedRatings.length<=0">
+    <div class="inner" *ngIf="Searchedbooks.length>0">
+      <!--<span>{{Searchedbooks.length}}</span>-->
+      <div class="column" *ngFor="let book of Searchedbooks">
+        <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+        <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+      </div>
+
+    </div>
+
+    <div class="inner" *ngIf="selectedRatings.length<=0 && Searchedbooks.length<=0">
       <div class="column" *ngFor="let book of  isChecked ? availablebooks : exploreBooks">
         <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
         <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
       </div>
 
     </div>
-    <div class="inner" *ngIf="selectedRatings.length>0">
+    <div class="inner" *ngIf="selectedRatings.length>0 && Searchedbooks.length<=0">
       <div class="column" *ngFor="let book of availablebooks">
         <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
         <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
       </div>
 
     </div>
+
+
 
 
   </div>

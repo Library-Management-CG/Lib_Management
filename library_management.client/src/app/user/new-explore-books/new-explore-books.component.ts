@@ -44,16 +44,18 @@ export class NewExploreBooksComponent {
     this.ignoreDropdown = true;
     //this.exploreBookData();
     this.exploreBooksService.getFilterValue().subscribe(filterValue => {
-      //console.log('Filter Value:', filterValue);
-      if (filterValue) {
-        
-        this.filterExploreBooks(filterValue);
-        this.fetchFilteredBooks(filterValue); // Fetch books with the updated filter
-
+      
+      if (filterValue.length > 0) {
+        console.log('Filter Value:', filterValue);
+        //this.filterExploreBooks(filterValue);
+        this.fetchFilteredBooks(filterValue); 
       } else {
+        console.log('Filter Value:from else', filterValue);
+        this.pageNumber = 1;
         this.exploreBookData(); 
       }
     });
+    //this.exploreBookData();
     this.handlesize();
    
   }
@@ -255,15 +257,20 @@ export class NewExploreBooksComponent {
     }
   }
 
-  fetchFilteredBooks(fil:string): void {
-    this.user.getFilteredBooks(fil).subscribe(
-      (data) => {
-        this.Searchedbooks = data;
-      },
-      (error) => {
-        console.error('Error fetching books:', error);
-      }
-    );
+  fetchFilteredBooks(fil: string): void {
+    //if (fil.length > 0) {
+      this.user.getFilteredBooks(fil).subscribe(
+        (data) => {
+          this.Searchedbooks = data;
+          console.log('Filter Value:', this.Searchedbooks);
+        },
+        (error) => {
+          console.error('Error fetching books:', error);
+        }
+      );
+    //} else {
+    //  this.exploreBookData();
+    //}
   }
 
 }
