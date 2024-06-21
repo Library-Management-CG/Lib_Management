@@ -561,6 +561,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: normal;
     border: none;
     cursor: pointer;
+    width:100%;
   }
   .form-component{
       margin-top: 4rem;
@@ -639,6 +640,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     top: -13.5rem;
     left: 8.4rem;
   }
+
 }
 @media only screen and (min-width: 1439px) {
   .footer-buttons[_ngcontent-ng-c319162617][_ngcontent-ng-c319162617] {
