@@ -10,6 +10,7 @@ export class CommentsModalComponent {
   @Input() bookQrMappingId: any;
   loading: boolean = true;
   commentsData: any[] = [];
+  noComments: boolean = true;
 
 
   constructor(private manageBooksService: ManageBooksService) { }
@@ -31,6 +32,9 @@ export class CommentsModalComponent {
       response => {
         this.commentsData = response;
         this.loading = false;
+        if (this.commentsData.length != 0) {
+          this.noComments = false;
+        }
         console.log('Comments : ', response);
       },
       error => {

@@ -15,7 +15,8 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         Task<Guid> GetStatusId(string statusName);
         Task<Guid> GetBookIssueId(BookIssueDTO bookIssueDTO);
         Task UpdateComment(BookIssueDTO bookIssueDTO);
-        Task IssueBookAsync(BookIssueDTO bookIssueDTO);
+        Task<Boolean> IssueBookAsync(BookIssueDTO bookIssueDTO);
+        Task<Boolean> isIssuable(BookIssueDTO bookIssueDTO);
     }
 
     public class BookIssueService : IBookIssueService
@@ -276,17 +277,47 @@ namespace LIBRARY_MANAGEMENT.Server.Services
             }
         }
 
-        public async Task IssueBookAsync(BookIssueDTO bookIssueDTO)
+        public async Task<Boolean> isIssuable(BookIssueDTO bookIssueDTO)
+        {
+                var entityToUpdate = _context.BookQrMappings.FirstOrDefault(d => d.Id == bookIssueDTO.BookQrMappingId);
+                var statusId = await GetStatusId("Available");
+                if (entityToUpdate == null)
+                {
+                    return false;
+                }
+
+                if(entityToUpdate.StatusId != statusId)
+                {
+                    return false;
+                }
+
+                return true;
+            
+        }
+
+        public async Task<Boolean> IssueBookAsync(BookIssueDTO bookIssueDTO)
         {
             try
             {
-                await UpdateBookIssue(bookIssueDTO);
-                await UpdateQRMappingStatus(bookIssueDTO);
-                await UpdateComment(bookIssueDTO);
+                var isCorrect = await isIssuable(bookIssueDTO);
+                if (isCorrect)
+                {
+                    await UpdateBookIssue(bookIssueDTO);
+                    await UpdateQRMappingStatus(bookIssueDTO);
+                    await UpdateComment(bookIssueDTO);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+               
             }
             catch (Exception ex)
             {
                 _logger.Log(LogLevel.Error, new EventId(123, "ErrorEvent"), "009", new Exception("IssueBookAsync failed", ex), (state, exception) => state?.ToString() ?? exception?.Message ?? "No message");
+                return false;
             }
         }
     }

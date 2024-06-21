@@ -247,6 +247,7 @@ import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -272,7 +273,7 @@ export class IssueModalBodyComponent {
   issueBookForm!: FormGroup;
   showErrorMessage = false;
 
-  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder, private router: Router) {
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder, private router: Router, private toastr: ToastrService) {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
 
@@ -464,7 +465,7 @@ export class IssueModalBodyComponent {
 
   onSubmit() {
     this.exploreBooksService.setSuccessIssue(false);
-    this.issueBookForm.get('createdBy')?.setValue('1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20');
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
 
     if (this.nextValidation()) {
@@ -477,6 +478,8 @@ export class IssueModalBodyComponent {
         },
         error => {
           console.error('error posting data', error);
+          this.closeModal();
+          this.toastr.error('Book can not be issued');
         }
       );
     } else {
@@ -486,7 +489,7 @@ export class IssueModalBodyComponent {
   }
   onSubmitMobile() {
     this.exploreBooksService.setSuccessIssue(false);
-    this.issueBookForm.get('createdBy')?.setValue('1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20');
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
 
     if (this.nextValidation()) {
