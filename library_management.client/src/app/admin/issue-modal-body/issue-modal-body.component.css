@@ -282,6 +282,7 @@ margin-right:0.2rem;
   font-weight: 400;
   line-height: normal;
   border:none;
+  cursor:pointer;
 }
 
 .save-btn-issued {
