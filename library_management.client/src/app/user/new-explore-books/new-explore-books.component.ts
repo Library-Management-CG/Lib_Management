@@ -119,12 +119,20 @@ export class NewExploreBooksComponent {
   }
 
   ignoreDropdown: boolean = true;
+  stopCalls: boolean = false;
 
   onSelectedValuesChange(selectedValues: number[]): void {
     if (this.ignoreDropdown) {
       this.ignoreDropdown = false;
       return;
     }
+    if (this.stopCalls) {
+      setTimeout(() => {
+        this.stopCalls = false;
+      })
+      return;
+    }
+    this.stopCalls = true;
     console.log("dekho dekho data aya", selectedValues);
     //if (selectedValues.length == 0) {
     //  return;
@@ -195,7 +203,7 @@ export class NewExploreBooksComponent {
           this.stopInfinite = false;
         }
         this.availablebooks = this.availablebooks.concat(data);
-
+        console.log(this.availablebooks);
         this.infinite = false;
         //this.checkDataLoaded();
         this.loading = false;
