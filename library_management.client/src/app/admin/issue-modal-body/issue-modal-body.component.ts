@@ -247,6 +247,7 @@ import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -272,7 +273,7 @@ export class IssueModalBodyComponent {
   issueBookForm!: FormGroup;
   showErrorMessage = false;
 
-  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder, private router: Router) {
+  constructor(private AdminService: AdminServiceService, private cdr: ChangeDetectorRef, private exploreBooksService: ExploreBooksService, private fb: FormBuilder, private router: Router, private toastr: ToastrService) {
     // Initialize users array with dummy data (replace with actual data)
     const currentDate = new Date();
 
@@ -477,6 +478,8 @@ export class IssueModalBodyComponent {
         },
         error => {
           console.error('error posting data', error);
+          this.closeModal();
+          this.toastr.error('Book can not be issued');
         }
       );
     } else {

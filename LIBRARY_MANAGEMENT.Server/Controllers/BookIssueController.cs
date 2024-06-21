@@ -55,9 +55,15 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         [HttpPost("issueBooks")]
         public async Task<IActionResult> issueBooks([FromBody] BookIssueDTO bookIssueDTO)
         {
-            await _bookissueservice.IssueBookAsync(bookIssueDTO);
-
-            return Ok();
+            bool check = await _bookissueservice.IssueBookAsync(bookIssueDTO);
+            if (check)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Book can not be issued ");
+            }
         }
 
     }
