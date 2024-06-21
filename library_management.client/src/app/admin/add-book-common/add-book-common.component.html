@@ -132,7 +132,7 @@
             </div>
           </div>
 
-        
+
 
           <div class="scan-text-outer">
             <div class="scan-book-text">
@@ -147,14 +147,29 @@
         </div>
 
         <div class="scan-qr-buttons">
-          <div class="rescan" (click)="Scanner(i)">
-            <div class="rescan-text" >Rescan</div>
+          <div class="rescan" *ngIf="!handleSize()" (click)="Scanner(i)">
+            <div class="rescan-text">Rescan</div>
           </div>
 
-          <div  class="delete" (click)="decrement(i)">
+          <div class="rescan" *ngIf="handleSize()" (click)="Scanner(i)">
+            <div class="rescan-text">
+              <img src="../../../assets/icons/add-books-modal/RescanMob.svg" />
+            </div>
+          </div>
+
+          <div class="delete" *ngIf="!handleSize()" (click)="decrement(i)">
             <div class="delete-text">Delete</div>
           </div>
+
+          <div class="delete" *ngIf="handleSize()" (click)="decrement(i)">
+            <div class="delete-text">
+              <img src="../../../assets/icons/add-books-modal/DeleteMob.svg" />
+            </div>
+          </div>
         </div>
+
+       
+      <!--</div>-->
 
       </div>
 
