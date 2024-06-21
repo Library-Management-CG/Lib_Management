@@ -2,6 +2,7 @@ import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { RatingInnerContentComponent } from './rating-inner-content/rating-inner-content.component';
 import { ExploreBooksService } from '../../shared/services/ExploreBooksService';
+import { Subject, takeUntil } from 'rxjs';
 declare var $: any;
 
 @Component({
@@ -10,7 +11,8 @@ declare var $: any;
   styleUrls: ['./rating-dropdown.component.css']
 })
 export class RatingDropdownComponent {
-  isMobile: boolean=false;
+  isMobile: boolean = false;
+  //private destroy: Subject = new Subject();
 
   selectedRatings: any[] = [];
   @Output() selectedValuesChange = new EventEmitter<any[]>();
@@ -19,14 +21,23 @@ export class RatingDropdownComponent {
  
     this.checkScreenSize();
   }
-  ngOnInit(): void {
+  ngOnInit(){
     this.checkScreenSize();
     this.explore.ratingArray$.subscribe(totalbooks => {
       this.selectedratingsvalue(totalbooks);
+      //  .pipe(
+      //  takeUntil(this.destroy)     // import takeUntil from rxjs/operators.
+      //).subscribe((obj:any) => {
+      //  console.log('in vehicle item subscruber', obj);
+      //});
 
 
     });
   }
+
+  //ngOnDestroy() {
+  //  this.destroy.next();
+  //}
 
   onSelectedValuesChange(selectedValues: any[]): void {
     this.selectedRatings = selectedValues;

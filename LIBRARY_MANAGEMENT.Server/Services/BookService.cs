@@ -310,71 +310,31 @@ namespace LIBRARY_MANAGEMENT.Server.Services
         {
             try
             {
-                //string status = pageDetails.isChecked ? "available" : "not available";
-
-                //var booksQuery = _context.Books
-                //    .Include(r => r.Ratings)
-                //    .Include(book => book.AuthorBooks)
-                //        .ThenInclude(authorBook => authorBook.Author)
-                //    .Include(qr => qr.BookQrMappings)
-                //        .ThenInclude(status => status.Status)
-                //    .Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status))
-                //    .Select(book => new
-                //    {
-                //        Book = book,
-                //        AverageRating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0
-                //    });
-
-                //if (pageDetails.selectedRatings != null && pageDetails.selectedRatings.Any())
-                //{
-                //    booksQuery = booksQuery.Where(b => pageDetails.selectedRatings.Contains(b.AverageRating));
-                //}
-
-                //var exploreBooks = await booksQuery
-                //    .Select(b => new ExploreBookDTO
-                //    {
-                //        title = b.Book.Title,
-                //        description = b.Book.Description,
-                //        authorName = b.Book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
-                //        points = b.AverageRating,
-                //        numberOfPeopleReviewed = b.Book.Ratings.Count(),
-                //        CreatedAtUtc = b.Book.CreatedAtUtc,
-                //        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName == "available") ? "Available" : "Not Available",
-                //        image = b.Book.imageData
-                //    })
-                //    .OrderByDescending(book => book.CreatedAtUtc)
-                //.ToListAsync();
-
-                //exploreBooks = exploreBooks.Skip((pageDetails.pageNumber - 1) * pageDetails.pageSize)
-                //               .Take(pageDetails.pageSize).ToList();
-
-                //return exploreBooks;
-
-
-
                 string status = pageDetails.isChecked ? "available" : "not available";
 
-                // Fetch books with related entities and calculate average rating
                 var booksQuery = _context.Books
                     .Include(r => r.Ratings)
                     .Include(book => book.AuthorBooks)
                         .ThenInclude(authorBook => authorBook.Author)
                     .Include(qr => qr.BookQrMappings)
                         .ThenInclude(bqr => bqr.Status)
-                    .Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status))
+                    //.Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status))
                     .Select(book => new
                     {
                         Book = book,
                         AverageRating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0
                     });
 
-                // Filter books based on the provided ratings
+                if (status == "available")
+                {
+                    booksQuery = booksQuery.Where(book => book.Book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status));
+                }
+
                 if (pageDetails.selectedRatings != null && pageDetails.selectedRatings.Any())
                 {
                     booksQuery = booksQuery.Where(b => pageDetails.selectedRatings.Contains(b.AverageRating));
                 }
 
-                // Apply sorting by creation date before pagination
                 var exploreBooks = await booksQuery
                     .OrderByDescending(b => b.Book.CreatedAtUtc)
                     .Select(b => new ExploreBookDTO
@@ -393,6 +353,50 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     .ToListAsync();
 
                 return exploreBooks;
+
+
+
+                //string status = pageDetails.isChecked ? "available" : "not available";
+
+                //// Fetch books with related entities and calculate average rating
+                //var booksQuery = _context.Books
+                //    .Include(r => r.Ratings)
+                //    .Include(book => book.AuthorBooks)
+                //        .ThenInclude(authorBook => authorBook.Author)
+                //    .Include(qr => qr.BookQrMappings)
+                //        .ThenInclude(bqr => bqr.Status)
+                //    .Where(book => book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == status))
+                //    .Select(book => new
+                //    {
+                //        Book = book,
+                //        AverageRating = book.Ratings.Any() ? (int)Math.Floor(book.Ratings.Average(r => r.Points)) : 0
+                //    });
+
+                //// Filter books based on the provided ratings
+                //if (pageDetails.selectedRatings != null && pageDetails.selectedRatings.Any())
+                //{
+                //    booksQuery = booksQuery.Where(b => pageDetails.selectedRatings.Contains(b.AverageRating));
+                //}
+
+                //// Apply sorting by creation date before pagination
+                //var exploreBooks = await booksQuery
+                //    .OrderByDescending(b => b.Book.CreatedAtUtc)
+                //    .Select(b => new ExploreBookDTO
+                //    {
+                //        title = b.Book.Title,
+                //        description = b.Book.Description,
+                //        authorName = b.Book.AuthorBooks.Select(authorBook => authorBook.Author.AuthorName).ToList(),
+                //        points = b.AverageRating,
+                //        numberOfPeopleReviewed = b.Book.Ratings.Count(),
+                //        CreatedAtUtc = b.Book.CreatedAtUtc,
+                //        StatusName = b.Book.BookQrMappings.Any(qr => qr.Status.StatusName.ToLower() == "available") ? "Available" : "Not Available",
+                //        image = b.Book.imageData
+                //    })
+                //    .Skip((pageDetails.pageNumber - 1) * pageDetails.pageSize)
+                //    .Take(pageDetails.pageSize)
+                //    .ToListAsync();
+
+                //return exploreBooks;
             }
             catch (Exception ex)
             {
