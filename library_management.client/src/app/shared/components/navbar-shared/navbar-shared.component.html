@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg ">
   <div class="container-fluid">
     <div class="navbar-brand"><img src="../../../../assets/icons/CG Logo.svg" /></div>
-    <div *ngIf="isAdmin()==false" class="mobile_search_icon">
+    <div *ngIf="isAdmin()==false" class="mobile_search_icon" (click)="redirect()">
       <img src="../../../../assets/icons/white_search_icon.svg"/>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"(click)="toggleCollapse()">

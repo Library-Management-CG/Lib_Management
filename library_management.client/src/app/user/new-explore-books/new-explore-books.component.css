@@ -95,6 +95,18 @@
 .loader-skeleton-inner {
   text-align: center;
 }
+.search-results {
+  display: flex;
+  margin: 1.5rem 0rem -2rem 1.5rem;
+  color: var(--Primary-Grey, #343435);
+  leading-trim: both;
+  text-edge: cap;
+  font-family: Literata;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
 @media screen and (min-width: 1500px) {
   .explore-outer {
@@ -114,9 +126,13 @@
   .explore-books-heading{
       display:none;
   }
-  .subhead-heading{
-      display:flex;
-
+  .subhead-heading {
+    display: flex;
+    margin-left: 0.2rem;
+  }
+  .search-results {
+    display: flex;
+    margin-bottom: 3rem;
   }
   .search-bar {
     width: 100%;
@@ -145,7 +161,7 @@
     border: 2px solid var(--secondary-Grey, #B2B2B3);
     background: var(--Primary-Pure-White, #FFF);
     display: flex;
-    width: 100%;
+    width: 135%;
     height: 2.75rem;
     padding: 0rem 1.5rem;
     align-items: center;
@@ -233,7 +249,7 @@
 .head-body {
   display: flex;
   flex-direction: row;
-  margin: 1.5rem 2rem;
+  margin: 1.5rem 1.5rem;
 }
 
 .header-txt {
@@ -243,6 +259,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor:pointer;
 }
 
 .subhead {

@@ -204,5 +204,7 @@ export class NavbarSharedComponent {
   toggleHighlighter(page: string): boolean {
     return this.router.url.toLowerCase().includes(page.toLowerCase());
   }
-
+  redirect() {
+    this.router.navigate(['new-explore-books']);
+  }
 }

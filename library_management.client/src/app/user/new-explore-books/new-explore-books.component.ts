@@ -13,7 +13,7 @@ export class NewExploreBooksComponent {
   filterValue: string = '';
   infinite: boolean = false;
   filteredexploreBooks: any[] = [];
-
+  searchValue = '';
   stopInfinite: boolean = true;
 
   placeholderArray = new Array(10);
@@ -29,6 +29,7 @@ export class NewExploreBooksComponent {
   Searchedbooks: any[] = [];
 
   pageNumber: number = 1;
+  searchInitiated = false; 
 
   constructor(private router: Router, private user: UserServiceService, private exploreBooksService: ExploreBooksService) {
     this.filteredexploreBooks = this.exploreBooks;
@@ -44,9 +45,11 @@ export class NewExploreBooksComponent {
     this.ignoreDropdown = true;
     //this.exploreBookData();
     this.exploreBooksService.getFilterValue().subscribe(filterValue => {
-      
+    this.searchInitiated = false;
+
       if (filterValue.length > 0) {
-        console.log('Filter Value:', filterValue);
+        this.searchValue = filterValue;
+        console.log('Filter Value: jgcjdas', filterValue);
         //this.filterExploreBooks(filterValue);
         this.fetchFilteredBooks(filterValue); 
       } else {
@@ -202,7 +205,9 @@ export class NewExploreBooksComponent {
   redirectToUserDashboard() {
     this.router.navigate(['']);
   }
-
+  redirect() {
+    this.router.navigate(['']);
+  }
   openModaldesc(book: any) {
     this.selectedBook = book;
   }
@@ -272,6 +277,8 @@ export class NewExploreBooksComponent {
 
   fetchFilteredBooks(fil: string): void {
     //if (fil.length > 0) {
+    this.searchInitiated = true;
+
       this.user.getFilteredBooks(fil).subscribe(
         (data) => {
           this.Searchedbooks = data;
