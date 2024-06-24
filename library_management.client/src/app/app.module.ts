@@ -78,6 +78,8 @@ import { SuccessMobileComponent } from './shared/success-mobile/success-mobile.c
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SuccessAddBookComponent } from './admin/success-add-book/success-add-book.component';
 import { RevokePermissionModalComponent } from './shared/components/revoke-permission-modal/revoke-permission-modal.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 LOAD_WASM().subscribe();
@@ -176,6 +178,8 @@ LOAD_WASM().subscribe();
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     NgxSkeletonLoaderModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   /*  AvatarModule*/
   ],
   providers: [DatePipe, { provide: MatBottomSheetRef, useValue: {} },

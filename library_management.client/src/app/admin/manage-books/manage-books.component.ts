@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-manage-books',
@@ -18,9 +18,21 @@ export class ManageBooksComponent {
     this.filterValue = (event.target as HTMLInputElement).value;
   }
   
+  //handleButtonClick(): void {
+
+  //  this.router.navigate(['admin/issue-mobile-scanner']);
+
+  //}
+
   handleButtonClick(): void {
 
-    this.router.navigate(['admin/issue-mobile-scanner']);
+    const navigationExtras: NavigationExtras = {
+
+      state: { previousUrl: this.router.url, page: 'issue' }
+
+    };
+
+    this.router.navigate(['admin/issue-mobile-scanner'], navigationExtras);
 
   }
 }

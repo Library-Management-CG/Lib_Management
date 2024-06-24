@@ -78,21 +78,22 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         [HttpPost("exploreBook")]
         public async Task<List<ExploreBookDTO>> exploreBook([FromBody] pageDetailsDTO pageDetails)
         {
-            return await _bookService.exploreBook(pageDetails.pageNumber, pageDetails.pageSize);
+               return await _bookService.exploreBook(pageDetails.pageNumber, pageDetails.pageSize);
         }
 
 
-        [HttpGet("availableBook")]
-        public async Task<List<ExploreBookDTO>> availableBook()
+        [HttpPost("availableBook")]
+        public async Task<List<ExploreBookDTO>> availableBook(availableDTO pageDetails)
         {
-            return await _bookService.availableBook();
+            return await _bookService.availableBook(pageDetails);
+            
         }
 
-        [HttpPost("RatingFilter")]
-        public async Task<List<ExploreBookDTO>> ratingFilteredBook([FromBody] List<int> ratingFilters)
-        {
-            return await _bookService.ratingFilteredBook(ratingFilters);
-        }
+        //[HttpPost("RatingFilter")]
+        //public async Task<List<ExploreBookDTO>> ratingFilteredBook([FromBody] List<int> ratingFilters)
+        //{
+        //    return await _bookService.ratingFilteredBook(ratingFilters);
+        //}
 
         [HttpPost("get-books")]
         public async Task<ActionResult<IEnumerable<BooksDetailDTO>>> GetAllBooks(GetBookInputDTO getBookInput)
@@ -110,8 +111,24 @@ namespace LIBRARY_MANAGEMENT.Server.Controllers
         }
 
 
-
+        [HttpPost("explore")]
+        public async Task<IActionResult> ExploreBooks([FromBody] SearchDTO filterValue)
+        {
+            try
+            {
+                var books = await _bookService.ExploreBook(filterValue.fil);
+                return Ok(books);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while exploring books.");
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 
 
+
 }
+
+

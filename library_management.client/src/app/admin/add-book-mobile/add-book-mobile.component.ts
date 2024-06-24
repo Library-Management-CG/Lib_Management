@@ -77,6 +77,7 @@ export class AddBookMobileComponent {
 
   Back() {
     this.Reset();
+    this.exploreService.resetQrCode();
     this.router.navigate(['/admin']);
   }
 
@@ -88,7 +89,7 @@ export class AddBookMobileComponent {
 
   Reset() {
     this.exploreService.resetBook();
-    this.exploreService.resetQrCode();
+    //this.exploreService.resetQrCode();
     this.exploreService.setaddBookPage(0);
   }
 
@@ -123,6 +124,7 @@ export class AddBookMobileComponent {
       },
       (error: any) => {
         this.Reset();
+        this.exploreService.resetQrCode();
         console.error('Error posting:', error);
       }
     );

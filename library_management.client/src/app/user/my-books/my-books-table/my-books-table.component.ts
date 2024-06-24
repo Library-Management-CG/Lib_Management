@@ -94,6 +94,8 @@ export class MyBooksTableComponent {
         return 'status-reading';
       case 'lost':
         return 'status-lost';
+      case 'unassignable':
+        return 'status-unassignable';
       default:
         return '';
     }

@@ -28,23 +28,28 @@
       </div>
       <div class="comment-modal-content">
         <div class="spinner-loading" *ngIf="loading; else content">
-          <mat-spinner></mat-spinner>
+          <app-spinner></app-spinner>
         </div>
         <ng-template #content>
-          <div *ngFor="let value of commentsData" class="body">
-            <div class="date-body">
-              <div class="line-date"></div>
-              <div class="date">
-                <img class="cal" src="../../../../../assets/icons/manage-books/calender.svg" />
-                {{ convertUtcToLocalTime(value.createdDate) | date: 'MM-dd-yyyy' }}
-              </div>
-              <div class="line-date"></div>
-            </div>
-
-            <div class="upper-comment">
-              <app-single-comment *ngFor="let comment of value.comments" [commentDetails]="comment"></app-single-comment>
-            </div>
+          <div class="spinner-loading" *ngIf="noComments; else comments">
+           <span>No Comments Yet</span>
           </div>
+          <ng-template #comments>
+            <div *ngFor="let value of commentsData" class="body">
+              <div class="date-body">
+                <div class="line-date"></div>
+                <div class="date">
+                  <img class="cal" src="../../../../../assets/icons/manage-books/calender.svg" />
+                  {{ convertUtcToLocalTime(value.createdDate) | date: 'MM-dd-yyyy' }}
+                </div>
+                <div class="line-date"></div>
+              </div>
+
+              <div class="upper-comment">
+                <app-single-comment *ngFor="let comment of value.comments" [commentDetails]="comment"></app-single-comment>
+              </div>
+            </div>
+          </ng-template>
         </ng-template>
       </div>
     </div>

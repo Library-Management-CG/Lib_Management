@@ -13,7 +13,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.1.0",
+    "@angular/animations": "^16.2.12",
     "@angular/cdk": "^16.2.14",
     "@angular/common": "^16.1.0",
     "@angular/compiler": "^16.1.0",
@@ -30,6 +30,7 @@
     "ngx-lottie": "^10.0.0",
     "ngx-scanner-qrcode": "^1.6.9",
     "ngx-skeleton-loader": "^8.1.0",
+    "ngx-toastr": "^17.0.2",
     "ngx-webcam": "^0.4.1",
     "run-script-os": "*",
     "rxjs": "~7.8.0",

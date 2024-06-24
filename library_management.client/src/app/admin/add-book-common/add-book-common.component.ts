@@ -28,7 +28,8 @@ export class AddBookCommonComponent {
   @Input() qrList: any[] = [];
 
   qrExist: boolean = false;
-  qrSame: boolean = false; 
+  qrSame: boolean = false;
+  isMobile: boolean = false;
 
   //stepperIndex: number = 0;
   counterValue: number = 0;
@@ -83,6 +84,7 @@ export class AddBookCommonComponent {
   
 
   ngOnInit(): void {
+    this.isMobile = false;
     this.exploreService.addBookPage$.subscribe(idx => {
       this.stepperIndex = idx;
     });
@@ -452,17 +454,27 @@ export class AddBookCommonComponent {
     console.log(this.bookForm);
   }
 
+
   Scanner(index: any) {
     $('#exampleModalCenter').modal('hide');
-    const navigationExtras: NavigationExtras = {
-      state: {
-        page: "add",
-        idx:index,
-      }
-    };
 
-    this.router.navigate(['/admin/issue-mobile-scanner'], navigationExtras);
+    setTimeout(() => {
+      $('.modal-backdrop').remove();
+
+      const navigationExtras: NavigationExtras = {
+        state: {
+          page: "add",
+          idx: index,
+          previousUrl: this.router.url
+        }
+      };
+
+      this.router.navigate(['/admin/issue-mobile-scanner'], navigationExtras);
+    }, 100);
   }
+
+
+
   routeBasedOnScreenSize() {
       if (window.innerWidth <= 765) {
         this.router.navigate(['admin/add-book-scanner']);
@@ -472,6 +484,18 @@ export class AddBookCommonComponent {
       }
   }
 
+
+  handleSize():boolean {
+    if (window.innerWidth <= 767) {
+
+      this.isMobile = true;
+    } else {
+
+      this.isMobile = false;
+    }
+
+    return this.isMobile;
+  }
  
 }
 

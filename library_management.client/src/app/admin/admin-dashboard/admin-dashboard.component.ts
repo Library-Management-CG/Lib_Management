@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { AdminServiceService } from '../../shared/services/Admin-service .service';
@@ -168,7 +168,13 @@ export class AdminDashboardComponent {
 
   handleButtonClick(): void {
    
-      this.router.navigate(['admin/issue-mobile-scanner']); 
+    const navigationExtras: NavigationExtras = {
+
+      state: { previousUrl: this.router.url, page: 'issue' }
+
+    };
+
+    this.router.navigate(['admin/issue-mobile-scanner'], navigationExtras);
    
   }
 

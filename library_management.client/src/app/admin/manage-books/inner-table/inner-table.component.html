@@ -1,7 +1,6 @@
-<!--<app-revoke-book-modal [bookIssueId]="bookData?.bookIssueId"></app-revoke-book-modal>-->
-<app-success-modal [bookIssue]="bookData?.bookIssueId"></app-success-modal>
-  <app-comments-modal [bookQrMappingId]="bookData?.bookQrMappingId"></app-comments-modal>
-  <app-archive-modal [bookName]="bookName" [bookData]="bookData" [isArchive]="isArchive"></app-archive-modal>
+<!--<app-success-modal></app-success-modal>-->
+<app-comments-modal [bookQrMappingId]="bookData?.bookQrMappingId"></app-comments-modal>
+<app-archive-modal [bookName]="bookName" [bookData]="bookData" [isArchive]="isArchive"></app-archive-modal>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -66,11 +65,11 @@
     <th mat-header-cell *matHeaderCellDef> Action </th>
     <td mat-cell *matCellDef="let element">
       <div class="action-cell">
-        <div class="revoke-icon">
-          <button type="button" class="revoke-modal-button" data-toggle="modal" data-target="#success" (click)="setBookIssueId(element)" [disabled]="isBookIssued(element)==false">
+        <!--<div class="revoke-icon">
+          <button type="button" class="revoke-modal-button" data-toggle="modal" data-target="#revoke" (click)="setBookIssueId(element)" [disabled]="isBookIssued(element)==false">
             <img src="../../../../assets/icons/manage-books/revoke-enabled.svg" />
           </button>
-        </div>
+        </div>-->
         <div class="archive-icon">
           <button *ngIf="element.status.toLowerCase() != 'archive'" type="button" class="archive-modal-button" data-toggle="modal" data-target="#archiveModal" (click)="bookData = element; isArchive = true" [disabled]="isBookIssued(element)">
             <img src="../../../../assets/icons/manage-books/archive.svg" />
@@ -87,3 +86,5 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
+
+<!--<app-revoke-book-modal></app-revoke-book-modal>-->

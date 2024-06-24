@@ -1,6 +1,8 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ManageBooksService } from '../../../../shared/services/manage-books.service';
+import { ToastrService } from 'ngx-toastr';
+
 declare var $: any;
 
 export interface BookData {
@@ -28,7 +30,7 @@ export class ArchiveModalComponent implements OnInit {
 
   @ViewChild('hiddenLabel') label!: ElementRef;
 
-  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService) { }
+  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -60,10 +62,17 @@ export class ArchiveModalComponent implements OnInit {
       this.manageBooksService.archiveBook(formData).subscribe(
         response => {
           console.log('Book archived successfully', response);
+          if (formData.IsArchive == true) {
+            this.toastr.success('Archived Successfully');
+          }
+          else if (formData.IsArchive == false){
+            this.toastr.success('Retrieved Successfully');
+          }
           this.manageBooksService.notifyBookDataChanged();
           this.archiveForm.reset();
         },
         error => {
+          this.toastr.error('Error Performing Action');
           console.error('Error archiving book', error);
         }
       );

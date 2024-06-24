@@ -18,7 +18,7 @@ export class NavbarSharedComponent {
   roleName: any;
   isHighlighted: boolean = true;
   isTogglerClicked: boolean = false;
-   isSettingsClicked: boolean = false;
+  isSettingsClicked: boolean = false;
   isMyBooksClicked: boolean = false;
   filterValue: string = '';
   constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef, private exploreBooksService: ExploreBooksService) {
@@ -44,6 +44,11 @@ export class NavbarSharedComponent {
       }
       this.isDropdownOpenadmin = false;
     });
+
+    //this.exploreBooksService.navbarToggleChanged$.subscribe(data => {
+    //  if (this.role == 'Admin')
+    //    this.toggleActiveButton('Dashboard');
+    //});
 
   }
 
@@ -190,10 +195,14 @@ export class NavbarSharedComponent {
 
   applyAccessoryFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value;
-    //console.log('exploresearch:', this.filterValue);
+    console.log('exploresearch:', this.filterValue);
     this.exploreBooksService.setFilterValue(this.filterValue);
+    console.log("heloooooooooooooooooooo",this.exploreBooksService.filterValue$);
 
+  }
 
+  toggleHighlighter(page: string): boolean {
+    return this.router.url.toLowerCase().includes(page.toLowerCase());
   }
 
 }

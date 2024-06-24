@@ -18,10 +18,14 @@
   margin: 0rem 0.5rem 0.8rem 0rem;
 }
 
+.issue-modal-close{
+    cursor: pointer;
+}
 
 
-.top-heading{
-    margin-left:0.4rem;
+
+.top-heading {
+  margin-left: 0.4rem;
 }
 
 @media (min-width: 576px) {
@@ -31,6 +35,7 @@
 
   .close-modal-button {
     margin-right: 1rem;
+    
   }
 
 

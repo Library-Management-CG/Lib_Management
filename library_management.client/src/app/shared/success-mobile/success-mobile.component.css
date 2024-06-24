@@ -82,7 +82,7 @@ row-2-outer {
 }
 .next-button {
   display: flex;
-  width: 5.75rem;
+  width: 92vw;
   height: 2.5rem;
   padding: 0.75rem 0.5rem;
   justify-content: center;
@@ -90,7 +90,6 @@ row-2-outer {
   gap: 0.5rem;
   border-radius: 2rem;
   background: var(--Primary-Blue, #28519E);
-  margin-left: 1rem;
 }
 
 .next-text {

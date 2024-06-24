@@ -31,6 +31,5 @@ export class AdminServiceService {
   issueBook(formData: any): Observable<any> {
     return this.http.post(this.apiUrl + 'BookIssue/issueBooks', formData);
   }
-
  
 }

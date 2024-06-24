@@ -338,7 +338,7 @@ export class AddBooksModalComponent {
   Reset() {
     $('#exampleModalCenter').modal('hide');
     this.exploreService.resetBook();
-    this.exploreService.resetQrCode();
+    //this.exploreService.resetQrCode();
     //this.stepperIndex = 0;
     this.exploreService.setaddBookPage(0);
     
@@ -347,7 +347,7 @@ export class AddBooksModalComponent {
   Cancel() {
     $('#exampleModalCenter').modal('hide');
     this.exploreService.resetBook();
-    this.exploreService.resetQrCode();
+    //this.exploreService.resetQrCode();
     this.exploreService.setaddBookPage(0);
   }
 
@@ -367,7 +367,7 @@ export class AddBooksModalComponent {
       ISBN: this.addBook.ISBN,
       qty: this.qrArr.length,
       qr: this.qrArr,
-      LoggedIn:'1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20',
+      LoggedIn:'4EE28B71-DFAE-4BC9-8FE8-1579970A9560',
     }
 
     //console.log("before we post", book);
@@ -383,10 +383,18 @@ export class AddBooksModalComponent {
    
       },
       (error: any) => {
+        this.exploreService.resetQrCode();
+        this.Reset();
         console.error('Error posting:', error);
 
       }
     );
+  }
+
+  Close() {
+    this.exploreService.resetBook();
+    this.exploreService.resetQrCode();
+    this.exploreService.setaddBookPage(0);
   }
 
   getQrList() {

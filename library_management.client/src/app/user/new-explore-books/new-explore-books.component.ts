@@ -26,6 +26,7 @@ export class NewExploreBooksComponent {
   ratingFilteredBook: any[] = [];
   selectedRatings: number[] = [];
   availableBooksOfRatingFilter: any[] = [];
+  Searchedbooks: any[] = [];
 
   pageNumber: number = 1;
 
@@ -35,19 +36,37 @@ export class NewExploreBooksComponent {
   };
   loading: boolean = false;
   isChecked: boolean = false;
+  totalBooks: boolean = true;
 
 
   ngOnInit(): void {
     this.pageNumber = 1;
+    this.ignoreDropdown = true;
     //this.exploreBookData();
     this.exploreBooksService.getFilterValue().subscribe(filterValue => {
-      //console.log('Filter Value:', filterValue);
-      if (filterValue) {
-        this.filterExploreBooks(filterValue);
+      
+      if (filterValue.length > 0) {
+        console.log('Filter Value:', filterValue);
+        //this.filterExploreBooks(filterValue);
+        this.fetchFilteredBooks(filterValue); 
       } else {
-        this.exploreBookData(); 
+        console.log('Filter Value:from else', filterValue);
+        this.pageNumber = 1;
+        //this.selectedRatings = [];
+        this.Searchedbooks = [];
+        this.stopInfinite = true;
+        if (!this.isChecked && this.selectedRatings.length == 0) {
+          this.totalBooks = true;
+          this.exploreBooks = [];
+          this.exploreBookData();
+        } else {
+          this.totalBooks = false;
+          this.availablebooks = [];
+          this.availableBookData();
+        }
       }
     });
+    //this.exploreBookData();
     this.handlesize();
    
   }
@@ -56,6 +75,7 @@ export class NewExploreBooksComponent {
 
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
+    console.log("hello", this.pageNumber);
     if (this.shouldLoadData() && !this.loading && this.stopInfinite) {
       //setTimeout(() => {
         this.infinite = true;
@@ -68,7 +88,11 @@ export class NewExploreBooksComponent {
       this.loading = true;
       //console.log(this.pageNumber);
       setTimeout(() => {
-        this.exploreBookData();
+        if (!this.isChecked && this.selectedRatings.length == 0) {
+          this.exploreBookData();
+        } else {
+          this.availableBookData();
+        }
       },500)
        
     }
@@ -88,7 +112,7 @@ export class NewExploreBooksComponent {
 
     const pageDetails = {
       pageNumber: this.pageNumber,
-      pageSize: parseInt('10', 10)
+      pageSize: parseInt('10', 10),
     }
 
     this.user.explorebooks(pageDetails).subscribe(
@@ -112,11 +136,39 @@ export class NewExploreBooksComponent {
 
   }
 
+  ignoreDropdown: boolean = true;
+  stopCalls: boolean = false;
 
   onSelectedValuesChange(selectedValues: number[]): void {
+    if (this.ignoreDropdown) {
+      this.ignoreDropdown = false;
+      return;
+    }
+    if (this.stopCalls) {
+      setTimeout(() => {
+        this.stopCalls = false;
+      })
+      return;
+    }
+    this.stopCalls = true;
+    console.log("dekho dekho data aya", selectedValues);
+    //if (selectedValues.length == 0) {
+    //  return;
+    //}
     this.selectedRatings = selectedValues;
     //console.log('where', this.selectedRatings);
-    this.getFilteredBooks();
+    //this.getFilteredBooks();
+    this.pageNumber = 1;
+    this.stopInfinite = true;
+    if (!this.isChecked && this.selectedRatings.length == 0) {
+      this.totalBooks = true;
+      this.exploreBooks = [];
+      this.exploreBookData();
+    } else {
+      this.totalBooks = false;
+      this.availablebooks = [];
+      this.availableBookData();
+    }
   }
   filterAvailableBooksOfRatingFilter(): void {
     this.availableBooksOfRatingFilter = this.ratingFilteredBook.filter(book => book.statusName === 'Available');
@@ -124,12 +176,25 @@ export class NewExploreBooksComponent {
   }
   toggleCheckbox(): void {
     this.isChecked = !this.isChecked;
-    if (this.isChecked) {
+    this.pageNumber = 1;
+    this.stopInfinite = true;
+    if (!this.isChecked && this.selectedRatings.length == 0) {
+      this.totalBooks = true;
+      this.exploreBooks = [];
+      this.exploreBookData();
+    } else {
+      this.totalBooks = false;
+      this.availablebooks = [];
       this.availableBookData();
     }
-    if (this.isChecked && this.selectedRatings.length > 0) {
-      this.filterAvailableBooksOfRatingFilter();
-    }
+
+    
+    //if (this.isChecked) {
+    //  this.availableBookData();
+    //}
+    //if (this.isChecked && this.selectedRatings.length > 0) {
+    //  this.filterAvailableBooksOfRatingFilter();
+    //}
   }
   redirect_back() {
     this.redirectToUserDashboard();
@@ -143,12 +208,24 @@ export class NewExploreBooksComponent {
   }
   
   availableBookData() {
-    this.user.availableExplore().subscribe(
+    const pageDetails = {
+      pageNumber: this.pageNumber,
+      pageSize: parseInt('10', 10),
+      isChecked: this.isChecked,
+      selectedRatings: this.selectedRatings
+    }
+    console.log(pageDetails);
+    this.user.availableExplore(pageDetails).subscribe(
       (data) => {
-        this.availablebooks = data;
-
-        //console.log(data);
-
+        if (data.length == 0) {
+          this.stopInfinite = false;
+        }
+        this.availablebooks = this.availablebooks.concat(data);
+        console.log(this.availablebooks);
+        //----------------------------------------------------
+        this.infinite = false;
+        //this.checkDataLoaded();
+        this.loading = false;
       },
       (error) => {
         console.error('Error:', error);
@@ -161,7 +238,7 @@ export class NewExploreBooksComponent {
       data => {
         this.ratingFilteredBook = data;
 
-      //  console.log('Filtered books:', this.ratingFilteredBook);
+      //  console.log('biltered books:', this.ratingFilteredBook);
       },
       error => {
         console.error('Error fetching filtered books:', error);
@@ -193,5 +270,20 @@ export class NewExploreBooksComponent {
     }
   }
 
+  fetchFilteredBooks(fil: string): void {
+    //if (fil.length > 0) {
+      this.user.getFilteredBooks(fil).subscribe(
+        (data) => {
+          this.Searchedbooks = data;
+          console.log('Filter Value:', this.Searchedbooks);
+        },
+        (error) => {
+          console.error('Error fetching books:', error);
+        }
+      );
+    //} else {
+    //  this.exploreBookData();
+    //}
+  }
 
 }

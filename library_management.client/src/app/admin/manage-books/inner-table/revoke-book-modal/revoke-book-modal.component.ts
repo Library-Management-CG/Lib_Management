@@ -1,60 +1,72 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ManageBooksService } from '../../../../shared/services/manage-books.service';
-
+import { ExploreBooksService } from '../../../../shared/services/ExploreBooksService';
 
 @Component({
   selector: 'app-revoke-book-modal',
   templateUrl: './revoke-book-modal.component.html',
   styleUrls: ['./revoke-book-modal.component.css']
 })
-export class RevokeBookModalComponent {
+export class RevokeBookModalComponent implements OnInit, OnDestroy {
+  @Input() bookIssueId: any;
+  revokeForm: FormGroup;
+  mappedBook: any;
+  private mappedBookSubscription: Subscription | undefined;
+  updatedBy: string;
 
-  //revokeForm !: FormGroup;
-  bookReceived : string = '';
-  @Input() bookIssueId : any;
-  condition: string = '';
-  commentDescription: string = '';
-  updatedBy: any;
-  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService) {
-    this.bookReceived != '';
+  constructor(private fb: FormBuilder, private manageBooksService: ManageBooksService, private exploreBooksService: ExploreBooksService) {
+    this.revokeForm = this.fb.group({
+      bookReceived: ['', Validators.required],
+      condition: ['', Validators.required],
+      commentDescription: ['', Validators.required]
+    });
+    this.updatedBy = '1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20';
   }
 
   ngOnInit(): void {
+    this.mappedBookSubscription = this.exploreBooksService.mappedBook$.subscribe(
+      mappedBook => {
+        this.mappedBook = mappedBook;
+        if (this.mappedBook && this.mappedBook.bookIssueId) {
+          this.bookIssueId = this.mappedBook.bookIssueId;
+        }
+      },
+      error => {
+        console.error('Error fetching mapped book:', error);
+      }
+    );
+  }
 
-    this.updatedBy = '1C7D283A-C22B-45CA-8F9D-1C1C3DD16E20';
-
+  ngOnDestroy(): void {
+    if (this.mappedBookSubscription) {
+      this.mappedBookSubscription.unsubscribe();
+    }
   }
 
   onSubmit(): void {
-    if (this.bookIssueId != null &&  this.commentDescription != '' && this.bookReceived != '' && this.condition != '') {
+    if (this.revokeForm.valid && this.bookIssueId != null) {
       const formData = {
         BookIssueId: this.bookIssueId,
         UpdatedBy: this.updatedBy,
-        IsBookReceived: this.bookReceived == 'yes' ? true : false,
-        IsPerfect: this.condition == 'lost' ? null : this.condition == 'perfect' ? true : false,
-        CommentDescription: this.commentDescription
+        IsBookReceived: this.revokeForm.value.bookReceived === 'yes',
+        IsPerfect: this.revokeForm.value.condition === 'perfect' ? true : (this.revokeForm.value.condition === 'lost' ? null : false),
+        CommentDescription: this.revokeForm.value.commentDescription
       };
 
       console.log("DATA TO BE POSTED : ", formData);
-      //this.label.nativeElement.click();
-
-
 
       this.manageBooksService.revokeBook(formData).subscribe(
         response => {
           console.log('Book revoked successfully', response);
           this.manageBooksService.notifyBookDataChanged();
-          this.commentDescription = '';
-          this.bookReceived = '';
-          this.condition = '';
+          this.revokeForm.reset();
         },
         error => {
-          console.error('Error archiving book', error);
+          console.error('Error revoking book', error);
         }
       );
     }
   }
-
-
 }

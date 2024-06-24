@@ -45,6 +45,10 @@ export class InnerTableComponent implements OnChanges {
     this.exploreBooksService.setMappedBook(bookDetails);
   }
 
+  openRevokeBookModal() {
+    $('#revokeBookModal').modal('show');
+  }
+
   //getInitialData(): BookData[] {
   //  return Array.from({ length: 2 }, (_, i) => ({
   //    bookIssueId: null,
