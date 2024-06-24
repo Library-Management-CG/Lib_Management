@@ -363,6 +363,10 @@ app-books-card-shared{
     margin-top: -2rem;
   }
 
+  .leaderboard-heading {
+    margin-left: -8px;
+  }
+
 
   .show-more {
     margin-left: 4.5rem;
@@ -411,14 +415,14 @@ app-books-card-shared{
   }
 
   .leaderboard-heading {
-    margin-left: 15px;
+    margin-left: 10px;
   }
 
   .leaderboard-stack {
     height: 25.5rem;
-    margin-left: -1.9rem;
+    margin-left: -1.8rem;
     margin-top: -1rem;
-    transform: scale(1.11);
+    transform: scale(1.12);
   }
 }
 
