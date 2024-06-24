@@ -52,7 +52,18 @@ export class NewExploreBooksComponent {
       } else {
         console.log('Filter Value:from else', filterValue);
         this.pageNumber = 1;
-        this.exploreBookData(); 
+        //this.selectedRatings = [];
+        this.Searchedbooks = [];
+        this.stopInfinite = true;
+        if (!this.isChecked && this.selectedRatings.length == 0) {
+          this.totalBooks = true;
+          this.exploreBooks = [];
+          this.exploreBookData();
+        } else {
+          this.totalBooks = false;
+          this.availablebooks = [];
+          this.availableBookData();
+        }
       }
     });
     //this.exploreBookData();
@@ -64,6 +75,7 @@ export class NewExploreBooksComponent {
 
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
+    console.log("hello", this.pageNumber);
     if (this.shouldLoadData() && !this.loading && this.stopInfinite) {
       //setTimeout(() => {
         this.infinite = true;
@@ -210,6 +222,7 @@ export class NewExploreBooksComponent {
         }
         this.availablebooks = this.availablebooks.concat(data);
         console.log(this.availablebooks);
+        //----------------------------------------------------
         this.infinite = false;
         //this.checkDataLoaded();
         this.loading = false;
