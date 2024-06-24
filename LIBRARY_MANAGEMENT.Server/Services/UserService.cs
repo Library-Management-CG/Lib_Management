@@ -87,7 +87,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                         bqm.CreatedAtUtc
                     })
                     .OrderByDescending(bqm => bqm.CreatedAtUtc)
-                    .ToListAsync(); // Use ToListAsync() for async LINQ operations
+                    .ToListAsync();
 
                 var booksDetails = recentBooks
                     .Select(rb => new BooksDetails
@@ -126,7 +126,7 @@ namespace LIBRARY_MANAGEMENT.Server.Services
                     .GroupBy(bqm => bqm.BookId)
                     .Select(group => group.OrderByDescending(bqm => bqm.CreatedAtUtc).FirstOrDefault())
                     .Take(9)
-                     .ToList();
+                    .ToList();
 
                 return latestbook;
 
