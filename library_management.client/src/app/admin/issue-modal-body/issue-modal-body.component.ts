@@ -181,7 +181,7 @@ export class IssueModalBodyComponent {
   }
 
   nextValidation(): boolean {
-    var isUserName = this.issueBookForm.get('issueTo')?.value != '';
+    var isUserName = this.issueBookForm.get('issueTo')?.value != '' && this.issueBookForm.get('issueTo')?.value != null;
     var isDescription = this.issueBookForm.get('description')?.value != '';
 
     return isUserName && isDescription;
@@ -222,7 +222,7 @@ export class IssueModalBodyComponent {
 
   onSubmit() {
     this.exploreBooksService.setSuccessIssue(false);
-    this.issueBookForm.get('createdBy')?.setValue('1c7d283a-c22b-45ca-8f9d-1c1c3dd16e20');
+    this.issueBookForm.get('createdBy')?.setValue('4EE28B71-DFAE-4BC9-8FE8-1579970A9560');
     this.issueBookForm.get('bookQrMappingId')?.setValue(this.mappedBook.bookQrMappingId);
 
     if (this.nextValidation()) {

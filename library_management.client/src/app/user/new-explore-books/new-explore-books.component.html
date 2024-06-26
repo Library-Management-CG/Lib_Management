@@ -1,4 +1,4 @@
-<div class="explore-outer">
+<!--<div class="explore-outer">
   <div class="head-body">
     <div class="header-txt" (click)="redirect()">Reader’s Hub</div>
     <img src="../../../assets/icons/explore-books/Keyboard arrow right.svg" />
@@ -6,31 +6,30 @@
   </div>
 
   <div class="subhead sta str">
-    <div class="subhead-heading sta str ">
-      <!--<span class="arrow" (click)="redirect_back()"><img src="../../../assets/icons/explore-books/ArrowRight.svg" /></span>-->
-      <span class="explore-books-heading">Explore Books</span>
-      <!--<input type="text" class="search-bar" placeholder="" />-->
-      <div class="search-box ">
-        <img src="../../../assets/icons/My-books-mobile/search.svg" />
-        <input type="text" class="search-text" placeholder="" [(ngModel)]="filterValue"
-               (input)="applyBookFilter($event)" />
-      </div>
+    <div class="subhead-heading sta str ">-->
+<!--<span class="arrow" (click)="redirect_back()"><img src="../../../assets/icons/explore-books/ArrowRight.svg" /></span>-->
+<!--<span class="explore-books-heading">Explore Books</span>-->
+<!--<input type="text" class="search-bar" placeholder="" />-->
+<!--<div class="search-box ">
+    <img src="../../../assets/icons/My-books-mobile/search.svg" />
+    <input type="text" class="search-text" placeholder="" [(ngModel)]="filterValue"
+           (input)="applyBookFilter($event)" />
+  </div>
+</div>
+
+<div class="selectors str">
+  <div class="check-box-component sta str ">
+    <div class="check-box-label sta" for="flexCheckDefault" (click)="toggleCheckbox()">
+      <img class="check-image" *ngIf="isChecked == false" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+      <img class="check-image" *ngIf="isChecked == true" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
+      <span class="check-box-text sta">Available Books</span>
     </div>
+  </div>
 
-    <div class="selectors str">
-      <div class="check-box-component sta str ">
-        <div class="check-box-label sta" for="flexCheckDefault" (click)="toggleCheckbox()">
-          <img class="check-image" *ngIf="isChecked == false" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
-          <img class="check-image" *ngIf="isChecked == true" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
-          <span class="check-box-text sta">Available Books</span>
-        </div>
-      </div>
-
-      <div class="rating sta">
-        <app-rating-dropdown (selectedValuesChange)="onSelectedValuesChange($event)"></app-rating-dropdown>
-        <!--<app-rating-dropdown ></app-rating-dropdown>-->
-
-      </div>
+  <div class="rating sta">
+    <app-rating-dropdown (selectedValuesChange)="onSelectedValuesChange($event)"></app-rating-dropdown>-->
+<!--<app-rating-dropdown ></app-rating-dropdown>-->
+<!--</div>
     </div>
 
   </div>
@@ -84,4 +83,87 @@
     <app-spinner *ngIf="infinite==true" class="infinite"></app-spinner>
   </div>
 
+</div>-->
+<div class="explore-outer">
+  <div class="head-body">
+    <div class="header-txt" (click)="redirect()">Reader’s Hub</div>
+    <img src="../../../assets/icons/explore-books/Keyboard arrow right.svg" />
+    <div class="header-txt">Explore Books</div>
+  </div>
+
+  <div class="subhead sta str">
+    <div class="subhead-heading sta str ">
+      <!--<span class="arrow" (click)="redirect_back()"><img src="../../../assets/icons/explore-books/ArrowRight.svg" /></span>-->
+      <span class="explore-books-heading">Explore Books</span>
+      <!--<input type="text" class="search-bar" placeholder="" />-->
+      <div class="search-box">
+        <img src="../../../assets/icons/My-books-mobile/search.svg" />
+        <input type="text" class="search-text" placeholder="" [(ngModel)]="filterValue"
+               (input)="applyBookFilter($event)" />
+      </div>
+    </div>
+
+    <div class="selectors str">
+      <div class="check-box-component sta str">
+        <div class="check-box-label sta" for="flexCheckDefault" (click)="toggleCheckbox()">
+          <img class="check-image" *ngIf="!isChecked" src="../../../assets/icons/explore-books/checkbox-unchecked.svg" />
+          <img class="check-image" *ngIf="isChecked" src="../../../assets/icons/explore-books/checkbox-checked.svg" />
+          <span class="check-box-text sta">Available Books</span>
+        </div>
+      </div>
+
+      <div class="rating sta">
+        <app-rating-dropdown (selectedValuesChange)="onSelectedValuesChange($event)"></app-rating-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!dataLoaded && !isMobile">
+    <div class="row loader-skeleton">
+      <div *ngFor="let _ of placeholderArray" class="col-md-2 col-5 loader-skeleton-inner">
+        <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '300px', width:'235px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!dataLoaded && isMobile">
+    <div class="row mobile_loader">
+      <div *ngFor="let _ of placeholderArray" class="col-5 loader-skeleton-inner">
+        <ngx-skeleton-loader [theme]="{ 'border-radius': '16px', height: '300px', width:'160px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
+
+  <span *ngIf="searchInitiated" class="search-results">{{Searchedbooks.length}} result{{Searchedbooks.length === 1 ? '' : 's'}} for "{{searchValue}}"</span>
+
+  <div *ngIf="dataLoaded">
+    <div class="inner" *ngIf="Searchedbooks.length > 0">
+      <div class="column" *ngFor="let book of Searchedbooks">
+        <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+        <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+      </div>
+    </div>
+
+    <!--<div class="inner" *ngIf="searchInitiated && Searchedbooks.length === 0">
+      <p>No books found for "{{searchValue}}"</p>
+    </div>-->
+
+    <div class="inner" *ngIf="!searchInitiated && selectedRatings.length <= 0 && Searchedbooks.length <= 0">
+      <div class="column" *ngFor="let book of isChecked ? availablebooks : exploreBooks">
+        <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+        <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+      </div>
+    </div>
+
+    <div class="inner" *ngIf="selectedRatings.length > 0 && Searchedbooks.length <= 0">
+      <div class="column" *ngFor="let book of availablebooks">
+        <app-book-details-modal [books]="selectedBook"></app-book-details-modal>
+        <app-books-card-shared [books]="book" (openModalEvent)="openModaldesc(book)"></app-books-card-shared>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <app-spinner *ngIf="infinite" class="infinite"></app-spinner>
+  </div>
 </div>

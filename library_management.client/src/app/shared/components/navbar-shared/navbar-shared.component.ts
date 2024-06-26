@@ -1,18 +1,253 @@
-import { Component, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
-import { Renderer2 } from '@angular/core';
-import { ElementRef } from '@angular/core';
+//import { Component, HostListener, OnInit } from '@angular/core';
+//import { Router, NavigationEnd } from '@angular/router';
+//import { Renderer2 } from '@angular/core';
+//import { ElementRef } from '@angular/core';
+//import { ExploreBooksService } from '../../services/ExploreBooksService';
+//import { filter } from 'rxjs/operators';
+
+//@Component({
+//  selector: 'app-navbar-shared',
+//  templateUrl: './navbar-shared.component.html',
+//  styleUrls: ['./navbar-shared.component.css']
+//})
+//export class NavbarSharedComponent {
+//  activeButton: string ='';
+//  isDropdownOpen: boolean = false;
+//  isDropdownOpenadmin: boolean= false;
+//  getrole: any;
+//  role: any;
+//  roleName: any;
+//  isHighlighted: boolean = true;
+//  isTogglerClicked: boolean = false;
+//  isSettingsClicked: boolean = false;
+//  isMyBooksClicked: boolean = false;
+//  filterValue: string = '';
+
+//  constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef, private exploreBooksService: ExploreBooksService) {
+
+//  }
+//  ngOnInit(): void
+//  {
+//    this.getRole();
+//    if (this.role=='User')
+//      this.toggleActiveButton('readers-hub');
+//    if (this.role == 'Admin')
+//      this.toggleActiveButton('Dashboard');
+
+//    this.renderer.listen('document', 'click', (event) => {
+//      if (!this.isDropdownOpen || this.elementRef.nativeElement.contains(event.target)) {
+//        return;
+//      }
+//      this.isDropdownOpen = false;
+//    });
+//    this.renderer.listen('document', 'click', (event) => {
+//      if (!this.isDropdownOpenadmin || this.elementRef.nativeElement.contains(event.target)) {
+//        return;
+//      }
+//      this.isDropdownOpenadmin = false;
+//    });
+
+//    //this.exploreBooksService.navbarToggleChanged$.subscribe(data => {
+//    //  if (this.role == 'Admin')
+//    //    this.toggleActiveButton('Dashboard');
+//    //});
+//    this.router.events.pipe(
+//      filter(event => event instanceof NavigationEnd)
+//    ).subscribe(() => {
+//      this.updateActiveButton();
+//    });
+
+//    this.updateActiveButton();
+
+//  }
+
+//  toggleActiveButton(button: string) {
+//    this.isHighlighted = true;
+//    this.isDropdownOpen = false;
+//    this.isDropdownOpenadmin = false;
+
+//    this.isSettingsClicked = false;
+
+//    if (button === 'my-books') {
+//      this.isMyBooksClicked = true;
+//      this.routeBasedOnScreenSizeMyBooks();
+
+//    }
+
+//    else if (button === 'readers-hub') {
+//      this.isMyBooksClicked = false;
+
+//      this.router.navigate(['/']);
+//    }
+//    else if (button === 'Dashboard') {
+//      this.isMyBooksClicked = false;
+
+//      this.router.navigate(['/admin']);
+//    }
+//    else if (button === 'manage-books') {
+//      this.isMyBooksClicked = false;
+
+//      this.router.navigate(['admin/manage-books']);
+//    }
+
+//    this.activeButton = button;
+
+//  }
+//  toggleToUser(button: string) {
+//    this.isSettingsClicked = false;
+//    this.isMyBooksClicked = false;
+
+//    if (button === 'readers-hub') {
+//      this.router.navigate(['/']);
+//    }
+
+//  }
+//  toggletoAdmin(button: string) {
+//    this.isSettingsClicked = false;
+//    this.isMyBooksClicked = false;
+
+//    if (button === 'Dashboard') {
+//      this.router.navigate(['/admin']);
+//    }
+//  }
+
+//  toggleDropdown() {
+//    this.isDropdownOpen = !this.isDropdownOpen;
+//  }
+//  getRole() {
+//    this.getrole = localStorage.getItem('user');
+
+//    const user = JSON.parse(this.getrole);
+
+//    this.role = user.role;
+//    this.roleName = user.firstName;
+//  }
+//  open_settings() {
+//    this.isHighlighted = false;
+//    this.isDropdownOpenadmin = false;
+//    this.isMyBooksClicked = false;
+
+//    this.isSettingsClicked = true; // Flag indicating that settings button is clicked
+//    this.routeBasedOnScreenSize();
+//  }
+
+//  routeBasedOnScreenSize() {
+//    if (this.isSettingsClicked) {
+//      if (window.innerWidth <= 765) {
+//        this.router.navigate(['/admin/accesscontrolmobile']);
+//      } else {
+//        this.router.navigate(['/admin/accesscontrol']);
+//      }
+//    }
+//  }
+//  routeBasedOnScreenSizeMyBooks() {
+//    if (this.isMyBooksClicked) {
+//      if (window.innerWidth <= 765) {
+//        this.router.navigate(['/my-books-mobile']);
+//      } else {
+//        this.router.navigate(['/my-books']);
+//      }
+//    }
+//  }
+
+//  @HostListener('window:resize', ['$event'])
+//  onResize(event: any) {
+//    // Check responsiveness only after settings button is clicked
+//    if (this.isSettingsClicked) {
+//      this.routeBasedOnScreenSize();
+//    }
+//    if (this.isMyBooksClicked) {
+//      this.routeBasedOnScreenSizeMyBooks();
+//    }
+//  }
+
+
+//  admintoggleDropdown() {
+//    this.isDropdownOpenadmin = !this.isDropdownOpenadmin;
+
+//  }
+//  open_search() {
+//    this.isHighlighted = false;
+//    this.isDropdownOpen = false;
+//    this.isMyBooksClicked = false;
+
+//    this.isSettingsClicked = false;
+
+//  }
+
+
+//  isAdmin() {
+//    return this.router.url.toLowerCase().includes('admin');
+//  }
+
+//  toggleCollapse() {
+//    this.isTogglerClicked = !this.isTogglerClicked;
+
+//  }
+//  closeMobileNavbar(): void {
+//    // Check if the navbar is collapsed
+//    const navbar = document.querySelector('.navbar-collapse');
+//    if (navbar?.classList.contains('show')) {
+//      // Close the navbar collapse
+//      navbar.classList.remove('show');
+//      this.isTogglerClicked = false;
+//    }
+//  }
+//  open_explore() {
+//    // Redirect to the explore-books route
+//    this.redirectToExploreBooks();
+//  }
+
+//  redirectToExploreBooks() {
+//    // Navigate to the explore-books route
+//    this.router.navigate(['/new-explore-books']);
+//  }
+
+
+//  applyAccessoryFilter(event: Event) {
+//    this.filterValue = (event.target as HTMLInputElement).value;
+//    console.log('exploresearch:', this.filterValue);
+//    this.exploreBooksService.setFilterValue(this.filterValue);
+//    console.log("heloooooooooooooooooooo",this.exploreBooksService.filterValue$);
+
+//  }
+
+//  toggleHighlighter(page: string): boolean {
+//    return this.router.url.toLowerCase().includes(page.toLowerCase());
+//  }
+//  redirect() {
+//    this.router.navigate(['new-explore-books']);
+//  }
+//  updateActiveButton() {
+//    const currentRoute = this.router.url;
+//    if (currentRoute.includes('/admin/manage-books')) {
+//      this.activeButton = 'manage-books';
+//    } else if (currentRoute.includes('/admin')) {
+//      this.activeButton = 'Dashboard';
+//    } else if (currentRoute.includes('/my-books')) {
+//      this.activeButton = 'my-books';
+//    } else {
+//      this.activeButton = 'readers-hub';
+//    }
+//  }
+//}
+
+
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Renderer2, ElementRef } from '@angular/core';
 import { ExploreBooksService } from '../../services/ExploreBooksService';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar-shared',
   templateUrl: './navbar-shared.component.html',
   styleUrls: ['./navbar-shared.component.css']
 })
-export class NavbarSharedComponent {
-  activeButton: string ='';
+export class NavbarSharedComponent implements OnInit {
+  activeButton: string = '';
   isDropdownOpen: boolean = false;
-  isDropdownOpenadmin: boolean= false;
+  isDropdownOpenadmin: boolean = false;
   getrole: any;
   role: any;
   roleName: any;
@@ -21,16 +256,22 @@ export class NavbarSharedComponent {
   isSettingsClicked: boolean = false;
   isMyBooksClicked: boolean = false;
   filterValue: string = '';
-  constructor(private router: Router, private renderer: Renderer2, private elementRef: ElementRef, private exploreBooksService: ExploreBooksService) {
 
-  }
-  ngOnInit(): void
-  {
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private exploreBooksService: ExploreBooksService
+  ) { }
+
+  ngOnInit(): void {
     this.getRole();
-    if (this.role=='User')
-      this.toggleActiveButton('readers-hub');
-    if (this.role == 'Admin')
-      this.toggleActiveButton('Dashboard');
+    // Initial activation based on role
+    if (this.role == 'User') {
+      this.activeButton = 'readers-hub';
+    } else if (this.role == 'Admin') {
+      this.activeButton = 'Dashboard';
+    }
 
     this.renderer.listen('document', 'click', (event) => {
       if (!this.isDropdownOpen || this.elementRef.nativeElement.contains(event.target)) {
@@ -38,6 +279,7 @@ export class NavbarSharedComponent {
       }
       this.isDropdownOpen = false;
     });
+
     this.renderer.listen('document', 'click', (event) => {
       if (!this.isDropdownOpenadmin || this.elementRef.nativeElement.contains(event.target)) {
         return;
@@ -45,43 +287,38 @@ export class NavbarSharedComponent {
       this.isDropdownOpenadmin = false;
     });
 
-    //this.exploreBooksService.navbarToggleChanged$.subscribe(data => {
-    //  if (this.role == 'Admin')
-    //    this.toggleActiveButton('Dashboard');
-    //});
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.updateActiveButton();
+    });
 
+    this.updateActiveButton();
   }
 
   toggleActiveButton(button: string) {
     this.isHighlighted = true;
     this.isDropdownOpen = false;
     this.isDropdownOpenadmin = false;
-
     this.isSettingsClicked = false;
 
     if (button === 'my-books') {
       this.isMyBooksClicked = true;
       this.routeBasedOnScreenSizeMyBooks();
-
-    }
-
-    else if (button === 'readers-hub') {
+    } else if (button === 'readers-hub') {
       this.isMyBooksClicked = false;
-
       this.router.navigate(['/']);
-    }
-    else if (button === 'Dashboard') {
+    } else if (button === 'Dashboard') {
       this.isMyBooksClicked = false;
-
       this.router.navigate(['/admin']);
-    }
-    else if (button === 'manage-books') {
+    } else if (button === 'manage-books') {
       this.isMyBooksClicked = false;
-
       this.router.navigate(['admin/manage-books']);
     }
 
+    this.activeButton = button;
   }
+
   toggleToUser(button: string) {
     this.isSettingsClicked = false;
     this.isMyBooksClicked = false;
@@ -89,8 +326,8 @@ export class NavbarSharedComponent {
     if (button === 'readers-hub') {
       this.router.navigate(['/']);
     }
-
   }
+
   toggletoAdmin(button: string) {
     this.isSettingsClicked = false;
     this.isMyBooksClicked = false;
@@ -103,21 +340,22 @@ export class NavbarSharedComponent {
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
+
   getRole() {
     this.getrole = localStorage.getItem('user');
-    
-    const user = JSON.parse(this.getrole);
-
-    this.role = user.role;
-    this.roleName = user.firstName;
+    if (this.getrole) {
+      const user = JSON.parse(this.getrole);
+      this.role = user.role;
+      this.roleName = user.firstName;
+    }
   }
+
   open_settings() {
     this.isHighlighted = false;
     this.isDropdownOpenadmin = false;
     this.isMyBooksClicked = false;
-
-    this.isSettingsClicked = true; // Flag indicating that settings button is clicked
-    this.routeBasedOnScreenSize(); 
+    this.isSettingsClicked = true;
+    this.routeBasedOnScreenSize();
   }
 
   routeBasedOnScreenSize() {
@@ -129,6 +367,7 @@ export class NavbarSharedComponent {
       }
     }
   }
+
   routeBasedOnScreenSizeMyBooks() {
     if (this.isMyBooksClicked) {
       if (window.innerWidth <= 765) {
@@ -141,7 +380,6 @@ export class NavbarSharedComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    // Check responsiveness only after settings button is clicked
     if (this.isSettingsClicked) {
       this.routeBasedOnScreenSize();
     }
@@ -150,20 +388,16 @@ export class NavbarSharedComponent {
     }
   }
 
-  
   admintoggleDropdown() {
     this.isDropdownOpenadmin = !this.isDropdownOpenadmin;
-
   }
+
   open_search() {
     this.isHighlighted = false;
     this.isDropdownOpen = false;
     this.isMyBooksClicked = false;
-
     this.isSettingsClicked = false;
-
   }
-
 
   isAdmin() {
     return this.router.url.toLowerCase().includes('admin');
@@ -171,40 +405,47 @@ export class NavbarSharedComponent {
 
   toggleCollapse() {
     this.isTogglerClicked = !this.isTogglerClicked;
- 
   }
+
   closeMobileNavbar(): void {
-    // Check if the navbar is collapsed
     const navbar = document.querySelector('.navbar-collapse');
     if (navbar?.classList.contains('show')) {
-      // Close the navbar collapse
       navbar.classList.remove('show');
       this.isTogglerClicked = false;
     }
   }
+
   open_explore() {
-    // Redirect to the explore-books route
     this.redirectToExploreBooks();
   }
 
   redirectToExploreBooks() {
-    // Navigate to the explore-books route
     this.router.navigate(['/new-explore-books']);
   }
 
-
   applyAccessoryFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value;
-    console.log('exploresearch:', this.filterValue);
     this.exploreBooksService.setFilterValue(this.filterValue);
-    console.log("heloooooooooooooooooooo",this.exploreBooksService.filterValue$);
-
   }
 
   toggleHighlighter(page: string): boolean {
     return this.router.url.toLowerCase().includes(page.toLowerCase());
   }
+
   redirect() {
     this.router.navigate(['new-explore-books']);
+  }
+
+  updateActiveButton() {
+    const currentRoute = this.router.url;
+    if (currentRoute.includes('/admin/manage-books')) {
+      this.activeButton = 'manage-books';
+    } else if (currentRoute.includes('/admin')) {
+      this.activeButton = 'Dashboard';
+    } else if (currentRoute.includes('/my-books')) {
+      this.activeButton = 'my-books';
+    } else {
+      this.activeButton = 'readers-hub';
+    }
   }
 }
